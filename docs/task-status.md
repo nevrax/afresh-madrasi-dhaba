@@ -1,5 +1,7 @@
 # Task status
 
+PAGES-1: GitHub Pages workflow prepared for the tracked dist/site package on main, with manual dispatch and automatic publication on site/workflow changes. The artifact path contains only the four prepared game files. Repository Pages must use GitHub Actions as its publishing source; a successful hosted deployment has not yet been verified.
+
 DIST-3: Both ready to play packages in dist/site and dist/standalone are now tracked in Git. README links directly to the included standalone HTML; setup documentation distinguishes playing from rebuilding. A fresh release build and visible browser checks pass gameplay from each isolated package root, with no missing files or page errors. Local tools and intermediate builds remain ignored.
 
 DOC-8: README screenshots use JPEG quality 80 from the full 2160 × 1572 captures. The three files total 635,485 bytes, a 53.5% reduction from the previous lossless WebPs. Replaced WebPs are removed from docs/media. JPEG bytes match the compared variants; desktop and mobile README previews pass image loading, navigation and overflow checks with no page errors. Game assets and distributions are unchanged.

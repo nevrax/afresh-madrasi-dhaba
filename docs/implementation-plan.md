@@ -214,3 +214,5 @@ Verification: relocated setup, build and test launchers execute from outside the
 - [x] DOC-8: Use JPEG quality 80 for all three README screenshots at the full 2160 × 1572 resolution. Remove replaced WebPs; total 635,485 bytes, saving 53.5%. Compared JPEG bytes and desktop/mobile README previews verified.
 
 - [x] DIST-3: Track both prepared game packages in Git, link the standalone HTML from README and document rebuilding tracked distributions. Fresh release build and isolated package browser gameplay checks pass without missing files or page errors.
+
+- [x] PAGES-1: Prepare a GitHub Pages workflow publishing only dist/site and document activation. Hosted deployment remains pending repository configuration and push.
