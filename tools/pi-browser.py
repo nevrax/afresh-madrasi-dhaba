@@ -137,5 +137,11 @@ elif action == 'log':
 elif action == 'http':
     with urllib.request.urlopen('http://127.0.0.1:5178/development/verification/render-fixture.html', timeout=8) as response:
         print(json.dumps({'status': response.status, 'bytes': len(response.read())}))
+elif action == 'keep-awake':
+    state = current_browser()
+    if state and state['platform'] == 'x11':
+        command(['xset', 'dpms', 'force', 'on'])
+        command(['xset', 's', 'reset'])
+    print(json.dumps({'active': bool(state)}))
 else:
     raise RuntimeError('Unknown action')

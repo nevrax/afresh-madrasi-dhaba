@@ -1,16 +1,18 @@
 // Use installed Pi Chromium and SSH forwarding. No packages or global settings change.
-// Args: SSH target, SSH port, local CDP port, anonymous output label, optional JSON cases.
+// Args: SSH target, SSH port, local CDP port, anonymous output label, optional preset or JSON cases.
 import {createRequire} from 'node:module';
 import {spawn} from 'node:child_process';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {measureFullResolutionFixture} from './full-resolution-fixture.mjs';
+import {measureComponentFixture} from './component-ranking-fixture.mjs';
+import {componentRankingCases} from './component-ranking-cases.mjs';
 const root=path.resolve(import.meta.dirname,'..');
 const {chromium}=createRequire(import.meta.url)(path.join(root,'.local-setup/playwright/node_modules/playwright'));
 const [target,portText,localText,label,casesText]=process.argv.slice(2);
 const port=Number(portText),localPort=Number(localText);
 if(!target||!/^\w[\w.@:-]*$/.test(target)||!Number.isInteger(port)||port<1||port>65535||!Number.isInteger(localPort)||localPort<1024||localPort>65535||!label||!/^[a-z0-9-]+$/.test(label))throw Error('Invalid SSH arguments');
-const cases=casesText?JSON.parse(casesText):[{width:880},{width:1485},{width:2200,fixedBudget:true},{width:2200},{width:2200,omit:'griddle-steam'}];
+const cases=['ranking','simplifications','background'].includes(casesText)?componentRankingCases(casesText):casesText?JSON.parse(casesText):[{width:880},{width:1485},{width:2200,fixedBudget:true},{width:2200},{width:2200,omit:'griddle-steam'}];
 if(!Array.isArray(cases)||cases.some(c=>!Number.isInteger(c.width)||c.width<550||c.width>2970))throw Error('Invalid fixture sizes');
 const output=path.join(root,'.local-setup/logs',label);await mkdir(output,{recursive:true});
 const python=await readFile(path.join(root,'tools/pi-browser.py'),'utf8');
@@ -56,6 +58,7 @@ try{
  result.idleCadence=await page.evaluate(async()=>{const times=[];let before=await new Promise(requestAnimationFrame);for(let i=0;i<12;i++){const now=await new Promise(requestAnimationFrame);times.push(now-before);before=now;}return times;});
  if(result.idleCadence.every(ms=>ms>200))throw Error('Idle browser cadence is throttled; no performance acceptance possible');
  for(const config of cases){
+  await remote('keep-awake');
   const before=await cdp.send('SystemInfo.getProcessInfo'),start=performance.now();
   let measurement;
   if(config.mode==='ui'){
@@ -86,7 +89,7 @@ try{
    measurement.config=config;
   }else{
    if(!page.url().includes('/render-fixture.html'))await page.goto('http://127.0.0.1:5178/development/verification/render-fixture.html',{waitUntil:'domcontentloaded'});
-   measurement=await measureFullResolutionFixture(page,{...config,adapter:'default'});
+   measurement=await (config.mode==='ranking'?measureComponentFixture:measureFullResolutionFixture)(page,{...config,adapter:'default'});
   }
   const elapsed=(performance.now()-start)/1000,after=await cdp.send('SystemInfo.getProcessInfo');
   const old=new Map(before.processInfo.map(p=>[p.id,p.cpuTime]));

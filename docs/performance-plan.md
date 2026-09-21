@@ -2,11 +2,90 @@
 
 ## Full resolution continuation
 
+### Profile separation plan
+
+Status: planned, not implemented. Keep this plan and the component report in
+English. Profile names below are working labels; the shipping default is an
+explicit unresolved decision to make after comparison.
+
+Use one application, one simulation and two presentation profiles:
+
+| Area | Classic | Extra |
+| --- | --- | --- |
+| Gameplay rules, customer orders, patience, cooking and scoring | Same shared core | Same shared core |
+| Appearance-preserving cache improvements | Enabled | Enabled |
+| Original decorative effects and authored animation | Reference presentation | Selected cheaper treatments |
+| Added batter introduction label and bowl outline/selection cue | Off | Included |
+| Added flip/pickup cursors and other remake guidance overlays | Off; retain source-authored cues | Included |
+| Added display/diagnostic controls, including resolution, FPS, expansion and fullscreen buttons | No extra control overlay | Included; FPS remains opt-in and hidden initially |
+| Original music | Preserved | Preserved unless a separate audio choice is made |
+| Future additional music or presentation features | Not enabled here | Belong here if implemented later |
+
+The profile chooser is a small shared control, not another permanent dashboard.
+Responsive fitting, direct-file playback, input handling, resource error recovery,
+accessibility essentials and fixes for white seams or incorrectly placed screens
+are shared correctness/portability work. Required credits and attribution also
+remain shared. Classic does not mean restoring defects or claiming historical
+Adobe pixel equivalence. Added conveniences beyond these essentials must be
+inventoried and assigned to Extra, including features already present in the remake.
+
+Cache eligibility is strict: common cache work must preserve the selected
+profile's appearance, animation and interactions. Freezing stars so a whole
+background can be retained changes the picture and therefore belongs to Extra,
+even though it also enables caching. Retaining unchanged scenery while keeping
+animated stars and original composition intact can be common cache work after
+verification. New non-cache performance treatments belong to Extra; do not use
+this plan to silently rewrite the established Classic rendering baseline.
+
+- [ ] PROF-1 Inventory existing additions in the game shell, renderer, pointer
+  feedback and audio settings. Map every feature to shared infrastructure,
+  Classic source behavior or Extra presentation. Distinguish source-authored flip
+  cues from added cursors. The resource catalogue remains a separate development
+  tool. Record the mapping before moving existing behavior behind profile gates.
+- [ ] PROF-2 Introduce a typed presentation-profile configuration with stable
+  IDs and one resolver. Pass resolved options to rendering, presentation UI and
+  audio without branching the game rules or duplicating the game. Cover existing
+  additions and future treatments through the same profile mechanism.
+- [ ] PROF-3 Implement and verify common cache work first, at unchanged clarity.
+  Bound total memory across both profiles; invalidate or distinguish cached
+  variants on switching so stale simplified artwork cannot leak into Classic.
+- [ ] PROF-4 Gate existing additions behind Extra and implement the measured
+  non-cache candidates there: cheaper large griddle steam first, optional fixed
+  stars/static scenery treatment next, then simpler order-bubble decoration.
+  Keep counts and patience live. Keep glasses, radio, original music, traffic and
+  customer detail initially; further cuts need evidence. No automatic resolution
+  drop or automatic profile selection based on detected hardware.
+- [ ] PROF-5 Add a compact profile selector and persist explicit selection when
+  storage is available, with an in-memory fallback for restricted file playback.
+  Switching must preserve the active day, score, food, customers and timers,
+  cancel obsolete presentation work and release unused variant resources. Keep
+  Extra hint dismissal and display settings separate from Classic; toggling must
+  not replay music, stack listeners or resurrect dismissed hints. Compare profiles
+  explicitly in development while the shipping default remains undecided; do not
+  change the existing release default as a side effect of settings migration.
+- [ ] PROF-6 Validate both profiles with identical input/replay and 100% render
+  scale before testing lower scales separately. Check cold and warm rendering on
+  both Pi environments plus Intel/NVIDIA, memory bounds, repeated profile swaps,
+  menu/tutorial/gameplay/day-end, pointer/touch hit mapping, audio, fullscreen,
+  resizing and HTTP/direct-file playback. Classic retains source behavior and
+  the established corrections; Extra has explicit visual differences, with the
+  same simulation outcomes. Record side-by-side visuals and performance before
+  selecting the default. Rebuild and validate both distributions with the selected
+  default only after this decision; never mark these tasks complete from prototypes.
+
+Implementation order: PROF-1/2, common cache work (PROF-3), Extra treatments
+(PROF-4), switching and persistence (PROF-5), then acceptance (PROF-6).
+PROF-4 and PROF-6 carry the production work and acceptance required by PERF-17.
+The default profile remains **undecided**. This planning change does not implement
+profiles, choose effects for final release or add any new soundtrack.
+
+- [x] PERF-19 Rank individual visual groups on both physical Pi environments using repeated baselines, separate cold and warm costs, managed memory and actual audio controls. All 56 cases are recorded in [performance-components.md](performance-components.md) and anonymous reference data. Large griddle steam dominates measured cold/memory cost; background composition dominates warmed omission gains. Static background treatment reaches 43.11 / 59.66 FPS versus its 36.23 / 39.67 starting controls. The scope permits deliberate decorative simplification; exact historical appearance is a reference, not a universal requirement. Experimental removals remain outside the shipped game. This study does not complete PERF-17 implementation.
+
 - [x] PERF-16 Reproduce and fix cache thrashing above 1485 × 1080 without reducing clarity. Resolution scaled, bounded tile retention removes repeated griddle blur eviction. Verified Intel 2200 × 1600 fixture: 5.17–5.33 to 57.84–58.37 draws/s. Warm production core gameplay: 63.93/s, no sampled gaps above 50 ms. All 124 tests and 94 exact scene pixel/hit comparisons pass; resize returns identical pixels.
-- [ ] PERF-17 Separate cold filter creation from sustained rendering at 2970 × 2160. Current short fixture: 26.56/s with 51 filter builds and zero evictions. First measure longer warm windows and GPU/compositor work, then choose an optimization with identical pixels and bounded memory. Cold 2200 gameplay also retains first appearance stalls. Neither case is accepted as resolved.
+- [ ] PERF-17 Resolve cold filter creation and sustained high density rendering through PROF-1–6 above. At 2970 × 2160 the earlier short fixture remains 26.56/s with 51 filter builds and zero evictions. PERF-19 supplies longer controlled 2200 × 1600 Pi measurements and effect alternatives. Share verified appearance-preserving cache improvements; place cheaper griddle effects, changed scenery animation and simpler order decoration in Extra. Repeat cold/warm actual gameplay and visual checks for both profiles. Preserve bounded memory and sharp primary artwork; exact pixels are required only for changes claimed to preserve appearance. Cold stalls and sustained full-clarity performance are not yet accepted as resolved.
 - [x] PERF-18 Measure physical Raspberry Pi at a recorded model, browser/backend and backing resolution. Two Pi 5 / 8 GB environments have verified V3D acceleration. Warm 1485 × 1080 gameplay reaches 60.00/s on both; 2200 × 1600 reaches 39.62 / 52.21/s. Cold stalls remain, so smoothness acceptance is limited. Both pass GPU pixels and shipped UI checks. See [performance-raspberry-pi.md](performance-raspberry-pi.md).
 
-PERF-17 priority after the Pi study: (1) cold first appearance stalls, including 0.5–0.8 second gaps; (2) warm high density composition where eviction and filter-build counts are already zero; (3) controlled same-device graphics stack comparisons before recommending system changes. Keep full density, exact filter pixels and bounded memory as acceptance requirements.
+PERF-17 priority after the component study: (1) large griddle blur and other cold preparation; (2) background composition at unchanged primary-art clarity; (3) decorative order morphing. Customer bodies, dosa steam and traffic are secondary, while glasses, radio and music are low priorities. The combined removal of small decorations only takes Pi A from about 36 to 40 FPS, so removing everything is not the proposed solution. Follow the implementation and acceptance order in [performance-components.md](performance-components.md). Same-device graphics-stack comparisons remain necessary before attributing differences to a particular driver or recommending system changes.
 
 Evidence and reproduction: [performance-full-resolution.md](performance-full-resolution.md). These tasks extend the earlier resolution matrix; the original game implementation remains complete.
 
