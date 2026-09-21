@@ -11,7 +11,7 @@ export async function checkGameUi(context,output,url='http://127.0.0.1:5173/'){
  await gameControl('Start');
  await gameControl('How to play');
  await page.getByRole('button',{name:'Skip tutorial',exact:true}).waitFor();
- checks.push({name:'tutorial remains in stage',scrollHeight:await page.evaluate(()=>document.documentElement.scrollHeight),height:850});
+ checks.push({name:'tutorial remains in stage',scrollHeight:await page.evaluate(()=>document.documentElement.scrollHeight),height:await page.evaluate(()=>innerHeight)});
  await gameControl('Skip tutorial');
  const stage=page.locator('#game');
  const point=async(x,y)=>{const b=await stage.boundingBox();return {x:b.x+x/550*b.width,y:b.y+y/400*b.height};};

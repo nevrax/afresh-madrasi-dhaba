@@ -73,8 +73,9 @@ builds after its short warmup, despite zero evictions. This resolution is
 **not accepted as smooth**. Longer warmup and filter/compositor attribution
 are required before another change. Unbounded memory growth is not a solution.
 
-No Raspberry Pi was measured. Its browser, active backend, RAM and backing
-dimensions must be recorded on the device; Intel results do not certify it.
+Raspberry Pi was outside this initial Intel matrix. Subsequent physical results
+are in [performance-raspberry-pi.md](performance-raspberry-pi.md); Intel results
+alone do not certify it.
 Animation callbacks do not measure physical display scanout. Original food,
 customer and steam poses still advance at their authored 12 Hz.
 

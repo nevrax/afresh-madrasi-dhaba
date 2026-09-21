@@ -2,7 +2,7 @@
 
 This is the persistent work plan. Update task checkboxes only when the stated evidence exists. Record the current task, evidence, unresolved questions and next action in [task-status.md](task-status.md) before handing work over or ending an implementation session.
 
-Full resolution continuation: PERF-16 fixes repeated griddle filter eviction at large backing dimensions, with unchanged scene pixels and hit targets. Cold first appearances, higher density Intel pacing and physical Raspberry Pi validation remain open as PERF-17–18 in [performance-plan.md](performance-plan.md). Earlier performance acceptance applies only to its measured resolution matrix.
+Full resolution continuation: PERF-16 fixes repeated griddle filter eviction at large backing dimensions, with unchanged scene pixels and hit targets. PERF-18 now records physical Raspberry Pi measurements and UI/pixel checks. Cold first appearances and higher density Intel/Pi pacing remain open as PERF-17 in [performance-plan.md](performance-plan.md). Earlier performance acceptance applies only to its measured resolution matrix.
 
 ## Scope and baseline
 
