@@ -336,14 +336,17 @@ test('significant morphs retain two exact recent raster poses per density and re
   art.diagnosticFullMorphCache=true;for(const ratio of [0,.1,.2,.3])draw(ratio);assert.equal(art.memorySummary().tileCount,4,'diagnostic baseline retains full morph history');
 }));
 
-test('five-customer source replay retains expensive steam without raising byte or entry budgets',t=>canvasHarness(({canvas,operations})=>{
+test('source replay retains expensive steam at normal and large display densities',t=>canvasHarness(({canvas,operations})=>{
   const catalog=JSON.parse(readFileSync(new URL('../../assets/catalog.json',import.meta.url),'utf8')),results=[];
-  for(const scale of [1,.5])for(const full of [true,false]){
+  const cases=[...[1,.5].flatMap(scale=>[true,false].map(full=>({scale,full,width:990,legacy:false}))),{scale:1,full:false,width:2200/1.5,legacy:true},{scale:1,full:false,width:2200/1.5,legacy:false}];
+  for(const {scale,full,width,legacy} of cases){
     const assets=new Assets(),art=new VectorArt(pack);assets.vector=art;art.profiling=true;art.diagnosticFullMorphCache=full;
     // Accounting test only. Real GPU/Canvas pixels are checked by morph-cache-check.ts.
     art.gpuFilter.apply=()=>true;
     for(const item of catalog.items){assets.symbols.set(item.symbolId,item);for(const name of [item.id,item.name,...item.exportNames])assets.names.set(name,item);}assets.scenes=catalog.scenes;
-    const renderer=new Renderer(canvas(1485,1080),assets);renderer.setRenderScale(scale);
+    if(legacy)art.setViewport=()=>{};
+    const stage=canvas();stage.clientWidth=width;stage.clientHeight=width*400/550;
+    const renderer=new Renderer(stage,assets);renderer.setRenderScale(scale);
     for(const id of [413,399,400,371,385,476,363,357])renderer.children.set(id,JSON.parse(readFileSync(new URL(`../../assets/timelines/${id}.json`,import.meta.url),'utf8')).events.filter(e=>e.type==='place'&&e.frame===1));
     const state=fixture();renderer.events([{type:'screen',screen:'playing'}],{...state,timeMs:0});
     const run=()=>{for(let local=0;local<6000;local+=20){const pose=Math.floor(local*12/1000);state.timeMs=16000+local;state.clockMinutes=556+Math.floor(local/1000);
@@ -351,11 +354,25 @@ test('five-customer source replay retains expensive steam without raising byte o
       state.plate[0].x=state.pointer.x;state.plate[0].y=state.pointer.y;state.plate[0].smokePose=pose%12+1;
       state.food.forEach((d,i)=>{if(d){d.pose=i===0?71+pose%70:327;d.smokePose=i===0?null:pose%12+1;}});state.customers.forEach(c=>{c.characterPose=1;c.phaseElapsedMs=pose*1000/12;c.patience=-50-c.id+(pose%20)*.05;});renderer.draw(state);operations.length=0;
     }};
-    run();const initial={...art.stats};run();const memory=art.memorySummary(),result={scale,full,newBytes:art.stats.allocatedBytes-initial.allocatedBytes,evictions:art.stats.evictions-initial.evictions,filterBuilds:art.stats.filterPlacements-initial.filterPlacements,liveBytes:memory.tileBytes,entries:memory.tileCount};results.push(result);
-    assert.equal(memory.tileBudgetBytes,80*1024*1024);assert.ok(memory.tileBytes<=memory.tileBudgetBytes);assert.ok(memory.tileCount<=512);assert.ok(memory.poolBytes<=16*1024*1024);
-    if(full){assert.ok(result.evictions>300,'source fixture reproduces historical cache pressure');assert.ok(result.filterBuilds>=60);}
+    run();const initial={...art.stats};run();const memory=art.memorySummary(),result={scale,full,width,legacy,newBytes:art.stats.allocatedBytes-initial.allocatedBytes,evictions:art.stats.evictions-initial.evictions,filterBuilds:art.stats.filterPlacements-initial.filterPlacements,liveBytes:memory.tileBytes,entries:memory.tileCount};results.push(result);
+    if(width===990||legacy)assert.equal(memory.tileBudgetBytes,80*1024*1024);
+    assert.ok(memory.tileBudgetBytes<=384*1024*1024);assert.ok(memory.tileBytes<=memory.tileBudgetBytes);assert.ok(memory.tileCount<=512);assert.ok(memory.poolBytes<=16*1024*1024);
+    if(full||legacy){assert.ok(result.evictions>300,'source fixture reproduces historical cache pressure');assert.ok(result.filterBuilds>=60);}
     else{assert.equal(result.newBytes,0);assert.equal(result.evictions,0);assert.equal(result.filterBuilds,0,'filtered steam survives the repeating morph cycle');}
     assert.equal(art.tileFamilies.size,[...art.morphFamilies.values()].reduce((n,set)=>n+set.size,0),'global eviction keeps family membership consistent');art.clearCache();
   }
   t.diagnostic(JSON.stringify(results));
+}));
+
+test('viewport cache keeps current tiles, drops obsolete resolutions and caps memory growth',()=>canvasHarness(({canvas})=>{
+  const art=new VectorArt(pack),ctx=canvas(2200,1600).getContext('2d');
+  art.setViewport(2200,1600);
+  assert.ok(art.memorySummary().tileBudgetBytes>160*1024*1024);
+  art.draw(ctx,222,{a:1,b:0,c:0,d:1,tx:300,ty:300});
+  const bytes=art.stats.cachedBytes;assert.ok(bytes>0);
+  art.setViewport(2200,1600);assert.equal(art.stats.cachedBytes,bytes);
+  art.setViewport(550,400);assert.equal(art.memorySummary().accountedBackingBytes,0);
+  assert.equal(art.memorySummary().tileBudgetBytes,80*1024*1024);
+  art.setViewport(20000,20000);assert.equal(art.memorySummary().tileBudgetBytes,384*1024*1024);
+  assert.equal(art.memorySummary().accountedBackingBytes,0,'the limit is not preallocated');
 }));

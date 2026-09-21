@@ -45,6 +45,7 @@ async function fixture() {
     },
     drawPlacement: (...args) => trace.push(['vector', ...args.slice(1)]),
     clearCache() {},
+    setViewport() {},
   };
   const assets = {
     vector, scenes: catalog.scenes,

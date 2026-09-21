@@ -1132,6 +1132,8 @@ const NO_TINT = [1, 1, 1, 1, 0, 0, 0, 0];
 const NUMBER = /[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g;
 const clamp = (n, max = 1) => Math.max(0, Math.min(max, n));
 const TILE_BUDGET = 80 * 1024 * 1024, POOL_BUDGET = 16 * 1024 * 1024;
+const MAX_TILE_BUDGET = 384 * 1024 * 1024;
+const REFERENCE_PIXELS = 1485 * 1080;
 function transformedBounds(b, m) {
     const points = [b.x, b.x + b.width].flatMap(x => [b.y, b.y + b.height].map(y => [m[0] * x + m[2] * y + m[4], m[1] * x + m[3] * y + m[5]]));
     const x = Math.min(...points.map(p => p[0])), y = Math.min(...points.map(p => p[1]));
@@ -1331,6 +1333,9 @@ class VectorArt {
     lastFilterBackend = 'not-used';
     periods = new Map();
     tileBytes = 0;
+    tileBudget = TILE_BUDGET;
+    viewportWidth = 0;
+    viewportHeight = 0;
     hitCanvas = document.createElement('canvas');
     profiling = false;
     profilingOmitFilters = false;
@@ -1355,7 +1360,7 @@ class VectorArt {
             symbols.set(id, entry);
         }
         const cpuBlurScratchBytes = this.blurScratch.byteLength, filterBackingBytes = this.gpuFilter.stats.backingBytes;
-        return { tileBytes: this.tileBytes, tileCount: this.tiles.size, tileBudgetBytes: TILE_BUDGET, poolBytes: this.poolBytes, poolCount: this.surfaces.length, poolBudgetBytes: POOL_BUDGET, cpuBlurScratchBytes, filterBackingBytes, accountedBackingBytes: this.tileBytes + this.poolBytes + cpuBlurScratchBytes + filterBackingBytes, pathCount: this.paths.size, boundsCount: this.boundsCache.size, bySymbol: [...symbols.values()].sort((a, b) => b.bytes - a.bytes) };
+        return { tileBytes: this.tileBytes, tileCount: this.tiles.size, tileBudgetBytes: this.tileBudget, poolBytes: this.poolBytes, poolCount: this.surfaces.length, poolBudgetBytes: POOL_BUDGET, cpuBlurScratchBytes, filterBackingBytes, accountedBackingBytes: this.tileBytes + this.poolBytes + cpuBlurScratchBytes + filterBackingBytes, pathCount: this.paths.size, boundsCount: this.boundsCache.size, bySymbol: [...symbols.values()].sort((a, b) => b.bytes - a.bytes) };
     }
     groupCosts = new Map();
     stats = { vectorDraws: 0, cacheHits: 0, cachedBytes: 0, allocatedBytes: 0, evictions: 0, byteEvictions: 0, entryEvictions: 0, morphReplacements: 0, pathBuilds: 0, gradients: 0, filterPlacements: 0, pooledBytes: 0, reusedSurfaces: 0, culled: 0 };
@@ -1367,6 +1372,18 @@ class VectorArt {
         this.hitCanvas.width = this.hitCanvas.height = 1;
     }
     has(id) { return Boolean(this.pack.symbols[id]); }
+    /** Retain the same repeating poses at the actual display density. A fixed byte
+     * budget repeatedly evicted the expensive griddle blur on large canvases.
+     * This is a lazy upper limit, not an allocation; sampling stays unchanged. */
+    setViewport(width, height) {
+        if (width === this.viewportWidth && height === this.viewportHeight)
+            return;
+        this.clearCache();
+        this.viewportWidth = width;
+        this.viewportHeight = height;
+        const pixels = Number.isFinite(width * height) && width > 0 && height > 0 ? width * height : REFERENCE_PIXELS;
+        this.tileBudget = Math.min(MAX_TILE_BUDGET, Math.max(TILE_BUDGET, Math.ceil(TILE_BUDGET * pixels / REFERENCE_PIXELS)));
+    }
     bounds(id) { return this.pack.symbols[id]?.bounds ?? null; }
     placements(id, frame = 1, interpolate = false) {
         const symbol = this.pack.symbols[id];
@@ -1795,7 +1812,7 @@ class VectorArt {
                     cost.filtered++;
                 this.groupCosts.set(id, cost);
             }
-            if (retain && tile.bytes <= TILE_BUDGET) {
+            if (retain && tile.bytes <= this.tileBudget) {
                 this.tiles.set(key, tile);
                 this.tileBytes += tile.bytes;
                 if (family) {
@@ -1819,8 +1836,8 @@ class VectorArt {
         ctx.drawImage(tile.canvas, tile.x, tile.y, tile.canvas.width / tile.scaleX, tile.canvas.height / tile.scaleY);
         if (!this.tiles.has(key))
             this.release(tile.canvas);
-        while (this.tileBytes > TILE_BUDGET || this.tiles.size > 512) {
-            this.removeTile(this.tiles.keys().next().value, this.tileBytes > TILE_BUDGET ? 'bytes' : 'entries');
+        while (this.tileBytes > this.tileBudget || this.tiles.size > 512) {
+            this.removeTile(this.tiles.keys().next().value, this.tileBytes > this.tileBudget ? 'bytes' : 'entries');
         }
         this.stats.cachedBytes = this.tileBytes;
     }
@@ -2382,6 +2399,7 @@ class Renderer {
             this.canvas.width = width;
             this.canvas.height = height;
         }
+        this.assets.vector?.setViewport(width, height);
         c.setTransform(width / 550, 0, 0, height / 400, 0, 0);
         c.clearRect(0, 0, 550, 400);
         c.fillStyle = '#fff';

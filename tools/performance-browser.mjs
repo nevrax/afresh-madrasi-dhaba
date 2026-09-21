@@ -75,6 +75,13 @@ try{
   const requestedSlots=process.argv.find(a=>a.startsWith('--slots='))?.slice(8).split(',');
   if(requestedSlots?.some(s=>!['0','1','3','18'].includes(s)))throw Error('Invalid slot selection');
   if(process.argv.includes('--small'))await page.getByLabel('Canvas display size',{exact:true}).selectOption('550');
+  const backingWidth=Number(process.argv.find(a=>a.startsWith('--width='))?.slice(8));
+  if(backingWidth){
+   if(!Number.isInteger(backingWidth)||backingWidth<550||backingWidth>4400)throw Error('Invalid backing width');
+   const cssWidth=backingWidth/1.5;
+   await page.setViewportSize({width:Math.ceil(cssWidth+40),height:Math.ceil(cssWidth*400/550+200)});
+   await page.locator('#game').evaluate((canvas,width)=>{canvas.style.width=`${width}px`;},cssWidth);
+  }
   if(mode==='long')await page.getByLabel('Benchmark duration',{exact:true}).selectOption('180');
   for(const slots of mode==='long'?['3']:requestedSlots??['0','1','3','18'])for(const cache of mode==='long'?['cold']:['cold','warm']){
    await page.getByLabel('Cooking workload',{exact:true}).selectOption(slots);

@@ -160,6 +160,7 @@ export class Renderer {
     if (this.radioEnabled !== s.audio.enabled) { this.radioEnabled = s.audio.enabled; this.radioStartedMs = s.timeMs; }
     const c = this.ctx; const ratio = Math.min(devicePixelRatio || 1, 3); const width = Math.max(1,Math.round(this.displayWidth * ratio * this.renderScale)), height = Math.max(1,Math.round(this.displayHeight * ratio * this.renderScale));
     if (this.canvas.width !== width || this.canvas.height !== height) { this.canvas.width = width; this.canvas.height = height; }
+    this.assets.vector?.setViewport(width,height);
     c.setTransform(width / 550, 0, 0, height / 400, 0, 0); c.clearRect(0, 0, 550, 400); c.fillStyle = '#fff'; c.fillRect(0, 0, 550, 400);
     this.hits.length = 0;
     const frame = screenFrame[s.screen]; const scene = this.assets.scenes.find(v => v.frame === frame);

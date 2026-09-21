@@ -1,5 +1,13 @@
 # Gameplay performance investigation and optimization plan
 
+## Full resolution continuation
+
+- [x] PERF-16 Reproduce and fix cache thrashing above 1485 × 1080 without reducing clarity. Resolution scaled, bounded tile retention removes repeated griddle blur eviction. Verified Intel 2200 × 1600 fixture: 5.17–5.33 to 57.84–58.37 draws/s. Warm production core gameplay: 63.93/s, no sampled gaps above 50 ms. All 124 tests and 94 exact scene pixel/hit comparisons pass; resize returns identical pixels.
+- [ ] PERF-17 Separate cold filter creation from sustained rendering at 2970 × 2160. Current short fixture: 26.56/s with 51 filter builds and zero evictions. First measure longer warm windows and GPU/compositor work, then choose an optimization with identical pixels and bounded memory. Cold 2200 gameplay also retains first appearance stalls. Neither case is accepted as resolved.
+- [ ] PERF-18 Measure physical Raspberry Pi at a recorded model, browser/backend and backing resolution. Establish memory pressure and cold/warm pacing before selecting a change. No physical device result is available; Intel measurements are not a substitute.
+
+Evidence and reproduction: [performance-full-resolution.md](performance-full-resolution.md). These tasks extend the earlier resolution matrix; the original game implementation remains complete.
+
 Baseline application: commit `59190d0` / diagnostic checkpoint `351e2d6`. The original implementation audit and measured renderer optimizations are integrated. The initial diagnostic results below are retained as historical evidence, not current performance.
 
 ## Implemented optimizations

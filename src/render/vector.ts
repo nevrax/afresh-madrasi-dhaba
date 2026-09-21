@@ -29,6 +29,8 @@ const NO_TINT: Tint = [1, 1, 1, 1, 0, 0, 0, 0];
 const NUMBER = /[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g;
 const clamp = (n: number, max = 1): number => Math.max(0, Math.min(max, n));
 const TILE_BUDGET = 80 * 1024 * 1024, POOL_BUDGET = 16 * 1024 * 1024;
+const MAX_TILE_BUDGET = 384 * 1024 * 1024;
+const REFERENCE_PIXELS = 1485 * 1080;
 interface Tile { canvas: HTMLCanvasElement; scaleX: number; scaleY: number; x: number; y: number; bytes: number }
 
 export function transformedBounds(b: Bounds, m: Affine): Bounds {
@@ -194,6 +196,9 @@ export class VectorArt {
   private lastFilterBackend:'not-used'|'gpu'|'cpu'='not-used';
   private periods = new Map<number, number>();
   private tileBytes = 0;
+  private tileBudget = TILE_BUDGET;
+  private viewportWidth = 0;
+  private viewportHeight = 0;
   private hitCanvas = document.createElement('canvas');
   profiling = false;
   profilingOmitFilters = false;
@@ -217,7 +222,7 @@ export class VectorArt {
     const symbols=new Map<number,{id:number;count:number;bytes:number}>();
     for(const [key,tile]of this.tiles){const id=Number(key.split(':',1)[0]),entry=symbols.get(id)??{id,count:0,bytes:0};entry.count++;entry.bytes+=tile.bytes;symbols.set(id,entry);}
     const cpuBlurScratchBytes=this.blurScratch.byteLength,filterBackingBytes=this.gpuFilter.stats.backingBytes;
-    return {tileBytes:this.tileBytes,tileCount:this.tiles.size,tileBudgetBytes:TILE_BUDGET,poolBytes:this.poolBytes,poolCount:this.surfaces.length,poolBudgetBytes:POOL_BUDGET,cpuBlurScratchBytes,filterBackingBytes,accountedBackingBytes:this.tileBytes+this.poolBytes+cpuBlurScratchBytes+filterBackingBytes,pathCount:this.paths.size,boundsCount:this.boundsCache.size,bySymbol:[...symbols.values()].sort((a,b)=>b.bytes-a.bytes)};
+    return {tileBytes:this.tileBytes,tileCount:this.tiles.size,tileBudgetBytes:this.tileBudget,poolBytes:this.poolBytes,poolCount:this.surfaces.length,poolBudgetBytes:POOL_BUDGET,cpuBlurScratchBytes,filterBackingBytes,accountedBackingBytes:this.tileBytes+this.poolBytes+cpuBlurScratchBytes+filterBackingBytes,pathCount:this.paths.size,boundsCount:this.boundsCache.size,bySymbol:[...symbols.values()].sort((a,b)=>b.bytes-a.bytes)};
   }
   readonly groupCosts = new Map<number, { builds:number; milliseconds:number; bytes:number; filtered:number }>();
   readonly stats = { vectorDraws: 0, cacheHits: 0, cachedBytes: 0, allocatedBytes: 0, evictions: 0, byteEvictions: 0, entryEvictions: 0, morphReplacements: 0, pathBuilds: 0, gradients: 0, filterPlacements: 0, pooledBytes: 0, reusedSurfaces: 0, culled: 0 };
@@ -228,6 +233,16 @@ export class VectorArt {
 
   }
   has(id: number): boolean { return Boolean(this.pack.symbols[id]); }
+  /** Retain the same repeating poses at the actual display density. A fixed byte
+   * budget repeatedly evicted the expensive griddle blur on large canvases.
+   * This is a lazy upper limit, not an allocation; sampling stays unchanged. */
+  setViewport(width:number,height:number):void {
+    if(width===this.viewportWidth && height===this.viewportHeight)return;
+    this.clearCache();
+    this.viewportWidth=width;this.viewportHeight=height;
+    const pixels=Number.isFinite(width*height)&&width>0&&height>0?width*height:REFERENCE_PIXELS;
+    this.tileBudget=Math.min(MAX_TILE_BUDGET,Math.max(TILE_BUDGET,Math.ceil(TILE_BUDGET*pixels/REFERENCE_PIXELS)));
+  }
   bounds(id: number): Bounds | null { return this.pack.symbols[id]?.bounds ?? null; }
   placements(id: number, frame=1, interpolate=false): readonly VectorPlacement[] {
     const symbol=this.pack.symbols[id];
@@ -491,15 +506,15 @@ export class VectorArt {
       target.setTransform(1,0,0,1,0,0);this.filters(canvas,filters,scaleX,scaleY);
       tile={canvas,scaleX,scaleY,x:x/scaleX,y:y/scaleY,bytes:width*height*4};
       if(this.profiling){const cost=this.groupCosts.get(id)??{builds:0,milliseconds:0,bytes:0,filtered:0};cost.builds++;cost.milliseconds+=performance.now()-began;cost.bytes+=tile.bytes;if(filters.length)cost.filtered++;this.groupCosts.set(id,cost);}
-      if(retain && tile.bytes<=TILE_BUDGET){
+      if(retain && tile.bytes<=this.tileBudget){
         this.tiles.set(key,tile);this.tileBytes+=tile.bytes;
         if(family){const keys=this.morphFamilies.get(family)??new Set<string>();keys.add(key);this.morphFamilies.set(family,keys);this.tileFamilies.set(key,family);}
       }
     } else {this.stats.cacheHits++;this.tiles.delete(key);this.tiles.set(key,tile);if(family){const keys=this.morphFamilies.get(family)!;keys.delete(key);keys.add(key);}}
     ctx.drawImage(tile.canvas,tile.x,tile.y,tile.canvas.width/tile.scaleX,tile.canvas.height/tile.scaleY);
     if(!this.tiles.has(key))this.release(tile.canvas);
-    while (this.tileBytes>TILE_BUDGET || this.tiles.size>512) {
-      this.removeTile(this.tiles.keys().next().value!,this.tileBytes>TILE_BUDGET?'bytes':'entries');
+    while (this.tileBytes>this.tileBudget || this.tiles.size>512) {
+      this.removeTile(this.tiles.keys().next().value!,this.tileBytes>this.tileBudget?'bytes':'entries');
     }
     this.stats.cachedBytes=this.tileBytes;
   }
