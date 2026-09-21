@@ -19,6 +19,8 @@ a { color: #edcc91; }
 button, input { font: inherit; }
 button { cursor: pointer; background: #eac074; color: #292414; border: 0; border-radius: 5px; padding: 9px 15px; }
 #app-tools { position: fixed; z-index: 3; top: 6px; right: 6px; display: flex; gap: 4px; align-items: start; }
+#presentation-profile { max-width: 132px; height: 32px; padding: 4px; border: 1px solid #ffffff35; border-radius: 5px; background: #151b14e8; color: #fff; font: 12px 'Segoe UI', sans-serif; }
+:root[data-presentation="classic"] #fullscreen, :root[data-presentation="classic"] #expand-game, :root[data-presentation="classic"] #app-menu { display: none; }
 #app-tools > button, #app-menu > summary { list-style: none; cursor: pointer; width: 32px; height: 32px; padding: 0; display: grid; place-items: center; border: 1px solid #ffffff35; border-radius: 5px; background: #151b14c9; color: #fff; font: 22px/1 sans-serif; opacity: .7; }
 #app-tools > button:hover, #app-tools > button:focus-visible, #app-menu > summary:hover, #app-menu[open] > summary { opacity: 1; }
 #app-menu > summary::-webkit-details-marker { display: none; }
@@ -67,6 +69,7 @@ li span { float: right; color: #eac074; }
 </head>
 <body>
   <nav id="app-tools" aria-label="Display options">
+    <select id="presentation-profile" aria-label="Presentation profile" title="Presentation profile"><option value="" disabled>Choose profile</option><option value="classic">Classic</option><option value="extra">Extra</option></select>
     <button id="enable-audio" type="button" aria-label="Enable sound" title="Click to enable sound" hidden>♫</button>
     <button id="fullscreen" type="button" aria-label="Enter fullscreen" title="Enter fullscreen">⛶</button>
     <button id="expand-game" type="button" aria-label="Expand game to window" title="Expand game to window" aria-pressed="false">↗</button>
@@ -121,6 +124,7 @@ const score_configuration_js_1 = require("./services/score-configuration.js");
 const legacy_score_form_js_1 = require("./ui/legacy-score-form.js");
 const frame_batch_js_1 = require("./ui/frame-batch.js");
 const runtime_feedback_js_1 = require("./ui/runtime-feedback.js");
+const presentation_profile_js_1 = require("./presentation-profile.js");
 const canvas = document.querySelector('#game');
 const loading = document.querySelector('#loading');
 const controls = document.querySelector('#controls');
@@ -161,21 +165,64 @@ async function boot() {
         displayStorage = localStorage;
     }
     catch { }
-    const settings = (0, render_settings_js_1.loadRenderSettings)(displayStorage);
+    let presentation = (0, presentation_profile_js_1.resolvePresentation)((0, presentation_profile_js_1.presentationChoice)(new URLSearchParams(location.search).get('presentation')) ?? (0, presentation_profile_js_1.loadPresentationChoice)(displayStorage));
+    const displaySettings = { current: (0, render_settings_js_1.loadRenderSettings)(displayStorage), extra: (0, render_settings_js_1.loadRenderSettings)(displayStorage, 'madrasi-display-extra') };
+    let settings = displaySettings[presentation.choice === 'extra' ? 'extra' : 'current'];
     const hud = (0, performance_hud_js_1.createPerformanceHud)(canvas, () => ({ tiles: assets.vector.stats.cachedBytes, pool: assets.vector.stats.pooledBytes, filters: assets.vector.filterStats.backingBytes, audio: audio.memoryBytes }), () => {
         const gpu = assets.vector.gpuSummary(), d = gpu.filter.details;
         return `Canvas2D; filters: ${gpu.lastFilterBackend}; ${d?.unmaskedRenderer ?? d?.renderer ?? 'GPU identity unavailable'}`;
     });
-    hud.setEnabled(settings.stats);
-    renderer.setRenderScale(settings.scale);
     const scaleControl = document.querySelector('#render-scale'), statsControl = document.querySelector('#show-stats');
-    scaleControl.value = String(settings.scale);
-    statsControl.checked = settings.stats;
-    scaleControl.onchange = () => { settings.scale = Number(scaleControl.value); renderer.setRenderScale(settings.scale); (0, render_settings_js_1.saveRenderSettings)(displayStorage, settings); };
-    statsControl.onchange = () => { settings.stats = statsControl.checked; hud.setEnabled(settings.stats); (0, render_settings_js_1.saveRenderSettings)(displayStorage, settings); };
+    const presentationControl = document.querySelector('#presentation-profile');
+    const applyPresentation = () => {
+        document.documentElement.dataset.presentation = presentation.choice ?? 'current';
+        presentationControl.value = presentation.choice ?? '';
+        renderer.setPresentation(presentation.choice);
+        settings = displaySettings[presentation.choice === 'extra' ? 'extra' : 'current'];
+        hud.setEnabled(presentation.enhancements && settings.stats);
+        renderer.setRenderScale(presentation.enhancements ? settings.scale : 1);
+        scaleControl.value = String(settings.scale);
+        statsControl.checked = settings.stats;
+        if (!presentation.enhancements) {
+            menu.open = false;
+            if (dialog.open)
+                dialog.close();
+            if (saveDialog.open)
+                saveDialog.close();
+            document.documentElement.classList.remove('game-expanded');
+            expandButton.setAttribute('aria-pressed', 'false');
+            expandButton.title = 'Expand game to window';
+            expandButton.setAttribute('aria-label', expandButton.title);
+            expandButton.textContent = '↗';
+        }
+    };
+    applyPresentation();
+    presentationControl.onchange = () => {
+        const choice = (0, presentation_profile_js_1.presentationChoice)(presentationControl.value);
+        if (!choice)
+            return;
+        presentation = (0, presentation_profile_js_1.resolvePresentation)(choice);
+        (0, presentation_profile_js_1.savePresentationChoice)(displayStorage, choice);
+        applyPresentation();
+    };
+    const saveDisplay = () => (0, render_settings_js_1.saveRenderSettings)(displayStorage, settings, presentation.choice === 'extra' ? 'madrasi-display-extra' : 'madrasi-display');
+    scaleControl.onchange = () => {
+        if (!presentation.enhancements)
+            return;
+        settings.scale = Number(scaleControl.value);
+        renderer.setRenderScale(settings.scale);
+        saveDisplay();
+    };
+    statsControl.onchange = () => {
+        if (!presentation.enhancements)
+            return;
+        settings.stats = statsControl.checked;
+        hud.setEnabled(settings.stats);
+        saveDisplay();
+    };
     const cue = document.querySelector('#batter-cue'), bowl = assets.placement('mcMavu');
     const cueLabel = cue.querySelector('span');
-    let batterHintDismissed = false, batterHintStartedMs = null;
+    let batterHintDismissed = false, batterHintElapsedMs = 0, batterHintLastMs = null;
     try {
         batterHintDismissed = displayStorage?.getItem('madrasi-batter-hint-seen') === '1';
     }
@@ -267,11 +314,12 @@ async function boot() {
             }
         }
         renderer.draw(state);
-        const actionable = state.screen === 'playing' && state.batterTemplate.available;
+        const actionable = presentation.enhancements && state.screen === 'playing' && state.batterTemplate.available;
         const overBowl = Boolean(actionable && bowl && assets.contains(226, bowl.matrix, state.pointer.x, state.pointer.y));
-        if (actionable && batterHintStartedMs === null)
-            batterHintStartedMs = state.timeMs;
-        if (!batterHintDismissed && (state.pointer.mode === 'batter' || batterHintStartedMs !== null && state.timeMs - batterHintStartedMs >= 8000)) {
+        if (actionable && batterHintLastMs !== null)
+            batterHintElapsedMs += Math.max(0, state.timeMs - batterHintLastMs);
+        batterHintLastMs = actionable ? state.timeMs : null;
+        if (presentation.enhancements && !batterHintDismissed && (state.pointer.mode === 'batter' || batterHintElapsedMs >= 8000)) {
             batterHintDismissed = true;
             try {
                 displayStorage?.setItem('madrasi-batter-hint-seen', '1');
@@ -291,10 +339,10 @@ async function boot() {
         const cueSelected = String(selected);
         if (cue.dataset.selected !== cueSelected)
             cue.dataset.selected = cueSelected;
-        const pointerAction = overBowl && state.pointer.mode === 'blank' ? 'batter' : renderer.foodCursor;
+        const pointerAction = presentation.enhancements ? (overBowl && state.pointer.mode === 'blank' ? 'batter' : renderer.foodCursor) : '';
         if (canvas.dataset.action !== pointerAction)
             canvas.dataset.action = pointerAction;
-        const hintText = state.tutorial.visible ? 'Watch the original tutorial. Use Skip to start playing.' : state.screen === 'playing' ? ({ blank: 'Batter → griddle → flip → plate → customer.', batter: 'Choose an empty spot on the griddle.', dosa: 'Click the plate to add your dosa.', plate: 'Click a customer to serve.' }[state.pointer.mode]) : state.screen === 'day-result' ? `Day ${state.day} complete. Total collection: ${state.cash}.` : state.screen === 'game-over' ? `Total collection: ${state.cash}. Submit online if available, try again, or use More options to save locally.` : 'Make dosas, keep your customers happy, and run the dhaba.';
+        const hintText = state.tutorial.visible ? 'Watch the original tutorial. Use Skip to start playing.' : state.screen === 'playing' ? ({ blank: 'Batter → griddle → flip → plate → customer.', batter: 'Choose an empty spot on the griddle.', dosa: 'Click the plate to add your dosa.', plate: 'Click a customer to serve.' }[state.pointer.mode]) : state.screen === 'day-result' ? `Day ${state.day} complete. Total collection: ${state.cash}.` : state.screen === 'game-over' ? `Total collection: ${state.cash}. ${presentation.enhancements ? 'Submit online if available, try again, or use More options to save locally.' : 'Submit online if available or try again.'}` : 'Make dosas, keep your customers happy, and run the dhaba.';
         if (hint.textContent !== hintText)
             hint.textContent = hintText;
         const key = state.screen + String(state.tutorial.visible) + String(state.audio.enabled);
@@ -398,7 +446,7 @@ async function boot() {
 }
 void boot().catch(fail);
 
-},{"./core/game.js":"src/core/game.js","./render/assets.js":"src/render/assets.js","./render/renderer.js":"src/render/renderer.js","./audio/audio.js":"src/audio/audio.js","./input/pointer.js":"src/input/pointer.js","./services/scores.js":"src/services/scores.js","./ui/fullscreen.js":"src/ui/fullscreen.js","./ui/performance-hud.js":"src/ui/performance-hud.js","./ui/render-settings.js":"src/ui/render-settings.js","./render/profile.js":"src/render/profile.js","./services/legacy-scores.js":"src/services/legacy-scores.js","./services/score-configuration.js":"src/services/score-configuration.js","./ui/legacy-score-form.js":"src/ui/legacy-score-form.js","./ui/frame-batch.js":"src/ui/frame-batch.js","./ui/runtime-feedback.js":"src/ui/runtime-feedback.js"}],
+},{"./core/game.js":"src/core/game.js","./render/assets.js":"src/render/assets.js","./render/renderer.js":"src/render/renderer.js","./audio/audio.js":"src/audio/audio.js","./input/pointer.js":"src/input/pointer.js","./services/scores.js":"src/services/scores.js","./ui/fullscreen.js":"src/ui/fullscreen.js","./ui/performance-hud.js":"src/ui/performance-hud.js","./ui/render-settings.js":"src/ui/render-settings.js","./render/profile.js":"src/render/profile.js","./services/legacy-scores.js":"src/services/legacy-scores.js","./services/score-configuration.js":"src/services/score-configuration.js","./ui/legacy-score-form.js":"src/ui/legacy-score-form.js","./ui/frame-batch.js":"src/ui/frame-batch.js","./ui/runtime-feedback.js":"src/ui/runtime-feedback.js","./presentation-profile.js":"src/presentation-profile.js"}],
 "src/core/game.js":[function(module,exports,require){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1115,6 +1163,7 @@ exports.Assets = Assets;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VectorArt = void 0;
+exports.presentationPack = presentationPack;
 exports.transformedBounds = transformedBounds;
 exports.blurKernel = blurKernel;
 exports.boxBlurAxis = boxBlurAxis;
@@ -1127,6 +1176,17 @@ exports.combineTint = combineTint;
 exports.interpolatePath = interpolatePath;
 exports.gradientMatrix = gradientMatrix;
 const box_filter_js_1 = require("./box-filter.js");
+/** An isolated view of source metadata; returning to Classic restores the original records. */
+function presentationPack(source, simplerEffects) {
+    if (!simplerEffects)
+        return source;
+    const stars = source.symbols[185], griddle = source.symbols[224];
+    if (!stars?.frames?.length || !griddle?.frames)
+        return source;
+    return { ...source, symbols: { ...source.symbols,
+            185: { ...stars, frames: [stars.frames[0]] },
+            224: { ...griddle, frames: griddle.frames.map(frame => frame.map(part => part.id === 223 ? { ...part, filters: [] } : part)) }, } };
+}
 const ID = [1, 0, 0, 1, 0, 0];
 const NO_TINT = [1, 1, 1, 1, 0, 0, 0, 0];
 const NUMBER = /[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g;
@@ -1319,6 +1379,8 @@ function gradientMatrix(g, ratio) {
  */
 class VectorArt {
     pack;
+    sourcePack;
+    simplerEffects = false;
     paths = new Map();
     tiles = new Map();
     morphFamilies = new Map();
@@ -1343,6 +1405,8 @@ class VectorArt {
     profilingOmitAlphaFactoring = false;
     /** Diagnostic baseline: retain every morph pose until the global LRU limit. Clear caches after changes. */
     diagnosticFullMorphCache = false;
+    /** Comparison control for the previous static-group crop policy. */
+    diagnosticUncroppedStaticGroups = false;
     /** Diagnostic only. Clear caches after changing parent:child omission keys. */
     diagnosticOmitChildren = new Set();
     get filterStats() { return this.gpuFilter.stats; }
@@ -1366,12 +1430,22 @@ class VectorArt {
     stats = { vectorDraws: 0, cacheHits: 0, cachedBytes: 0, allocatedBytes: 0, evictions: 0, byteEvictions: 0, entryEvictions: 0, morphReplacements: 0, pathBuilds: 0, gradients: 0, filterPlacements: 0, pooledBytes: 0, reusedSurfaces: 0, culled: 0 };
     constructor(pack, filterPowerPreference = 'default') {
         this.pack = pack;
+        this.sourcePack = pack;
         this.gpuFilter = new box_filter_js_1.BoxFilter(filterPowerPreference);
         if (pack.version !== 1)
             throw new Error('Unsupported vector data version');
         this.hitCanvas.width = this.hitCanvas.height = 1;
     }
     has(id) { return Boolean(this.pack.symbols[id]); }
+    setSimplerEffects(enabled) {
+        if (enabled === this.simplerEffects)
+            return;
+        this.clearCache();
+        this.periods.clear();
+        this.morphKinds.clear();
+        this.pack = presentationPack(this.sourcePack, enabled);
+        this.simplerEffects = enabled;
+    }
     /** Retain the same repeating poses at the actual display density. A fixed byte
      * budget repeatedly evicted the expensive griddle blur on large canvases.
      * This is a lazy upper limit, not an allocation; sampling stays unchanged. */
@@ -1764,7 +1838,7 @@ class VectorArt {
         }
         // Large stationary geometry can extend far beyond the stage. Include the crop in
         // its key so moving/repositioned art never reuses a tile missing newly visible pixels.
-        if (s.draws && !filters.length && b.width * scaleX * b.height * scaleY * 4 > 1024 * 1024) {
+        if ((s.draws || this.simplerEffects && id === 193 && period === 1 && !this.diagnosticUncroppedStaticGroups) && !filters.length && b.width * scaleX * b.height * scaleY * 4 > 1024 * 1024) {
             const determinant = m.a * m.d - m.b * m.c;
             if (determinant) {
                 const inverse = [m.d / determinant, -m.b / determinant, -m.c / determinant, m.a / determinant, (m.c * m.f - m.d * m.e) / determinant, (m.b * m.e - m.a * m.f) / determinant];
@@ -2183,6 +2257,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Renderer = exports.runtimeTimelineIds = void 0;
 const assets_js_1 = require("./assets.js");
 const resources_js_1 = require("./resources.js");
+const presentation_profile_js_1 = require("../presentation-profile.js");
 const screenFrame = { menu: 3, instructions: 4, playing: 5, 'game-over': 6, 'day-result': 7 };
 const wrappers = [413, 399, 400, 371, 385];
 // Shared with packaging so required player compositions cannot be dropped.
@@ -2200,6 +2275,14 @@ const combine = (p, q) => ({ a: p.a * q.a + p.c * q.b, b: p.b * q.a + p.d * q.b,
 class Renderer {
     canvas;
     assets;
+    presentation = (0, presentation_profile_js_1.resolvePresentation)(null);
+    setPresentation(choice) {
+        this.presentation = (0, presentation_profile_js_1.resolvePresentation)(choice);
+        this.assets.vector?.setSimplerEffects(this.presentation.simplerEffects);
+        // Root effects are indexed against the active metadata view.
+        if (this.assets.vector)
+            this.compositionIndices.delete(this.assets.vector);
+    }
     renderScale = 1;
     diagnosticOmissions = new Set();
     onRenderCost = null;
@@ -2341,7 +2424,7 @@ class Renderer {
         }
     }
     order(customer, matrix) {
-        const frame = Math.floor((this.currentTimeMs - this.sceneStartedMs) * 12 / 1000) + 1;
+        const frame = this.presentation.simplerEffects ? 1 : Math.floor((this.currentTimeMs - this.sceneStartedMs) * 12 / 1000) + 1;
         const bubble = this.assets.names.get('sprite-363-clean');
         if (bubble)
             this.assets.draw(this.ctx, bubble.symbolId, matrix, frame);
@@ -2501,7 +2584,7 @@ class Renderer {
                 const button = buttonCommands[name];
                 const isButton = this.assets.symbols.get(p.symbolId)?.kind === 'button';
                 const hover = isButton && this.assets.contains(p.symbolId, p.matrix, s.pointer.x, s.pointer.y, true, 4);
-                const interpolate = continuousDecorations.has(p.symbolId);
+                const interpolate = this.presentation.interpolateDecorations && continuousDecorations.has(p.symbolId);
                 const clock = (s.timeMs - (name === 'mcRadio' ? this.radioStartedMs : this.sceneStartedMs)) * 12 / 1000;
                 const visualFrame = isButton ? hover ? this.pressedCommand === JSON.stringify(button?.[1]) ? 3 : 2 : 1 : name === 'mcRadio' && !s.audio.enabled ? 1 : (interpolate ? clock : Math.floor(clock)) + 1;
                 const sourcePlacement = this.composition(-1000 - frame).get(p.depth);
@@ -2627,7 +2710,42 @@ class Renderer {
 }
 exports.Renderer = Renderer;
 
-},{"./assets.js":"src/render/assets.js","./resources.js":"src/render/resources.js"}],
+},{"./assets.js":"src/render/assets.js","./resources.js":"src/render/resources.js","../presentation-profile.js":"src/presentation-profile.js"}],
+"src/presentation-profile.js":[function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.presentationChoice = presentationChoice;
+exports.resolvePresentation = resolvePresentation;
+exports.loadPresentationChoice = loadPresentationChoice;
+exports.savePresentationChoice = savePresentationChoice;
+const profiles = Object.freeze({
+    current: Object.freeze({ choice: null, enhancements: true, simplerEffects: false, interpolateDecorations: true }),
+    classic: Object.freeze({ choice: 'classic', enhancements: false, simplerEffects: false, interpolateDecorations: false }),
+    extra: Object.freeze({ choice: 'extra', enhancements: true, simplerEffects: true, interpolateDecorations: true }),
+});
+function presentationChoice(value) {
+    return value === 'classic' || value === 'extra' ? value : null;
+}
+/** No default has been selected: an absent preference retains the existing release. */
+function resolvePresentation(choice) {
+    return profiles[choice ?? 'current'];
+}
+function loadPresentationChoice(storage) {
+    try {
+        return presentationChoice(storage?.getItem('madrasi-presentation'));
+    }
+    catch {
+        return null;
+    }
+}
+function savePresentationChoice(storage, choice) {
+    try {
+        storage?.setItem('madrasi-presentation', choice);
+    }
+    catch { /* Explicit selection still works in memory. */ }
+}
+
+},{}],
 "src/audio/audio.js":[function(module,exports,require){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -3033,18 +3151,18 @@ function createPerformanceHud(canvas, readMemory, readRenderer) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadRenderSettings = loadRenderSettings;
 exports.saveRenderSettings = saveRenderSettings;
-function loadRenderSettings(storage) {
+function loadRenderSettings(storage, key = 'madrasi-display') {
     try {
-        const saved = JSON.parse(storage?.getItem('madrasi-display') ?? '{}');
+        const saved = JSON.parse(storage?.getItem(key) ?? '{}');
         return { scale: typeof saved.scale === 'number' && Number.isFinite(saved.scale) ? Math.round(Math.min(1, Math.max(.25, saved.scale)) * 4) / 4 : 1, stats: saved.version === 2 && saved.stats === true };
     }
     catch {
         return { scale: 1, stats: false };
     }
 }
-function saveRenderSettings(storage, settings) {
+function saveRenderSettings(storage, settings, key = 'madrasi-display') {
     try {
-        storage?.setItem('madrasi-display', JSON.stringify({ ...settings, version: 2 }));
+        storage?.setItem(key, JSON.stringify({ ...settings, version: 2 }));
     }
     catch { /* Display controls still work when storage is unavailable. */ }
 }

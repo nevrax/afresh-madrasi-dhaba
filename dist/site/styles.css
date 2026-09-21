@@ -15,6 +15,8 @@ a { color: #edcc91; }
 button, input { font: inherit; }
 button { cursor: pointer; background: #eac074; color: #292414; border: 0; border-radius: 5px; padding: 9px 15px; }
 #app-tools { position: fixed; z-index: 3; top: 6px; right: 6px; display: flex; gap: 4px; align-items: start; }
+#presentation-profile { max-width: 132px; height: 32px; padding: 4px; border: 1px solid #ffffff35; border-radius: 5px; background: #151b14e8; color: #fff; font: 12px 'Segoe UI', sans-serif; }
+:root[data-presentation="classic"] #fullscreen, :root[data-presentation="classic"] #expand-game, :root[data-presentation="classic"] #app-menu { display: none; }
 #app-tools > button, #app-menu > summary { list-style: none; cursor: pointer; width: 32px; height: 32px; padding: 0; display: grid; place-items: center; border: 1px solid #ffffff35; border-radius: 5px; background: #151b14c9; color: #fff; font: 22px/1 sans-serif; opacity: .7; }
 #app-tools > button:hover, #app-tools > button:focus-visible, #app-menu > summary:hover, #app-menu[open] > summary { opacity: 1; }
 #app-menu > summary::-webkit-details-marker { display: none; }

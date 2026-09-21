@@ -46,6 +46,7 @@ async function fixture() {
     drawPlacement: (...args) => trace.push(['vector', ...args.slice(1)]),
     clearCache() {},
     setViewport() {},
+    setSimplerEffects() {},
   };
   const assets = {
     vector, scenes: catalog.scenes,
@@ -60,6 +61,29 @@ async function fixture() {
   try { await renderer.load(); } catch (error) { Object.assign(globalThis, previous); throw error; }
   return { renderer, assets, vector, trace, lookups, restore: () => Object.assign(globalThis, previous) };
 }
+
+test('Extra freezes only order decoration and keeps count, patience and customer hit targets live', async () => {
+  const f=await fixture();
+  try {
+    const game=createGame({random:()=>0});game.dispatch({type:'start'});game.dispatch({type:'play'});
+    const state=game.snapshot(),customer=state.customers[0];
+    Object.assign(customer,{table:0,visible:true,characterVisible:true,orderVisible:true,characterPose:1,orderRemaining:3,patience:-50});
+    state.timeMs=1250;
+    f.renderer.setPresentation('classic');f.renderer.draw(state);
+    const originalHits=JSON.stringify(f.renderer.hits);
+    assert(f.trace.some(c=>c[0]==='asset'&&c[1]===-363&&c[3]>1));
+    for(const [count,patience] of [[3,-50],[1,-20]]){
+      customer.orderRemaining=count;customer.patience=patience;f.trace.length=0;
+      const before=JSON.stringify(state);f.renderer.setPresentation('extra');f.renderer.draw(state);
+      assert(f.trace.some(c=>c[0]==='asset'&&c[1]===-363&&c[3]===1));
+      assert(f.trace.some(c=>c[0]==='asset'&&c[1]===355&&c[2].ty===patience));
+      assert(f.trace.some(c=>c[0]==='canvas'&&c[1]==='fillText'&&c[2]===String(count)));
+      assert.equal(JSON.stringify(f.renderer.hits),originalHits);assert.equal(JSON.stringify(state),before);
+    }
+    f.trace.length=0;f.renderer.setPresentation('classic');f.renderer.draw(state);
+    assert(f.trace.some(c=>c[0]==='asset'&&c[1]===-363&&c[3]>1));
+  } finally {f.restore();}
+});
 
 test('real scene submissions preserve authored effects, source holds and dynamic hit ordering', async () => {
   const f = await fixture();

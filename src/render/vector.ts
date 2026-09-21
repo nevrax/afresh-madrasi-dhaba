@@ -24,6 +24,17 @@ export interface VectorPlacement {
 }
 interface Symbol { kind: 'shape' | 'sprite' | 'button'; bounds: Bounds | null; draws?: Draw[]; frames?: VectorPlacement[][] }
 interface Pack { version: number; sourceSha256: string; paths: string[]; gradients: Record<string, Gradient>; symbols: Record<string, Symbol> }
+/** An isolated view of source metadata; returning to Classic restores the original records. */
+export function presentationPack(source: Pack, simplerEffects: boolean): Pack {
+  if (!simplerEffects) return source;
+  const stars = source.symbols[185], griddle = source.symbols[224];
+  if (!stars?.frames?.length || !griddle?.frames) return source;
+  return {...source, symbols: {...source.symbols,
+    185: {...stars, frames: [stars.frames[0]!]},
+    224: {...griddle, frames: griddle.frames.map(frame => frame.map(part =>
+      part.id === 223 ? {...part, filters: []} : part))},
+  }};
+}
 const ID: Affine = [1, 0, 0, 1, 0, 0];
 const NO_TINT: Tint = [1, 1, 1, 1, 0, 0, 0, 0];
 const NUMBER = /[-+]?(?:\d*\.\d+|\d+\.?\d*)(?:[eE][-+]?\d+)?/g;
@@ -182,6 +193,8 @@ export function gradientMatrix(g: Pick<Gradient, 'matrix' | 'transforms'>, ratio
  * Pixel caches are generated at the current display scale, never from 1× PNGs.
  */
 export class VectorArt {
+  private readonly sourcePack: Pack;
+  private simplerEffects = false;
   private paths = new Map<string, Path2D>();
   private tiles = new Map<string, Tile>();
   private morphFamilies = new Map<string,Set<string>>();
@@ -206,6 +219,8 @@ export class VectorArt {
   profilingOmitAlphaFactoring = false;
   /** Diagnostic baseline: retain every morph pose until the global LRU limit. Clear caches after changes. */
   diagnosticFullMorphCache=false;
+  /** Comparison control for the previous static-group crop policy. */
+  diagnosticUncroppedStaticGroups=false;
   /** Diagnostic only. Clear caches after changing parent:child omission keys. */
   readonly diagnosticOmitChildren=new Set<string>();
   get filterStats():Readonly<BoxFilter['stats']>{return this.gpuFilter.stats;}
@@ -226,13 +241,20 @@ export class VectorArt {
   }
   readonly groupCosts = new Map<number, { builds:number; milliseconds:number; bytes:number; filtered:number }>();
   readonly stats = { vectorDraws: 0, cacheHits: 0, cachedBytes: 0, allocatedBytes: 0, evictions: 0, byteEvictions: 0, entryEvictions: 0, morphReplacements: 0, pathBuilds: 0, gradients: 0, filterPlacements: 0, pooledBytes: 0, reusedSurfaces: 0, culled: 0 };
-  constructor(private readonly pack: Pack,filterPowerPreference:WebGLPowerPreference='default') {
+  constructor(private pack: Pack,filterPowerPreference:WebGLPowerPreference='default') {
+    this.sourcePack = pack;
     this.gpuFilter=new BoxFilter(filterPowerPreference);
     if (pack.version!==1) throw new Error('Unsupported vector data version');
     this.hitCanvas.width=this.hitCanvas.height=1;
 
   }
   has(id: number): boolean { return Boolean(this.pack.symbols[id]); }
+  setSimplerEffects(enabled: boolean): void {
+    if (enabled === this.simplerEffects) return;
+    this.clearCache(); this.periods.clear(); this.morphKinds.clear();
+    this.pack = presentationPack(this.sourcePack, enabled);
+    this.simplerEffects = enabled;
+  }
   /** Retain the same repeating poses at the actual display density. A fixed byte
    * budget repeatedly evicted the expensive griddle blur on large canvases.
    * This is a lazy upper limit, not an allocation; sampling stays unchanged. */
@@ -476,7 +498,7 @@ export class VectorArt {
     if(visible.x+visible.width < -2 || visible.y+visible.height < -2 || visible.x>ctx.canvas.width+2 || visible.y>ctx.canvas.height+2){this.stats.culled++;return;}
     // Large stationary geometry can extend far beyond the stage. Include the crop in
     // its key so moving/repositioned art never reuses a tile missing newly visible pixels.
-    if(s.draws && !filters.length && b.width*scaleX*b.height*scaleY*4>1024*1024){
+    if((s.draws || this.simplerEffects && id===193 && period===1 && !this.diagnosticUncroppedStaticGroups) && !filters.length && b.width*scaleX*b.height*scaleY*4>1024*1024){
       const determinant=m.a*m.d-m.b*m.c;
       if(determinant){
         const inverse:Affine=[m.d/determinant,-m.b/determinant,-m.c/determinant,m.a/determinant,(m.c*m.f-m.d*m.e)/determinant,(m.b*m.e-m.a*m.f)/determinant];

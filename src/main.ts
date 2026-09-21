@@ -13,6 +13,7 @@ import { readScoreConfiguration } from './services/score-configuration.js';
 import { connectLegacyScoreForm } from './ui/legacy-score-form.js';
 import { createFrameBatch } from './ui/frame-batch.js';
 import { optionalAudio, runtimeFeedback } from './ui/runtime-feedback.js';
+import { loadPresentationChoice, presentationChoice, resolvePresentation, savePresentationChoice } from './presentation-profile.js';
 
 const canvas = document.querySelector<HTMLCanvasElement>('#game')!;
 const loading = document.querySelector<HTMLParagraphElement>('#loading')!;
@@ -47,19 +48,41 @@ async function boot(): Promise<void> {
   const activateAudio = (): void => withAudio(() => audio.activate());
   const game = createGame({ random: Math.random });
   let displayStorage:Storage|null=null;try{displayStorage=localStorage;}catch{}
-  const settings=loadRenderSettings(displayStorage);
+  let presentation=resolvePresentation(presentationChoice(new URLSearchParams(location.search).get('presentation')) ?? loadPresentationChoice(displayStorage));
+  const displaySettings={current:loadRenderSettings(displayStorage),extra:loadRenderSettings(displayStorage,'madrasi-display-extra')};
+  let settings=displaySettings[presentation.choice==='extra'?'extra':'current'];
   const hud=createPerformanceHud(canvas,()=>({tiles:assets.vector!.stats.cachedBytes,pool:assets.vector!.stats.pooledBytes,filters:assets.vector!.filterStats.backingBytes,audio:audio.memoryBytes}),()=>{
     const gpu=assets.vector!.gpuSummary(),d=gpu.filter.details;
     return `Canvas2D; filters: ${gpu.lastFilterBackend}; ${d?.unmaskedRenderer??d?.renderer??'GPU identity unavailable'}`;
   });
-  hud.setEnabled(settings.stats);renderer.setRenderScale(settings.scale);
   const scaleControl=document.querySelector<HTMLSelectElement>('#render-scale')!,statsControl=document.querySelector<HTMLInputElement>('#show-stats')!;
-  scaleControl.value=String(settings.scale);statsControl.checked=settings.stats;
-  scaleControl.onchange=()=>{settings.scale=Number(scaleControl.value);renderer.setRenderScale(settings.scale);saveRenderSettings(displayStorage,settings);};
-  statsControl.onchange=()=>{settings.stats=statsControl.checked;hud.setEnabled(settings.stats);saveRenderSettings(displayStorage,settings);};
+  const presentationControl=document.querySelector<HTMLSelectElement>('#presentation-profile')!;
+  const applyPresentation=():void=>{
+    document.documentElement.dataset.presentation=presentation.choice??'current';
+    presentationControl.value=presentation.choice??'';
+    renderer.setPresentation(presentation.choice);
+    settings=displaySettings[presentation.choice==='extra'?'extra':'current'];
+    hud.setEnabled(presentation.enhancements&&settings.stats);
+    renderer.setRenderScale(presentation.enhancements?settings.scale:1);
+    scaleControl.value=String(settings.scale);statsControl.checked=settings.stats;
+    if(!presentation.enhancements){
+      menu.open=false;if(dialog.open)dialog.close();if(saveDialog.open)saveDialog.close();
+      document.documentElement.classList.remove('game-expanded');
+      expandButton.setAttribute('aria-pressed','false');expandButton.title='Expand game to window';
+      expandButton.setAttribute('aria-label',expandButton.title);expandButton.textContent='↗';
+    }
+  };
+  applyPresentation();
+  presentationControl.onchange=()=>{
+    const choice=presentationChoice(presentationControl.value);if(!choice)return;
+    presentation=resolvePresentation(choice);savePresentationChoice(displayStorage,choice);applyPresentation();
+  };
+  const saveDisplay=():void=>saveRenderSettings(displayStorage,settings,presentation.choice==='extra'?'madrasi-display-extra':'madrasi-display');
+  scaleControl.onchange=()=>{if(!presentation.enhancements)return;settings.scale=Number(scaleControl.value);renderer.setRenderScale(settings.scale);saveDisplay();};
+  statsControl.onchange=()=>{if(!presentation.enhancements)return;settings.stats=statsControl.checked;hud.setEnabled(settings.stats);saveDisplay();};
   const cue=document.querySelector<HTMLElement>('#batter-cue')!,bowl=assets.placement('mcMavu');
   const cueLabel=cue.querySelector('span')!;
-  let batterHintDismissed=false,batterHintStartedMs:number|null=null;
+  let batterHintDismissed=false,batterHintElapsedMs=0,batterHintLastMs:number|null=null;
   try{batterHintDismissed=displayStorage?.getItem('madrasi-batter-hint-seen')==='1';}catch{}
   const measured={now:0,elapsedMs:0,simulationMs:0,renderMs:0,audioMs:0,snapshotMs:0};
 
@@ -129,10 +152,11 @@ async function boot(): Promise<void> {
       }
     }
     renderer.draw(state);
-    const actionable=state.screen==='playing'&&state.batterTemplate.available;
+    const actionable=presentation.enhancements&&state.screen==='playing'&&state.batterTemplate.available;
     const overBowl=Boolean(actionable&&bowl&&assets.contains(226,bowl.matrix,state.pointer.x,state.pointer.y));
-    if(actionable&&batterHintStartedMs===null)batterHintStartedMs=state.timeMs;
-    if(!batterHintDismissed&&(state.pointer.mode==='batter'||batterHintStartedMs!==null&&state.timeMs-batterHintStartedMs>=8000)){
+    if(actionable&&batterHintLastMs!==null)batterHintElapsedMs+=Math.max(0,state.timeMs-batterHintLastMs);
+    batterHintLastMs=actionable?state.timeMs:null;
+    if(presentation.enhancements&&!batterHintDismissed&&(state.pointer.mode==='batter'||batterHintElapsedMs>=8000)){
       batterHintDismissed=true;try{displayStorage?.setItem('madrasi-batter-hint-seen','1');}catch{}
     }
     const showLabel=actionable&&!batterHintDismissed;
@@ -142,10 +166,10 @@ async function boot(): Promise<void> {
     if(cue.hidden===showCue)cue.hidden=!showCue;
     const cueHover=String(overBowl);if(cue.dataset.hover!==cueHover)cue.dataset.hover=cueHover;
     const cueSelected=String(selected);if(cue.dataset.selected!==cueSelected)cue.dataset.selected=cueSelected;
-    const pointerAction=overBowl&&state.pointer.mode==='blank'?'batter':renderer.foodCursor;
+    const pointerAction=presentation.enhancements?(overBowl&&state.pointer.mode==='blank'?'batter':renderer.foodCursor):'';
     if(canvas.dataset.action!==pointerAction)canvas.dataset.action=pointerAction;
 
-    const hintText = state.tutorial.visible ? 'Watch the original tutorial. Use Skip to start playing.' : state.screen === 'playing' ? ({ blank: 'Batter → griddle → flip → plate → customer.', batter: 'Choose an empty spot on the griddle.', dosa: 'Click the plate to add your dosa.', plate: 'Click a customer to serve.' }[state.pointer.mode]) : state.screen === 'day-result' ? `Day ${state.day} complete. Total collection: ${state.cash}.` : state.screen === 'game-over' ? `Total collection: ${state.cash}. Submit online if available, try again, or use More options to save locally.` : 'Make dosas, keep your customers happy, and run the dhaba.';
+    const hintText = state.tutorial.visible ? 'Watch the original tutorial. Use Skip to start playing.' : state.screen === 'playing' ? ({ blank: 'Batter → griddle → flip → plate → customer.', batter: 'Choose an empty spot on the griddle.', dosa: 'Click the plate to add your dosa.', plate: 'Click a customer to serve.' }[state.pointer.mode]) : state.screen === 'day-result' ? `Day ${state.day} complete. Total collection: ${state.cash}.` : state.screen === 'game-over' ? `Total collection: ${state.cash}. ${presentation.enhancements ? 'Submit online if available, try again, or use More options to save locally.' : 'Submit online if available or try again.'}` : 'Make dosas, keep your customers happy, and run the dhaba.';
     if (hint.textContent !== hintText) hint.textContent = hintText;
     const key = state.screen + String(state.tutorial.visible) + String(state.audio.enabled);
     if (controlsKey !== key) {

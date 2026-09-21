@@ -2,6 +2,7 @@ import type { Command, Customer, Dosa, GameEvent, GameState } from '../core/game
 import { Assets, identity, type Matrix, type Placement } from './assets.js';
 import type { VectorArt, VectorPlacement } from './vector.js';
 import { resourceJson } from './resources.js';
+import { resolvePresentation, type PresentationChoice } from '../presentation-profile.js';
 
 export type RenderGroup = 'background'|'griddle-steam'|'traffic'|'customers'|'radio'|'other'|'food'|'dosa-steam';
 export interface HitTarget { label: string; command: Command; id: number; matrix: Matrix; pixel?: boolean; frame?: number }
@@ -21,6 +22,13 @@ const buttonCommands: Record<string, [string, Command]> = {
 const combine = (p: Matrix, q: Matrix): Matrix => ({ a: p.a*q.a+p.c*q.b, b:p.b*q.a+p.d*q.b, c:p.a*q.c+p.c*q.d, d:p.b*q.c+p.d*q.d, tx:p.a*q.tx+p.c*q.ty+p.tx, ty:p.b*q.tx+p.d*q.ty+p.ty });
 
 export class Renderer {
+  private presentation = resolvePresentation(null);
+  setPresentation(choice: PresentationChoice | null): void {
+    this.presentation = resolvePresentation(choice);
+    this.assets.vector?.setSimplerEffects(this.presentation.simplerEffects);
+    // Root effects are indexed against the active metadata view.
+    if (this.assets.vector) this.compositionIndices.delete(this.assets.vector);
+  }
   renderScale = 1;
   readonly diagnosticOmissions = new Set<RenderGroup>();
   onRenderCost: ((group:RenderGroup,ms:number)=>void)|null = null;
@@ -120,7 +128,7 @@ export class Renderer {
     }
   }
   private order(customer: Customer, matrix: Matrix): void {
-    const frame = Math.floor((this.currentTimeMs-this.sceneStartedMs) * 12 / 1000) + 1;
+    const frame = this.presentation.simplerEffects ? 1 : Math.floor((this.currentTimeMs-this.sceneStartedMs) * 12 / 1000) + 1;
     const bubble = this.assets.names.get('sprite-363-clean');
     if (bubble) this.assets.draw(this.ctx, bubble.symbolId, matrix, frame);
     else {
@@ -228,7 +236,7 @@ export class Renderer {
       const button = buttonCommands[name];
       const isButton = this.assets.symbols.get(p.symbolId)?.kind === 'button';
       const hover = isButton && this.assets.contains(p.symbolId, p.matrix, s.pointer.x, s.pointer.y, true, 4);
-      const interpolate=continuousDecorations.has(p.symbolId);
+      const interpolate=this.presentation.interpolateDecorations&&continuousDecorations.has(p.symbolId);
       const clock=(s.timeMs-(name==='mcRadio'?this.radioStartedMs:this.sceneStartedMs))*12/1000;
       const visualFrame = isButton ? hover ? this.pressedCommand === JSON.stringify(button?.[1]) ? 3 : 2 : 1 : name === 'mcRadio' && !s.audio.enabled ? 1 : (interpolate?clock:Math.floor(clock)) + 1;
       const sourcePlacement=this.composition(-1000-frame).get(p.depth);

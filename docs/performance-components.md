@@ -1,8 +1,9 @@
 # What costs time in the scene
 
 This study ranks practical changes to the presentation. It does not assume that
-every historical effect must remain identical. All changes below are isolated
-test variants; the shipped game is unchanged.
+every historical effect must remain identical. The measurements below used
+isolated test variants before the presentation profiles were implemented.
+Subsequent delivery is recorded in [presentation-profiles.md](presentation-profiles.md).
 
 Evidence: [56 anonymous measurement records](../tests/reference/performance-components.json).
 The tested runtime is commit `6f033eb`, unchanged at repository checkpoint
@@ -172,8 +173,10 @@ These candidates now follow the [profile separation plan](performance-plan.md#pr
 Only verified appearance-preserving cache work is shared. New non-cache
 optimizations and added presentation features belong to Extra, while Classic
 retains the reference effects. In particular, the measured fixed-star background
-is an Extra candidate, not a transparent common cache change. Neither a shipping
-default nor final visual treatments have been selected.
+belongs to Extra, not a transparent common cache change. No shipping
+default has been selected. The implemented Classic/Extra treatments and their
+separate acceptance results are in [presentation-profiles.md](presentation-profiles.md).
+The measurements in this document remain the earlier attribution study.
 
 1. Replace or simplify the large griddle steam blur. It has the strongest cold
    and memory evidence. Compare a cheaper soft vector effect with removal;

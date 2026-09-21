@@ -10,6 +10,7 @@ export async function measureComponentFixture(page, config) {
     canvas.style.height = `${config.width * 400 / 550 / devicePixelRatio}px`;
     const assets = new Assets(); await assets.load(config.adapter);
     const renderer = new Renderer(canvas, assets); await renderer.load();
+    if (config.presentation) renderer.setPresentation(config.presentation);
     renderer.setRenderScale(config.scale ?? 1);
     const art = assets.vector; art.profiling = true;
     let audio;
@@ -69,6 +70,8 @@ export async function measureComponentFixture(page, config) {
           throw Error('Audio control did not reach the requested state');
       }
       await next(); await next();
+      const display = canvas.getBoundingClientRect();
+      if (display.right > innerWidth + 1 || display.bottom > innerHeight + 1) throw Error('Fixture is not fully visible');
       const warmup = config.warmupMs ?? 18000, duration = config.measurementMs ?? 12000;
       let start = await next(), last = start, began = 0, initial = {...art.stats}, coldCache = {...art.stats};
       const gaps = [], draws = [], coldGaps = [], coldDraws = [], groups = {};
@@ -93,7 +96,7 @@ export async function measureComponentFixture(page, config) {
         const at = performance.now(); renderer.draw(state); const draw = performance.now() - at;
         if (began) { gaps.push(gap); draws.push(draw); } else { coldGaps.push(gap); coldDraws.push(draw); }
       }
-      return {config, canvas: [canvas.width, canvas.height], fps: gaps.length * 1000 / (last - began),
+      return {config, canvas: [canvas.width, canvas.height], display: [display.width, display.height], dpr: devicePixelRatio, fps: gaps.length * 1000 / (last - began),
         frames: gaps.length, seconds: (last - began) / 1000, raf: summarize(gaps), draw: summarize(draws), cold,
         groups: Object.entries(groups).map(([name, ms]) => ({name, msPerFrame: ms / gaps.length})).sort((a, b) => b.msPerFrame - a.msPerFrame),
         cache: cacheDelta(initial), memory: art.memorySummary(), operations,

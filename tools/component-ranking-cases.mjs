@@ -1,6 +1,11 @@
 // Repeated controls bracket every matrix; all variants are development only.
 export function componentRankingCases(kind = 'ranking') {
-  const variants = kind === 'background' ? [
+  const variants = kind === 'profiles' ? [
+    {name: 'classic-start', presentation: 'classic'},
+    {name: 'extra', presentation: 'extra'},
+    {name: 'classic-end', presentation: 'classic'},
+    {name: 'extra-high-density', presentation: 'extra', width: 2970},
+  ] : kind === 'background' ? [
     {name: 'baseline-start'},
     {name: 'no-stars', omit: 'stars'},
     {name: 'static-background', freeze: 'background'},

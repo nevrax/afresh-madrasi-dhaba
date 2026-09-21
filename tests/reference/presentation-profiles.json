@@ -1,0 +1,2074 @@
+{
+  "baseCommit": "cacc7ac",
+  "sourceHashEncoding": "UTF-8 text normalized to LF line endings",
+  "sourceFiles": [
+    {
+      "path": "src/presentation-profile.ts",
+      "sha256": "0149cb6d9916857c3584dd5555643f5822176c39f726c6dd3a69519cf696e06b"
+    },
+    {
+      "path": "src/main.ts",
+      "sha256": "072f16cca064bb8405711e8097b505fda5008b8f8588c70f598f851563211165"
+    },
+    {
+      "path": "src/render/vector.ts",
+      "sha256": "8afd650946ceae4e07a932835af03a390b0b2a8c580f37fbc4f3e68930e80f7c"
+    },
+    {
+      "path": "src/render/renderer.ts",
+      "sha256": "421f5c4abe49488608e465123371416318fda649c3ccbadc77e05bab2ec03046"
+    },
+    {
+      "path": "src/ui/render-settings.ts",
+      "sha256": "f8afd6bb67f8e9aad53bd8e93c52754db3daae6c7f2b6b907f0ede2a6a189da9"
+    },
+    {
+      "path": "src/ui/styles.css",
+      "sha256": "1d4a6ebcf747bed9dae069e0a1d5a5c51b91205a0d0d706f6fb6185f78456638"
+    },
+    {
+      "path": "index.html",
+      "sha256": "94cf38842b0a8daa41487c75de14ce51c6d0a23527383016f701553a005187a7"
+    }
+  ],
+  "defaultSelected": false,
+  "automatedTests": {
+    "passed": 128,
+    "failed": 0
+  },
+  "method": {
+    "fixture": "Same controlled five-customer scene as performance-components; 18 s cold preparation and 12 s warm measurement.",
+    "display": "Canvas is fully visible; DPR 2 at 2200 x 1600 and DPR 3 at 2970 x 2160. Both profiles compared at 100% render scale.",
+    "fps": "Draw opportunities per elapsed second, not physical scanout or unique authored poses.",
+    "coldLongGaps": "Sum of entire rAF gaps exceeding 50 ms, not excess over a frame deadline.",
+    "memory": "Managed graphics surfaces, not physical VRAM or complete process memory.",
+    "pixelComparison": "Classic and restored Classic at authored sample times versus prior cache policy; five screens at three backing widths. Extra intentionally changes appearance. Fractional decorative interpolation is disabled in Classic.",
+    "ui": "Visible isolated browser, actual controls on source/site/standalone. Offline blocked-storage check. Emulated touch on Intel. No physical touchscreen claim.",
+    "scenarios": "Production core/renderer complete tutorial, cooking, payment, full day, next day and three retry cycles, accelerated deterministic simulation; not a realtime day performance benchmark."
+  },
+  "runs": [
+    {
+      "device": "Pi A",
+      "hardware": {
+        "browser": "138.0.7204.92",
+        "renderer": "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 24.2.8-1~bpo12+rpt3)",
+        "features": {
+          "2d_canvas": "enabled",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "enabled",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "enabled_on",
+          "rasterization": "enabled_force",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "enabled",
+          "video_encode": "disabled_software",
+          "vulkan": "disabled_off",
+          "webgl": "enabled",
+          "webgl2": "enabled",
+          "webgpu": "disabled_off",
+          "webnn": "disabled_off"
+        },
+        "devices": [
+          "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 24.2.8-1~bpo12+rpt3)"
+        ]
+      },
+      "results": [
+        {
+          "config": {
+            "width": 2200,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "classic-start",
+            "presentation": "classic",
+            "adapter": "default"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "display": [
+            1100,
+            800
+          ],
+          "dpr": 2,
+          "fps": 36.315890071717654,
+          "frames": 437,
+          "seconds": 12.033299999999999,
+          "raf": {
+            "p50": 33.29999999999927,
+            "p95": 34,
+            "p99": 34,
+            "max": 34.10000000000218,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 7.400000095367432,
+            "p95": 9.900000095367432,
+            "p99": 11.5,
+            "max": 13.799999952316284,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18,
+            "frames": 432,
+            "raf": {
+              "p50": 33.29999999999927,
+              "p95": 50.099999999998545,
+              "p99": 433.3000000000002,
+              "max": 583.4000000000005,
+              "over50": 22,
+              "totalOver50Ms": 6451.999999999999
+            },
+            "draw": {
+              "p50": 7.700000047683716,
+              "p95": 13.600000143051147,
+              "p99": 30.700000047683716,
+              "max": 592.7999999523163,
+              "over50": 3,
+              "totalOver50Ms": 1510.4000000953674
+            },
+            "cache": {
+              "allocations": 150498252,
+              "evictions": 0,
+              "morphReplacements": 894,
+              "filterBuilds": 94
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 858,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 150273248,
+            "tileCount": 354,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179465164
+          },
+          "filterBackend": "gpu",
+          "system": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.6.70-v8+",
+            "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+            "platform": "x11",
+            "memTotalKiB": 8143892,
+            "browserPssKiB": 463685,
+            "temperatureMilliC": "53450",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0"
+          }
+        },
+        {
+          "config": {
+            "width": 2200,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "extra",
+            "presentation": "extra",
+            "adapter": "default"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "display": [
+            1100,
+            800
+          ],
+          "dpr": 2,
+          "fps": 45.603202210257386,
+          "frames": 548,
+          "seconds": 12.0167,
+          "raf": {
+            "p50": 16.700000000000728,
+            "p95": 33.400000000001455,
+            "p99": 33.400000000001455,
+            "max": 34,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 6.8999998569488525,
+            "p95": 8.099999904632568,
+            "p99": 9.700000047683716,
+            "max": 10.400000095367432,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18,
+            "frames": 786,
+            "raf": {
+              "p50": 16.700000000000728,
+              "p95": 33.400000000001455,
+              "p99": 50,
+              "max": 283.5,
+              "over50": 5,
+              "totalOver50Ms": 517.0999999999995
+            },
+            "draw": {
+              "p50": 6.800000190734863,
+              "p95": 9.799999952316284,
+              "p99": 15.899999856948853,
+              "max": 295.2999999523163,
+              "over50": 3,
+              "totalOver50Ms": 414
+            },
+            "cache": {
+              "allocations": 94693004,
+              "evictions": 0,
+              "morphReplacements": 0,
+              "filterBuilds": 82
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 0,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 94468000,
+            "tileCount": 316,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 1310720,
+            "accountedBackingBytes": 96003724
+          },
+          "filterBackend": "gpu",
+          "system": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.6.70-v8+",
+            "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+            "platform": "x11",
+            "memTotalKiB": 8143892,
+            "browserPssKiB": 481016,
+            "temperatureMilliC": "52900",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0"
+          }
+        },
+        {
+          "config": {
+            "width": 2200,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "classic-end",
+            "presentation": "classic",
+            "adapter": "default"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "display": [
+            1100,
+            800
+          ],
+          "dpr": 2,
+          "fps": 36.34854771784232,
+          "frames": 438,
+          "seconds": 12.05,
+          "raf": {
+            "p50": 33.29999999999927,
+            "p95": 34,
+            "p99": 34.099999999998545,
+            "max": 50.099999999998545,
+            "over50": 1,
+            "totalOver50Ms": 50.099999999998545
+          },
+          "draw": {
+            "p50": 7.5,
+            "p95": 9.900000095367432,
+            "p99": 11.100000143051147,
+            "max": 14.100000143051147,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18,
+            "frames": 438,
+            "raf": {
+              "p50": 33.29999999999927,
+              "p95": 49.900000000001455,
+              "p99": 467,
+              "max": 500.1999999999998,
+              "over50": 20,
+              "totalOver50Ms": 6237.000000000001
+            },
+            "draw": {
+              "p50": 7.900000095367432,
+              "p95": 13.100000143051147,
+              "p99": 20.899999856948853,
+              "max": 492.59999990463257,
+              "over50": 3,
+              "totalOver50Ms": 1313.1999998092651
+            },
+            "cache": {
+              "allocations": 150474492,
+              "evictions": 0,
+              "morphReplacements": 888,
+              "filterBuilds": 94
+            }
+          },
+          "cache": {
+            "allocations": 23760,
+            "evictions": 0,
+            "morphReplacements": 858,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 150273248,
+            "tileCount": 354,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179465164
+          },
+          "filterBackend": "gpu",
+          "system": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.6.70-v8+",
+            "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+            "platform": "x11",
+            "memTotalKiB": 8143892,
+            "browserPssKiB": 509436,
+            "temperatureMilliC": "55100",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0"
+          }
+        },
+        {
+          "config": {
+            "width": 2970,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "extra-high-density",
+            "presentation": "extra",
+            "adapter": "default"
+          },
+          "canvas": [
+            2970,
+            2160
+          ],
+          "display": [
+            990,
+            720
+          ],
+          "dpr": 3,
+          "fps": 28.253047589765753,
+          "frames": 340,
+          "seconds": 12.034099999999999,
+          "raf": {
+            "p50": 33.39999999999782,
+            "p95": 50,
+            "p99": 50.099999999998545,
+            "max": 50.099999999998545,
+            "over50": 9,
+            "totalOver50Ms": 450.8999999999869
+          },
+          "draw": {
+            "p50": 8.399999856948853,
+            "p95": 9.200000047683716,
+            "p99": 11.299999952316284,
+            "max": 12.100000143051147,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.0149,
+            "frames": 469,
+            "raf": {
+              "p50": 33.399999999999636,
+              "p95": 50.100000000000364,
+              "p99": 84,
+              "max": 516.9000000000001,
+              "over50": 32,
+              "totalOver50Ms": 2621.4999999999927
+            },
+            "draw": {
+              "p50": 7.799999952316284,
+              "p95": 10.600000143051147,
+              "p99": 17.299999952316284,
+              "max": 524,
+              "over50": 3,
+              "totalOver50Ms": 766.9999997615814
+            },
+            "cache": {
+              "allocations": 169148028,
+              "evictions": 0,
+              "morphReplacements": 0,
+              "filterBuilds": 82
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 0,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 168750996,
+            "tileCount": 321,
+            "tileBudgetBytes": 335544320,
+            "poolBytes": 397032,
+            "filterBackingBytes": 1966080,
+            "accountedBackingBytes": 171114108
+          },
+          "filterBackend": "gpu",
+          "system": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.6.70-v8+",
+            "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+            "platform": "x11",
+            "memTotalKiB": 8143892,
+            "browserPssKiB": 511547,
+            "temperatureMilliC": "54000",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0"
+          }
+        }
+      ]
+    },
+    {
+      "device": "Pi B",
+      "hardware": {
+        "browser": "151.0.7922.173",
+        "renderer": "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 26.2.0-1~bpo13+0~rpt3)",
+        "features": {
+          "2d_canvas": "enabled",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "enabled",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "enabled_on",
+          "rasterization": "enabled_force",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "enabled",
+          "video_encode": "disabled_software",
+          "vulkan": "disabled_off",
+          "webgl": "enabled",
+          "webgpu": "disabled_off",
+          "webgpu_on_vk_via_gl_interop": "disabled_off",
+          "webnn": "disabled_off"
+        },
+        "devices": [
+          "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 26.2.0-1~bpo13+0~rpt3)"
+        ]
+      },
+      "results": [
+        {
+          "config": {
+            "width": 2200,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "classic-start",
+            "presentation": "classic",
+            "adapter": "default"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "display": [
+            1100,
+            800
+          ],
+          "dpr": 2,
+          "fps": 40.02762821739745,
+          "frames": 481,
+          "seconds": 12.0167,
+          "raf": {
+            "p50": 17.400000000001455,
+            "p95": 34,
+            "p99": 34.10000000000218,
+            "max": 34.10000000000218,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 5.300000011920929,
+            "p95": 6.699999988079071,
+            "p99": 7.299999982118607,
+            "max": 9.900000005960464,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.017300000000002,
+            "frames": 620,
+            "raf": {
+              "p50": 16.700000000000728,
+              "p95": 34.399999999999636,
+              "p99": 311.5,
+              "max": 400,
+              "over50": 25,
+              "totalOver50Ms": 4784.7
+            },
+            "draw": {
+              "p50": 5.5,
+              "p95": 9.599999994039536,
+              "p99": 22.299999982118607,
+              "max": 285.2999999821186,
+              "over50": 1,
+              "totalOver50Ms": 285.2999999821186
+            },
+            "cache": {
+              "allocations": 150498252,
+              "evictions": 0,
+              "morphReplacements": 1044,
+              "filterBuilds": 94
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 858,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 150273248,
+            "tileCount": 354,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179465164
+          },
+          "filterBackend": "gpu",
+          "system": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.18.39+rpt-rpi-2712",
+            "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+            "platform": "wayland",
+            "memTotalKiB": 8251776,
+            "browserPssKiB": 608361,
+            "temperatureMilliC": "51800",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0"
+          }
+        },
+        {
+          "config": {
+            "width": 2200,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "extra",
+            "presentation": "extra",
+            "adapter": "default"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "display": [
+            1100,
+            800
+          ],
+          "dpr": 2,
+          "fps": 59.83034181624253,
+          "frames": 718,
+          "seconds": 12.000599999999999,
+          "raf": {
+            "p50": 16.700000000000728,
+            "p95": 17.299999999999272,
+            "p99": 17.400000000001455,
+            "max": 34.10000000000218,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 5.300000011920929,
+            "p95": 6.700000017881393,
+            "p99": 7.0999999940395355,
+            "max": 9.200000017881393,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.017199999999995,
+            "frames": 1039,
+            "raf": {
+              "p50": 16.699999999999818,
+              "p95": 17.399999999999636,
+              "p99": 33.900000000000546,
+              "max": 283.40000000000055,
+              "over50": 1,
+              "totalOver50Ms": 283.40000000000055
+            },
+            "draw": {
+              "p50": 5.5,
+              "p95": 7.700000017881393,
+              "p99": 12.599999994039536,
+              "max": 283.59999999403954,
+              "over50": 1,
+              "totalOver50Ms": 283.59999999403954
+            },
+            "cache": {
+              "allocations": 94693004,
+              "evictions": 0,
+              "morphReplacements": 0,
+              "filterBuilds": 82
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 0,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 94468000,
+            "tileCount": 316,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 1310720,
+            "accountedBackingBytes": 96003724
+          },
+          "filterBackend": "gpu",
+          "system": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.18.39+rpt-rpi-2712",
+            "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+            "platform": "wayland",
+            "memTotalKiB": 8251776,
+            "browserPssKiB": 621163,
+            "temperatureMilliC": "52350",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0"
+          }
+        },
+        {
+          "config": {
+            "width": 2200,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "classic-end",
+            "presentation": "classic",
+            "adapter": "default"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "display": [
+            1100,
+            800
+          ],
+          "dpr": 2,
+          "fps": 40.47136256357411,
+          "frames": 487,
+          "seconds": 12.0332,
+          "raf": {
+            "p50": 17.299999999999272,
+            "p95": 34,
+            "p99": 34.10000000000218,
+            "max": 34.10000000000218,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 5.5999999940395355,
+            "p95": 7.5,
+            "p99": 8.5,
+            "max": 11.5,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.0006,
+            "frames": 644,
+            "raf": {
+              "p50": 16.700000000000728,
+              "p95": 34.70000000000073,
+              "p99": 330.0000000000009,
+              "max": 433.39999999999964,
+              "over50": 25,
+              "totalOver50Ms": 4697.600000000001
+            },
+            "draw": {
+              "p50": 5.5999999940395355,
+              "p95": 8.800000011920929,
+              "p99": 18.600000023841858,
+              "max": 432.30000001192093,
+              "over50": 2,
+              "totalOver50Ms": 674.0000000298023
+            },
+            "cache": {
+              "allocations": 150498252,
+              "evictions": 0,
+              "morphReplacements": 1050,
+              "filterBuilds": 94
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 858,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 150273248,
+            "tileCount": 354,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179465164
+          },
+          "filterBackend": "gpu",
+          "system": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.18.39+rpt-rpi-2712",
+            "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+            "platform": "wayland",
+            "memTotalKiB": 8251776,
+            "browserPssKiB": 644955,
+            "temperatureMilliC": "54000",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0"
+          }
+        },
+        {
+          "config": {
+            "width": 2970,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "extra-high-density",
+            "presentation": "extra",
+            "adapter": "default"
+          },
+          "canvas": [
+            2970,
+            2160
+          ],
+          "display": [
+            990,
+            720
+          ],
+          "dpr": 3,
+          "fps": 36.348547717842315,
+          "frames": 438,
+          "seconds": 12.050000000000004,
+          "raf": {
+            "p50": 33.29999999999927,
+            "p95": 34,
+            "p99": 34.099999999998545,
+            "max": 50,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 5.700000017881393,
+            "p95": 7.199999988079071,
+            "p99": 7.699999988079071,
+            "max": 8.5,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.0006,
+            "frames": 632,
+            "raf": {
+              "p50": 33.29999999999927,
+              "p95": 34,
+              "p99": 50.100000000000364,
+              "max": 383.40000000000055,
+              "over50": 7,
+              "totalOver50Ms": 818.9000000000015
+            },
+            "draw": {
+              "p50": 5.699999988079071,
+              "p95": 8.099999994039536,
+              "p99": 14.299999982118607,
+              "max": 389.90000000596046,
+              "over50": 2,
+              "totalOver50Ms": 526.5
+            },
+            "cache": {
+              "allocations": 169148028,
+              "evictions": 0,
+              "morphReplacements": 0,
+              "filterBuilds": 82
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 0,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 168750996,
+            "tileCount": 321,
+            "tileBudgetBytes": 335544320,
+            "poolBytes": 397032,
+            "filterBackingBytes": 1966080,
+            "accountedBackingBytes": 171114108
+          },
+          "filterBackend": "gpu",
+          "system": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.18.39+rpt-rpi-2712",
+            "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+            "platform": "wayland",
+            "memTotalKiB": 8251776,
+            "browserPssKiB": 652621,
+            "temperatureMilliC": "54000",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0"
+          }
+        }
+      ]
+    },
+    {
+      "device": "Intel",
+      "hardware": {
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00004688) Direct3D11 vs_5_0 ps_5_0, D3D11-30.0.101.1994)",
+        "features": {
+          "2d_canvas": "enabled",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "enabled",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "enabled_on",
+          "rasterization": "enabled",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "enabled",
+          "video_encode": "enabled",
+          "webgl": "enabled",
+          "webgpu": "enabled",
+          "webnn": "disabled_off"
+        }
+      },
+      "results": [
+        {
+          "config": {
+            "width": 2200,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "classic-start",
+            "presentation": "classic",
+            "adapter": "low-power"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "display": [
+            1100,
+            800
+          ],
+          "dpr": 2.0000000596046448,
+          "fps": 57.766473834696455,
+          "frames": 695,
+          "seconds": 12.0312,
+          "raf": {
+            "p50": 17.899999999997817,
+            "p95": 18.5,
+            "p99": 23.100000000002183,
+            "max": 24.099999999998545,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 2.800000011920929,
+            "p95": 6.5,
+            "p99": 8,
+            "max": 8.300000011920929,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.0003,
+            "frames": 878,
+            "raf": {
+              "p50": 17.799999999999272,
+              "p95": 35.30000000000018,
+              "p99": 194.79999999999995,
+              "max": 387.90000000000003,
+              "over50": 13,
+              "totalOver50Ms": 2934.1
+            },
+            "draw": {
+              "p50": 3.399999976158142,
+              "p95": 7,
+              "p99": 9.599999964237213,
+              "max": 388.80000001192093,
+              "over50": 2,
+              "totalOver50Ms": 574.1000000238419
+            },
+            "cache": {
+              "allocations": 150498252,
+              "evictions": 0,
+              "morphReplacements": 1116,
+              "filterBuilds": 94
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 858,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 150273248,
+            "tileCount": 354,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179465164
+          },
+          "filterBackend": "gpu",
+          "system": {}
+        },
+        {
+          "config": {
+            "width": 2200,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "extra",
+            "presentation": "extra",
+            "adapter": "low-power"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "display": [
+            1100,
+            800
+          ],
+          "dpr": 2.0000000596046448,
+          "fps": 75.66991600556078,
+          "frames": 909,
+          "seconds": 12.0127,
+          "raf": {
+            "p50": 12,
+            "p95": 18.099999999998545,
+            "p99": 18.299999999999272,
+            "max": 18.799999999999272,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 2.400000035762787,
+            "p95": 3,
+            "p99": 4.100000023841858,
+            "max": 5.899999976158142,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.01,
+            "frames": 1327,
+            "raf": {
+              "p50": 12,
+              "p95": 23.90000000000009,
+              "p99": 30.09999999999991,
+              "max": 160.70000000000005,
+              "over50": 2,
+              "totalOver50Ms": 232.79999999999995
+            },
+            "draw": {
+              "p50": 2.5,
+              "p95": 5.400000035762787,
+              "p99": 7.699999988079071,
+              "max": 163.30000001192093,
+              "over50": 1,
+              "totalOver50Ms": 163.30000001192093
+            },
+            "cache": {
+              "allocations": 94693004,
+              "evictions": 0,
+              "morphReplacements": 0,
+              "filterBuilds": 82
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 0,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 94468000,
+            "tileCount": 316,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 1310720,
+            "accountedBackingBytes": 96003724
+          },
+          "filterBackend": "gpu",
+          "system": {}
+        },
+        {
+          "config": {
+            "width": 2200,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "classic-end",
+            "presentation": "classic",
+            "adapter": "low-power"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "display": [
+            1100,
+            800
+          ],
+          "dpr": 2.0000000596046448,
+          "fps": 57.3094543940025,
+          "frames": 688,
+          "seconds": 12.005,
+          "raf": {
+            "p50": 17.899999999997817,
+            "p95": 18.799999999999272,
+            "p99": 23.200000000000728,
+            "max": 23.899999999997817,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 3.5,
+            "p95": 6.699999988079071,
+            "p99": 8,
+            "max": 8.5,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.016,
+            "frames": 905,
+            "raf": {
+              "p50": 17.800000000000182,
+              "p95": 35.19999999999982,
+              "p99": 171.9000000000001,
+              "max": 276,
+              "over50": 13,
+              "totalOver50Ms": 2646.9
+            },
+            "draw": {
+              "p50": 2.5,
+              "p95": 6.700000047683716,
+              "p99": 11.899999976158142,
+              "max": 84.80000001192093,
+              "over50": 1,
+              "totalOver50Ms": 84.80000001192093
+            },
+            "cache": {
+              "allocations": 150498252,
+              "evictions": 0,
+              "morphReplacements": 1128,
+              "filterBuilds": 94
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 858,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 150273248,
+            "tileCount": 354,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179465164
+          },
+          "filterBackend": "gpu",
+          "system": {}
+        },
+        {
+          "config": {
+            "width": 2970,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "extra-high-density",
+            "presentation": "extra",
+            "adapter": "low-power"
+          },
+          "canvas": [
+            2970,
+            2160
+          ],
+          "display": [
+            990,
+            720
+          ],
+          "dpr": 3,
+          "fps": 42.47396287892011,
+          "frames": 511,
+          "seconds": 12.0309,
+          "raf": {
+            "p50": 23.700000000000728,
+            "p95": 26.200000000000728,
+            "p99": 29.5,
+            "max": 30.299999999999272,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 2.5,
+            "p95": 6.899999976158142,
+            "p99": 7.699999988079071,
+            "max": 8,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.008800000000004,
+            "frames": 737,
+            "raf": {
+              "p50": 23.899999999999636,
+              "p95": 47.30000000000018,
+              "p99": 59.299999999999955,
+              "max": 180.6,
+              "over50": 16,
+              "totalOver50Ms": 1054.4
+            },
+            "draw": {
+              "p50": 3.699999988079071,
+              "p95": 7.600000023841858,
+              "p99": 10.900000035762787,
+              "max": 178.39999997615814,
+              "over50": 1,
+              "totalOver50Ms": 178.39999997615814
+            },
+            "cache": {
+              "allocations": 169148028,
+              "evictions": 0,
+              "morphReplacements": 0,
+              "filterBuilds": 82
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 0,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 168750996,
+            "tileCount": 321,
+            "tileBudgetBytes": 335544320,
+            "poolBytes": 397032,
+            "filterBackingBytes": 1966080,
+            "accountedBackingBytes": 171114108
+          },
+          "filterBackend": "gpu",
+          "system": {}
+        }
+      ]
+    },
+    {
+      "device": "NVIDIA",
+      "hardware": {
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Ti Laptop GPU (0x000024A0) Direct3D11 vs_5_0 ps_5_0, D3D11-32.0.15.9649)",
+        "features": {
+          "2d_canvas": "enabled",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "enabled",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "enabled_on",
+          "rasterization": "enabled",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "enabled",
+          "video_encode": "enabled",
+          "webgl": "enabled",
+          "webgpu": "enabled",
+          "webnn": "disabled_off"
+        }
+      },
+      "results": [
+        {
+          "config": {
+            "width": 2200,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "classic-start",
+            "presentation": "classic",
+            "adapter": "high-performance"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "display": [
+            1100,
+            800
+          ],
+          "dpr": 2.0000000596046448,
+          "fps": 168.0980266391224,
+          "frames": 2018,
+          "seconds": 12.004899999999997,
+          "raf": {
+            "p50": 6,
+            "p95": 6.299999999999272,
+            "p99": 6.600000000002183,
+            "max": 7.299999999999272,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 2.099999964237213,
+            "p95": 2.5,
+            "p99": 2.899999976158142,
+            "max": 3.600000023841858,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.003100000000003,
+            "frames": 2795,
+            "raf": {
+              "p50": 6,
+              "p95": 6.299999999999272,
+              "p99": 6.600000000000364,
+              "max": 876.8,
+              "over50": 3,
+              "totalOver50Ms": 1382.3999999999996
+            },
+            "draw": {
+              "p50": 2.100000023841858,
+              "p95": 2.799999952316284,
+              "p99": 3.800000011920929,
+              "max": 876.5,
+              "over50": 2,
+              "totalOver50Ms": 1320.1000000238419
+            },
+            "cache": {
+              "allocations": 150498252,
+              "evictions": 0,
+              "morphReplacements": 1164,
+              "filterBuilds": 94
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 858,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 150273248,
+            "tileCount": 354,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179465164
+          },
+          "filterBackend": "gpu",
+          "system": {}
+        },
+        {
+          "config": {
+            "width": 2200,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "extra",
+            "presentation": "extra",
+            "adapter": "high-performance"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "display": [
+            1100,
+            800
+          ],
+          "dpr": 2.0000000596046448,
+          "fps": 167.594042581548,
+          "frames": 2012,
+          "seconds": 12.0052,
+          "raf": {
+            "p50": 6,
+            "p95": 6.200000000000728,
+            "p99": 6.599999999998545,
+            "max": 12.200000000000728,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 2.200000047683716,
+            "p95": 2.600000023841858,
+            "p99": 3.5,
+            "max": 4.899999976158142,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.003700000000002,
+            "frames": 2995,
+            "raf": {
+              "p50": 6,
+              "p95": 6.299999999999272,
+              "p99": 6.699999999999818,
+              "max": 143.2,
+              "over50": 1,
+              "totalOver50Ms": 143.2
+            },
+            "draw": {
+              "p50": 2.200000047683716,
+              "p95": 2.800000011920929,
+              "p99": 3.799999952316284,
+              "max": 141.4000000357628,
+              "over50": 1,
+              "totalOver50Ms": 141.4000000357628
+            },
+            "cache": {
+              "allocations": 94693004,
+              "evictions": 0,
+              "morphReplacements": 0,
+              "filterBuilds": 82
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 0,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 94468000,
+            "tileCount": 316,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 1310720,
+            "accountedBackingBytes": 96003724
+          },
+          "filterBackend": "gpu",
+          "system": {}
+        },
+        {
+          "config": {
+            "width": 2200,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "classic-end",
+            "presentation": "classic",
+            "adapter": "high-performance"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "display": [
+            1100,
+            800
+          ],
+          "dpr": 2.0000000596046448,
+          "fps": 168.428417922383,
+          "frames": 2022,
+          "seconds": 12.005099999999999,
+          "raf": {
+            "p50": 6,
+            "p95": 6.299999999999272,
+            "p99": 6.599999999998545,
+            "max": 12.5,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 2.100000023841858,
+            "p95": 2.600000023841858,
+            "p99": 3.100000023841858,
+            "max": 4.5,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.0032,
+            "frames": 3002,
+            "raf": {
+              "p50": 6,
+              "p95": 6.200000000000728,
+              "p99": 6.600000000000136,
+              "max": 96.59999999999997,
+              "over50": 1,
+              "totalOver50Ms": 96.59999999999997
+            },
+            "draw": {
+              "p50": 2.100000023841858,
+              "p95": 2.800000011920929,
+              "p99": 3.699999988079071,
+              "max": 97.40000003576279,
+              "over50": 1,
+              "totalOver50Ms": 97.40000003576279
+            },
+            "cache": {
+              "allocations": 150498252,
+              "evictions": 0,
+              "morphReplacements": 1242,
+              "filterBuilds": 94
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 858,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 150273248,
+            "tileCount": 354,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179465164
+          },
+          "filterBackend": "gpu",
+          "system": {}
+        },
+        {
+          "config": {
+            "width": 2970,
+            "mode": "ranking",
+            "warmupMs": 18000,
+            "measurementMs": 12000,
+            "name": "extra-high-density",
+            "presentation": "extra",
+            "adapter": "high-performance"
+          },
+          "canvas": [
+            2970,
+            2160
+          ],
+          "display": [
+            990,
+            720
+          ],
+          "dpr": 3,
+          "fps": 168.36530775379697,
+          "frames": 2022,
+          "seconds": 12.009599999999999,
+          "raf": {
+            "p50": 6,
+            "p95": 6.299999999999272,
+            "p99": 6.599999999998545,
+            "max": 9.700000000000728,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "draw": {
+            "p50": 2.300000011920929,
+            "p95": 2.699999988079071,
+            "p99": 3.300000011920929,
+            "max": 5.099999964237213,
+            "over50": 0,
+            "totalOver50Ms": 0
+          },
+          "cold": {
+            "seconds": 18.000700000000002,
+            "frames": 2996,
+            "raf": {
+              "p50": 6,
+              "p95": 6.299999999999272,
+              "p99": 6.600000000000364,
+              "max": 168.99999999999997,
+              "over50": 1,
+              "totalOver50Ms": 168.99999999999997
+            },
+            "draw": {
+              "p50": 2.300000011920929,
+              "p95": 2.899999976158142,
+              "p99": 3.900000035762787,
+              "max": 167.69999998807907,
+              "over50": 1,
+              "totalOver50Ms": 167.69999998807907
+            },
+            "cache": {
+              "allocations": 169148028,
+              "evictions": 0,
+              "morphReplacements": 0,
+              "filterBuilds": 82
+            }
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 0,
+            "filterBuilds": 0
+          },
+          "hidden": false,
+          "memory": {
+            "tileBytes": 168750996,
+            "tileCount": 321,
+            "tileBudgetBytes": 335544320,
+            "poolBytes": 397032,
+            "filterBackingBytes": 1966080,
+            "accountedBackingBytes": 171114108
+          },
+          "filterBackend": "gpu",
+          "system": {}
+        }
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "adapter": "high-performance",
+      "hardware": {
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Ti Laptop GPU (0x000024A0) Direct3D11 vs_5_0 ps_5_0, D3D11-32.0.15.9649)",
+        "features": {
+          "2d_canvas": "enabled",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "enabled",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "enabled_on",
+          "rasterization": "enabled",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "enabled",
+          "video_encode": "enabled",
+          "webgl": "enabled",
+          "webgpu": "enabled",
+          "webnn": "disabled_off"
+        }
+      },
+      "checks": [
+        {
+          "kind": "source",
+          "status": "PASS",
+          "checks": [
+            "no implicit default",
+            "explicit profiles",
+            "tutorial and cooking",
+            "live profile swaps",
+            "guidance gating",
+            "dismissal preserved",
+            "display settings isolated",
+            "reload persistence",
+            "fullscreen exit after switch",
+            "responsive layout"
+          ],
+          "stateEvidence": "source snapshot invariants"
+        },
+        {
+          "kind": "site",
+          "status": "PASS",
+          "checks": [
+            "no implicit default",
+            "explicit profiles",
+            "tutorial and cooking",
+            "live profile swaps",
+            "guidance gating",
+            "dismissal preserved",
+            "display settings isolated",
+            "reload persistence",
+            "fullscreen exit after switch",
+            "responsive layout"
+          ],
+          "stateEvidence": "UI continuity; no private state probe"
+        },
+        {
+          "kind": "standalone",
+          "status": "PASS",
+          "checks": [
+            "no implicit default",
+            "explicit profiles",
+            "tutorial and cooking",
+            "live profile swaps",
+            "guidance gating",
+            "dismissal preserved",
+            "display settings isolated",
+            "reload persistence",
+            "fullscreen exit after switch",
+            "responsive layout"
+          ],
+          "stateEvidence": "UI continuity; no private state probe"
+        },
+        {
+          "kind": "offline-storage-blocked",
+          "status": "PASS"
+        },
+        {
+          "kind": "pixels-and-state",
+          "checks": [
+            {
+              "width": 880,
+              "screen": "menu",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "instructions",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "playing",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "day-result",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "game-over",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "menu",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "instructions",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "playing",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "day-result",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "game-over",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "menu",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "instructions",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "playing",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "day-result",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "game-over",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "adapter": "low-power",
+      "hardware": {
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00004688) Direct3D11 vs_5_0 ps_5_0, D3D11-30.0.101.1994)",
+        "features": {
+          "2d_canvas": "enabled",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "enabled",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "enabled_on",
+          "rasterization": "enabled",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "enabled",
+          "video_encode": "enabled",
+          "webgl": "enabled",
+          "webgpu": "enabled",
+          "webnn": "disabled_off"
+        }
+      },
+      "checks": [
+        {
+          "kind": "source",
+          "status": "PASS",
+          "checks": [
+            "no implicit default",
+            "explicit profiles",
+            "tutorial and cooking",
+            "live profile swaps",
+            "guidance gating",
+            "dismissal preserved",
+            "display settings isolated",
+            "reload persistence",
+            "fullscreen exit after switch",
+            "responsive layout",
+            "emulated touch in both profiles"
+          ],
+          "stateEvidence": "source snapshot invariants"
+        },
+        {
+          "kind": "site",
+          "status": "PASS",
+          "checks": [
+            "no implicit default",
+            "explicit profiles",
+            "tutorial and cooking",
+            "live profile swaps",
+            "guidance gating",
+            "dismissal preserved",
+            "display settings isolated",
+            "reload persistence",
+            "fullscreen exit after switch",
+            "responsive layout",
+            "emulated touch in both profiles"
+          ],
+          "stateEvidence": "UI continuity; no private state probe"
+        },
+        {
+          "kind": "standalone",
+          "status": "PASS",
+          "checks": [
+            "no implicit default",
+            "explicit profiles",
+            "tutorial and cooking",
+            "live profile swaps",
+            "guidance gating",
+            "dismissal preserved",
+            "display settings isolated",
+            "reload persistence",
+            "fullscreen exit after switch",
+            "responsive layout",
+            "emulated touch in both profiles"
+          ],
+          "stateEvidence": "UI continuity; no private state probe"
+        },
+        {
+          "kind": "offline-storage-blocked",
+          "status": "PASS"
+        },
+        {
+          "kind": "pixels-and-state",
+          "checks": [
+            {
+              "width": 880,
+              "screen": "menu",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "instructions",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "playing",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "day-result",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "game-over",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "menu",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "instructions",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "playing",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "day-result",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "game-over",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "menu",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "instructions",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "playing",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "day-result",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "game-over",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "choice": "classic",
+      "status": "PASS",
+      "passed": [
+        "Full tutorial loop, persistent child clocks and Skip",
+        "Cooking, flip, pickup freeze/cancel, plating, serving, payment, departure",
+        "Complete day: cash 24, clock 720",
+        "Next day preserves cash and clears food/tables",
+        "Three game-over/retry cycles"
+      ],
+      "canvas": [
+        1980,
+        1440
+      ],
+      "cachedMiB": 142.2013702392578,
+      "missingAssets": []
+    },
+    {
+      "choice": "extra",
+      "status": "PASS",
+      "passed": [
+        "Full tutorial loop, persistent child clocks and Skip",
+        "Cooking, flip, pickup freeze/cancel, plating, serving, payment, departure",
+        "Complete day: cash 24, clock 720",
+        "Next day preserves cash and clears food/tables",
+        "Three game-over/retry cycles"
+      ],
+      "canvas": [
+        1980,
+        1440
+      ],
+      "cachedMiB": 135.10224533081055,
+      "missingAssets": []
+    }
+  ],
+  "cleanup": {
+    "temporaryDisplayWakeRestored": true,
+    "isolatedBrowserProcessCount": [
+      0,
+      0
+    ]
+  },
+  "limits": [
+    "Default profile remains undecided; absent preference preserves earlier release behavior.",
+    "Full-clarity Pi and very-high-density performance remains below target in documented cases.",
+    "Cold first-appearance stalls are reduced, not eliminated.",
+    "General static-group cropping changed pixels and was rejected for Classic; only Extra background uses the crop.",
+    "No new music, graphics driver changes or system package installations."
+  ]
+}

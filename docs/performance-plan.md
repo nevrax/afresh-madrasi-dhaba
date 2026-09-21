@@ -4,9 +4,10 @@
 
 ### Profile separation plan
 
-Status: planned, not implemented. Keep this plan and the component report in
-English. Profile names below are working labels; the shipping default is an
-explicit unresolved decision to make after comparison.
+Status: PROF-1–6 implemented and verified; PROF-7 default selection remains open.
+The [profile inventory and acceptance report](presentation-profiles.md) records
+128 passing tests, visible UI/pixel checks and 16 timing cases. Keep this plan and
+the component report in English. Classic and Extra remain working labels.
 
 Use one application, one simulation and two presentation profiles:
 
@@ -37,47 +38,58 @@ animated stars and original composition intact can be common cache work after
 verification. New non-cache performance treatments belong to Extra; do not use
 this plan to silently rewrite the established Classic rendering baseline.
 
-- [ ] PROF-1 Inventory existing additions in the game shell, renderer, pointer
+- [x] PROF-1 Inventory existing additions in the game shell, renderer, pointer
   feedback and audio settings. Map every feature to shared infrastructure,
   Classic source behavior or Extra presentation. Distinguish source-authored flip
   cues from added cursors. The resource catalogue remains a separate development
   tool. Record the mapping before moving existing behavior behind profile gates.
-- [ ] PROF-2 Introduce a typed presentation-profile configuration with stable
+- [x] PROF-2 Introduce a typed presentation-profile configuration with stable
   IDs and one resolver. Pass resolved options to rendering, presentation UI and
   audio without branching the game rules or duplicating the game. Cover existing
   additions and future treatments through the same profile mechanism.
-- [ ] PROF-3 Implement and verify common cache work first, at unchanged clarity.
+- [x] PROF-3 Retain and verify the shared adaptive cache at unchanged clarity.
   Bound total memory across both profiles; invalidate or distinguish cached
   variants on switching so stale simplified artwork cannot leak into Classic.
-- [ ] PROF-4 Gate existing additions behind Extra and implement the measured
+  Existing bounded retention is shared; the proposed general static-group crop
+  failed pixel equality and is not enabled in Classic. Only Extra's changed
+  background uses the crop. Source metadata is immutable; switching releases
+  obsolete variant surfaces and derived metadata.
+- [x] PROF-4 Gate existing additions behind Extra and implement the measured
   non-cache candidates there: cheaper large griddle steam first, optional fixed
   stars/static scenery treatment next, then simpler order-bubble decoration.
   Keep counts and patience live. Keep glasses, radio, original music, traffic and
   customer detail initially; further cuts need evidence. No automatic resolution
   drop or automatic profile selection based on detected hardware.
-- [ ] PROF-5 Add a compact profile selector and persist explicit selection when
+- [x] PROF-5 Add a compact profile selector and persist explicit selection when
   storage is available, with an in-memory fallback for restricted file playback.
   Switching must preserve the active day, score, food, customers and timers,
   cancel obsolete presentation work and release unused variant resources. Keep
   Extra hint dismissal and display settings separate from Classic; toggling must
   not replay music, stack listeners or resurrect dismissed hints. Compare profiles
-  explicitly in development while the shipping default remains undecided; do not
+  explicitly while the shipping default remains undecided; do not
   change the existing release default as a side effect of settings migration.
-- [ ] PROF-6 Validate both profiles with identical input/replay and 100% render
+- [x] PROF-6 Validate both profiles with identical input/replay and 100% render
   scale before testing lower scales separately. Check cold and warm rendering on
   both Pi environments plus Intel/NVIDIA, memory bounds, repeated profile swaps,
   menu/tutorial/gameplay/day-end, pointer/touch hit mapping, audio, fullscreen,
   resizing and HTTP/direct-file playback. Classic retains source behavior and
   the established corrections; Extra has explicit visual differences, with the
-  same simulation outcomes. Record side-by-side visuals and performance before
-  selecting the default. Rebuild and validate both distributions with the selected
-  default only after this decision; never mark these tasks complete from prototypes.
+  same simulation outcomes. Visual captures and timings are recorded; the full
+  deterministic day ends at cash 24/clock 720 in both profiles. Both distributions
+  are rebuilt and checked with the previous no-selection behavior preserved.
+  Touch is emulated; performance remains below target in documented cases.
+- [ ] PROF-7 Select the shipping default after reviewing Classic and Extra.
+  Until then, absent saved preference keeps the previous release presentation
+  and a neutral Choose profile selector. Do not infer a choice from hardware,
+  measured speed or existing unrelated display settings. After selection, update
+  the fallback/migration explicitly and rebuild/check both distributions.
 
 Implementation order: PROF-1/2, common cache work (PROF-3), Extra treatments
 (PROF-4), switching and persistence (PROF-5), then acceptance (PROF-6).
 PROF-4 and PROF-6 carry the production work and acceptance required by PERF-17.
-The default profile remains **undecided**. This planning change does not implement
-profiles, choose effects for final release or add any new soundtrack.
+The default profile remains **undecided**. The profiles are implemented, with
+no new soundtrack and no automatic quality reduction. PERF-17 is still open:
+profile delivery does not establish smooth full-clarity play on every device.
 
 - [x] PERF-19 Rank individual visual groups on both physical Pi environments using repeated baselines, separate cold and warm costs, managed memory and actual audio controls. All 56 cases are recorded in [performance-components.md](performance-components.md) and anonymous reference data. Large griddle steam dominates measured cold/memory cost; background composition dominates warmed omission gains. Static background treatment reaches 43.11 / 59.66 FPS versus its 36.23 / 39.67 starting controls. The scope permits deliberate decorative simplification; exact historical appearance is a reference, not a universal requirement. Experimental removals remain outside the shipped game. This study does not complete PERF-17 implementation.
 

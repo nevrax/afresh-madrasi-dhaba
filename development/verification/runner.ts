@@ -3,6 +3,7 @@ import { Assets } from '../../src/render/assets.js';
 import { Renderer } from '../../src/render/renderer.js';
 import { runFilterCheck, runCompositionCheck } from './filter-check.js';
 import { runTileCompositorCheck } from './tile-check.js';
+import { presentationChoice } from '../../src/presentation-profile.js';
 
 // Development-only, visible deterministic scenarios. No networking or hidden control API.
 const report=document.querySelector<HTMLPreElement>('#report')!;
@@ -21,6 +22,7 @@ async function boot():Promise<void>{
   const requestedGpu=new URLSearchParams(location.search).get('gpu');
   const preference:WebGLPowerPreference=requestedGpu==='high-performance'||requestedGpu==='low-power'?requestedGpu:'default';
   const assets=new Assets();await assets.load(preference);const renderer=new Renderer(canvas,assets);await renderer.load();
+  renderer.setPresentation(presentationChoice(new URLSearchParams(location.search).get('presentation')));
   let art=assets.vector!;const optimizedArt=art;art.profiling=true;
   let algorithm='optimized';
   let busy=false;
