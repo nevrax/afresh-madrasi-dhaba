@@ -1,6 +1,7 @@
 {
   "units": "Callback rates are not physical scanout FPS. Process CPU uses one core = 100%.",
   "baselineRevision": "7d90d22",
+  "desktopRuntimeRevision": "5801794",
   "sourceHashScope": "Final integrated source; baseline and prototype runs precede integration. Native-production cases use the integrated renderer.",
   "intelDisplayQuery": {
     "width": 2560,
@@ -5168,6 +5169,980 @@
       "missingAssets": []
     }
   ],
+  "desktopProduction": [
+    {
+      "study": "native-live-low-power-normal-calibrated",
+      "hardware": {
+        "browser": "153.0.8010.53",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00004688) Direct3D11 vs_5_0 ps_5_0, D3D11-30.0.101.1994)",
+        "features": {
+          "2d_canvas": "enabled",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "enabled",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "enabled_on",
+          "rasterization": "enabled",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "enabled",
+          "video_encode": "enabled",
+          "webgl": "enabled",
+          "webgpu": "enabled",
+          "webnn": "disabled_off"
+        }
+      },
+      "bounds": {
+        "left": -7,
+        "top": -7,
+        "width": 1722,
+        "height": 928,
+        "windowState": "maximized"
+      },
+      "errors": [],
+      "config": {
+        "name": "native-full-day",
+        "width": 2200,
+        "nativeViewport": true,
+        "measurementMs": 180000,
+        "renderWork": true,
+        "unchangedFrames": false
+      },
+      "contextAttributes": {
+        "alpha": false,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "canvas": [
+        2200,
+        1600
+      ],
+      "geometry": {
+        "viewport": [
+          1707,
+          825
+        ],
+        "dpr": 1.5,
+        "canvas": {
+          "x": 0,
+          "y": 33.333335876464844,
+          "width": 1079.375,
+          "height": 785,
+          "fullyInsideViewport": true
+        }
+      },
+      "fps": 120.55461790852738,
+      "seconds": 180.0014,
+      "frames": 21700,
+      "playingFrames": 21699,
+      "raf": {
+        "p50": 5.800000000017462,
+        "p95": 6.600000000005821,
+        "p99": 11.699999999999818,
+        "max": 511.1999999999989,
+        "over50": 128
+      },
+      "draw": {
+        "p50": 0.10000002384185791,
+        "p95": 2.5,
+        "p99": 6.5,
+        "max": 484.5,
+        "over50": 2
+      },
+      "warm": {
+        "seconds": 150.0699,
+        "fps": 121.07691149257779,
+        "raf": {
+          "p50": 5.800000000017462,
+          "p95": 6.600000000005821,
+          "p99": 11.60000000000582,
+          "max": 493.3000000000029,
+          "over50": 105
+        },
+        "draw": {
+          "p50": 0.10000002384185791,
+          "p95": 2.5,
+          "p99": 6.600000023841858,
+          "max": 45.299999952316284,
+          "over50": 0
+        }
+      },
+      "warmCpu": {
+        "singleCorePercent": 33.219297765358434
+      },
+      "renderWork": {
+        "sceneBuilds": 1681,
+        "sceneBuildMs": 2784.4000005126,
+        "sceneCalls": 1828,
+        "sceneMs": 3421.4000005126,
+        "foodMs": 3559.8999984264374
+      },
+      "unchangedFrames": {
+        "painted": 1828,
+        "reused": 19872
+      },
+      "terminalPresentationGap": 45.89999999999418,
+      "hiddenSamples": 0,
+      "unfocusedSamples": 0,
+      "state": {
+        "screen": "day-result",
+        "cash": 24,
+        "clockMinutes": 720
+      },
+      "simulationIncludingCommandsAndAudio": {
+        "p50": 0,
+        "p95": 0.10000002384185791,
+        "p99": 0.40000003576278687,
+        "max": 2,
+        "over50": 0
+      },
+      "snapshot": {
+        "p50": 0.10000002384185791,
+        "p95": 0.2999999523162842,
+        "p99": 0.30000001192092896,
+        "max": 0.7000000476837158,
+        "over50": 0
+      },
+      "missingAssets": [],
+      "controlBefore": {
+        "config": {
+          "width": 2200,
+          "measurementMs": 5000,
+          "modes": [
+            "empty-raf",
+            "small-surface"
+          ],
+          "skipReadback": true
+        },
+        "contextAttributes": {
+          "alpha": false,
+          "colorSpace": "srgb",
+          "colorType": "unorm8",
+          "desynchronized": false,
+          "toneMapping": {
+            "mode": "standard"
+          },
+          "willReadFrequently": false
+        },
+        "results": [
+          {
+            "mode": "empty-raf",
+            "seconds": 5.0047,
+            "callbacks": 817,
+            "callbackFps": 163.24654824465003,
+            "gapMs": {
+              "p50": 6,
+              "p95": 6.199999999999818,
+              "p99": 6.700000000000728,
+              "max": 59.40000000000009
+            },
+            "gapsOver25ms": 3,
+            "estimatedMissedRefreshes": 22,
+            "submissionMs": {
+              "p50": 0,
+              "p95": 0
+            },
+            "hiddenSamples": 0,
+            "unfocusedSamples": 0,
+            "outsideViewportSamples": 0,
+            "geometry": {
+              "screen": {
+                "width": 1707,
+                "height": 960,
+                "availLeft": 0,
+                "availTop": 0,
+                "availWidth": 1707,
+                "availHeight": 912
+              },
+              "window": {
+                "x": 0,
+                "y": 0,
+                "width": 1707,
+                "height": 912
+              },
+              "viewport": [
+                1707,
+                825
+              ],
+              "dpr": 1.5,
+              "canvas": {
+                "x": 0,
+                "y": 0,
+                "width": 1100,
+                "height": 800,
+                "backing": [
+                  2200,
+                  1600
+                ],
+                "fullyInsideViewport": true
+              }
+            }
+          },
+          {
+            "mode": "small-surface",
+            "seconds": 5.003400000000001,
+            "callbacks": 767,
+            "callbackFps": 153.29575888395888,
+            "gapMs": {
+              "p50": 6,
+              "p95": 6.200000000000728,
+              "p99": 6.600000000000364,
+              "max": 457.60000000000036
+            },
+            "gapsOver25ms": 1,
+            "estimatedMissedRefreshes": 75,
+            "submissionMs": {
+              "p50": 0,
+              "p95": 0.10000002384185791
+            },
+            "hiddenSamples": 0,
+            "unfocusedSamples": 0,
+            "outsideViewportSamples": 0,
+            "geometry": {
+              "screen": {
+                "width": 1707,
+                "height": 960,
+                "availLeft": 0,
+                "availTop": 0,
+                "availWidth": 1707,
+                "availHeight": 912
+              },
+              "window": {
+                "x": 0,
+                "y": 0,
+                "width": 1707,
+                "height": 912
+              },
+              "viewport": [
+                1707,
+                825
+              ],
+              "dpr": 1.5,
+              "canvas": {
+                "x": 0,
+                "y": 0,
+                "width": 16,
+                "height": 16,
+                "backing": [
+                  16,
+                  16
+                ],
+                "fullyInsideViewport": true
+              }
+            }
+          }
+        ],
+        "work": {
+          "name": "tiny-fill-plus-readback-unpaced",
+          "completed": 0,
+          "seconds": 0,
+          "operationsPerSecond": null
+        },
+        "canvas": [
+          16,
+          16
+        ],
+        "memory": {},
+        "cache": null,
+        "geometry": {
+          "screen": {
+            "width": 1707,
+            "height": 960,
+            "availLeft": 0,
+            "availTop": 0,
+            "availWidth": 1707,
+            "availHeight": 912
+          },
+          "window": {
+            "x": 0,
+            "y": 0,
+            "width": 1707,
+            "height": 912
+          },
+          "viewport": [
+            1707,
+            825
+          ],
+          "dpr": 1.5,
+          "canvas": {
+            "x": 0,
+            "y": 0,
+            "width": 16,
+            "height": 16,
+            "backing": [
+              16,
+              16
+            ],
+            "fullyInsideViewport": true
+          }
+        }
+      },
+      "controlAfter": {
+        "config": {
+          "width": 2200,
+          "measurementMs": 5000,
+          "modes": [
+            "empty-raf",
+            "small-surface"
+          ],
+          "skipReadback": true
+        },
+        "contextAttributes": {
+          "alpha": false,
+          "colorSpace": "srgb",
+          "colorType": "unorm8",
+          "desynchronized": false,
+          "toneMapping": {
+            "mode": "standard"
+          },
+          "willReadFrequently": false
+        },
+        "results": [
+          {
+            "mode": "empty-raf",
+            "seconds": 5.005300000000018,
+            "callbacks": 769,
+            "callbackFps": 153.63714462669518,
+            "gapMs": {
+              "p50": 6,
+              "p95": 6.400000000023283,
+              "p99": 7.300000000017462,
+              "max": 400.6000000000058
+            },
+            "gapsOver25ms": 2,
+            "estimatedMissedRefreshes": 78,
+            "submissionMs": {
+              "p50": 0,
+              "p95": 0.09999996423721313
+            },
+            "hiddenSamples": 0,
+            "unfocusedSamples": 0,
+            "outsideViewportSamples": 0,
+            "geometry": {
+              "screen": {
+                "width": 1707,
+                "height": 960,
+                "availLeft": 0,
+                "availTop": 0,
+                "availWidth": 1707,
+                "availHeight": 912
+              },
+              "window": {
+                "x": 0,
+                "y": 0,
+                "width": 1707,
+                "height": 912
+              },
+              "viewport": [
+                1707,
+                825
+              ],
+              "dpr": 1.5,
+              "canvas": {
+                "x": 0,
+                "y": 0,
+                "width": 1100,
+                "height": 800,
+                "backing": [
+                  2200,
+                  1600
+                ],
+                "fullyInsideViewport": true
+              }
+            }
+          },
+          {
+            "mode": "small-surface",
+            "seconds": 5.0005,
+            "callbacks": 826,
+            "callbackFps": 165.18348165183482,
+            "gapMs": {
+              "p50": 6,
+              "p95": 6.199999999982538,
+              "p99": 6.600000000005821,
+              "max": 72
+            },
+            "gapsOver25ms": 1,
+            "estimatedMissedRefreshes": 12,
+            "submissionMs": {
+              "p50": 0,
+              "p95": 0.10000002384185791
+            },
+            "hiddenSamples": 0,
+            "unfocusedSamples": 0,
+            "outsideViewportSamples": 0,
+            "geometry": {
+              "screen": {
+                "width": 1707,
+                "height": 960,
+                "availLeft": 0,
+                "availTop": 0,
+                "availWidth": 1707,
+                "availHeight": 912
+              },
+              "window": {
+                "x": 0,
+                "y": 0,
+                "width": 1707,
+                "height": 912
+              },
+              "viewport": [
+                1707,
+                825
+              ],
+              "dpr": 1.5,
+              "canvas": {
+                "x": 0,
+                "y": 0,
+                "width": 16,
+                "height": 16,
+                "backing": [
+                  16,
+                  16
+                ],
+                "fullyInsideViewport": true
+              }
+            }
+          }
+        ],
+        "work": {
+          "name": "tiny-fill-plus-readback-unpaced",
+          "completed": 0,
+          "seconds": 0.00009999996423721313,
+          "operationsPerSecond": 0
+        },
+        "canvas": [
+          16,
+          16
+        ],
+        "memory": {},
+        "cache": null,
+        "geometry": {
+          "screen": {
+            "width": 1707,
+            "height": 960,
+            "availLeft": 0,
+            "availTop": 0,
+            "availWidth": 1707,
+            "availHeight": 912
+          },
+          "window": {
+            "x": 0,
+            "y": 0,
+            "width": 1707,
+            "height": 912
+          },
+          "viewport": [
+            1707,
+            825
+          ],
+          "dpr": 1.5,
+          "canvas": {
+            "x": 0,
+            "y": 0,
+            "width": 16,
+            "height": 16,
+            "backing": [
+              16,
+              16
+            ],
+            "fullyInsideViewport": true
+          }
+        }
+      }
+    },
+    {
+      "study": "native-live-high-performance-normal-calibrated",
+      "hardware": {
+        "browser": "153.0.8010.53",
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Ti Laptop GPU (0x000024A0) Direct3D11 vs_5_0 ps_5_0, D3D11-32.0.15.9649)",
+        "features": {
+          "2d_canvas": "enabled",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "enabled",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "enabled_on",
+          "rasterization": "enabled",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "enabled",
+          "video_encode": "enabled",
+          "webgl": "enabled",
+          "webgpu": "enabled",
+          "webnn": "disabled_off"
+        }
+      },
+      "bounds": {
+        "left": -7,
+        "top": -7,
+        "width": 1722,
+        "height": 928,
+        "windowState": "maximized"
+      },
+      "errors": [],
+      "config": {
+        "name": "native-full-day",
+        "width": 2200,
+        "nativeViewport": true,
+        "measurementMs": 180000,
+        "renderWork": true,
+        "unchangedFrames": false
+      },
+      "contextAttributes": {
+        "alpha": false,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": false
+      },
+      "canvas": [
+        2200,
+        1600
+      ],
+      "geometry": {
+        "viewport": [
+          1707,
+          825
+        ],
+        "dpr": 1.5,
+        "canvas": {
+          "x": 0,
+          "y": 33.333335876464844,
+          "width": 1079.375,
+          "height": 785,
+          "fullyInsideViewport": true
+        }
+      },
+      "fps": 135.2527753596176,
+      "seconds": 180.0037,
+      "frames": 24346,
+      "playingFrames": 24345,
+      "raf": {
+        "p50": 5.80000000000291,
+        "p95": 6.600000000000364,
+        "p99": 7.100000000005821,
+        "max": 1098.5,
+        "over50": 91
+      },
+      "draw": {
+        "p50": 0.10000002384185791,
+        "p95": 2.699999988079071,
+        "p99": 6,
+        "max": 1092.3999999761581,
+        "over50": 3
+      },
+      "warm": {
+        "seconds": 150.0075,
+        "fps": 138.55973867973267,
+        "raf": {
+          "p50": 5.80000000000291,
+          "p95": 6.599999999998545,
+          "p99": 7,
+          "max": 485.3999999999942,
+          "over50": 69
+        },
+        "draw": {
+          "p50": 0.10000002384185791,
+          "p95": 2.699999988079071,
+          "p99": 6.099999964237213,
+          "max": 82,
+          "over50": 1
+        }
+      },
+      "warmCpu": {
+        "singleCorePercent": 39.224692205676014
+      },
+      "renderWork": {
+        "sceneBuilds": 1830,
+        "sceneBuildMs": 3104.5000002384186,
+        "sceneCalls": 1987,
+        "sceneMs": 3779.7999999523163,
+        "foodMs": 4210.300001502037
+      },
+      "unchangedFrames": {
+        "painted": 1987,
+        "reused": 22359
+      },
+      "terminalPresentationGap": 84.69999999998254,
+      "hiddenSamples": 0,
+      "unfocusedSamples": 0,
+      "state": {
+        "screen": "day-result",
+        "cash": 24,
+        "clockMinutes": 720
+      },
+      "simulationIncludingCommandsAndAudio": {
+        "p50": 0,
+        "p95": 0.19999998807907104,
+        "p99": 0.3999999761581421,
+        "max": 1.5,
+        "over50": 0
+      },
+      "snapshot": {
+        "p50": 0.10000002384185791,
+        "p95": 0.20000004768371582,
+        "p99": 0.30000001192092896,
+        "max": 0.6000000238418579,
+        "over50": 0
+      },
+      "missingAssets": [],
+      "controlBefore": {
+        "config": {
+          "width": 2200,
+          "measurementMs": 5000,
+          "modes": [
+            "empty-raf",
+            "small-surface"
+          ],
+          "skipReadback": true
+        },
+        "contextAttributes": {
+          "alpha": false,
+          "colorSpace": "srgb",
+          "colorType": "unorm8",
+          "desynchronized": false,
+          "toneMapping": {
+            "mode": "standard"
+          },
+          "willReadFrequently": false
+        },
+        "results": [
+          {
+            "mode": "empty-raf",
+            "seconds": 5.003100000000001,
+            "callbacks": 830,
+            "callbackFps": 165.89714377086204,
+            "gapMs": {
+              "p50": 6,
+              "p95": 6.400000000000546,
+              "p99": 6.800000000000182,
+              "max": 65.70000000000027
+            },
+            "gapsOver25ms": 1,
+            "estimatedMissedRefreshes": 10,
+            "submissionMs": {
+              "p50": 0,
+              "p95": 0
+            },
+            "hiddenSamples": 0,
+            "unfocusedSamples": 0,
+            "outsideViewportSamples": 0,
+            "geometry": {
+              "screen": {
+                "width": 1707,
+                "height": 960,
+                "availLeft": 0,
+                "availTop": 0,
+                "availWidth": 1707,
+                "availHeight": 912
+              },
+              "window": {
+                "x": 0,
+                "y": 0,
+                "width": 1707,
+                "height": 912
+              },
+              "viewport": [
+                1707,
+                825
+              ],
+              "dpr": 1.5,
+              "canvas": {
+                "x": 0,
+                "y": 0,
+                "width": 1100,
+                "height": 800,
+                "backing": [
+                  2200,
+                  1600
+                ],
+                "fullyInsideViewport": true
+              }
+            }
+          },
+          {
+            "mode": "small-surface",
+            "seconds": 5.0005,
+            "callbacks": 833,
+            "callbackFps": 166.58334166583342,
+            "gapMs": {
+              "p50": 6,
+              "p95": 6.200000000000728,
+              "p99": 6.5,
+              "max": 29.69999999999891
+            },
+            "gapsOver25ms": 1,
+            "estimatedMissedRefreshes": 5,
+            "submissionMs": {
+              "p50": 0,
+              "p95": 0.10000002384185791
+            },
+            "hiddenSamples": 0,
+            "unfocusedSamples": 0,
+            "outsideViewportSamples": 0,
+            "geometry": {
+              "screen": {
+                "width": 1707,
+                "height": 960,
+                "availLeft": 0,
+                "availTop": 0,
+                "availWidth": 1707,
+                "availHeight": 912
+              },
+              "window": {
+                "x": 0,
+                "y": 0,
+                "width": 1707,
+                "height": 912
+              },
+              "viewport": [
+                1707,
+                825
+              ],
+              "dpr": 1.5,
+              "canvas": {
+                "x": 0,
+                "y": 0,
+                "width": 16,
+                "height": 16,
+                "backing": [
+                  16,
+                  16
+                ],
+                "fullyInsideViewport": true
+              }
+            }
+          }
+        ],
+        "work": {
+          "name": "tiny-fill-plus-readback-unpaced",
+          "completed": 0,
+          "seconds": 0,
+          "operationsPerSecond": null
+        },
+        "canvas": [
+          16,
+          16
+        ],
+        "memory": {},
+        "cache": null,
+        "geometry": {
+          "screen": {
+            "width": 1707,
+            "height": 960,
+            "availLeft": 0,
+            "availTop": 0,
+            "availWidth": 1707,
+            "availHeight": 912
+          },
+          "window": {
+            "x": 0,
+            "y": 0,
+            "width": 1707,
+            "height": 912
+          },
+          "viewport": [
+            1707,
+            825
+          ],
+          "dpr": 1.5,
+          "canvas": {
+            "x": 0,
+            "y": 0,
+            "width": 16,
+            "height": 16,
+            "backing": [
+              16,
+              16
+            ],
+            "fullyInsideViewport": true
+          }
+        }
+      },
+      "controlAfter": {
+        "config": {
+          "width": 2200,
+          "measurementMs": 5000,
+          "modes": [
+            "empty-raf",
+            "small-surface"
+          ],
+          "skipReadback": true
+        },
+        "contextAttributes": {
+          "alpha": false,
+          "colorSpace": "srgb",
+          "colorType": "unorm8",
+          "desynchronized": false,
+          "toneMapping": {
+            "mode": "standard"
+          },
+          "willReadFrequently": false
+        },
+        "results": [
+          {
+            "mode": "empty-raf",
+            "seconds": 5.002299999999988,
+            "callbacks": 836,
+            "callbackFps": 167.12312336325328,
+            "gapMs": {
+              "p50": 6,
+              "p95": 6.2000000000116415,
+              "p99": 6.7000000000116415,
+              "max": 12.10000000000582
+            },
+            "gapsOver25ms": 0,
+            "estimatedMissedRefreshes": 1,
+            "submissionMs": {
+              "p50": 0,
+              "p95": 0
+            },
+            "hiddenSamples": 0,
+            "unfocusedSamples": 0,
+            "outsideViewportSamples": 0,
+            "geometry": {
+              "screen": {
+                "width": 1707,
+                "height": 960,
+                "availLeft": 0,
+                "availTop": 0,
+                "availWidth": 1707,
+                "availHeight": 912
+              },
+              "window": {
+                "x": 0,
+                "y": 0,
+                "width": 1707,
+                "height": 912
+              },
+              "viewport": [
+                1707,
+                825
+              ],
+              "dpr": 1.5,
+              "canvas": {
+                "x": 0,
+                "y": 0,
+                "width": 1100,
+                "height": 800,
+                "backing": [
+                  2200,
+                  1600
+                ],
+                "fullyInsideViewport": true
+              }
+            }
+          },
+          {
+            "mode": "small-surface",
+            "seconds": 5.0053999999999945,
+            "callbacks": 570,
+            "callbackFps": 113.87701282614789,
+            "gapMs": {
+              "p50": 6.199999999982538,
+              "p95": 12.200000000011642,
+              "p99": 17.89999999999418,
+              "max": 18.5
+            },
+            "gapsOver25ms": 0,
+            "estimatedMissedRefreshes": 267,
+            "submissionMs": {
+              "p50": 0,
+              "p95": 0.10000002384185791
+            },
+            "hiddenSamples": 0,
+            "unfocusedSamples": 0,
+            "outsideViewportSamples": 0,
+            "geometry": {
+              "screen": {
+                "width": 1707,
+                "height": 960,
+                "availLeft": 0,
+                "availTop": 0,
+                "availWidth": 1707,
+                "availHeight": 912
+              },
+              "window": {
+                "x": 0,
+                "y": 0,
+                "width": 1707,
+                "height": 912
+              },
+              "viewport": [
+                1707,
+                825
+              ],
+              "dpr": 1.5,
+              "canvas": {
+                "x": 0,
+                "y": 0,
+                "width": 16,
+                "height": 16,
+                "backing": [
+                  16,
+                  16
+                ],
+                "fullyInsideViewport": true
+              }
+            }
+          }
+        ],
+        "work": {
+          "name": "tiny-fill-plus-readback-unpaced",
+          "completed": 0,
+          "seconds": 0,
+          "operationsPerSecond": null
+        },
+        "canvas": [
+          16,
+          16
+        ],
+        "memory": {},
+        "cache": null,
+        "geometry": {
+          "screen": {
+            "width": 1707,
+            "height": 960,
+            "availLeft": 0,
+            "availTop": 0,
+            "availWidth": 1707,
+            "availHeight": 912
+          },
+          "window": {
+            "x": 0,
+            "y": 0,
+            "width": 1707,
+            "height": 912
+          },
+          "viewport": [
+            1707,
+            825
+          ],
+          "dpr": 1.5,
+          "canvas": {
+            "x": 0,
+            "y": 0,
+            "width": 16,
+            "height": 16,
+            "backing": [
+              16,
+              16
+            ],
+            "fullyInsideViewport": true
+          }
+        }
+      }
+    }
+  ],
   "pixels": [
     {
       "study": "dirty-scene-check",
@@ -5201,7 +6176,7 @@
   ],
   "sourceHashes": {
     "src/render/renderer.ts": "0bd501e5aca94a97e85699a60e24b440921ac2606d82ddba4d34ef38ec32eb12",
-    "tools/cadence-fixture.mjs": "c01ac9db21c57acbef4637dba5e5bda0179c8f25579a84ef1bb478ea76cb016c",
+    "tools/cadence-fixture.mjs": "73a1ebcdfe0d42466aaa6b7416fdd6c65c2cda8868b9ff2c40c703c9d0507675",
     "tools/live-gameplay-fixture.mjs": "3d16d645a0bb126df69a71f5906acf48424a49a6d5a28cfa425e2c6928409b85",
     "development/verification/unchanged-frame-experiment.js": "466cfeb3a18064c7c54ab0e04df77411844728fb3196be7f0591bd42c75ecf63"
   }

@@ -2,6 +2,18 @@
 
 ## Current: native cadence calibration and complete-frame reuse
 
+Matched desktop continuation on integrated runtime `5801794`: full three-minute
+native-window Extra days at 2200 × 1600, with actual adapter checks and trivial
+controls before/after, reach warm 121.08 callback/s / 33.22% of one CPU core on
+Intel UHD and 138.56 / 39.22% on NVIDIA RTX 3070 Ti Laptop. Warm gaps above
+50 ms number 105 / 69; maxima are 493.3 / 485.4 ms. Both finish correctly with
+zero hidden/unfocused samples and full canvas containment. These are not
+stall-free results. Empty/tiny controls also vary and can stall, so PERF-25
+must distinguish host scheduling/composition and concurrent load from game work.
+The earlier 237/s Intel prototype result is not a guaranteed production rate.
+Full evidence is in performance-cadence.md/json. Only benchmark tooling and
+documentation changed in this continuation; shipped runtime remains `5801794`.
+
 PERF-23 is complete. Native, maximized, non-emulated browser controls distinguish
 refresh scheduling from rendering cost on both Pi environments and Intel. A
 59.97 callback/s idle control with no missed intervals is nominal 60 Hz, not

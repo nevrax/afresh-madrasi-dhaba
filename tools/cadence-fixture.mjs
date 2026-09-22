@@ -10,7 +10,7 @@ export async function measureCadence(page, config={}) {
     const geometry=()=>{const r=canvas.getBoundingClientRect();return{screen:{width:screen.width,height:screen.height,availLeft:screen.availLeft,availTop:screen.availTop,availWidth:screen.availWidth,availHeight:screen.availHeight},window:{x:screenX,y:screenY,width:outerWidth,height:outerHeight},viewport:[innerWidth,innerHeight],dpr:devicePixelRatio,canvas:{x:r.x,y:r.y,width:r.width,height:r.height,backing:[canvas.width,canvas.height],fullyInsideViewport:r.left>=0&&r.top>=0&&r.right<=innerWidth&&r.bottom<=innerHeight}};};
     const quantile=(v,p)=>[...v].sort((a,b)=>a-b)[Math.min(v.length-1,Math.floor(v.length*p))];
     const results=[];
-    for(const mode of ['empty-raf','small-surface','tiny-canvas','full-canvas','full-clear-canvas']){
+    for(const mode of config.modes??['empty-raf','small-surface','tiny-canvas','full-canvas','full-clear-canvas']){
       canvas.width=mode==='small-surface'?16:config.width??2200;canvas.height=mode==='small-surface'?16:Math.round(canvas.width*400/550);
       canvas.style.width=(mode==='small-surface'?16:cssWidth)+'px';canvas.style.height=(mode==='small-surface'?16:cssWidth*400/550)+'px';
       const next=()=>new Promise(requestAnimationFrame);
@@ -30,7 +30,7 @@ export async function measureCadence(page, config={}) {
     // Bypass rAF only to distinguish work submission from displayed frames.
     // Readback forces this trivial Canvas result to be available; this is NOT screen FPS.
     const began=performance.now();let completed=0;
-    while(!config.uncapped&&performance.now()-began<1000){c.fillStyle=completed%2?'#123456':'#234567';c.fillRect(0,0,16,16);c.getImageData(0,0,1,1);completed++;}
+    while(!config.uncapped&&!config.skipReadback&&performance.now()-began<1000){c.fillStyle=completed%2?'#123456':'#234567';c.fillRect(0,0,16,16);c.getImageData(0,0,1,1);completed++;}
     const work={name:'tiny-fill-plus-readback-unpaced',completed,seconds:(performance.now()-began)/1000};
     work.operationsPerSecond=work.seconds?work.completed/work.seconds:null;
     return {config,contextAttributes:c.getContextAttributes(),results,work,canvas:[canvas.width,canvas.height],memory:{},cache:null,geometry:geometry()};

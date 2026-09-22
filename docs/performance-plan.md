@@ -4,6 +4,13 @@
 
 ### Refresh and visibility calibration
 
+- [ ] PERF-25 Attribute long desktop pauses with matched native-window controls,
+  host/renderer scheduling, compositor timing and concurrent-load evidence.
+  Integrated Intel/NVIDIA full-day measurements now exist: warm 121.08 / 138.56
+  callback/s, but 105 / 69 gaps above 50 ms. Trivial controls also vary or stall.
+  Do not infer stable play from averages, blame game code for all gaps, or claim
+  a universal GPU ratio from sequential runs with changing host conditions.
+
 - [x] PERF-23 Separate refresh scheduling from rendering throughput with empty,
   genuinely small Canvas, large Canvas and temporary uncapped controls on both
   Pi environments and Intel. Repeat with native maximized windows, no viewport

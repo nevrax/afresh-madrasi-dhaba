@@ -11,6 +11,11 @@ Extra now reuses complete unchanged frames: 480 exact pixel/hit comparisons and
 60.00 / 59.99 callback/s and 33.28% / 29.60% of one core. Cold and terminal
 stalls remain open. See [performance-cadence.md](performance-cadence.md).
 
+The integrated Intel/NVIDIA full-day continuation records warm 121.08 / 138.56
+callback/s but 105 / 69 gaps above 50 ms. Trivial native controls also vary or
+stall. PERF-25 now covers desktop scheduling/compositor attribution; high
+average cadence does not close smooth-play acceptance.
+
 Full resolution continuation: PERF-16 fixes repeated griddle filter eviction at large backing dimensions, with unchanged scene pixels and hit targets. PERF-18 now records physical Raspberry Pi measurements and UI/pixel checks. Cold first appearances and higher density Intel/Pi pacing remain open as PERF-17 in [performance-plan.md](performance-plan.md). Earlier performance acceptance applies only to its measured resolution matrix.
 
 PERF-20 extends attribution to the whole pipeline. PERF-21 delivers the first Extra scene retention treatment, verified by 360 exact pixel/hit comparisons and 128 tests. Full-day Pi results still fail the combined stable-60-FPS/low-CPU target; PERF-21/22 remain open. See [performance-pipeline.md](performance-pipeline.md) for the 66-case evidence, current implementation and remaining priorities. A short fixture reaching 60 FPS does not close full-game acceptance.

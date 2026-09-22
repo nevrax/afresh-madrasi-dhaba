@@ -176,6 +176,54 @@ cold preparation and decoded audio memory. These are separate from refresh
 calibration. No default profile, resolution, artwork or production browser flags
 were changed by this study.
 
+## Matched desktop follow-up
+
+The integrated renderer is also tested sequentially on verified Intel UHD and
+NVIDIA RTX 3070 Ti Laptop adapters at 2200 × 1600, with normal synchronization,
+native maximized windows, production audio and the same three-minute command
+sequence. Five-second empty and actual-small-surface controls run before and
+after each full day. Actual adapter identity is checked, rather than inferred
+from a requested launch flag. These are rendering/core/audio benchmarks;
+end-to-end input checks are recorded separately.
+
+The new Intel control rates span 153.30–165.18 callbacks/s. Integrated gameplay
+reaches 120.55 overall and 121.08 in the last 150 seconds at 33.22% of one CPU
+core. Warm p95/p99 are 6.6/11.6 ms, but there are 105 gaps above 50 ms and a
+maximum of 493.3 ms. Those pauses make the average alone misleading. The small
+control itself pauses for 457.6 ms; an empty control pauses for 400.6 ms. The
+host/browser path therefore contributes delays without any game logic or art.
+This does not establish which scheduler, driver or concurrent workload causes
+them, or prove that all gameplay stalls share that cause. The earlier Intel
+237/s result remains a real observation, not a guaranteed rate.
+
+| Integrated full day, 2200 × 1600 | Overall callbacks/s | Warm callbacks/s | Warm CPU, one core | Warm gaps >50 ms | Warm maximum gap |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Intel UHD | 120.55 | 121.08 | 33.22% | 105 | 493.3 ms |
+| NVIDIA RTX 3070 Ti Laptop | 135.25 | 138.56 | 39.22% | 69 | 485.4 ms |
+
+Both runs use runtime revision `5801794` without prototype wrappers. Both end
+at cash 24 / clock 720, with normal Canvas synchronization, zero hidden or
+unfocused samples, full canvas containment and no page or missing-asset errors.
+The warm window is the last 150 seconds; the complete day lasts 180 seconds.
+Terminal presentation gaps are separately 45.9 / 84.7 ms. Intel submits 1828
+paints and reuses 19872 callbacks; NVIDIA submits 1987 and reuses 22359.
+
+NVIDIA's empty controls run at 165.90 / 167.12 callbacks/s before/after; the
+actual-small-surface controls run at 166.58 / 113.88. The latter slowdown occurs
+without game assets. Its warm gameplay p95/p99 are 6.6 / 7.0 ms, yet the rare
+long pauses remain significant. Reporting only average or p99 would hide them.
+CPU percentages are all isolated browser-process CPU in units of one core, not
+GPU utilization, total-machine utilization or power consumption.
+
+These sequential observations do not establish a universal GPU speed ratio:
+the controls vary over time, and the surrounding desktop workload was not
+isolated. They do establish that neither adapter is consistently capped at 60,
+and neither new full-day run meets an absence-of-long-stalls criterion. PERF-25
+must correlate host/renderer scheduling, compositor waits and concurrent load
+before attributing these gaps to game code or choosing another renderer change.
+The isolated test browsers are closed after each run; system graphics settings
+and normal browser profiles are unchanged.
+
 ## Acceptance rules
 
 1. Calibrate an empty and trivial painted control in the same native window.
