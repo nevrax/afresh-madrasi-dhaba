@@ -43,10 +43,17 @@ export class Renderer {
   private sceneKey = '';
   private sceneHits: HitTarget[] = [];
   private sceneVector: VectorArt | null = null;
+  private frameKey = '';
+  private frameVector: VectorArt | null = null;
+  readonly frameCounts = { painted: 0, reused: 0 };
+  lastDrawPainted = true;
+  /** Diagnostic comparison only; keep normal scene retention but repaint every callback. */
+  diagnosticFullFrameRedraw = false;
   /** Diagnostic comparison only; never selected by the player UI. */
   diagnosticFullSceneRedraw = false;
   get sceneCacheBytes(): number { return this.sceneSurface ? this.sceneSurface.width * this.sceneSurface.height * 4 : 0; }
   clearSceneCache(): void {
+    this.frameKey = ''; this.frameVector = null;
     if (this.sceneSurface) this.sceneSurface.width = this.sceneSurface.height = 0;
     this.sceneSurface = null; this.sceneKey = ''; this.sceneHits = []; this.sceneVector = null;
   }
@@ -175,6 +182,11 @@ export class Renderer {
     }
   }
   draw(s: Readonly<GameState>): void {
+    const key = this.unchangedFrameKey(s);
+    if (key && key === this.frameKey && this.frameVector === this.assets.vector) {
+      this.lastDrawPainted = false; this.frameCounts.reused++; return;
+    }
+    this.lastDrawPainted = true; this.frameCounts.painted++; this.frameKey = '';
     this.foodCursor='';
     this.currentTimeMs=s.timeMs;
     if (this.radioEnabled !== s.audio.enabled) { this.radioEnabled = s.audio.enabled; this.radioStartedMs = s.timeMs; }
@@ -204,6 +216,26 @@ export class Renderer {
           this.sourceText(429,combine(identity(pos.tx,pos.ty),{a,b,c:cc,d,tx,ty}),`Rs.${f.amount}/-`);c.restore();}
       }
     }
+    this.frameKey = key; this.frameVector = this.assets.vector;
+  }
+
+  private unchangedFrameKey(s: Readonly<GameState>): string {
+    if (!this.presentation.retainScene || this.diagnosticFullFrameRedraw || this.diagnosticFullSceneRedraw || this.diagnosticOmissions.size || s.screen !== 'playing' || s.tutorial.visible) return '';
+    // A blank pointer affects the canvas only when its food or button hover target changes.
+    // Held batter, food and plate positions keep their continuous input coordinates.
+    let pointer: unknown = s.pointer;
+    if (s.pointer.mode === 'blank') {
+      const hovered = s.food.find(d => {
+        const p = d && this.assets.placement(`dosaHolder${d.slot}`);
+        return d && !d.held && p && this.assets.contains(324,p.matrix,s.pointer.x,s.pointer.y);
+      });
+      const buttons = this.assets.scenes.find(v => v.frame === 5)?.instances.filter(p => p.name === 'btnMute' || p.name === 'btnUnMute') ?? [];
+      pointer = { mode: 'blank', hovered: hovered?.slot ?? null, buttons: buttons.map(p => this.assets.contains(p.symbolId,p.matrix,s.pointer.x,s.pointer.y,true,4)) };
+    }
+    return JSON.stringify([this.displayWidth,this.displayHeight,devicePixelRatio,this.renderScale,this.pressedCommand,
+      Math.floor((s.timeMs-this.sceneStartedMs)*12/1000),Math.floor((s.timeMs-this.radioStartedMs)*12/1000),
+      {...s,timeMs:undefined,pointer},this.feedback.map(f => ({...f,time:Math.floor((s.timeMs-f.time)*12/1000)}))],
+      (name,value:unknown) => name === 'elapsedMs' ? undefined : name === 'phaseElapsedMs' ? Math.floor(Number(value)*12/1000) : value);
   }
 
   private drawRetainedScene(s:Readonly<GameState>,placements:readonly Placement[]):void {

@@ -2,6 +2,33 @@
 
 ## Full resolution continuation
 
+### Refresh and visibility calibration
+
+- [x] PERF-23 Separate refresh scheduling from rendering throughput with empty,
+  genuinely small Canvas, large Canvas and temporary uncapped controls on both
+  Pi environments and Intel. Repeat with native maximized windows, no viewport
+  emulation, geometry and per-frame visibility/focus evidence. See
+  [performance-cadence.md](performance-cadence.md). Normal empty controls reach
+  59.97 / 60.00 / 166.13 callback/s. A nominal 59.97 baseline without missed
+  intervals is not a cadence failure. Callback counts are not physical scanout.
+- [ ] PERF-24 Evaluate the large Canvas update path in complete native-window
+  gameplay before removing more animations. A trivial large-surface update
+  reproduces Pi A's missed intervals; full clear/fill and the desynchronized
+  context hint remove that control's slowdown at identical resolution. Retain
+  normal synchronization in shipping launchers. Verify CPU, input, fidelity,
+  fallback and full-day pacing before promoting any experiment into Extra.
+  Complete-frame reuse is now integrated in Extra with 480 exact comparisons,
+  129 tests and native three-minute Pi runs: warm 60.00 / 59.99 callback/s and
+  33.28% / 29.60% of one core. Normal synchronization remains enabled. Cold
+  first-use and terminal-screen stalls keep full acceptance open.
+
+The dirty-region prototype is rejected despite 360 exact pixel/hit comparisons:
+the complete day regresses Pi A to 47.52 callback/s. It remains development-only.
+Earlier fixed-viewport runs did not establish native window containment; future
+acceptance requires a fully visible canvas, focus/visibility checks and a local
+trivial-render calibration. Intel's measured callback cadence is not a statement
+that its monitor refresh rate is 166 Hz.
+
 ### Whole pipeline continuation
 
 The target remains stable 60 Hz play at 2200 × 1600 backing pixels on both
@@ -22,8 +49,10 @@ does not pass. The component omission study is only one part of attribution.
   vector density, bounded memory, live orders, input and simulation timing.
   First implementation delivered: Extra retains scenery at authored poses,
   with a bounded exact-density opaque surface. 360 exact scene/hit comparisons
-  and 128 automated tests pass. Removing the remaining per-frame full-surface
-  copy and reducing complete-day CPU use are still open.
+  and 128 automated tests pass. The native continuation adds complete-frame
+  reuse when rendered state and hit targets are unchanged, with 480 exact
+  comparisons and 129 tests. No additional surface or density reduction is
+  needed. See PERF-23/24 for native-window results; cold preparation remains.
 - [ ] PERF-22 Repeat real-time, three-minute gameplay on both Pi environments
   with audio and inputs, cold and warm starts, profile switching and resizing.
   At 60 Hz require average at least 59.5 FPS, p95 at most 20 ms, p99 at most
@@ -34,7 +63,9 @@ does not pass. The component omission study is only one part of attribution.
   Initial real-time day completed on both Pi boards with audio and command
   replay, cash 24 and clock 720. Warm results are 55.62 / 59.85 FPS and
   80.96% / 76.17% of one core. Pi A fails cadence; both miss the CPU target.
-  Cold and final-transition stalls remain. Do not mark acceptance complete.
+  Those initial figures predate complete-frame reuse and native-window
+  calibration. The new report supersedes them for that path. Cold and
+  final-transition stalls remain. Do not mark acceptance complete.
 
 Do not select a profile or lower clarity automatically to meet these targets.
 Static-frame controls diagnose the pipeline and never count as playable results.

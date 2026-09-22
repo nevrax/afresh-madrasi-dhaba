@@ -84,7 +84,7 @@ async function boot(): Promise<void> {
   const cueLabel=cue.querySelector('span')!;
   let batterHintDismissed=false,batterHintElapsedMs=0,batterHintLastMs:number|null=null;
   try{batterHintDismissed=displayStorage?.getItem('madrasi-batter-hint-seen')==='1';}catch{}
-  const measured={now:0,elapsedMs:0,simulationMs:0,renderMs:0,audioMs:0,snapshotMs:0};
+  const measured={now:0,elapsedMs:0,simulationMs:0,renderMs:0,audioMs:0,snapshotMs:0,painted:true};
 
   if(new URLSearchParams(location.search).has('diagnose')) (await import('../development/verification/diagnostics.js')).attachDiagnostics(game,renderer,assets);
   const profile=renderProfiler(canvas,assets.vector!);
@@ -152,6 +152,7 @@ async function boot(): Promise<void> {
       }
     }
     renderer.draw(state);
+    measured.painted=renderer.lastDrawPainted;
     const actionable=presentation.enhancements&&state.screen==='playing'&&state.batterTemplate.available;
     const overBowl=Boolean(actionable&&bowl&&assets.contains(226,bowl.matrix,state.pointer.x,state.pointer.y));
     if(actionable&&batterHintLastMs!==null)batterHintElapsedMs+=Math.max(0,state.timeMs-batterHintLastMs);

@@ -1,6 +1,53 @@
 # Task status
 
-## Current: full pipeline attribution and first scene retention
+## Current: native cadence calibration and complete-frame reuse
+
+PERF-23 is complete. Native, maximized, non-emulated browser controls distinguish
+refresh scheduling from rendering cost on both Pi environments and Intel. A
+59.97 callback/s idle control with no missed intervals is nominal 60 Hz, not
+a failure. Intel controls vary from about 166 to 240/s across runs; no fixed
+60/s limit applies, and the changing host cadence limits causal comparisons.
+The earlier emulated-viewport evidence did not establish native containment.
+See [performance-cadence.md](performance-cadence.md) and the anonymous
+[measurement data](../tests/reference/performance-cadence.json).
+
+PERF-21/24 now include integrated complete-frame reuse in Extra: unchanged
+rendered state and hit targets reuse the existing image, without allocating
+another surface, changing game clocks or reducing density. Changed pointer
+objects and hover targets remain live. Classic and the unselected profile retain
+their previous behavior; PROF-7 remains undecided. The opt-in HUD distinguishes
+rAF callbacks, actual Canvas paints and reuse instead of equating them to
+physical screen FPS. It remains off initially.
+
+Integrated 180-second native-window days at 2200 × 1600 complete on both Pi
+environments with cash 24 / clock 720, zero hidden or unfocused samples and the
+entire canvas in the viewport. Warm last-150-second rates are 60.00 / 59.99
+callback/s at 33.28% / 29.60% of one CPU core, versus 45.70 / 59.77 and
+72.31% / 78.05% before complete-frame reuse. Warm p95 is 16.8 ms on both;
+maximum gaps are 17.4 / 33.33 ms. These are callback rates, not unique authored
+poses or physical scanout. Both contexts confirm normal synchronization.
+
+129 automated tests and 480 integrated exact pixel/hit comparisons pass.
+Source/site/standalone profile, tutorial/cooking, input, storage, fullscreen,
+responsive and emulated-touch checks pass in isolated Intel and NVIDIA browsers.
+Both distributions are rebuilt. Isolated Pi browsers/tunnels are closed, and
+the temporarily awakened display is restored. No OS display settings changed.
+
+**PERF-17/21/22/24 remain open for cold and transition stalls and broader
+acceptance.** Initial callback gaps still reach 383.5 / 300 ms; the explicitly
+sampled terminal gap is 233.6 / 183.4 ms. The warmed CPU/cadence budget is met
+for this command workload, not universal stall-free gameplay. Next: bounded
+first-use/end-screen preparation, verify pointer-held workloads and remaining
+input/profile/resize performance, then decoded-audio memory lifetime. Do not
+reintroduce unconditional full-canvas copies or claim 60 new animation poses/s.
+
+Rejected/experimental work remains outside dist: dirty-region restoration
+passes pixels but regresses Pi A; disabling the browser frame limiter floods
+submission without proving scanout; the desynchronized hint adds little after
+reuse and is not enabled in production. The reusable calibration tooling now
+records native geometry and visibility and rejects hidden/unfocused runs.
+
+## Previous: full pipeline attribution and first scene retention
 
 PERF-20 is complete: 66 physical Pi cases extend the effect ranking to CPU
 samples, process CPU, Canvas submission, surface controls and graphics-process

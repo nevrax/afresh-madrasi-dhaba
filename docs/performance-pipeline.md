@@ -1,5 +1,10 @@
 # Complete frame cost and retained scenery
 
+Follow-up: [refresh and visibility calibration](performance-cadence.md) separates
+normal display scheduling from slow drawing. The results below use the earlier
+emulated viewport; they do not establish native window containment. Near-60
+callback rates are not automatically failures or proof of physical scanout.
+
 **Stable 60 FPS with low CPU use is still an open target.** The new Extra
 scene cache improves the controlled five-customer scene to approximately 60 FPS
 on both Pi 5 environments. A complete three-minute day still reaches only

@@ -70,7 +70,7 @@ def current_browser():
     return state if cmdline and str(directory / 'profile') in cmdline else None
 
 
-if action == 'start':
+if action in ('start', 'start-uncapped'):
     if current_browser():
         raise RuntimeError('The isolated benchmark browser is already running')
     runtime = pathlib.Path(env.get('XDG_RUNTIME_DIR', '/run/user/%s' % uid))
@@ -88,6 +88,8 @@ if action == 'start':
             '--no-first-run', '--no-default-browser-check', '--disable-session-crashed-bubble',
             '--password-store=basic',
             '--window-size=1480,1000', '--ozone-platform=' + platform, 'about:blank']
+    if action == 'start-uncapped':
+        args.insert(1, '--disable-frame-rate-limit')
     with (directory / 'browser.log').open('ab') as log:
         proc = subprocess.Popen(args, env=env, stdin=subprocess.DEVNULL, stdout=log,
                                 stderr=log, start_new_session=True)

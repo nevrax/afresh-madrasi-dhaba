@@ -38,7 +38,7 @@ export async function checkGameUi(context,output,url='http://127.0.0.1:5173/'){
  checks.push({name:'narrow viewport',...(await page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth}))),bowlVisible:await page.locator('#batter-cue').isVisible()});
  await page.setViewportSize({width:1280,height:850});
  const other=await context.newPage();await other.goto('about:blank');await other.bringToFront();await other.waitForTimeout(1500);await page.bringToFront();await other.close();
- const measuredFrames=async()=>Number((await page.locator('#performance-hud').innerText()).match(/(\d+) measured frames/)?.[1]??NaN);
+ const measuredFrames=async()=>Number((await page.locator('#performance-hud').innerText()).match(/(\d+) (?:callbacks|measured frames)/)?.[1]??NaN);
  const gameFramesBefore=await measuredFrames();
  if(!await page.locator('#loading').isHidden())throw Error('Game runtime is not ready after tab return');
  const frames=await page.evaluate(()=>new Promise(resolve=>{const values=[];let first,last;function frame(now){if(first===undefined)first=now;if(last!==undefined)values.push(now-last);last=now;if(now-first<30000)requestAnimationFrame(frame);else{values.sort((a,b)=>a-b);resolve({seconds:(now-first)/1000,frames:values.length,fps:values.length*1000/(now-first),p95:values[Math.floor(values.length*.95)],p99:values[Math.floor(values.length*.99)],max:values.at(-1),hidden:document.hidden});}}requestAnimationFrame(frame);}));

@@ -8,6 +8,7 @@ import {measureFullResolutionFixture} from './full-resolution-fixture.mjs';
 import {measureComponentFixture} from './component-ranking-fixture.mjs';
 import {componentRankingCases} from './component-ranking-cases.mjs';
 import {measureLiveGameplay} from './live-gameplay-fixture.mjs';
+import {measureCadence} from './cadence-fixture.mjs';
 const root=path.resolve(import.meta.dirname,'..');
 const {chromium}=createRequire(import.meta.url)(path.join(root,'.local-setup/playwright/node_modules/playwright'));
 const [target,portText,localText,label,casesText]=process.argv.slice(2);
@@ -31,7 +32,7 @@ let tunnelError='';tunnel.stderr.on('data',b=>tunnelError+=b);
 let browser,cdp,launched=false;
 const result={fixture:'same five-customer exact-density scene as the desktop study',transport:'SSH forwarding; assets finish loading before timed rendering',results:[],errors:[]};
 try{
- await remote('start');launched=true;
+ await remote(cases.some(c=>c.uncapped)?'start-uncapped':'start');launched=true;
  const endpoint=`http://127.0.0.1:${localPort}`;
  let ready=false;
  for(let i=0;i<45;i++){
@@ -77,11 +78,16 @@ try{
   warmCpu=undefined;
   traceName=config.trace?config.name:undefined;
   await remote('keep-awake');
-  if(config.mode==='ranking')await pageCdp.send('Emulation.setDeviceMetricsOverride',{width:1480,height:1000,deviceScaleFactor:config.width>2750?3:2,mobile:false});
+  if(config.nativeViewport||config.mode==='cadence'){
+   await pageCdp.send('Emulation.clearDeviceMetricsOverride');const {windowId}=await cdp.send('Browser.getWindowForTarget',{targetId:(await pageCdp.send('Target.getTargetInfo')).targetInfo.targetId});await cdp.send('Browser.setWindowBounds',{windowId,bounds:{windowState:'maximized'}});await page.bringToFront();await page.waitForTimeout(1000);config.windowBounds=(await cdp.send('Browser.getWindowBounds',{windowId})).bounds;
+  }
+  else if(config.mode==='ranking')await pageCdp.send('Emulation.setDeviceMetricsOverride',{width:1480,height:1000,deviceScaleFactor:config.width>2750?3:2,mobile:false});
   const before=await cdp.send('SystemInfo.getProcessInfo'),start=performance.now();
   if(config.cpuProfile){await pageCdp.send('Profiler.enable');await pageCdp.send('Profiler.setSamplingInterval',{interval:1000});await pageCdp.send('Profiler.start');}
   let measurement;
-  if(config.mode==='live'){
+  if(config.mode==='cadence'){
+   measurement=await measureCadence(page,config);
+  }else if(config.mode==='live'){
    measurement=await measureLiveGameplay(page,config);
   }else if(config.mode==='ui'){
    const {checkGameUi}=await import('./performance-ui.mjs');
@@ -122,6 +128,8 @@ try{
   measurement.system=await remote('sample');result.results.push(measurement);
   await writeFile(path.join(output,'results.json'),JSON.stringify(result,null,2));
   console.log(JSON.stringify({label,config,canvas:measurement.canvas,fps:measurement.fps,raf:measurement.raf,cache:measurement.cache,memory:measurement.memory.accountedBackingBytes??measurement.memory.peakBackingBytes,cpu:measurement.processCpu.singleCorePercent,system:measurement.system}));
+  if(config.mode==='cadence'&&measurement.results.some(r=>r.hiddenSamples||r.unfocusedSamples||r.outsideViewportSamples||!r.geometry.canvas.fullyInsideViewport))throw Error('Native calibration visibility acceptance failed');
+  if(config.nativeViewport&&(measurement.hiddenSamples||measurement.unfocusedSamples||!measurement.geometry.canvas.fullyInsideViewport))throw Error('Native gameplay visibility acceptance failed');
   if(config.mode!=='gameplay')await page.reload({waitUntil:'domcontentloaded'});
  }
  result.after=await remote('sample');

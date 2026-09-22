@@ -2,6 +2,15 @@
 
 This is the persistent work plan. Update task checkboxes only when the stated evidence exists. Record the current task, evidence, unresolved questions and next action in [task-status.md](task-status.md) before handing work over or ending an implementation session.
 
+PERF-23 calibrates refresh scheduling and native visible-window geometry before
+further acceptance. An idle reference at 59.97 callback/s can be nominal 60 Hz
+without missed intervals; callback rates are not physical presentation rates.
+PERF-24 investigates the large Canvas update path reproduced without game assets.
+Extra now reuses complete unchanged frames: 480 exact pixel/hit comparisons and
+129 tests pass. Integrated native Pi days meet the warmed cadence/CPU budget at
+60.00 / 59.99 callback/s and 33.28% / 29.60% of one core. Cold and terminal
+stalls remain open. See [performance-cadence.md](performance-cadence.md).
+
 Full resolution continuation: PERF-16 fixes repeated griddle filter eviction at large backing dimensions, with unchanged scene pixels and hit targets. PERF-18 now records physical Raspberry Pi measurements and UI/pixel checks. Cold first appearances and higher density Intel/Pi pacing remain open as PERF-17 in [performance-plan.md](performance-plan.md). Earlier performance acceptance applies only to its measured resolution matrix.
 
 PERF-20 extends attribution to the whole pipeline. PERF-21 delivers the first Extra scene retention treatment, verified by 360 exact pixel/hit comparisons and 128 tests. Full-day Pi results still fail the combined stable-60-FPS/low-CPU target; PERF-21/22 remain open. See [performance-pipeline.md](performance-pipeline.md) for the 66-case evidence, current implementation and remaining priorities. A short fixture reaching 60 FPS does not close full-game acceptance.

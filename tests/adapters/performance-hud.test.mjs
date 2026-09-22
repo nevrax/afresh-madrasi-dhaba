@@ -29,7 +29,7 @@ test('disabled samples perform no clock, argument, DOM or memory work; collapsed
   assert.equal(ui.hud.enabled, false); assert.deepEqual(ui.counts, before);
   ui.hud.setEnabled(true);
   for (let i = 1; i <= 50; i++) ui.sample(i * 20);
-  assert.match(ui.summary(), /50\.0 FPS · 50 measured frames/);
+  assert.match(ui.summary(), /50\.0 rAF\/s · 50 callbacks/);
   assert.equal(ui.counts.memory, 0); assert.equal(ui.counts.heap, 0); assert.equal(ui.counts.renderer, 0);
   ui.hud.setEnabled(false); const disabled = { ...ui.counts };
   ui.sample(2000); ui.hud.setEnabled(false); assert.deepEqual(ui.counts, disabled);
@@ -60,7 +60,7 @@ test('frame percentile uses only the bounded latest256 samples while FPS uses it
   for (let i = 0; i < 100; i++) ui.sample(now += 100, 100);
   assert.match(ui.text(), /p95 100\.0 ms/);
   for (let i = 0; i < 400; i++) ui.sample(now += 5, 5);
-  assert.match(ui.summary(), /200\.0 FPS · 500 measured frames/);
+  assert.match(ui.summary(), /200\.0 rAF\/s · 500 callbacks/);
   assert.match(ui.text(), /p95 5\.0 ms \(latest 256, up to 256\)/);
 });
 
@@ -68,15 +68,15 @@ test('background gaps and backwards timestamps reset only the metric window with
   const ui = setup(); ui.hud.setEnabled(true); ui.hud.element.open = true;
   for (let i = 1; i <= 50; i++) ui.sample(i * 20);
   ui.sample(6000, 5000, { simulationMs: 4000 });
-  assert.match(ui.summary(), /— FPS · 51 measured frames/);
+  assert.match(ui.summary(), /— rAF\/s · 51 callbacks/);
   assert.match(ui.text(), /gap 5\.00 s; window reset, catch-up sample excluded/);
   for (let i = 1; i <= 50; i++) ui.sample(6000 + i * 20);
-  assert.match(ui.summary(), /50\.0 FPS · 101 measured frames/); assert.match(ui.text(), /35\.0% of one core/);
+  assert.match(ui.summary(), /50\.0 rAF\/s · 101 callbacks/); assert.match(ui.text(), /35\.0% of one core/);
   ui.sample(100, 20); assert.match(ui.text(), /clock moved backwards; window reset/);
   for (let i = 1; i <= 50; i++) ui.sample(100 + i * 20);
-  assert.match(ui.summary(), /50\.0 FPS · 152 measured frames/);
+  assert.match(ui.summary(), /50\.0 rAF\/s · 152 callbacks/);
   ui.hud.setEnabled(false); ui.hud.setEnabled(true);
-  assert.match(ui.summary(), /0 measured frames/); assert.doesNotMatch(ui.text(), /clock moved backwards/);
+  assert.match(ui.summary(), /0 callbacks/); assert.doesNotMatch(ui.text(), /clock moved backwards/);
 });
 
 test('unavailable measurement APIs stay unavailable and coarse clocks never imply zero-cost HUD work', () => {
@@ -84,4 +84,12 @@ test('unavailable measurement APIs stay unavailable and coarse clocks never impl
   for (let i = 1; i <= 50; i++) ui.sample(i * 20);
   assert.match(ui.text(), /JS heap: unavailable/); assert.match(ui.text(), /Managed memory: unavailable/);
   assert.match(ui.text(), /Renderer: unavailable/); assert.match(ui.text(), /HUD self-work: below timer resolution/);
+});
+
+test('callback cadence and actual Canvas paints are reported separately', () => {
+  const ui=setup();ui.hud.setEnabled(true);ui.hud.element.open=true;
+  for(let i=1;i<=50;i++)ui.sample(i*20,20,{painted:i%5===0});
+  assert.match(ui.summary(),/50\.0 rAF\/s · 50 callbacks/);
+  assert.match(ui.text(),/Canvas paints: 10 · reused: 40 · 10\.0 paints\/s/);
+  assert.match(ui.text(),/not unique animation poses or monitor scanout/);
 });

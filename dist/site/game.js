@@ -119,7 +119,7 @@ async function boot() {
         batterHintDismissed = displayStorage?.getItem('madrasi-batter-hint-seen') === '1';
     }
     catch { }
-    const measured = { now: 0, elapsedMs: 0, simulationMs: 0, renderMs: 0, audioMs: 0, snapshotMs: 0 };
+    const measured = { now: 0, elapsedMs: 0, simulationMs: 0, renderMs: 0, audioMs: 0, snapshotMs: 0, painted: true };
     const profile = (0, profile_js_1.renderProfiler)(canvas, assets.vector);
     const profiling = new URLSearchParams(location.search).get('profile') === '1';
     const scoreConfiguration = (0, score_configuration_js_1.readScoreConfiguration)(document.querySelector('#score-service-config')?.textContent ?? '{}', location.href);
@@ -206,6 +206,7 @@ async function boot() {
             }
         }
         renderer.draw(state);
+        measured.painted = renderer.lastDrawPainted;
         const actionable = presentation.enhancements && state.screen === 'playing' && state.batterTemplate.available;
         const overBowl = Boolean(actionable && bowl && assets.contains(226, bowl.matrix, state.pointer.x, state.pointer.y));
         if (actionable && batterHintLastMs !== null)
@@ -2193,10 +2194,18 @@ class Renderer {
     sceneKey = '';
     sceneHits = [];
     sceneVector = null;
+    frameKey = '';
+    frameVector = null;
+    frameCounts = { painted: 0, reused: 0 };
+    lastDrawPainted = true;
+    /** Diagnostic comparison only; keep normal scene retention but repaint every callback. */
+    diagnosticFullFrameRedraw = false;
     /** Diagnostic comparison only; never selected by the player UI. */
     diagnosticFullSceneRedraw = false;
     get sceneCacheBytes() { return this.sceneSurface ? this.sceneSurface.width * this.sceneSurface.height * 4 : 0; }
     clearSceneCache() {
+        this.frameKey = '';
+        this.frameVector = null;
         if (this.sceneSurface)
             this.sceneSurface.width = this.sceneSurface.height = 0;
         this.sceneSurface = null;
@@ -2379,6 +2388,15 @@ class Renderer {
         }
     }
     draw(s) {
+        const key = this.unchangedFrameKey(s);
+        if (key && key === this.frameKey && this.frameVector === this.assets.vector) {
+            this.lastDrawPainted = false;
+            this.frameCounts.reused++;
+            return;
+        }
+        this.lastDrawPainted = true;
+        this.frameCounts.painted++;
+        this.frameKey = '';
         this.foodCursor = '';
         this.currentTimeMs = s.timeMs;
         if (this.radioEnabled !== s.audio.enabled) {
@@ -2429,6 +2447,26 @@ class Renderer {
                 }
             }
         }
+        this.frameKey = key;
+        this.frameVector = this.assets.vector;
+    }
+    unchangedFrameKey(s) {
+        if (!this.presentation.retainScene || this.diagnosticFullFrameRedraw || this.diagnosticFullSceneRedraw || this.diagnosticOmissions.size || s.screen !== 'playing' || s.tutorial.visible)
+            return '';
+        // A blank pointer affects the canvas only when its food or button hover target changes.
+        // Held batter, food and plate positions keep their continuous input coordinates.
+        let pointer = s.pointer;
+        if (s.pointer.mode === 'blank') {
+            const hovered = s.food.find(d => {
+                const p = d && this.assets.placement(`dosaHolder${d.slot}`);
+                return d && !d.held && p && this.assets.contains(324, p.matrix, s.pointer.x, s.pointer.y);
+            });
+            const buttons = this.assets.scenes.find(v => v.frame === 5)?.instances.filter(p => p.name === 'btnMute' || p.name === 'btnUnMute') ?? [];
+            pointer = { mode: 'blank', hovered: hovered?.slot ?? null, buttons: buttons.map(p => this.assets.contains(p.symbolId, p.matrix, s.pointer.x, s.pointer.y, true, 4)) };
+        }
+        return JSON.stringify([this.displayWidth, this.displayHeight, devicePixelRatio, this.renderScale, this.pressedCommand,
+            Math.floor((s.timeMs - this.sceneStartedMs) * 12 / 1000), Math.floor((s.timeMs - this.radioStartedMs) * 12 / 1000),
+            { ...s, timeMs: undefined, pointer }, this.feedback.map(f => ({ ...f, time: Math.floor((s.timeMs - f.time) * 12 / 1000) }))], (name, value) => name === 'elapsedMs' ? undefined : name === 'phaseElapsedMs' ? Math.floor(Number(value) * 12 / 1000) : value);
     }
     drawRetainedScene(s, placements) {
         const width = this.canvas.width, height = this.canvas.height;
@@ -2966,20 +3004,21 @@ function createPerformanceHud(canvas, readMemory, readRenderer) {
     element.style.cssText = 'position:fixed;left:8px;bottom:8px;z-index:10;max-width:min(350px,calc(100vw - 16px));box-sizing:border-box;padding:6px 8px;border:1px solid #ffffff35;border-radius:5px;background:#101713ed;color:#eff8ee;font:11px/1.4 ui-monospace,Consolas,monospace;';
     const summary = doc.createElement('summary');
     summary.style.cssText = 'cursor:pointer;white-space:nowrap;';
-    summary.textContent = 'FPS — · 0 measured frames';
-    summary.title = 'Frames sampled since enabled. Expand for timings and memory.';
+    summary.textContent = 'rAF/s — · 0 callbacks';
+    summary.title = 'Animation callbacks since enabled, not monitor scanout. Expand for Canvas paints, timings and memory.';
     const detail = doc.createElement('div');
     detail.style.cssText = 'padding-top:6px;white-space:normal;overflow-wrap:anywhere;';
     const frame = doc.createElement('div'), cpu = doc.createElement('div'), timings = doc.createElement('div');
     const overhead = doc.createElement('div'), heap = doc.createElement('div'), managed = doc.createElement('div');
-    const renderer = doc.createElement('div'), reset = doc.createElement('div'), limits = doc.createElement('div');
+    const renderer = doc.createElement('div'), reset = doc.createElement('div'), limits = doc.createElement('div'), paints = doc.createElement('div');
     limits.textContent = 'Timed work ÷ elapsed: estimate for one main-thread core, not total CPU. Excludes browser/GPU/audio-worker work. Memory is accounting, not process RAM or VRAM.';
     limits.style.cssText = 'margin-top:5px;opacity:.75;';
-    detail.append(frame, cpu, timings, overhead, heap, managed, renderer, reset, limits);
+    detail.append(frame, paints, cpu, timings, overhead, heap, managed, renderer, reset, limits);
     element.append(summary, detail);
     doc.body.append(element);
     const intervals = new Float64Array(CAPACITY), sorted = new Float64Array(CAPACITY);
     let active = false, totalFrames = 0, count = 0, cursor = 0, windowFrames = 0;
+    let totalPaints = 0, windowPaints = 0;
     let start = Number.NaN, previous = Number.NaN, lastUpdate = Number.NaN;
     let simulation = 0, rendering = 0, audio = 0, snapshots = 0;
     let selfMs = 0, selfCount = 0, note = '';
@@ -2989,13 +3028,13 @@ function createPerformanceHud(canvas, readMemory, readRenderer) {
     };
     const resetWindow = (now) => {
         start = now;
-        count = cursor = windowFrames = 0;
+        count = cursor = windowFrames = windowPaints = 0;
         simulation = rendering = audio = snapshots = 0;
     };
     const publish = (now) => {
         const elapsed = Math.max(0, now - start);
         const fps = elapsed > 0 && windowFrames > 0 ? (windowFrames * 1000 / elapsed).toFixed(1) : '—';
-        write(summary, `${fps} FPS · ${totalFrames} measured frames`);
+        write(summary, `${fps} rAF/s · ${totalFrames} callbacks`);
         if (element.open) {
             // Fixed scratch storage, sorted only at the display refresh, never per sample.
             sorted.fill(Infinity);
@@ -3004,6 +3043,7 @@ function createPerformanceHud(canvas, readMemory, readRenderer) {
             sorted.sort();
             const p95 = count ? `${sorted[Math.ceil(count * .95) - 1].toFixed(1)} ms` : '—';
             write(frame, `Window ${(elapsed / 1000).toFixed(2)} s / ${windowFrames} frames · p95 ${p95} (latest ${count}, up to 256)`);
+            write(paints, `Canvas paints: ${totalPaints} · reused: ${totalFrames - totalPaints} · ${elapsed > 0 ? (windowPaints * 1000 / elapsed).toFixed(1) : '—'} paints/s. Callbacks and paints are not unique animation poses or monitor scanout.`);
             const measured = simulation + rendering + audio + snapshots;
             write(cpu, `Measured main-thread work: ${elapsed > 0 && windowFrames ? (measured / elapsed * 100).toFixed(1) + '%' : '—'} of one core (estimate)`);
             const average = (ms) => windowFrames ? (ms / windowFrames).toFixed(2) : '—';
@@ -3045,13 +3085,13 @@ function createPerformanceHud(canvas, readMemory, readRenderer) {
             active = value;
             element.hidden = !value;
             if (value) {
-                totalFrames = 0;
+                totalFrames = totalPaints = 0;
                 previous = lastUpdate = Number.NaN;
                 resetWindow(Number.NaN);
                 selfMs = selfCount = 0;
                 note = '';
-                write(summary, 'FPS — · 0 measured frames');
-                for (const target of [frame, cpu, timings, overhead, heap, managed, renderer, reset])
+                write(summary, 'rAF/s — · 0 callbacks');
+                for (const target of [frame, paints, cpu, timings, overhead, heap, managed, renderer, reset])
                     write(target, '');
             }
         },
@@ -3063,6 +3103,8 @@ function createPerformanceHud(canvas, readMemory, readRenderer) {
                 if (!Number.isFinite(value.now) || !Number.isFinite(value.elapsedMs) || value.elapsedMs < 0)
                     return;
                 totalFrames++;
+                if (value.painted !== false)
+                    totalPaints++;
                 const backwards = Number.isFinite(previous) && value.now < previous;
                 if (value.elapsedMs > GAP_MS || backwards) {
                     resetWindow(value.now);
@@ -3080,6 +3122,8 @@ function createPerformanceHud(canvas, readMemory, readRenderer) {
                 cursor = (cursor + 1) % CAPACITY;
                 count = Math.min(CAPACITY, count + 1);
                 windowFrames++;
+                if (value.painted !== false)
+                    windowPaints++;
                 simulation += duration(value.simulationMs);
                 rendering += duration(value.renderMs);
                 audio += duration(value.audioMs);
@@ -3087,7 +3131,7 @@ function createPerformanceHud(canvas, readMemory, readRenderer) {
                 if (value.now - lastUpdate >= UPDATE_MS) {
                     publish(value.now);
                     start = value.now;
-                    windowFrames = 0;
+                    windowFrames = windowPaints = 0;
                     simulation = rendering = audio = snapshots = 0;
                 }
             }

@@ -1,9 +1,11 @@
 # Presentation profiles
 
-Current performance continuation: Extra now retains scenery between authored
-poses, while food and pointer feedback remain live at render cadence. The
-[whole-pipeline report](performance-pipeline.md) supersedes the timing baseline
-below for this change; full-day stable 60 FPS with low CPU remains unachieved.
+Current performance continuation: Extra retains scenery between authored poses
+and reuses the complete image when rendered state and hit targets are unchanged.
+Pointer input and game clocks remain live. The
+[native cadence report](performance-cadence.md) supersedes the timing baseline
+below. Warm Pi cadence/CPU improve substantially; cold and final-screen stalls
+remain open. The HUD distinguishes callback rate from actual Canvas paints.
 
 Classic and Extra use the same game rules, assets, cooking timers, customers,
 orders and scoring. The small selector above the game changes presentation during
@@ -26,6 +28,7 @@ an explicit selector change saves it. No hardware detection selects a profile.
 | Additional flip/pickup/batter cursors | Off | On | Game shell and CSS |
 | Smooth sampling between eligible menu/traffic poses | Authored samples | Menu interpolates; playing traffic uses authored 12 Hz poses | Renderer; simulation clocks unchanged |
 | Retained scenery between visual state changes | Ordinary rendering | Exact-density opaque surface, up to 32 MiB | Renderer; food, feedback and hit mapping stay live |
+| Unchanged complete frame | Repaint every callback | Reuse only while visible state and hit targets match | Renderer; no additional surface or animation-rate reduction |
 | Large griddle steam | Original blur | Original moving geometry without the wide blur | Isolated vector metadata view |
 | Background stars | Original blinking | Fixed pose; background retained and cropped to the visible stage | Isolated vector metadata view and Extra cache treatment |
 | Order bubble decoration | Original morph | Fixed decoration; count and patience still live | Renderer |

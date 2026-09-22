@@ -7,9 +7,18 @@ export async function measureLiveGameplay(page, config) {
     const {Assets}=await import('/build/modules/src/render/assets.js');
     const {Renderer}=await import('/build/modules/src/render/renderer.js');
     const {GameAudio}=await import('/build/modules/src/audio/audio.js');
-    const canvas=document.querySelector('canvas');canvas.style.width=config.width/devicePixelRatio+'px';canvas.style.height=config.width*400/550/devicePixelRatio+'px';
+    const canvas=document.querySelector('canvas');
+    const cssWidth=config.nativeViewport?Math.min(1100,innerWidth,Math.max(1,innerHeight-40)*550/400):config.width/devicePixelRatio;
+    canvas.style.width=cssWidth+'px';canvas.style.height=cssWidth*400/550+'px';
+    if(config.stageOptions)canvas.getContext('2d',{alpha:false,...config.stageOptions});
     const assets=new Assets();await assets.load();const renderer=new Renderer(canvas,assets);await renderer.load();renderer.setPresentation(config.presentation??'extra');
+    if(config.nativeViewport)renderer.renderScale=config.width/(cssWidth*devicePixelRatio);
+    const renderWork={sceneBuilds:0,sceneBuildMs:0,sceneCalls:0,sceneMs:0,foodMs:0};
+    if(config.renderWork)for(const [method,count,time] of [['drawScene','sceneBuilds','sceneBuildMs'],['drawRetainedScene','sceneCalls','sceneMs'],['food',null,'foodMs']]){const original=renderer[method].bind(renderer);renderer[method]=(...args)=>{const at=performance.now();try{return original(...args);}finally{if(count)renderWork[count]++;renderWork[time]+=performance.now()-at;}};}
     if(config.fullSceneRedraw)renderer.diagnosticFullSceneRedraw=true;
+    renderer.diagnosticFullFrameRedraw=Boolean(config.fullFrameRedraw||config.unchangedFrames);
+    const dirty=config.dirtyScene?(await import('/development/verification/dirty-scene-experiment.js')).dirtyScene(renderer):null;
+    const unchanged=config.unchangedFrames?(await import('/development/verification/unchanged-frame-experiment.js')).unchangedFrames(renderer):null;
     const audio=new GameAudio(assets);audio.activate();const game=createGame({random:()=>0});
     const events=value=>{if(value.length){renderer.events(value,game.state);audio.handle(value);}};
     const command=value=>events(game.dispatch(value)),advance=ms=>events(game.advance(ms));
@@ -26,12 +35,12 @@ export async function measureLiveGameplay(page, config) {
     };
     const summarize=values=>{const v=[...values].sort((a,b)=>a-b);return{p50:v[Math.floor(v.length*.5)],p95:v[Math.floor(v.length*.95)],p99:v[Math.floor(v.length*.99)],max:v.at(-1),over50:v.filter(n=>n>50).length};};
     const next=()=>new Promise(requestAnimationFrame),gaps=[],draws=[],simulation=[],snapshot=[],warmGaps=[],warmDraws=[];
-    let peakBytes=0,nextMemory=0,hidden=false,warmStart=0,accumulator=0,playingFrames=0;
+    let peakBytes=0,nextMemory=0,hidden=false,warmStart=0,accumulator=0,playingFrames=0,hiddenSamples=0,unfocusedSamples=0;
     try{
       await next();await next();advance(0);command({type:'start'});command({type:'play'});bot();
       let began=await next(),last=began;
       while(last-began<(config.measurementMs??180000)){
-        const now=await next(),gap=now-last;last=now;hidden ||= document.hidden;
+        const now=await next(),gap=now-last;last=now;hidden ||= document.hidden;hiddenSamples+=Number(document.hidden);unfocusedSamples+=Number(!document.hasFocus());
         if(!warmStart&&now-began>=30000){warmStart=now-gap;if(window.__measureWarmCpu)await window.__measureWarmCpu('start');}
         const at=performance.now();let remaining=gap;
         while(remaining>0){const step=Math.min(remaining,1000/12-accumulator);advance(step);remaining-=step;accumulator+=step;if(accumulator>=1000/12-1e-8){bot();accumulator=0;}}
@@ -42,8 +51,10 @@ export async function measureLiveGameplay(page, config) {
         if(warmStart){warmGaps.push(gap);warmDraws.push(drawn-snapshotted);}
         if(now>=nextMemory){const memory=assets.vector.memorySummary();peakBytes=Math.max(peakBytes,memory.accountedBackingBytes+renderer.sceneCacheBytes+audio.memoryBytes);nextMemory=now+1000;}
       }
+      const terminalPresentationGap=(await next())-last;
       if(warmStart&&window.__measureWarmCpu)await window.__measureWarmCpu('end');
-      return{config,canvas:[canvas.width,canvas.height],seconds:(last-began)/1000,fps:gaps.length*1000/(last-began),raf:summarize(gaps),draw:summarize(draws),simulationIncludingCommandsAndAudio:summarize(simulation),snapshot:summarize(snapshot),warm:{seconds:(last-warmStart)/1000,fps:warmGaps.length*1000/(last-warmStart),raf:summarize(warmGaps),draw:summarize(warmDraws)},playingFrames,frames:gaps.length,state:{screen:game.state.screen,cash:game.state.cash,clockMinutes:game.state.clockMinutes},audio:{state:audio.playbackState,bytes:audio.memoryBytes,activeSources:audio.activeSources,missing:[...audio.missing]},memory:{peakAccountedBytes:peakBytes,sceneBytes:renderer.sceneCacheBytes,...assets.vector.memorySummary()},cache:null,hidden,missingAssets:[...assets.failures]};
+      const rect=canvas.getBoundingClientRect(),geometry={viewport:[innerWidth,innerHeight],dpr:devicePixelRatio,canvas:{x:rect.x,y:rect.y,width:rect.width,height:rect.height,fullyInsideViewport:rect.left>=0&&rect.top>=0&&rect.right<=innerWidth&&rect.bottom<=innerHeight}};
+      return{config,contextAttributes:canvas.getContext('2d').getContextAttributes(),unchangedFrames:unchanged??renderer.frameCounts,geometry,hiddenSamples,unfocusedSamples,terminalPresentationGap,renderWork:config.renderWork?renderWork:null,dirtyScene:dirty?.stats,canvas:[canvas.width,canvas.height],seconds:(last-began)/1000,fps:gaps.length*1000/(last-began),raf:summarize(gaps),draw:summarize(draws),simulationIncludingCommandsAndAudio:summarize(simulation),snapshot:summarize(snapshot),warm:{seconds:(last-warmStart)/1000,fps:warmGaps.length*1000/(last-warmStart),raf:summarize(warmGaps),draw:summarize(warmDraws)},playingFrames,frames:gaps.length,state:{screen:game.state.screen,cash:game.state.cash,clockMinutes:game.state.clockMinutes},audio:{state:audio.playbackState,bytes:audio.memoryBytes,activeSources:audio.activeSources,missing:[...audio.missing]},memory:{peakAccountedBytes:peakBytes,sceneBytes:renderer.sceneCacheBytes,...assets.vector.memorySummary()},cache:null,hidden,missingAssets:[...assets.failures]};
     }finally{renderer.clearSceneCache();assets.vector.clearCache();await audio.dispose();}
   },config);
 }
