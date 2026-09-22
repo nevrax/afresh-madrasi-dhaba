@@ -14,6 +14,9 @@ test('profile choice requires an explicit valid preference and tolerates unavail
   for(const choice of ['classic','extra']) {savePresentationChoice(storage,choice);assert.equal(loadPresentationChoice(storage),choice);}
   assert.equal(resolvePresentation('classic').enhancements,false);
   assert.equal(resolvePresentation('extra').simplerEffects,true);
+  assert.equal(resolvePresentation('extra').retainScene,true);
+  assert.equal(resolvePresentation('classic').retainScene,false);
+  assert.equal(resolvePresentation(null).retainScene,false);
   const blocked={getItem(){throw Error('blocked');},setItem(){throw Error('blocked');}};
   assert.equal(loadPresentationChoice(blocked),null);
   assert.doesNotThrow(()=>savePresentationChoice(blocked,'extra'));

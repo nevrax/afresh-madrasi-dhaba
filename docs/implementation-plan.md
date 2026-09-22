@@ -4,6 +4,8 @@ This is the persistent work plan. Update task checkboxes only when the stated ev
 
 Full resolution continuation: PERF-16 fixes repeated griddle filter eviction at large backing dimensions, with unchanged scene pixels and hit targets. PERF-18 now records physical Raspberry Pi measurements and UI/pixel checks. Cold first appearances and higher density Intel/Pi pacing remain open as PERF-17 in [performance-plan.md](performance-plan.md). Earlier performance acceptance applies only to its measured resolution matrix.
 
+PERF-20 extends attribution to the whole pipeline. PERF-21 delivers the first Extra scene retention treatment, verified by 360 exact pixel/hit comparisons and 128 tests. Full-day Pi results still fail the combined stable-60-FPS/low-CPU target; PERF-21/22 remain open. See [performance-pipeline.md](performance-pipeline.md) for the 66-case evidence, current implementation and remaining priorities. A short fixture reaching 60 FPS does not close full-game acceptance.
+
 ## Scope and baseline
 
 Presentation follow-up: Classic and Extra profiles now share the game core and verified appearance-preserving cache work. Decorative simplifications and added guidance/display features belong to Extra. Shared correctness and portability fixes remain in both. PROF-1–6 are implemented and verified; PROF-7 shipping-default selection remains open in [performance-plan.md](performance-plan.md#profile-separation-plan). Both distributions retain previous behavior when no profile has been chosen. The [profile report](presentation-profiles.md) records 128 passing tests, full-day functional equivalence and measured performance limits. Game rules and functional order/patience information are unchanged; PERF-17 is not universally resolved.

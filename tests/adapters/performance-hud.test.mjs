@@ -17,7 +17,7 @@ function setup(options = {}) {
   const document = { createElement: () => new Element(), body: new Element(), defaultView: { performance: clock } };
   const hud = createPerformanceHud({ ownerDocument: document }, () => {
     counts.memory++; if (options.unavailable) throw new Error('not measured');
-    return { tiles: 2 * 1048576, pool: 1048576, filters: 3 * 1048576, audio: 4 * 1048576 };
+    return { tiles: 2 * 1048576, pool: 1048576, filters: 3 * 1048576, audio: 4 * 1048576, scene: 5 * 1048576 };
   }, () => { counts.renderer++; if (options.unavailable) throw new Error('not measured'); return 'Canvas 2D with native GPU filters'; });
   const sample = (now, elapsedMs = 20, extra = {}) => hud.sample({ now, elapsedMs, simulationMs: 2, renderMs: 3, audioMs: 1, snapshotMs: 1, ...extra });
   return { hud, counts, sample, summary: () => hud.element.children[0].textContent, text: () => hud.element.textContent };
@@ -46,7 +46,7 @@ test('one-second window reports measured rates, p95, one-core work and separate 
   assert.match(ui.text(), /simulation 2\.00 · render 3\.00 · audio 1\.00 · snapshot 1\.00/);
   assert.match(ui.text(), /HUD self-work: 0\.490 ms \/ 49 completed samples \(0\.010 ms\/sample\)/);
   assert.match(ui.text(), /JS heap: 10\.0 MiB used \/ 20\.0 MiB allocated \(shared, approximate\)/);
-  assert.match(ui.text(), /tiles 2\.0 MiB · pool 1\.0 MiB · filter backing 3\.0 MiB · decoded audio 4\.0 MiB/);
+  assert.match(ui.text(), /tiles 2\.0 MiB · pool 1\.0 MiB · scene 5\.0 MiB · filter backing 3\.0 MiB · decoded audio 4\.0 MiB/);
   assert.match(ui.text(), /not total CPU/); assert.match(ui.text(), /not process RAM or VRAM/);
   const rendered = ui.counts.writes;
   for (let i = 51; i < 100; i++) ui.sample(i * 20);

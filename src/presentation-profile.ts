@@ -4,11 +4,12 @@ export interface PresentationProfile {
   readonly enhancements: boolean;
   readonly simplerEffects: boolean;
   readonly interpolateDecorations: boolean;
+  readonly retainScene: boolean;
 }
 const profiles: Readonly<Record<PresentationChoice | 'current', PresentationProfile>> = Object.freeze({
-  current: Object.freeze({choice: null, enhancements: true, simplerEffects: false, interpolateDecorations: true}),
-  classic: Object.freeze({choice: 'classic', enhancements: false, simplerEffects: false, interpolateDecorations: false}),
-  extra: Object.freeze({choice: 'extra', enhancements: true, simplerEffects: true, interpolateDecorations: true}),
+  current: Object.freeze({choice: null, enhancements: true, simplerEffects: false, interpolateDecorations: true, retainScene: false}),
+  classic: Object.freeze({choice: 'classic', enhancements: false, simplerEffects: false, interpolateDecorations: false, retainScene: false}),
+  extra: Object.freeze({choice: 'extra', enhancements: true, simplerEffects: true, interpolateDecorations: true, retainScene: true}),
 });
 export function presentationChoice(value: unknown): PresentationChoice | null {
   return value === 'classic' || value === 'extra' ? value : null;

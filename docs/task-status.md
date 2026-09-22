@@ -1,5 +1,41 @@
 # Task status
 
+## Current: full pipeline attribution and first scene retention
+
+PERF-20 is complete: 66 physical Pi cases extend the effect ranking to CPU
+samples, process CPU, Canvas submission, surface controls and graphics-process
+host traces. The largest recurring cost is scene submission/composition and
+presentation, not simulation or music. English report and anonymous evidence:
+[performance-pipeline.md](performance-pipeline.md),
+[performance-pipeline.json](../tests/reference/performance-pipeline.json).
+
+PERF-21 is partially implemented. Extra retains a sharp opaque scene between
+authored visual changes, while food, pointer feedback and hit targets remain
+live. Playing traffic uses authored 12 Hz poses; menu interpolation stays.
+The extra surface is capped at 32 MiB and counted in the HUD. Classic and the
+unselected compatibility path keep previous behavior. Command retention,
+opaque-background substitution and desynchronized Canvas remain experiments.
+The full-size browser overlay experiment is rejected: no cadence/CPU gain and
+24/360 failed pixel comparisons. It is excluded from both distributions.
+PROF-7 remains undecided; no default or automatic clarity reduction was added.
+
+Verification: 128 tests pass; 360 real Canvas comparisons have identical pixels
+and hit targets, including same-time state mutations, profile round trips and
+resizing. Source/site/standalone UI checks pass on isolated Intel and NVIDIA
+browsers. Both distributions are rebuilt. Two real-time three-minute Pi days
+finish at cash 24, clock 720 with production audio and no asset-load failures.
+The original undefined `serve` export remains the known source limitation.
+
+**PERF-17, PERF-21 and PERF-22 remain open.** The controlled fixture improves
+from about 45.6 / 59.6 FPS to 59.6 / 60.0. Complete-day warm performance is
+55.62 / 59.85 FPS with 80.96% / 76.17% of one CPU core; those CPU numbers are
+not GPU utilization. Cold and final screen-transition stalls remain. Next:
+measure and remove the repeated full-surface scene copy during real gameplay,
+then bounded cold preparation and separate decoded-audio memory work. Do not
+use short-fixture FPS to declare the stable-60/low-CPU target complete.
+
+## Profile separation baseline before scene retention
+
 PROF-1–6 are implemented and verified. Classic and Extra share the core, correctness/portability fixes and established adaptive cache. Extra includes bowl guidance/cursors/display conveniences, decorative interpolation, unblurred griddle steam, fixed stars with a cropped retained background and static order decoration. Counts, patience, customer/food artwork and original audio remain live. Selection persists when possible and switches without resetting gameplay. Absent preference retains the earlier release behavior; **PROF-7 default selection remains open**. Inventory and English report: [presentation-profiles.md](presentation-profiles.md); evidence: [presentation-profiles.json](../tests/reference/presentation-profiles.json).
 
 Acceptance: 128 automated tests pass. Visible Intel/NVIDIA checks cover source, site and standalone profile UI, cooking continuity, isolated preferences, offline/blocked storage, fullscreen and resizing; Intel also checks emulated touch. Fifteen screen/density pixel cases on each adapter restore Classic exactly at authored samples, with unchanged snapshots/hits. Both profiles complete the tutorial, cooking/payment, full deterministic day (cash 24, clock 720), next-day carryover and three retry cycles. All 16 timing cases and hardware identities are saved. Both distributions are rebuilt and verified. Pi browsers are closed and temporary display waking restored. No physical touchscreen claim.

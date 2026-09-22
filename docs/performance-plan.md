@@ -2,6 +2,43 @@
 
 ## Full resolution continuation
 
+### Whole pipeline continuation
+
+The target remains stable 60 Hz play at 2200 × 1600 backing pixels on both
+measured Pi 5 environments, with substantially lower CPU use. A 46 FPS average
+does not pass. The component omission study is only one part of attribution.
+
+- [x] PERF-20 Attribute the complete frame: warmed browser/renderer/GPU-process
+  CPU separately, JavaScript samples, text, hit testing, static redraw, Canvas
+  source/compositing choices, allocation and cold preparation. GPU-process CPU
+  is host CPU work, not GPU utilization. Compare matched repeated controls and
+  keep diagnostic omissions outside the game.
+  Evidence: 66 Pi cases, CPU samples, host presentation/raster trace spans and
+  submission counts in [performance-pipeline.md](performance-pipeline.md).
+- [ ] PERF-21 Reduce repeated scene submission and pixel composition based on
+  PERF-20. Evaluate retained draw commands and opaque cached scenery before
+  removing further effects. Verify appearance-preserving caches against the
+  existing pixels; put any changed rendering treatment in Extra. Preserve
+  vector density, bounded memory, live orders, input and simulation timing.
+  First implementation delivered: Extra retains scenery at authored poses,
+  with a bounded exact-density opaque surface. 360 exact scene/hit comparisons
+  and 128 automated tests pass. Removing the remaining per-frame full-surface
+  copy and reducing complete-day CPU use are still open.
+- [ ] PERF-22 Repeat real-time, three-minute gameplay on both Pi environments
+  with audio and inputs, cold and warm starts, profile switching and resizing.
+  At 60 Hz require average at least 59.5 FPS, p95 at most 20 ms, p99 at most
+  33.4 ms and no sustained stalls. Record warmed CPU across all isolated browser
+  processes in units of one core, with an initial engineering budget of 40%
+  of one core (10% of a four-core CPU). Report failure explicitly if either
+  cadence or CPU budget is missed. This budget is a target, not a result.
+  Initial real-time day completed on both Pi boards with audio and command
+  replay, cash 24 and clock 720. Warm results are 55.62 / 59.85 FPS and
+  80.96% / 76.17% of one core. Pi A fails cadence; both miss the CPU target.
+  Cold and final-transition stalls remain. Do not mark acceptance complete.
+
+Do not select a profile or lower clarity automatically to meet these targets.
+Static-frame controls diagnose the pipeline and never count as playable results.
+
 ### Profile separation plan
 
 Status: PROF-1–6 implemented and verified; PROF-7 default selection remains open.

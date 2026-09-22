@@ -2,17 +2,18 @@
 // Args: SSH target, SSH port, local CDP port, anonymous output label, optional preset or JSON cases.
 import {createRequire} from 'node:module';
 import {spawn} from 'node:child_process';
-import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {mkdir,readFile,writeFile,open} from 'node:fs/promises';
 import path from 'node:path';
 import {measureFullResolutionFixture} from './full-resolution-fixture.mjs';
 import {measureComponentFixture} from './component-ranking-fixture.mjs';
 import {componentRankingCases} from './component-ranking-cases.mjs';
+import {measureLiveGameplay} from './live-gameplay-fixture.mjs';
 const root=path.resolve(import.meta.dirname,'..');
 const {chromium}=createRequire(import.meta.url)(path.join(root,'.local-setup/playwright/node_modules/playwright'));
 const [target,portText,localText,label,casesText]=process.argv.slice(2);
 const port=Number(portText),localPort=Number(localText);
 if(!target||!/^\w[\w.@:-]*$/.test(target)||!Number.isInteger(port)||port<1||port>65535||!Number.isInteger(localPort)||localPort<1024||localPort>65535||!label||!/^[a-z0-9-]+$/.test(label))throw Error('Invalid SSH arguments');
-const cases=['ranking','simplifications','background','profiles'].includes(casesText)?componentRankingCases(casesText):casesText?JSON.parse(casesText):[{width:880},{width:1485},{width:2200,fixedBudget:true},{width:2200},{width:2200,omit:'griddle-steam'}];
+const cases=['ranking','simplifications','background','profiles','workload','transport','pipeline','scene','trace','live','layers'].includes(casesText)?componentRankingCases(casesText):casesText?JSON.parse(casesText):[{width:880},{width:1485},{width:2200,fixedBudget:true},{width:2200},{width:2200,omit:'griddle-steam'}];
 if(!Array.isArray(cases)||cases.some(c=>!Number.isInteger(c.width)||c.width<550||c.width>2970))throw Error('Invalid fixture sizes');
 const output=path.join(root,'.local-setup/logs',label);await mkdir(output,{recursive:true});
 const python=await readFile(path.join(root,'tools/pi-browser.py'),'utf8');
@@ -48,6 +49,21 @@ try{
  const pageCdp=await context.newCDPSession(page);
  await pageCdp.send('Emulation.setDeviceMetricsOverride',{width:1480,height:1000,deviceScaleFactor:2,mobile:false});
  cdp=await browser.newBrowserCDPSession();const info=await cdp.send('SystemInfo.getInfo');
+ let warmBefore, warmStart, warmCpu, traceName;
+ await page.exposeFunction('__measureWarmCpu',async phase=>{
+  if(phase==='start'&&traceName)await cdp.send('Tracing.start',{categories:'devtools.timeline,cc,gpu,blink,disabled-by-default-devtools.timeline.frame',transferMode:'ReturnAsStream'});
+  const snapshot=await cdp.send('SystemInfo.getProcessInfo'), now=performance.now();
+  if(phase==='start'){warmBefore=snapshot;warmStart=now;warmCpu=undefined;return;}
+  const elapsed=(now-warmStart)/1000, old=new Map(warmBefore.processInfo.map(p=>[p.id,p.cpuTime]));
+  const byType=Object.entries(snapshot.processInfo.reduce((sum,p)=>{sum[p.type]=(sum[p.type]??0)+100*Math.max(0,p.cpuTime-(old.get(p.id)??p.cpuTime))/elapsed;return sum;},{})).map(([type,singleCorePercent])=>({type,singleCorePercent}));
+  warmCpu={scope:'measurement only, excluding asset load and warmup; one core equals 100 percent',seconds:elapsed,singleCorePercent:byType.reduce((sum,p)=>sum+p.singleCorePercent,0),byType};
+  if(traceName){
+   const completed=new Promise(resolve=>cdp.once('Tracing.tracingComplete',resolve));
+   await cdp.send('Tracing.end');const {stream}=await completed;
+   const file=await open(path.join(output,`${traceName}.trace.json`),'w');
+   try{while(true){const chunk=await cdp.send('IO.read',{handle:stream});await file.write(chunk.base64Encoded?Buffer.from(chunk.data,'base64'):chunk.data);if(chunk.eof)break;}}finally{await file.close();await cdp.send('IO.close',{handle:stream});}
+  }
+ });
  result.hardware={browser:browser.version(),renderer:info.gpu.auxAttributes.glRenderer,features:info.gpu.featureStatus,devices:info.gpu.devices.map(d=>d.deviceString)};
  result.before=await remote('sample');
  console.log(JSON.stringify({label,hardware:result.hardware,system:result.before,nativeDisplay:result.nativeDisplay}));
@@ -58,11 +74,16 @@ try{
  result.idleCadence=await page.evaluate(async()=>{const times=[];let before=await new Promise(requestAnimationFrame);for(let i=0;i<12;i++){const now=await new Promise(requestAnimationFrame);times.push(now-before);before=now;}return times;});
  if(result.idleCadence.every(ms=>ms>200))throw Error('Idle browser cadence is throttled; no performance acceptance possible');
  for(const config of cases){
+  warmCpu=undefined;
+  traceName=config.trace?config.name:undefined;
   await remote('keep-awake');
   if(config.mode==='ranking')await pageCdp.send('Emulation.setDeviceMetricsOverride',{width:1480,height:1000,deviceScaleFactor:config.width>2750?3:2,mobile:false});
   const before=await cdp.send('SystemInfo.getProcessInfo'),start=performance.now();
+  if(config.cpuProfile){await pageCdp.send('Profiler.enable');await pageCdp.send('Profiler.setSamplingInterval',{interval:1000});await pageCdp.send('Profiler.start');}
   let measurement;
-  if(config.mode==='ui'){
+  if(config.mode==='live'){
+   measurement=await measureLiveGameplay(page,config);
+  }else if(config.mode==='ui'){
    const {checkGameUi}=await import('./performance-ui.mjs');
    measurement={...await checkGameUi(context,output,'http://127.0.0.1:5178/dist/site/'),config,memory:{},cache:{}};
    if(measurement.status!=='PASS')throw Error('Pi release UI checks failed');
@@ -93,8 +114,11 @@ try{
    measurement=await (config.mode==='ranking'?measureComponentFixture:measureFullResolutionFixture)(page,{...config,adapter:'default'});
   }
   const elapsed=(performance.now()-start)/1000,after=await cdp.send('SystemInfo.getProcessInfo');
+  if(config.cpuProfile){const profile=await pageCdp.send('Profiler.stop');await writeFile(path.join(output,`${config.name}.cpuprofile`),JSON.stringify(profile.profile));await pageCdp.send('Profiler.disable');}
   const old=new Map(before.processInfo.map(p=>[p.id,p.cpuTime]));
   measurement.processCpu={scope:'browser processes across asset load, warmup and measurement; one core equals 100 percent',singleCorePercent:100*after.processInfo.reduce((sum,p)=>sum+Math.max(0,p.cpuTime-(old.get(p.id)??p.cpuTime)),0)/elapsed};
+  measurement.processCpu.byType=Object.entries(after.processInfo.reduce((sum,p)=>{sum[p.type]=(sum[p.type]??0)+100*Math.max(0,p.cpuTime-(old.get(p.id)??p.cpuTime))/elapsed;return sum;},{})).map(([type,singleCorePercent])=>({type,singleCorePercent}));
+  if(warmCpu)measurement.warmCpu=warmCpu;
   measurement.system=await remote('sample');result.results.push(measurement);
   await writeFile(path.join(output,'results.json'),JSON.stringify(result,null,2));
   console.log(JSON.stringify({label,config,canvas:measurement.canvas,fps:measurement.fps,raf:measurement.raf,cache:measurement.cache,memory:measurement.memory.accountedBackingBytes??measurement.memory.peakBackingBytes,cpu:measurement.processCpu.singleCorePercent,system:measurement.system}));

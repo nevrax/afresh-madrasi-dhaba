@@ -60,7 +60,7 @@ async function boot() {
     let presentation = (0, presentation_profile_js_1.resolvePresentation)((0, presentation_profile_js_1.presentationChoice)(new URLSearchParams(location.search).get('presentation')) ?? (0, presentation_profile_js_1.loadPresentationChoice)(displayStorage));
     const displaySettings = { current: (0, render_settings_js_1.loadRenderSettings)(displayStorage), extra: (0, render_settings_js_1.loadRenderSettings)(displayStorage, 'madrasi-display-extra') };
     let settings = displaySettings[presentation.choice === 'extra' ? 'extra' : 'current'];
-    const hud = (0, performance_hud_js_1.createPerformanceHud)(canvas, () => ({ tiles: assets.vector.stats.cachedBytes, pool: assets.vector.stats.pooledBytes, filters: assets.vector.filterStats.backingBytes, audio: audio.memoryBytes }), () => {
+    const hud = (0, performance_hud_js_1.createPerformanceHud)(canvas, () => ({ tiles: assets.vector.stats.cachedBytes, pool: assets.vector.stats.pooledBytes, scene: renderer.sceneCacheBytes, filters: assets.vector.filterStats.backingBytes, audio: audio.memoryBytes }), () => {
         const gpu = assets.vector.gpuSummary(), d = gpu.filter.details;
         return `Canvas2D; filters: ${gpu.lastFilterBackend}; ${d?.unmaskedRenderer ?? d?.renderer ?? 'GPU identity unavailable'}`;
     });
@@ -2169,6 +2169,7 @@ class Renderer {
     assets;
     presentation = (0, presentation_profile_js_1.resolvePresentation)(null);
     setPresentation(choice) {
+        this.clearSceneCache();
         this.presentation = (0, presentation_profile_js_1.resolvePresentation)(choice);
         this.assets.vector?.setSimplerEffects(this.presentation.simplerEffects);
         // Root effects are indexed against the active metadata view.
@@ -2182,11 +2183,27 @@ class Renderer {
         const scale = Number.isFinite(value) ? Math.min(1, Math.max(.25, value)) : 1;
         if (scale !== this.renderScale) {
             this.renderScale = scale;
+            this.clearSceneCache();
             this.assets.vector?.clearCache();
         }
     }
     hits = [];
     ctx;
+    sceneSurface = null;
+    sceneKey = '';
+    sceneHits = [];
+    sceneVector = null;
+    /** Diagnostic comparison only; never selected by the player UI. */
+    diagnosticFullSceneRedraw = false;
+    get sceneCacheBytes() { return this.sceneSurface ? this.sceneSurface.width * this.sceneSurface.height * 4 : 0; }
+    clearSceneCache() {
+        if (this.sceneSurface)
+            this.sceneSurface.width = this.sceneSurface.height = 0;
+        this.sceneSurface = null;
+        this.sceneKey = '';
+        this.sceneHits = [];
+        this.sceneVector = null;
+    }
     children = new Map();
     // These callers deliberately query authored frame 1: root scene effects and
     // one-frame customer wrappers. Animated food/bills keep their live queries.
@@ -2248,6 +2265,7 @@ class Renderer {
     events(events, state) {
         for (const event of events) {
             if (event.type === 'screen') {
+                this.clearSceneCache();
                 this.feedback = [];
                 this.hoveredFood = null;
                 this.flipHint = false;
@@ -2382,7 +2400,7 @@ class Renderer {
         this.hits.length = 0;
         const frame = screenFrame[s.screen];
         const scene = this.assets.scenes.find(v => v.frame === frame);
-        this.drawScene(s, scene?.instances ?? []);
+        this.drawRetainedScene(s, scene?.instances ?? []);
         if (s.screen === 'menu')
             this.closeMenuEdge(width, height);
         if (s.screen === 'day-result')
@@ -2411,6 +2429,50 @@ class Renderer {
                 }
             }
         }
+    }
+    drawRetainedScene(s, placements) {
+        const width = this.canvas.width, height = this.canvas.height;
+        if (!this.presentation.retainScene || this.diagnosticFullSceneRedraw || this.diagnosticOmissions.size || s.screen !== 'playing' || s.tutorial.visible || width * height * 4 > 32 * 1024 * 1024) {
+            this.clearSceneCache();
+            this.drawScene(s, placements);
+            return;
+        }
+        let hover = '';
+        for (const p of placements)
+            if (p.name === 'btnMute' || p.name === 'btnUnMute')
+                hover += this.assets.contains(p.symbolId, p.matrix, s.pointer.x, s.pointer.y, true, 4) ? '1' : '0';
+        const customers = s.customers.map(c => [c.id, c.table, c.visible, c.characterVisible, c.characterPose, c.exitVisible, c.exitPose, c.orderVisible, c.orderRemaining, c.patience, Math.floor(c.phaseElapsedMs * 12 / 1000), c.angry, c.angry ? Math.floor((s.timeMs - (c.angrySinceMs ?? s.timeMs)) * 12 / 1000) : 0]);
+        const key = JSON.stringify([Math.floor((s.timeMs - this.sceneStartedMs) * 12 / 1000), Math.floor((s.timeMs - this.radioStartedMs) * 12 / 1000), s.cash, s.lostCustomers, s.day, s.clockMinutes, customers, s.audio.enabled, hover, this.pressedCommand]);
+        if (!this.sceneSurface || this.sceneSurface.width !== width || this.sceneSurface.height !== height || this.sceneVector !== this.assets.vector) {
+            this.clearSceneCache();
+            this.sceneSurface = document.createElement('canvas');
+            this.sceneSurface.width = width;
+            this.sceneSurface.height = height;
+            this.sceneVector = this.assets.vector;
+        }
+        const surface = this.sceneSurface, stage = this.ctx;
+        if (key !== this.sceneKey) {
+            const c = surface.getContext('2d', { alpha: false });
+            c.setTransform(width / 550, 0, 0, height / 400, 0, 0);
+            c.clearRect(0, 0, 550, 400);
+            c.fillStyle = '#fff';
+            c.fillRect(0, 0, 550, 400);
+            this.ctx = c;
+            try {
+                this.drawScene(s, placements);
+            }
+            finally {
+                this.ctx = stage;
+            }
+            this.sceneHits = this.hits.slice();
+            this.sceneKey = key;
+        }
+        else
+            this.hits.push(...this.sceneHits);
+        stage.save();
+        stage.setTransform(1, 0, 0, 1, 0, 0);
+        stage.drawImage(surface, 0, 0);
+        stage.restore();
     }
     drawScene(s, placements) {
         const c = this.ctx, frame = screenFrame[s.screen];
@@ -2476,7 +2538,7 @@ class Renderer {
                 const button = buttonCommands[name];
                 const isButton = this.assets.symbols.get(p.symbolId)?.kind === 'button';
                 const hover = isButton && this.assets.contains(p.symbolId, p.matrix, s.pointer.x, s.pointer.y, true, 4);
-                const interpolate = this.presentation.interpolateDecorations && continuousDecorations.has(p.symbolId);
+                const interpolate = this.presentation.interpolateDecorations && continuousDecorations.has(p.symbolId) && !(this.presentation.retainScene && s.screen === 'playing');
                 const clock = (s.timeMs - (name === 'mcRadio' ? this.radioStartedMs : this.sceneStartedMs)) * 12 / 1000;
                 const visualFrame = isButton ? hover ? this.pressedCommand === JSON.stringify(button?.[1]) ? 3 : 2 : 1 : name === 'mcRadio' && !s.audio.enabled ? 1 : (interpolate ? clock : Math.floor(clock)) + 1;
                 const sourcePlacement = this.composition(-1000 - frame).get(p.depth);
@@ -2611,9 +2673,9 @@ exports.resolvePresentation = resolvePresentation;
 exports.loadPresentationChoice = loadPresentationChoice;
 exports.savePresentationChoice = savePresentationChoice;
 const profiles = Object.freeze({
-    current: Object.freeze({ choice: null, enhancements: true, simplerEffects: false, interpolateDecorations: true }),
-    classic: Object.freeze({ choice: 'classic', enhancements: false, simplerEffects: false, interpolateDecorations: false }),
-    extra: Object.freeze({ choice: 'extra', enhancements: true, simplerEffects: true, interpolateDecorations: true }),
+    current: Object.freeze({ choice: null, enhancements: true, simplerEffects: false, interpolateDecorations: true, retainScene: false }),
+    classic: Object.freeze({ choice: 'classic', enhancements: false, simplerEffects: false, interpolateDecorations: false, retainScene: false }),
+    extra: Object.freeze({ choice: 'extra', enhancements: true, simplerEffects: true, interpolateDecorations: true, retainScene: true }),
 });
 function presentationChoice(value) {
     return value === 'classic' || value === 'extra' ? value : null;
@@ -2959,7 +3021,7 @@ function createPerformanceHud(canvas, readMemory, readRenderer) {
             }
             try {
                 const value = readMemory();
-                write(managed, `Managed memory: tiles ${memoryText(value.tiles)} · pool ${memoryText(value.pool)} · filter backing ${memoryText(value.filters)} · decoded audio ${memoryText(value.audio)}`);
+                write(managed, `Managed memory: tiles ${memoryText(value.tiles)} · pool ${memoryText(value.pool)} · scene ${memoryText(value.scene ?? 0)} · filter backing ${memoryText(value.filters)} · decoded audio ${memoryText(value.audio)}`);
             }
             catch {
                 write(managed, 'Managed memory: unavailable');

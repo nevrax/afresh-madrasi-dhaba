@@ -58,6 +58,9 @@ async function fixture() {
     contains(...args) { trace.push(['contains', ...args]); return args[2] > 250; },
   };
   const renderer = new Renderer({ getContext: () => ctx, clientWidth: 550, clientHeight: 400, width: 825, height: 600 }, assets);
+  // This fixture checks submitted source geometry. Retained-scene pixels and
+  // invalidation are compared against a second real Canvas in the browser check.
+  renderer.diagnosticFullSceneRedraw = true;
   try { await renderer.load(); } catch (error) { Object.assign(globalThis, previous); throw error; }
   return { renderer, assets, vector, trace, lookups, restore: () => Object.assign(globalThis, previous) };
 }

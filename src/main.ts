@@ -51,7 +51,7 @@ async function boot(): Promise<void> {
   let presentation=resolvePresentation(presentationChoice(new URLSearchParams(location.search).get('presentation')) ?? loadPresentationChoice(displayStorage));
   const displaySettings={current:loadRenderSettings(displayStorage),extra:loadRenderSettings(displayStorage,'madrasi-display-extra')};
   let settings=displaySettings[presentation.choice==='extra'?'extra':'current'];
-  const hud=createPerformanceHud(canvas,()=>({tiles:assets.vector!.stats.cachedBytes,pool:assets.vector!.stats.pooledBytes,filters:assets.vector!.filterStats.backingBytes,audio:audio.memoryBytes}),()=>{
+  const hud=createPerformanceHud(canvas,()=>({tiles:assets.vector!.stats.cachedBytes,pool:assets.vector!.stats.pooledBytes,scene:renderer.sceneCacheBytes,filters:assets.vector!.filterStats.backingBytes,audio:audio.memoryBytes}),()=>{
     const gpu=assets.vector!.gpuSummary(),d=gpu.filter.details;
     return `Canvas2D; filters: ${gpu.lastFilterBackend}; ${d?.unmaskedRenderer??d?.renderer??'GPU identity unavailable'}`;
   });

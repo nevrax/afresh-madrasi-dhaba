@@ -1,5 +1,10 @@
 # Presentation profiles
 
+Current performance continuation: Extra now retains scenery between authored
+poses, while food and pointer feedback remain live at render cadence. The
+[whole-pipeline report](performance-pipeline.md) supersedes the timing baseline
+below for this change; full-day stable 60 FPS with low CPU remains unachieved.
+
 Classic and Extra use the same game rules, assets, cooking timers, customers,
 orders and scoring. The small selector above the game changes presentation during
 play without starting a new day. An explicit selection is remembered when browser
@@ -19,7 +24,8 @@ an explicit selector change saves it. No hardware detection selects a profile.
 | Original food hover text, cash feedback and patience/count information | Preserved | Preserved | Renderer source behavior |
 | Bowl outline, hover/selection cue and introductory batter label | Off | On; introduction stays dismissed after use | Game shell |
 | Additional flip/pickup/batter cursors | Off | On | Game shell and CSS |
-| Smooth sampling between eligible menu/traffic poses | Authored samples | Interpolated presentation | Renderer; simulation clocks unchanged |
+| Smooth sampling between eligible menu/traffic poses | Authored samples | Menu interpolates; playing traffic uses authored 12 Hz poses | Renderer; simulation clocks unchanged |
+| Retained scenery between visual state changes | Ordinary rendering | Exact-density opaque surface, up to 32 MiB | Renderer; food, feedback and hit mapping stay live |
 | Large griddle steam | Original blur | Original moving geometry without the wide blur | Isolated vector metadata view |
 | Background stars | Original blinking | Fixed pose; background retained and cropped to the visible stage | Isolated vector metadata view and Extra cache treatment |
 | Order bubble decoration | Original morph | Fixed decoration; count and patience still live | Renderer |
@@ -49,7 +55,9 @@ off and keeps its own display preferences. Existing compatibility preferences ar
 not overwritten. Hint dismissal survives switching; time spent in Classic does
 not consume the Extra introduction timer.
 
-The established bounded, resolution-scaled cache and surface reuse are shared.
+The established bounded, resolution-scaled vector tile cache and surface reuse are shared.
+Extra's separate scene cache is counted in the HUD and released on screen,
+profile or scale changes. Above its 32 MiB surface cap, ordinary rendering is used.
 Effect changes use an isolated metadata view; canonical source records are never
 mutated. Changing effects clears retained surfaces, filter backing and derived
 bounds/period metadata before drawing the other profile. It does not keep two
