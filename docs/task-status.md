@@ -1,6 +1,47 @@
 # Task status
 
-## Current: native cadence calibration and complete-frame reuse
+## Current checkpoint: preparation, carrying and terminal repainting
+
+Final Extra full days at 2200 × 1600 reach 59.99 / 59.99 callback/s on Pi A / B,
+with warmed CPU 32.86 / 29.55% of one core. Maximum gaps are 50.00 / 33.30 ms;
+gaps above 50 ms number 0 / 0. Both finish at clock 720 and cash 24.
+The corrected Game over phase reaches 59.92 / 60.00 callback/s, compared with
+37.70 / 58.69 before the fix. No game rules or vector density were changed.
+
+Extra now reuses terminal frames as well as gameplay frames, and uses compact
+native mouse previews for batter, picked dosa and plate. The carried preview's
+steam pose is fixed, its count remains visible at the counter, and the original
+plate hit target stays live. Classic, touch and unsupported browsers keep the
+Canvas carry path. Ordinary cooking and both terminal scenes are prepared before
+the timer starts; this costs about 8–10 seconds of visible loading on the tested
+Pi environments. Cache limits remain bounded; late/burn poses remain lazy.
+
+Verification: 131 automated tests, 588 exact frame/hit comparisons and 90
+independent-cache preparation comparisons pass. Intel and NVIDIA application
+checks pass for source, site and direct-file standalone, including profile swaps,
+resizing, fullscreen, cooking, native cursors and emulated touch. Native cursor
+images/fallbacks were also checked separately from Canvas screenshots. Both
+distributions are rebuilt. One Intel UI attempt timed out at the cooking step;
+the complete repeat passes without a runtime change, so its cause is unproven.
+
+PERF-21/24/26 and the scoped PERF-22 acceptance are complete. See
+[performance-stalls.md](performance-stalls.md) and the anonymous evidence index.
+The full-day Intel/NVIDIA repeat reaches warm 235.18 / 234.42 callback/s with
+no gaps above 50 ms; callbacks are not physical scanout or a GPU-throughput ratio.
+
+Remaining limits are explicit: PERF-17 covers unprepared late/burn poses,
+higher-density and Classic/touch performance; the seeded varied Pi B day has
+two isolated gaps above 50 ms (maximum 83.3 ms). PERF-25's intermittent external
+desktop graphics waits were captured, but later identical launches are smooth.
+Their exact cause remains unproven; kernel tracing lacks the required privilege.
+No driver or system policy was changed. PROF-7 still requires a default-profile
+choice; no automatic profile or clarity reduction was introduced.
+
+Next investigation, if extending acceptance: reproduce the isolated cold/varied
+outliers with matched controls, and measure the Canvas touch path independently
+at target density. Do not reopen blanket animation removal without new evidence.
+
+## Previous: native cadence calibration and complete-frame reuse
 
 Matched desktop continuation on integrated runtime `5801794`: full three-minute
 native-window Extra days at 2200 × 1600, with actual adapter checks and trivial

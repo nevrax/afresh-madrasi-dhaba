@@ -7,7 +7,7 @@ export interface PerformanceSample {
   snapshotMs: number;
   painted?: boolean;
 }
-export interface ManagedMemory { tiles: number; pool: number; filters: number; audio: number; scene?: number }
+export interface ManagedMemory { tiles: number; pool: number; filters: number; audio: number; scene?: number; cursor?:number }
 export interface PerformanceHud {
   readonly element: HTMLDetailsElement;
   readonly enabled: boolean;
@@ -79,7 +79,7 @@ export function createPerformanceHud(canvas: HTMLCanvasElement, readMemory: () =
       } catch { write(heap, 'JS heap: unavailable in this browser'); }
       try {
         const value = readMemory();
-        write(managed, `Managed memory: tiles ${memoryText(value.tiles)} · pool ${memoryText(value.pool)} · scene ${memoryText(value.scene ?? 0)} · filter backing ${memoryText(value.filters)} · decoded audio ${memoryText(value.audio)}`);
+        write(managed, `Managed memory: tiles ${memoryText(value.tiles)} · pool ${memoryText(value.pool)} · scene ${memoryText(value.scene ?? 0)} · cursor data ${memoryText(value.cursor ?? 0)} · filter backing ${memoryText(value.filters)} · decoded audio ${memoryText(value.audio)}`);
       } catch { write(managed, 'Managed memory: unavailable'); }
       try { write(renderer, `Renderer: ${readRenderer()}`); } catch { write(renderer, 'Renderer: unavailable'); }
       write(reset, note || 'Frame count is since enabled. Expand/collapse changes display only.');

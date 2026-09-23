@@ -51,7 +51,7 @@ async function boot(): Promise<void> {
   let presentation=resolvePresentation(presentationChoice(new URLSearchParams(location.search).get('presentation')) ?? loadPresentationChoice(displayStorage));
   const displaySettings={current:loadRenderSettings(displayStorage),extra:loadRenderSettings(displayStorage,'madrasi-display-extra')};
   let settings=displaySettings[presentation.choice==='extra'?'extra':'current'];
-  const hud=createPerformanceHud(canvas,()=>({tiles:assets.vector!.stats.cachedBytes,pool:assets.vector!.stats.pooledBytes,scene:renderer.sceneCacheBytes,filters:assets.vector!.filterStats.backingBytes,audio:audio.memoryBytes}),()=>{
+  const hud=createPerformanceHud(canvas,()=>({tiles:assets.vector!.stats.cachedBytes,pool:assets.vector!.stats.pooledBytes,scene:renderer.sceneCacheBytes,cursor:renderer.cursorDataBytes,filters:assets.vector!.filterStats.backingBytes,audio:audio.memoryBytes}),()=>{
     const gpu=assets.vector!.gpuSummary(),d=gpu.filter.details;
     return `Canvas2D; filters: ${gpu.lastFilterBackend}; ${d?.unmaskedRenderer??d?.renderer??'GPU identity unavailable'}`;
   });
@@ -189,7 +189,18 @@ async function boot(): Promise<void> {
     if(hud.enabled)measured.renderMs=performance.now()-started;
   };
   const batch = createFrameBatch(game, (events, state) => { handle(events, state); render(state); },{enabled:()=>hud.enabled,record:(simulationMs,snapshotMs)=>{measured.simulationMs=simulationMs;measured.snapshotMs=snapshotMs;}});
-  const dispatch: typeof batch.dispatch = command => { if (running) batch.dispatch(command); };
+  let preparing=false;
+  const dispatch: typeof batch.dispatch = command => {
+    if(!running||preparing)return;
+    if(command.type!=='play'&&command.type!=='skip-tutorial'){batch.dispatch(command);return;}
+    preparing=true;loading.textContent='Preparing the kitchen…';loading.hidden=false;
+    void (async()=>{
+      // Paint the status before shader/tile creation. No cooking time elapses here.
+      await new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve())));
+      await renderer.prepare();
+      if(running){batch.dispatch(command);loading.hidden=true;last=performance.now();}
+    })().catch(fail).finally(()=>{preparing=false;});
+  };
   connectPointer(renderer, dispatch, activateAudio);
   soundButton.addEventListener('click', activateAudio);
   document.addEventListener('pointerdown', activateAudio);
@@ -218,6 +229,7 @@ async function boot(): Promise<void> {
   const tick = (now: number): void => {
     if (!running) return;
     const elapsed = Math.max(0, now - last); last = now;
+    if(preparing){requestAnimationFrame(tick);return;}
     try { batch.flush(elapsed); if(hud.enabled){measured.now=now;measured.elapsedMs=elapsed;hud.sample(measured);}requestAnimationFrame(tick); } catch { withAudio(() => audio.handle([{ type: 'stop-sounds' }])); fail(); }
   };
   requestAnimationFrame(tick);

@@ -2,6 +2,20 @@
 
 This is the persistent work plan. Update task checkboxes only when the stated evidence exists. Record the current task, evidence, unresolved questions and next action in [task-status.md](task-status.md) before handing work over or ending an implementation session.
 
+Current checkpoint: [performance-stalls.md](performance-stalls.md) records the
+completed preparation, carried-pointer and terminal-frame work in Extra.
+Final Extra full days at 2200 × 1600 reach 59.99 / 59.99 callback/s on Pi A / B,
+with warmed CPU 32.86 / 29.55% of one core. Maximum gaps are 50.00 / 33.30 ms;
+gaps above 50 ms number 0 / 0. Both finish at clock 720 and cash 24.
+The corrected Game over phase reaches 59.92 / 60.00 callback/s, compared with
+37.70 / 58.69 before the fix. No game rules or vector density were changed.
+131 automated tests, 588 exact frame/hit comparisons, 90 preparation comparisons
+and both-adapter package/UI checks pass. Both distributions are rebuilt.
+PERF-17's wider cold/density/touch limits and PERF-25's intermittent external
+wait attribution remain open; PROF-7 is still an unresolved default choice.
+
+### Previous calibration checkpoints
+
 PERF-23 calibrates refresh scheduling and native visible-window geometry before
 further acceptance. An idle reference at 59.97 callback/s can be nominal 60 Hz
 without missed intervals; callback rates are not physical presentation rates.

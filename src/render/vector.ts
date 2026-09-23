@@ -266,6 +266,10 @@ export class VectorArt {
     this.tileBudget=Math.min(MAX_TILE_BUDGET,Math.max(TILE_BUDGET,Math.ceil(TILE_BUDGET*pixels/REFERENCE_PIXELS)));
   }
   bounds(id: number): Bounds | null { return this.pack.symbols[id]?.bounds ?? null; }
+  frameBounds(id:number,frame=1):Bounds|null {
+    if(!this.has(id))return null;
+    const b=this.currentBounds(id,Math.max(0,frame-1));return b?{...b}:null;
+  }
   placements(id: number, frame=1, interpolate=false): readonly VectorPlacement[] {
     const symbol=this.pack.symbols[id];
     return symbol?.frames ? this.frame(symbol,Math.max(0,frame-1),interpolate).placements : [];

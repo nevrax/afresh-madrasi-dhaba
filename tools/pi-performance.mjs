@@ -128,6 +128,7 @@ try{
   measurement.system=await remote('sample');result.results.push(measurement);
   await writeFile(path.join(output,'results.json'),JSON.stringify(result,null,2));
   console.log(JSON.stringify({label,config,canvas:measurement.canvas,fps:measurement.fps,raf:measurement.raf,cache:measurement.cache,memory:measurement.memory.accountedBackingBytes??measurement.memory.peakBackingBytes,cpu:measurement.processCpu.singleCorePercent,system:measurement.system}));
+  if(config.expectedScreen&&measurement.state?.screen!==config.expectedScreen)throw Error(`Expected ${config.expectedScreen}, got ${measurement.state?.screen}`);
   if(config.mode==='cadence'&&measurement.results.some(r=>r.hiddenSamples||r.unfocusedSamples||r.outsideViewportSamples||!r.geometry.canvas.fullyInsideViewport))throw Error('Native calibration visibility acceptance failed');
   if(config.nativeViewport&&(measurement.hiddenSamples||measurement.unfocusedSamples||!measurement.geometry.canvas.fullyInsideViewport))throw Error('Native gameplay visibility acceptance failed');
   if(config.mode!=='gameplay')await page.reload({waitUntil:'domcontentloaded'});

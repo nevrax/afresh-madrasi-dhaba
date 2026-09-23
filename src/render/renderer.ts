@@ -1,8 +1,9 @@
 import type { Command, Customer, Dosa, GameEvent, GameState } from '../core/game.js';
 import { Assets, identity, type Matrix, type Placement } from './assets.js';
-import type { VectorArt, VectorPlacement } from './vector.js';
+import { transformedBounds, type VectorArt, type VectorPlacement } from './vector.js';
 import { resourceJson } from './resources.js';
 import { resolvePresentation, type PresentationChoice } from '../presentation-profile.js';
+import { CarryCursor } from './carry-cursor.js';
 
 export type RenderGroup = 'background'|'griddle-steam'|'traffic'|'customers'|'radio'|'other'|'food'|'dosa-steam';
 export interface HitTarget { label: string; command: Command; id: number; matrix: Matrix; pixel?: boolean; frame?: number }
@@ -24,6 +25,10 @@ const combine = (p: Matrix, q: Matrix): Matrix => ({ a: p.a*q.a+p.c*q.b, b:p.b*q
 export class Renderer {
   private presentation = resolvePresentation(null);
   setPresentation(choice: PresentationChoice | null): void {
+    this.batterCursor.reset();
+    this.carriedDosaCursor.reset();
+    this.carriedPlateCursor.reset();
+    this.preparedKey = '';
     this.clearSceneCache();
     this.presentation = resolvePresentation(choice);
     this.assets.vector?.setSimplerEffects(this.presentation.simplerEffects);
@@ -31,11 +36,16 @@ export class Renderer {
     if (this.assets.vector) this.compositionIndices.delete(this.assets.vector);
   }
   renderScale = 1;
+  pointerType='mouse';
+  readonly batterCursor:CarryCursor;
+  readonly carriedDosaCursor:CarryCursor;
+  readonly carriedPlateCursor:CarryCursor;
+  get cursorDataBytes():number{return this.batterCursor.memoryBytes+this.carriedDosaCursor.memoryBytes+this.carriedPlateCursor.memoryBytes;}
   readonly diagnosticOmissions = new Set<RenderGroup>();
   onRenderCost: ((group:RenderGroup,ms:number)=>void)|null = null;
   setRenderScale(value:number):void {
     const scale=Number.isFinite(value)?Math.min(1,Math.max(.25,value)):1;
-    if(scale!==this.renderScale){this.renderScale=scale;this.clearSceneCache();this.assets.vector?.clearCache();}
+    if(scale!==this.renderScale){this.batterCursor.reset();this.carriedDosaCursor.reset();this.carriedPlateCursor.reset();this.preparedKey='';this.renderScale=scale;this.clearSceneCache();this.assets.vector?.clearCache();}
   }
   readonly hits: HitTarget[] = [];
   private ctx: CanvasRenderingContext2D;
@@ -51,6 +61,8 @@ export class Renderer {
   diagnosticFullFrameRedraw = false;
   /** Diagnostic comparison only; never selected by the player UI. */
   diagnosticFullSceneRedraw = false;
+  /** Development comparison: the final batter drawing is supplied by a small overlay. */
+  diagnosticBatterOverlay = false;
   get sceneCacheBytes(): number { return this.sceneSurface ? this.sceneSurface.width * this.sceneSurface.height * 4 : 0; }
   clearSceneCache(): void {
     this.frameKey = ''; this.frameVector = null;
@@ -65,6 +77,8 @@ export class Renderer {
   private readonly compositionIndices = new WeakMap<VectorArt, Map<number, Map<number, VectorPlacement>>>();
   private displayWidth = 550;
   private displayHeight = 400;
+  private preparedKey = '';
+  private preparedVector: VectorArt | null = null;
   pressedCommand: string | null = null;
   scoreFormVisible = true;
   private sceneStartedMs = 0;
@@ -76,6 +90,9 @@ export class Renderer {
   foodCursor:'flip'|'pickup'|''='';
   private feedback: { time: number; amount: number; table: number | null; x: number; y: number }[] = [];
   constructor(readonly canvas: HTMLCanvasElement, readonly assets: Assets) {
+    this.batterCursor=new CarryCursor(canvas,assets);
+    this.carriedDosaCursor=new CarryCursor(canvas,assets);
+    this.carriedPlateCursor=new CarryCursor(canvas,assets);
     // Every frame covers the stage opaquely, so the browser need not composite an alpha channel.
     const ctx = canvas.getContext('2d', { alpha: false }); if (!ctx) throw new Error('Canvas is unavailable.'); this.ctx = ctx;
     this.displayWidth=canvas.clientWidth; this.displayHeight=canvas.clientHeight;
@@ -88,6 +105,59 @@ export class Renderer {
     }));
     const sceneIds = this.assets.scenes.flatMap(s => s.frame >= 3 ? s.instances.map(i => i.symbolId) : []);
     await this.assets.preload([...new Set([...sceneIds, 242, 412, 398, 320, 338, 384, 345, 370, 472])]);
+  }
+  /** Prepare first appearances before the cooking clock starts. The normal bounded
+   * tile cache owns the results; one temporary stage is released before play. */
+  async prepare(): Promise<void> {
+    const vector=this.assets.vector;if(!vector)return;
+    const dimensions=():[number,number]=>{
+      const ratio=Math.min(devicePixelRatio||1,3);
+      return [Math.max(1,Math.round(this.displayWidth*ratio*this.renderScale)),Math.max(1,Math.round(this.displayHeight*ratio*this.renderScale))];
+    };
+    const [width,height]=dimensions(),choice=this.presentation.choice,key=`${width}:${height}:${choice}`;
+    if(this.preparedKey===key&&this.preparedVector===vector || width*height*4>32*1024*1024)return;
+    vector.setViewport(width,height);
+    // The welcome/tutorial is no longer being animated. Release those large
+    // surfaces before reserving the kitchen/end-screen working set.
+    vector.clearCache();
+    const surface=document.createElement('canvas');surface.width=width;surface.height=height;
+    const c=surface.getContext('2d')!;
+    try {
+      // End-of-day scenery must exist before the timed transition. Preparing the
+      // menu/tutorial too would crowd out useful kitchen tiles under the same cap.
+      for(const frame of [7,6,5])for(const p of this.assets.scenes.find(s=>s.frame===frame)?.instances??[]){
+        if(p.name==='mcInstruction'||/^dosaHolder|^bill|^txt/.test(p.name??''))continue;
+        const effects=this.composition(-1000-frame).get(p.depth);if(effects?.clipDepth)continue;
+        await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));
+        const [currentWidth,currentHeight]=dimensions();
+        if(currentWidth!==width||currentHeight!==height||this.assets.vector!==vector||this.presentation.choice!==choice)return;
+        c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,width,height);
+        c.setTransform(width/550,0,0,height/400,0,0);
+        vector.drawPlacement(c,p.symbolId,p.matrix,1,effects);
+      }
+      if(this.presentation.retainScene){
+        // First-use food/filter submissions caused the remaining early stalls.
+        // Warm one normal cooking cycle at exact density, before the game clock.
+        // These are ordinary entries in the same bounded cache, not an atlas or
+        // another animation loop. The original burn/late-pickup poses stay lazy.
+        const template=this.assets.placement('mcDosa');
+        const holders=[0,1,2].map(slot=>this.assets.placement(`dosaHolder${slot}`)).filter(p=>p!==undefined);
+        if(template)for(const frame of [...Array.from({length:71},(_,i)=>i+1),...Array.from({length:37},(_,i)=>i+291)]){
+          await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));
+          const [currentWidth,currentHeight]=dimensions();
+          if(currentWidth!==width||currentHeight!==height||this.assets.vector!==vector||this.presentation.choice!==choice)return;
+          c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,width,height);c.setTransform(width/550,0,0,height/400,0,0);
+          for(const holder of holders)vector.draw(c,472,{...template.matrix,tx:holder.matrix.tx,ty:holder.matrix.ty},frame);
+          // Flush while the loading state is visible, not on first placement.
+          c.getImageData(0,0,1,1);
+        }
+      }
+      // Complete the queued preparation before the cooking clock begins. This
+      // one-pixel readback is confined to the loading transition, never a frame loop.
+      c.getImageData(0,0,1,1);
+      if(this.presentation.retainScene)await this.batterCursor.prepare(width,height,this.displayWidth,this.displayHeight);
+      this.preparedKey=key;this.preparedVector=vector;
+    } finally {surface.width=surface.height=0;}
   }
   private composition(id: number): ReadonlyMap<number, VectorPlacement> {
     const vector = this.assets.vector!;
@@ -182,6 +252,28 @@ export class Renderer {
     }
   }
   draw(s: Readonly<GameState>): void {
+    const nativeBatter=this.presentation.retainScene&&this.pointerType==='mouse'&&s.screen==='playing'&&!s.tutorial.visible&&s.pointer.mode==='batter'&&s.batterTemplate.available;
+    if(nativeBatter){
+      const ratio=Math.min(devicePixelRatio||1,3);
+      void this.batterCursor.prepare(Math.max(1,Math.round(this.displayWidth*ratio*this.renderScale)),Math.max(1,Math.round(this.displayHeight*ratio*this.renderScale)),this.displayWidth,this.displayHeight);
+    }
+    this.batterCursor.show(nativeBatter);
+    const held=s.pointer.heldSlot===null?null:s.food[s.pointer.heldSlot];
+    const nativeDosa=this.presentation.retainScene&&this.pointerType==='mouse'&&s.screen==='playing'&&!s.tutorial.visible&&s.pointer.mode==='dosa'&&!!held?.held;
+    if(nativeDosa){
+      const ratio=Math.min(devicePixelRatio||1,3);
+      void this.carriedDosaCursor.prepare(Math.max(1,Math.round(this.displayWidth*ratio*this.renderScale)),Math.max(1,Math.round(this.displayHeight*ratio*this.renderScale)),this.displayWidth,this.displayHeight,held!.pose);
+    }
+    this.carriedDosaCursor.show(nativeDosa);
+    const nativePlate=this.presentation.retainScene&&this.pointerType==='mouse'&&s.screen==='playing'&&!s.tutorial.visible&&s.pointer.mode==='plate';
+    if(nativePlate)this.preparePlateCursor(s);
+    this.carriedPlateCursor.show(nativePlate);
+    if(this.carriedPlateCursor.active){
+      // The retained image is independent of the cursor position, but the source
+      // plate hit target must follow its live coordinates on every callback.
+      const hit=this.hits.find(h=>h.command.type==='click-plate');
+      if(hit)hit.matrix={...hit.matrix,tx:s.platePosition.x,ty:s.platePosition.y};
+    }
     const key = this.unchangedFrameKey(s);
     if (key && key === this.frameKey && this.frameVector === this.assets.vector) {
       this.lastDrawPainted = false; this.frameCounts.reused++; return;
@@ -220,21 +312,22 @@ export class Renderer {
   }
 
   private unchangedFrameKey(s: Readonly<GameState>): string {
-    if (!this.presentation.retainScene || this.diagnosticFullFrameRedraw || this.diagnosticFullSceneRedraw || this.diagnosticOmissions.size || s.screen !== 'playing' || s.tutorial.visible) return '';
+    if (!this.presentation.retainScene || this.diagnosticFullFrameRedraw || this.diagnosticFullSceneRedraw || this.diagnosticOmissions.size || !['playing','day-result','game-over'].includes(s.screen) || s.tutorial.visible) return '';
     // A blank pointer affects the canvas only when its food or button hover target changes.
     // Held batter, food and plate positions keep their continuous input coordinates.
     let pointer: unknown = s.pointer;
-    if (s.pointer.mode === 'blank') {
-      const hovered = s.food.find(d => {
+    if (s.screen!=='playing'||s.pointer.mode === 'blank'||this.batterCursor.active||this.carriedDosaCursor.active||this.carriedPlateCursor.active) {
+      const hovered = s.screen==='playing'?s.food.find(d => {
         const p = d && this.assets.placement(`dosaHolder${d.slot}`);
         return d && !d.held && p && this.assets.contains(324,p.matrix,s.pointer.x,s.pointer.y);
-      });
-      const buttons = this.assets.scenes.find(v => v.frame === 5)?.instances.filter(p => p.name === 'btnMute' || p.name === 'btnUnMute') ?? [];
-      pointer = { mode: 'blank', hovered: hovered?.slot ?? null, buttons: buttons.map(p => this.assets.contains(p.symbolId,p.matrix,s.pointer.x,s.pointer.y,true,4)) };
+      }):undefined;
+      const buttons = this.assets.scenes.find(v => v.frame === screenFrame[s.screen])?.instances.filter(p => this.assets.symbols.get(p.symbolId)?.kind==='button') ?? [];
+      pointer = { mode: s.pointer.mode, hovered: hovered?.slot ?? null, buttons: buttons.map(p => this.assets.contains(p.symbolId,p.matrix,s.pointer.x,s.pointer.y,true,4)) };
     }
-    return JSON.stringify([this.displayWidth,this.displayHeight,devicePixelRatio,this.renderScale,this.pressedCommand,
+    return JSON.stringify([this.displayWidth,this.displayHeight,devicePixelRatio,this.renderScale,this.pressedCommand,this.scoreFormVisible,
       Math.floor((s.timeMs-this.sceneStartedMs)*12/1000),Math.floor((s.timeMs-this.radioStartedMs)*12/1000),
-      {...s,timeMs:undefined,pointer},this.feedback.map(f => ({...f,time:Math.floor((s.timeMs-f.time)*12/1000)}))],
+      {...s,timeMs:undefined,pointer,food:this.carriedDosaCursor.active?s.food.map(d=>d?.held?{...d,smokePose:undefined}:d):s.food,
+        ...(this.carriedPlateCursor.active?{platePosition:null,counterPosition:null,plate:s.plate.map(d=>({...d,x:Math.round((d.x-s.platePosition.x)*1000)/1000,y:Math.round((d.y-s.platePosition.y)*1000)/1000,smokePose:undefined}))}:{})},this.feedback.map(f => ({...f,time:Math.floor((s.timeMs-f.time)*12/1000)}))],
       (name,value:unknown) => name === 'elapsedMs' ? undefined : name === 'phaseElapsedMs' ? Math.floor(Number(value)*12/1000) : value);
   }
 
@@ -348,6 +441,22 @@ export class Renderer {
       this.onRenderCost?.(group,performance.now()-at);
     }
   }
+  private preparePlateCursor(s:Readonly<GameState>):void {
+    const art=this.assets.vector,plate=this.assets.placement('mcPlate'),template=this.assets.placement('mcDosa');
+    const plateBounds=art?.frameBounds(230);if(!art||!plate||!template||!plateBounds)return;
+    const matrix={...plate.matrix,tx:0,ty:0};
+    let bounds=transformedBounds(plateBounds,[matrix.a,matrix.b,matrix.c,matrix.d,0,0]);
+    const food=s.plate.map(d=>({pose:d.pose,matrix:{...template.matrix,tx:Math.round((d.x-s.platePosition.x)*1000)/1000,ty:Math.round((d.y-s.platePosition.y)*1000)/1000}}));
+    for(const d of food){
+      const b=art.frameBounds(472,d.pose);if(!b)continue;const m=d.matrix,t=transformedBounds(b,[m.a,m.b,m.c,m.d,m.tx,m.ty]);
+      const x=Math.min(bounds.x,t.x),y=Math.min(bounds.y,t.y);
+      bounds={x,y,width:Math.max(bounds.x+bounds.width,t.x+t.width)-x,height:Math.max(bounds.y+bounds.height,t.y+t.height)-y};
+    }
+    const ratio=Math.min(devicePixelRatio||1,3),width=Math.max(1,Math.round(this.displayWidth*ratio*this.renderScale)),height=Math.max(1,Math.round(this.displayHeight*ratio*this.renderScale));
+    void this.carriedPlateCursor.prepareDrawing(width,height,this.displayWidth,this.displayHeight,JSON.stringify(food),bounds,identity(),ctx=>{
+      art.draw(ctx,230,matrix);for(const d of food)art.draw(ctx,472,d.matrix,d.pose);
+    });
+  }
   private food(s: Readonly<GameState>): void {
     const c = this.ctx; const template = this.assets.placement('mcDosa'); if (!template) return;
     const hovered = s.food.find(dosa => {
@@ -366,6 +475,9 @@ export class Renderer {
     }
     for (const dosa of s.food) {
       if (!dosa) continue;
+      // Extra's compact native preview holds the picked pose, including steam.
+      // The core's independent smoke clock continues for placement/fallback.
+      if(dosa.held&&this.carriedDosaCursor.active)continue;
       const holder = this.assets.placement(`dosaHolder${dosa.slot}`); if (!holder) continue;
       const m = { ...template.matrix, tx: dosa.held ? s.pointer.x : holder.matrix.tx, ty: dosa.held ? s.pointer.y : holder.matrix.ty };
       this.dosa(dosa,m);
@@ -375,13 +487,12 @@ export class Renderer {
     }
     const plate = this.assets.placement('mcPlate'); if (!plate) return;
     const m = { ...plate.matrix, tx: s.platePosition.x, ty: s.platePosition.y };
-    this.assets.draw(c, 230, m);
-    s.plate.forEach(dosa => this.dosa(dosa,{ ...template.matrix, tx: dosa.x, ty: dosa.y }));
-    this.sourceText(424, identity(s.counterPosition.x, s.counterPosition.y), String(s.plate.length));
+    if(!this.carriedPlateCursor.active){this.assets.draw(c,230,m);s.plate.forEach(dosa=>this.dosa(dosa,{...template.matrix,tx:dosa.x,ty:dosa.y}));}
+    this.sourceText(424,this.carriedPlateCursor.active?identity(-.65,303.8):identity(s.counterPosition.x,s.counterPosition.y),String(s.plate.length));
     this.hits.push({ label: 'Plate', command: { type: 'click-plate' }, id: 230, matrix: m });
     const batter = this.assets.placement('mcMavu');
     if (batter) this.hits.push({ label: 'Batter bowl', command: { type: 'pick-batter' }, id: 226, matrix: batter.matrix });
-    if (s.pointer.mode === 'batter' && s.batterTemplate.available) {
+    if (s.pointer.mode === 'batter' && s.batterTemplate.available && !this.diagnosticBatterOverlay && !this.batterCursor.active) {
       this.assets.draw(c, 472, { ...template.matrix, tx: s.pointer.x, ty: s.pointer.y }, 1);
     }
   }

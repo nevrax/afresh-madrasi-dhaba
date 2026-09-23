@@ -45,7 +45,7 @@ try {
       const response=await route.fetch(),body=await response.text();
       await route.fulfill({response,body:body+'\nconst observedDraw=Renderer.prototype.draw;Renderer.prototype.draw=function(state){window.__profileState=structuredClone(state);return observedDraw.call(this,state);};'});
     });
-    const control=async name=>{const target=page.getByRole('button',{name,exact:true});await target.waitFor();const b=await target.boundingBox();await page.mouse.click(b.x+b.width/2,b.y+b.height/2);};
+    const control=async name=>{const target=page.getByRole('button',{name,exact:true});await target.waitFor();const b=await target.boundingBox();await page.mouse.click(b.x+b.width/2,b.y+b.height/2);await page.locator('#loading').waitFor({state:'hidden'});};
     const point=async(x,y,click=false)=>{const b=await page.locator('#game').boundingBox();await page.mouse[click?'click':'move'](b.x+x*b.width/550,b.y+y*b.height/400);};
     const select=async choice=>{await page.locator('#presentation-profile').selectOption(choice);await page.waitForFunction(c=>document.documentElement.dataset.presentation===c,choice);await page.evaluate(()=>new Promise(requestAnimationFrame));};
     const variants=[['source','http://127.0.0.1:5173/'],['site','http://127.0.0.1:5173/dist/site/'],['standalone',pathToFileURL(path.join(root,'dist/standalone/index.html')).href]];
@@ -62,12 +62,27 @@ try {
       await select('extra');await point(529,328);await page.locator('#batter-cue').waitFor({state:'visible'});
       assert(await page.locator('#performance-hud').isHidden());
       await point(529,328,true);await page.waitForFunction(()=>document.querySelector('#hint').textContent.includes('empty spot'));
+      await page.waitForFunction(()=>document.querySelector('#game').style.cursor.includes('image-set'));
+      await select('classic');assert.equal(await page.locator('#game').evaluate(c=>c.style.cursor),'');
+      await select('extra');await page.waitForFunction(()=>document.querySelector('#game').style.cursor.includes('image-set'));
+      const initialCursor=await page.locator('#game').evaluate(c=>c.style.cursor);
+      await page.setViewportSize({width:800,height:640});
+      await page.waitForFunction(old=>{const c=document.querySelector('#game');return c.style.cursor.includes('image-set')&&c.style.cursor!==old;},initialCursor);
+      const resizedCursor=await page.locator('#game').evaluate(c=>c.style.cursor);
+      await page.setViewportSize({width:1480,height:1000});
+      await page.waitForFunction(old=>{const c=document.querySelector('#game');return c.style.cursor.includes('image-set')&&c.style.cursor!==old;},resizedCursor);
       await point(124.5,332.45,true);
       if(kind==='source')await page.waitForFunction(()=>window.__profileState.food.some(Boolean));
       else await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
       const before=kind==='source'?await page.evaluate(()=>window.__profileState):null;
       for(const choice of ['classic','extra','classic','extra'])await select(choice);
       if(before){const after=await page.evaluate(()=>window.__profileState);assert.equal(after.day,before.day);assert.equal(after.cash,before.cash);assert.equal(after.screen,'playing');assert(after.timeMs>=before.timeMs);assert.deepEqual(after.food.filter(Boolean).map(d=>d.id),before.food.filter(Boolean).map(d=>d.id));}
+      await point(124.5,332.45);await page.waitForFunction(()=>document.querySelector('#game').dataset.action==='flip',null,{timeout:15000});await point(124.5,332.45,true);
+      await page.waitForFunction(()=>document.querySelector('#game').dataset.action==='pickup',null,{timeout:15000});await point(124.5,332.45,true);
+      await page.waitForFunction(()=>document.querySelector('#game').style.cursor.includes('image-set'));
+      await point(25,337,true);await page.waitForFunction(()=>!document.querySelector('#game').style.cursor);
+      await point(25,337,true);await page.waitForFunction(()=>document.querySelector('#game').style.cursor.includes('image-set'));
+      await point(290,280);await page.locator('#game').press('Escape');await page.waitForFunction(()=>!document.querySelector('#game').style.cursor);
       await point(529,328);assert(await page.locator('#batter-cue span').isHidden());
       await page.screenshot({path:path.join(output,`${kind}-extra.png`)});
       await page.locator('#app-menu > summary').click();await page.locator('#render-scale').selectOption('0.5');await page.locator('#show-stats').check();
@@ -86,11 +101,12 @@ try {
         await touchSession.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:b.x+529*b.width/550,y:b.y+328*b.height/400}]});
         await touchSession.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
         await page.waitForFunction(()=>document.querySelector('#hint').textContent.includes('empty spot'));
+        assert.equal(await page.locator('#game').evaluate(c=>c.style.cursor),'');
       }
       await touchSession.send('Emulation.setTouchEmulationEnabled',{enabled:false});await touchSession.detach();
       await page.setViewportSize({width:1480,height:1000});
       assert(await page.locator('#resource-status').isHidden());
-      results.push({kind,status:'PASS',checks:['no implicit default','explicit profiles','tutorial and cooking','live profile swaps','guidance gating','dismissal preserved','display settings isolated','reload persistence','fullscreen exit after switch','responsive layout','emulated touch in both profiles'],sourceStatePreserved:!!before});
+      results.push({kind,status:'PASS',checks:['no implicit default','explicit profiles','tutorial and cooking','live profile swaps','native batter cursor and Classic fallback','active cursor resize and restore','flip, native carried dosa, plating and carried plate cancellation','guidance gating','dismissal preserved','display settings isolated','reload persistence','fullscreen exit after switch','responsive layout','emulated touch and Canvas fallback in both profiles'],sourceStatePreserved:!!before});
       console.log(JSON.stringify(results.at(-1)));
     }
     // Browser storage can be unavailable for direct-file playback.
@@ -128,5 +144,5 @@ try {
   }
   assert.equal(errors.length,0);await writeFile(path.join(output,'results.json'),JSON.stringify({status:'PASS',hardware,results,errors},null,2));
   console.log(JSON.stringify({status:'PASS',mode,adapter,count:results.length}));
-}catch(error){await context.pages()[0]?.screenshot({path:path.join(output,'failure.png')}).catch(()=>{});throw error;}
+}catch(error){const page=context.pages()[0];await page?.screenshot({path:path.join(output,'failure.png')}).catch(()=>{});await writeFile(path.join(output,'failure-state.json'),JSON.stringify(await page?.evaluate(()=>({state:window.__profileState,action:document.querySelector('#game')?.dataset.action})).catch(()=>null),null,2));throw error;}
 finally{await context.close();}

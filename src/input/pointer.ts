@@ -4,6 +4,7 @@ import type { Renderer } from '../render/renderer.js';
 export function connectPointer(renderer: Renderer, dispatch: (command: Command) => void, activate: () => void): void {
   const canvas = renderer.canvas;
   const point = (event: PointerEvent): { x: number; y: number } => {
+    renderer.pointerType=event.pointerType||'mouse';
     const rect = canvas.getBoundingClientRect(); return { x: (event.clientX - rect.left) * 550 / rect.width, y: (event.clientY - rect.top) * 400 / rect.height };
   };
   let pressed: { pointerId: number; target: string } | null = null;

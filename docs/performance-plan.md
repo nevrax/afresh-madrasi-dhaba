@@ -4,10 +4,19 @@
 
 ### Refresh and visibility calibration
 
+- [x] PERF-26 Reduce carried-pointer repainting in Extra. Compact vector-derived
+  mouse previews cover batter, dosa and plate. Async encoding, decoded-image
+  fidelity, resize/profile switches, live plate hits and Classic/touch fallbacks
+  pass. Held-object cases reach nominal 60 Hz on both Pi environments; final
+  plate CPU is 22.72% / 20.92% of one core. Both packages pass UI checks.
+  See [performance-stalls.md](performance-stalls.md).
+
 - [ ] PERF-25 Attribute long desktop pauses with matched native-window controls,
   host/renderer scheduling, compositor timing and concurrent-load evidence.
-  Integrated Intel/NVIDIA full-day measurements now exist: warm 121.08 / 138.56
-  callback/s, but 105 / 69 gaps above 50 ms. Trivial controls also vary or stall.
+  Earlier Intel/NVIDIA full-day runs have warm 121.08 / 138.56 callback/s and
+  105 / 69 gaps above 50 ms. Later identical-launch repeats reach 235.18 /
+  234.42 with zero such gaps. Traces establish graphics host waits, not the
+  external cause; kernel recording lacks the required profiling privilege.
   Do not infer stable play from averages, blame game code for all gaps, or claim
   a universal GPU ratio from sequential runs with changing host conditions.
 
@@ -18,16 +27,12 @@
   [performance-cadence.md](performance-cadence.md). Normal empty controls reach
   59.97 / 60.00 / 166.13 callback/s. A nominal 59.97 baseline without missed
   intervals is not a cadence failure. Callback counts are not physical scanout.
-- [ ] PERF-24 Evaluate the large Canvas update path in complete native-window
-  gameplay before removing more animations. A trivial large-surface update
-  reproduces Pi A's missed intervals; full clear/fill and the desynchronized
-  context hint remove that control's slowdown at identical resolution. Retain
-  normal synchronization in shipping launchers. Verify CPU, input, fidelity,
-  fallback and full-day pacing before promoting any experiment into Extra.
-  Complete-frame reuse is now integrated in Extra with 480 exact comparisons,
-  129 tests and native three-minute Pi runs: warm 60.00 / 59.99 callback/s and
-  33.28% / 29.60% of one core. Normal synchronization remains enabled. Cold
-  first-use and terminal-screen stalls keep full acceptance open.
+- [x] PERF-24 Evaluate the large Canvas update path in native-window gameplay.
+  Complete-frame reuse avoids unchanged full-stage composition, including final
+  screens. 588 exact pixel/hit checks, full-day/loss Pi measurements and both
+  adapter application checks pass. Normal synchronization and vector density
+  remain enabled; no context-hint experiment is promoted. Wider cold and host
+  limitations remain under PERF-17/25.
 
 The dirty-region prototype is rejected despite 360 exact pixel/hit comparisons:
 the complete day regresses Pi A to 47.52 callback/s. It remains development-only.
@@ -49,30 +54,22 @@ does not pass. The component omission study is only one part of attribution.
   keep diagnostic omissions outside the game.
   Evidence: 66 Pi cases, CPU samples, host presentation/raster trace spans and
   submission counts in [performance-pipeline.md](performance-pipeline.md).
-- [ ] PERF-21 Reduce repeated scene submission and pixel composition based on
-  PERF-20. Evaluate retained draw commands and opaque cached scenery before
-  removing further effects. Verify appearance-preserving caches against the
-  existing pixels; put any changed rendering treatment in Extra. Preserve
-  vector density, bounded memory, live orders, input and simulation timing.
-  First implementation delivered: Extra retains scenery at authored poses,
-  with a bounded exact-density opaque surface. 360 exact scene/hit comparisons
-  and 128 automated tests pass. The native continuation adds complete-frame
-  reuse when rendered state and hit targets are unchanged, with 480 exact
-  comparisons and 129 tests. No additional surface or density reduction is
-  needed. See PERF-23/24 for native-window results; cold preparation remains.
-- [ ] PERF-22 Repeat real-time, three-minute gameplay on both Pi environments
-  with audio and inputs, cold and warm starts, profile switching and resizing.
-  At 60 Hz require average at least 59.5 FPS, p95 at most 20 ms, p99 at most
-  33.4 ms and no sustained stalls. Record warmed CPU across all isolated browser
-  processes in units of one core, with an initial engineering budget of 40%
-  of one core (10% of a four-core CPU). Report failure explicitly if either
-  cadence or CPU budget is missed. This budget is a target, not a result.
-  Initial real-time day completed on both Pi boards with audio and command
-  replay, cash 24 and clock 720. Warm results are 55.62 / 59.85 FPS and
-  80.96% / 76.17% of one core. Pi A fails cadence; both miss the CPU target.
-  Those initial figures predate complete-frame reuse and native-window
-  calibration. The new report supersedes them for that path. Cold and
-  final-transition stalls remain. Do not mark acceptance complete.
+- [x] PERF-21 Reduce repeated scene submission and pixel composition. Extra
+  retains exact-density scenery and reuses unchanged complete frames, with
+  bounded memory and live clocks/input/score-form state. No additional terminal
+  surface is allocated. 588 exact pixel/hit comparisons and 131 tests pass.
+  Deliberate decorative/carry treatments are documented as Extra features.
+
+- [x] PERF-22 Repeat real-time three-minute gameplay on both Pi environments.
+  Scoped acceptance is the Extra mouse path at 2200 × 1600, with normal sync,
+  audio, command replay and native visible-window containment. Full-day and
+  actual loss runs meet the engineering budget: average at least 59.5 callback/s,
+  p95 at most 20 ms, p99 at most 33.4 ms, no sustained stalls and warm CPU below
+  40% of one core. Latest full-day CPU: 32.86% / 29.55%. Profile/resize,
+  input and both distribution checks pass separately. The varied day includes
+  isolated outliers, and this acceptance does not assert zero missed callbacks,
+  physical touch equivalence or universal hardware/density performance.
+  See PERF-17/25 and [the release evidence](performance-stalls.md).
 
 Do not select a profile or lower clarity automatically to meet these targets.
 Static-frame controls diagnose the pipeline and never count as playable results.

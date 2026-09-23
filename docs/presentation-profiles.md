@@ -1,11 +1,16 @@
 # Presentation profiles
 
-Current performance continuation: Extra retains scenery between authored poses
+Current performance continuation: [preparation and carried-object results](performance-stalls.md)
+supersede the older timing table below. Extra prepares a normal cooking cycle
+before the timer starts and uses compact native mouse previews for carried
+objects. Touch and unsupported browsers retain Canvas drawing.
+
+Extra retains scenery between authored poses
 and reuses the complete image when rendered state and hit targets are unchanged.
 Pointer input and game clocks remain live. The
 [native cadence report](performance-cadence.md) supersedes the timing baseline
-below. Warm Pi cadence/CPU improve substantially; cold and final-screen stalls
-remain open. The HUD distinguishes callback rate from actual Canvas paints.
+below for that historical checkpoint. Terminal repainting is now corrected;
+current acceptance and residual cold/density limits are in performance-stalls.md. The HUD distinguishes callback rate from actual Canvas paints.
 
 Classic and Extra use the same game rules, assets, cooking timers, customers,
 orders and scoring. The small selector above the game changes presentation during
@@ -26,6 +31,10 @@ an explicit selector change saves it. No hardware detection selects a profile.
 | Original food hover text, cash feedback and patience/count information | Preserved | Preserved | Renderer source behavior |
 | Bowl outline, hover/selection cue and introductory batter label | Off | On; introduction stays dismissed after use | Game shell |
 | Additional flip/pickup/batter cursors | Off | On | Game shell and CSS |
+| Carried batter, picked dosa and carried plate | Original Canvas artwork | Compact native mouse preview, at most 64 logical pixels; Canvas fallback for touch/unsupported browsers | Source vectors rendered at the selected density; original picking/serving coordinates |
+| Steam while an item is in the native mouse preview | Animated | Preview holds the picked pose; cooking and independent smoke clocks continue | Steam on the griddle and resting plate is unchanged |
+| Count while carrying the native plate preview | Follows source plate | Remains at the counter; number and plate hit target stay live | Renderer only; original core positions are preserved |
+| First cooking/filter use | Lazy | One ordinary cooking cycle is prepared while loading, under the existing cache limit | No game time advances during preparation |
 | Smooth sampling between eligible menu/traffic poses | Authored samples | Menu interpolates; playing traffic uses authored 12 Hz poses | Renderer; simulation clocks unchanged |
 | Retained scenery between visual state changes | Ordinary rendering | Exact-density opaque surface, up to 32 MiB | Renderer; food, feedback and hit mapping stay live |
 | Unchanged complete frame | Repaint every callback | Reuse only while visible state and hit targets match | Renderer; no additional surface or animation-rate reduction |
@@ -66,6 +75,14 @@ mutated. Changing effects clears retained surfaces, filter backing and derived
 bounds/period metadata before drawing the other profile. It does not keep two
 complete graphics caches alive. Repeated selection of the same effects avoids
 unnecessary cache invalidation.
+
+Compact carry previews are an intentional Extra size/animation treatment. They
+are not an invisible full-size cursor: image decoding, logical cursor limits,
+fallbacks and switching between previews are checked explicitly. The retained
+encoded cursor Blobs and metadata are counted separately in the HUD; operating-system cursor
+surfaces are not measurable through the page memory API. A carried plate's hit
+matrix is updated before a frame can be reused. No hit target is frozen with the
+image.
 
 A proposed general static-group crop was rejected as shared cache work: four of
 fifteen screen/density comparisons changed pixels. Cropping is therefore limited

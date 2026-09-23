@@ -60,7 +60,7 @@ async function boot() {
     let presentation = (0, presentation_profile_js_1.resolvePresentation)((0, presentation_profile_js_1.presentationChoice)(new URLSearchParams(location.search).get('presentation')) ?? (0, presentation_profile_js_1.loadPresentationChoice)(displayStorage));
     const displaySettings = { current: (0, render_settings_js_1.loadRenderSettings)(displayStorage), extra: (0, render_settings_js_1.loadRenderSettings)(displayStorage, 'madrasi-display-extra') };
     let settings = displaySettings[presentation.choice === 'extra' ? 'extra' : 'current'];
-    const hud = (0, performance_hud_js_1.createPerformanceHud)(canvas, () => ({ tiles: assets.vector.stats.cachedBytes, pool: assets.vector.stats.pooledBytes, scene: renderer.sceneCacheBytes, filters: assets.vector.filterStats.backingBytes, audio: audio.memoryBytes }), () => {
+    const hud = (0, performance_hud_js_1.createPerformanceHud)(canvas, () => ({ tiles: assets.vector.stats.cachedBytes, pool: assets.vector.stats.pooledBytes, scene: renderer.sceneCacheBytes, cursor: renderer.cursorDataBytes, filters: assets.vector.filterStats.backingBytes, audio: audio.memoryBytes }), () => {
         const gpu = assets.vector.gpuSummary(), d = gpu.filter.details;
         return `Canvas2D; filters: ${gpu.lastFilterBackend}; ${d?.unmaskedRenderer ?? d?.renderer ?? 'GPU identity unavailable'}`;
     });
@@ -263,9 +263,27 @@ async function boot() {
             measured.renderMs = performance.now() - started;
     };
     const batch = (0, frame_batch_js_1.createFrameBatch)(game, (events, state) => { handle(events, state); render(state); }, { enabled: () => hud.enabled, record: (simulationMs, snapshotMs) => { measured.simulationMs = simulationMs; measured.snapshotMs = snapshotMs; } });
+    let preparing = false;
     const dispatch = command => {
-        if (running)
+        if (!running || preparing)
+            return;
+        if (command.type !== 'play' && command.type !== 'skip-tutorial') {
             batch.dispatch(command);
+            return;
+        }
+        preparing = true;
+        loading.textContent = 'Preparing the kitchen…';
+        loading.hidden = false;
+        void (async () => {
+            // Paint the status before shader/tile creation. No cooking time elapses here.
+            await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+            await renderer.prepare();
+            if (running) {
+                batch.dispatch(command);
+                loading.hidden = true;
+                last = performance.now();
+            }
+        })().catch(fail).finally(() => { preparing = false; });
     };
     (0, pointer_js_1.connectPointer)(renderer, dispatch, activateAudio);
     soundButton.addEventListener('click', activateAudio);
@@ -321,6 +339,10 @@ async function boot() {
             return;
         const elapsed = Math.max(0, now - last);
         last = now;
+        if (preparing) {
+            requestAnimationFrame(tick);
+            return;
+        }
         try {
             batch.flush(elapsed);
             if (hud.enabled) {
@@ -1352,6 +1374,12 @@ class VectorArt {
         this.tileBudget = Math.min(MAX_TILE_BUDGET, Math.max(TILE_BUDGET, Math.ceil(TILE_BUDGET * pixels / REFERENCE_PIXELS)));
     }
     bounds(id) { return this.pack.symbols[id]?.bounds ?? null; }
+    frameBounds(id, frame = 1) {
+        if (!this.has(id))
+            return null;
+        const b = this.currentBounds(id, Math.max(0, frame - 1));
+        return b ? { ...b } : null;
+    }
     placements(id, frame = 1, interpolate = false) {
         const symbol = this.pack.symbols[id];
         return symbol?.frames ? this.frame(symbol, Math.max(0, frame - 1), interpolate).placements : [];
@@ -2149,8 +2177,10 @@ function resourceUrl(url) { return embedded()?.binary[key(url)] ?? url; }
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Renderer = exports.runtimeTimelineIds = void 0;
 const assets_js_1 = require("./assets.js");
+const vector_js_1 = require("./vector.js");
 const resources_js_1 = require("./resources.js");
 const presentation_profile_js_1 = require("../presentation-profile.js");
+const carry_cursor_js_1 = require("./carry-cursor.js");
 const screenFrame = { menu: 3, instructions: 4, playing: 5, 'game-over': 6, 'day-result': 7 };
 const wrappers = [413, 399, 400, 371, 385];
 // Shared with packaging so required player compositions cannot be dropped.
@@ -2170,6 +2200,10 @@ class Renderer {
     assets;
     presentation = (0, presentation_profile_js_1.resolvePresentation)(null);
     setPresentation(choice) {
+        this.batterCursor.reset();
+        this.carriedDosaCursor.reset();
+        this.carriedPlateCursor.reset();
+        this.preparedKey = '';
         this.clearSceneCache();
         this.presentation = (0, presentation_profile_js_1.resolvePresentation)(choice);
         this.assets.vector?.setSimplerEffects(this.presentation.simplerEffects);
@@ -2178,11 +2212,20 @@ class Renderer {
             this.compositionIndices.delete(this.assets.vector);
     }
     renderScale = 1;
+    pointerType = 'mouse';
+    batterCursor;
+    carriedDosaCursor;
+    carriedPlateCursor;
+    get cursorDataBytes() { return this.batterCursor.memoryBytes + this.carriedDosaCursor.memoryBytes + this.carriedPlateCursor.memoryBytes; }
     diagnosticOmissions = new Set();
     onRenderCost = null;
     setRenderScale(value) {
         const scale = Number.isFinite(value) ? Math.min(1, Math.max(.25, value)) : 1;
         if (scale !== this.renderScale) {
+            this.batterCursor.reset();
+            this.carriedDosaCursor.reset();
+            this.carriedPlateCursor.reset();
+            this.preparedKey = '';
             this.renderScale = scale;
             this.clearSceneCache();
             this.assets.vector?.clearCache();
@@ -2202,6 +2245,8 @@ class Renderer {
     diagnosticFullFrameRedraw = false;
     /** Diagnostic comparison only; never selected by the player UI. */
     diagnosticFullSceneRedraw = false;
+    /** Development comparison: the final batter drawing is supplied by a small overlay. */
+    diagnosticBatterOverlay = false;
     get sceneCacheBytes() { return this.sceneSurface ? this.sceneSurface.width * this.sceneSurface.height * 4 : 0; }
     clearSceneCache() {
         this.frameKey = '';
@@ -2221,6 +2266,8 @@ class Renderer {
     compositionIndices = new WeakMap();
     displayWidth = 550;
     displayHeight = 400;
+    preparedKey = '';
+    preparedVector = null;
     pressedCommand = null;
     scoreFormVisible = true;
     sceneStartedMs = 0;
@@ -2234,6 +2281,9 @@ class Renderer {
     constructor(canvas, assets) {
         this.canvas = canvas;
         this.assets = assets;
+        this.batterCursor = new carry_cursor_js_1.CarryCursor(canvas, assets);
+        this.carriedDosaCursor = new carry_cursor_js_1.CarryCursor(canvas, assets);
+        this.carriedPlateCursor = new carry_cursor_js_1.CarryCursor(canvas, assets);
         // Every frame covers the stage opaquely, so the browser need not composite an alpha channel.
         const ctx = canvas.getContext('2d', { alpha: false });
         if (!ctx)
@@ -2256,6 +2306,80 @@ class Renderer {
         }));
         const sceneIds = this.assets.scenes.flatMap(s => s.frame >= 3 ? s.instances.map(i => i.symbolId) : []);
         await this.assets.preload([...new Set([...sceneIds, 242, 412, 398, 320, 338, 384, 345, 370, 472])]);
+    }
+    /** Prepare first appearances before the cooking clock starts. The normal bounded
+     * tile cache owns the results; one temporary stage is released before play. */
+    async prepare() {
+        const vector = this.assets.vector;
+        if (!vector)
+            return;
+        const dimensions = () => {
+            const ratio = Math.min(devicePixelRatio || 1, 3);
+            return [Math.max(1, Math.round(this.displayWidth * ratio * this.renderScale)), Math.max(1, Math.round(this.displayHeight * ratio * this.renderScale))];
+        };
+        const [width, height] = dimensions(), choice = this.presentation.choice, key = `${width}:${height}:${choice}`;
+        if (this.preparedKey === key && this.preparedVector === vector || width * height * 4 > 32 * 1024 * 1024)
+            return;
+        vector.setViewport(width, height);
+        // The welcome/tutorial is no longer being animated. Release those large
+        // surfaces before reserving the kitchen/end-screen working set.
+        vector.clearCache();
+        const surface = document.createElement('canvas');
+        surface.width = width;
+        surface.height = height;
+        const c = surface.getContext('2d');
+        try {
+            // End-of-day scenery must exist before the timed transition. Preparing the
+            // menu/tutorial too would crowd out useful kitchen tiles under the same cap.
+            for (const frame of [7, 6, 5])
+                for (const p of this.assets.scenes.find(s => s.frame === frame)?.instances ?? []) {
+                    if (p.name === 'mcInstruction' || /^dosaHolder|^bill|^txt/.test(p.name ?? ''))
+                        continue;
+                    const effects = this.composition(-1000 - frame).get(p.depth);
+                    if (effects?.clipDepth)
+                        continue;
+                    await new Promise(resolve => requestAnimationFrame(() => resolve()));
+                    const [currentWidth, currentHeight] = dimensions();
+                    if (currentWidth !== width || currentHeight !== height || this.assets.vector !== vector || this.presentation.choice !== choice)
+                        return;
+                    c.setTransform(1, 0, 0, 1, 0, 0);
+                    c.clearRect(0, 0, width, height);
+                    c.setTransform(width / 550, 0, 0, height / 400, 0, 0);
+                    vector.drawPlacement(c, p.symbolId, p.matrix, 1, effects);
+                }
+            if (this.presentation.retainScene) {
+                // First-use food/filter submissions caused the remaining early stalls.
+                // Warm one normal cooking cycle at exact density, before the game clock.
+                // These are ordinary entries in the same bounded cache, not an atlas or
+                // another animation loop. The original burn/late-pickup poses stay lazy.
+                const template = this.assets.placement('mcDosa');
+                const holders = [0, 1, 2].map(slot => this.assets.placement(`dosaHolder${slot}`)).filter(p => p !== undefined);
+                if (template)
+                    for (const frame of [...Array.from({ length: 71 }, (_, i) => i + 1), ...Array.from({ length: 37 }, (_, i) => i + 291)]) {
+                        await new Promise(resolve => requestAnimationFrame(() => resolve()));
+                        const [currentWidth, currentHeight] = dimensions();
+                        if (currentWidth !== width || currentHeight !== height || this.assets.vector !== vector || this.presentation.choice !== choice)
+                            return;
+                        c.setTransform(1, 0, 0, 1, 0, 0);
+                        c.clearRect(0, 0, width, height);
+                        c.setTransform(width / 550, 0, 0, height / 400, 0, 0);
+                        for (const holder of holders)
+                            vector.draw(c, 472, { ...template.matrix, tx: holder.matrix.tx, ty: holder.matrix.ty }, frame);
+                        // Flush while the loading state is visible, not on first placement.
+                        c.getImageData(0, 0, 1, 1);
+                    }
+            }
+            // Complete the queued preparation before the cooking clock begins. This
+            // one-pixel readback is confined to the loading transition, never a frame loop.
+            c.getImageData(0, 0, 1, 1);
+            if (this.presentation.retainScene)
+                await this.batterCursor.prepare(width, height, this.displayWidth, this.displayHeight);
+            this.preparedKey = key;
+            this.preparedVector = vector;
+        }
+        finally {
+            surface.width = surface.height = 0;
+        }
     }
     composition(id) {
         const vector = this.assets.vector;
@@ -2388,6 +2512,30 @@ class Renderer {
         }
     }
     draw(s) {
+        const nativeBatter = this.presentation.retainScene && this.pointerType === 'mouse' && s.screen === 'playing' && !s.tutorial.visible && s.pointer.mode === 'batter' && s.batterTemplate.available;
+        if (nativeBatter) {
+            const ratio = Math.min(devicePixelRatio || 1, 3);
+            void this.batterCursor.prepare(Math.max(1, Math.round(this.displayWidth * ratio * this.renderScale)), Math.max(1, Math.round(this.displayHeight * ratio * this.renderScale)), this.displayWidth, this.displayHeight);
+        }
+        this.batterCursor.show(nativeBatter);
+        const held = s.pointer.heldSlot === null ? null : s.food[s.pointer.heldSlot];
+        const nativeDosa = this.presentation.retainScene && this.pointerType === 'mouse' && s.screen === 'playing' && !s.tutorial.visible && s.pointer.mode === 'dosa' && !!held?.held;
+        if (nativeDosa) {
+            const ratio = Math.min(devicePixelRatio || 1, 3);
+            void this.carriedDosaCursor.prepare(Math.max(1, Math.round(this.displayWidth * ratio * this.renderScale)), Math.max(1, Math.round(this.displayHeight * ratio * this.renderScale)), this.displayWidth, this.displayHeight, held.pose);
+        }
+        this.carriedDosaCursor.show(nativeDosa);
+        const nativePlate = this.presentation.retainScene && this.pointerType === 'mouse' && s.screen === 'playing' && !s.tutorial.visible && s.pointer.mode === 'plate';
+        if (nativePlate)
+            this.preparePlateCursor(s);
+        this.carriedPlateCursor.show(nativePlate);
+        if (this.carriedPlateCursor.active) {
+            // The retained image is independent of the cursor position, but the source
+            // plate hit target must follow its live coordinates on every callback.
+            const hit = this.hits.find(h => h.command.type === 'click-plate');
+            if (hit)
+                hit.matrix = { ...hit.matrix, tx: s.platePosition.x, ty: s.platePosition.y };
+        }
         const key = this.unchangedFrameKey(s);
         if (key && key === this.frameKey && this.frameVector === this.assets.vector) {
             this.lastDrawPainted = false;
@@ -2451,22 +2599,23 @@ class Renderer {
         this.frameVector = this.assets.vector;
     }
     unchangedFrameKey(s) {
-        if (!this.presentation.retainScene || this.diagnosticFullFrameRedraw || this.diagnosticFullSceneRedraw || this.diagnosticOmissions.size || s.screen !== 'playing' || s.tutorial.visible)
+        if (!this.presentation.retainScene || this.diagnosticFullFrameRedraw || this.diagnosticFullSceneRedraw || this.diagnosticOmissions.size || !['playing', 'day-result', 'game-over'].includes(s.screen) || s.tutorial.visible)
             return '';
         // A blank pointer affects the canvas only when its food or button hover target changes.
         // Held batter, food and plate positions keep their continuous input coordinates.
         let pointer = s.pointer;
-        if (s.pointer.mode === 'blank') {
-            const hovered = s.food.find(d => {
+        if (s.screen !== 'playing' || s.pointer.mode === 'blank' || this.batterCursor.active || this.carriedDosaCursor.active || this.carriedPlateCursor.active) {
+            const hovered = s.screen === 'playing' ? s.food.find(d => {
                 const p = d && this.assets.placement(`dosaHolder${d.slot}`);
                 return d && !d.held && p && this.assets.contains(324, p.matrix, s.pointer.x, s.pointer.y);
-            });
-            const buttons = this.assets.scenes.find(v => v.frame === 5)?.instances.filter(p => p.name === 'btnMute' || p.name === 'btnUnMute') ?? [];
-            pointer = { mode: 'blank', hovered: hovered?.slot ?? null, buttons: buttons.map(p => this.assets.contains(p.symbolId, p.matrix, s.pointer.x, s.pointer.y, true, 4)) };
+            }) : undefined;
+            const buttons = this.assets.scenes.find(v => v.frame === screenFrame[s.screen])?.instances.filter(p => this.assets.symbols.get(p.symbolId)?.kind === 'button') ?? [];
+            pointer = { mode: s.pointer.mode, hovered: hovered?.slot ?? null, buttons: buttons.map(p => this.assets.contains(p.symbolId, p.matrix, s.pointer.x, s.pointer.y, true, 4)) };
         }
-        return JSON.stringify([this.displayWidth, this.displayHeight, devicePixelRatio, this.renderScale, this.pressedCommand,
+        return JSON.stringify([this.displayWidth, this.displayHeight, devicePixelRatio, this.renderScale, this.pressedCommand, this.scoreFormVisible,
             Math.floor((s.timeMs - this.sceneStartedMs) * 12 / 1000), Math.floor((s.timeMs - this.radioStartedMs) * 12 / 1000),
-            { ...s, timeMs: undefined, pointer }, this.feedback.map(f => ({ ...f, time: Math.floor((s.timeMs - f.time) * 12 / 1000) }))], (name, value) => name === 'elapsedMs' ? undefined : name === 'phaseElapsedMs' ? Math.floor(Number(value) * 12 / 1000) : value);
+            { ...s, timeMs: undefined, pointer, food: this.carriedDosaCursor.active ? s.food.map(d => d?.held ? { ...d, smokePose: undefined } : d) : s.food,
+                ...(this.carriedPlateCursor.active ? { platePosition: null, counterPosition: null, plate: s.plate.map(d => ({ ...d, x: Math.round((d.x - s.platePosition.x) * 1000) / 1000, y: Math.round((d.y - s.platePosition.y) * 1000) / 1000, smokePose: undefined })) } : {}) }, this.feedback.map(f => ({ ...f, time: Math.floor((s.timeMs - f.time) * 12 / 1000) }))], (name, value) => name === 'elapsedMs' ? undefined : name === 'phaseElapsedMs' ? Math.floor(Number(value) * 12 / 1000) : value);
     }
     drawRetainedScene(s, placements) {
         const width = this.canvas.width, height = this.canvas.height;
@@ -2643,6 +2792,29 @@ class Renderer {
             this.onRenderCost?.(group, performance.now() - at);
         }
     }
+    preparePlateCursor(s) {
+        const art = this.assets.vector, plate = this.assets.placement('mcPlate'), template = this.assets.placement('mcDosa');
+        const plateBounds = art?.frameBounds(230);
+        if (!art || !plate || !template || !plateBounds)
+            return;
+        const matrix = { ...plate.matrix, tx: 0, ty: 0 };
+        let bounds = (0, vector_js_1.transformedBounds)(plateBounds, [matrix.a, matrix.b, matrix.c, matrix.d, 0, 0]);
+        const food = s.plate.map(d => ({ pose: d.pose, matrix: { ...template.matrix, tx: Math.round((d.x - s.platePosition.x) * 1000) / 1000, ty: Math.round((d.y - s.platePosition.y) * 1000) / 1000 } }));
+        for (const d of food) {
+            const b = art.frameBounds(472, d.pose);
+            if (!b)
+                continue;
+            const m = d.matrix, t = (0, vector_js_1.transformedBounds)(b, [m.a, m.b, m.c, m.d, m.tx, m.ty]);
+            const x = Math.min(bounds.x, t.x), y = Math.min(bounds.y, t.y);
+            bounds = { x, y, width: Math.max(bounds.x + bounds.width, t.x + t.width) - x, height: Math.max(bounds.y + bounds.height, t.y + t.height) - y };
+        }
+        const ratio = Math.min(devicePixelRatio || 1, 3), width = Math.max(1, Math.round(this.displayWidth * ratio * this.renderScale)), height = Math.max(1, Math.round(this.displayHeight * ratio * this.renderScale));
+        void this.carriedPlateCursor.prepareDrawing(width, height, this.displayWidth, this.displayHeight, JSON.stringify(food), bounds, (0, assets_js_1.identity)(), ctx => {
+            art.draw(ctx, 230, matrix);
+            for (const d of food)
+                art.draw(ctx, 472, d.matrix, d.pose);
+        });
+    }
     food(s) {
         const c = this.ctx;
         const template = this.assets.placement('mcDosa');
@@ -2667,6 +2839,10 @@ class Renderer {
         for (const dosa of s.food) {
             if (!dosa)
                 continue;
+            // Extra's compact native preview holds the picked pose, including steam.
+            // The core's independent smoke clock continues for placement/fallback.
+            if (dosa.held && this.carriedDosaCursor.active)
+                continue;
             const holder = this.assets.placement(`dosaHolder${dosa.slot}`);
             if (!holder)
                 continue;
@@ -2680,14 +2856,16 @@ class Renderer {
         if (!plate)
             return;
         const m = { ...plate.matrix, tx: s.platePosition.x, ty: s.platePosition.y };
-        this.assets.draw(c, 230, m);
-        s.plate.forEach(dosa => this.dosa(dosa, { ...template.matrix, tx: dosa.x, ty: dosa.y }));
-        this.sourceText(424, (0, assets_js_1.identity)(s.counterPosition.x, s.counterPosition.y), String(s.plate.length));
+        if (!this.carriedPlateCursor.active) {
+            this.assets.draw(c, 230, m);
+            s.plate.forEach(dosa => this.dosa(dosa, { ...template.matrix, tx: dosa.x, ty: dosa.y }));
+        }
+        this.sourceText(424, this.carriedPlateCursor.active ? (0, assets_js_1.identity)(-.65, 303.8) : (0, assets_js_1.identity)(s.counterPosition.x, s.counterPosition.y), String(s.plate.length));
         this.hits.push({ label: 'Plate', command: { type: 'click-plate' }, id: 230, matrix: m });
         const batter = this.assets.placement('mcMavu');
         if (batter)
             this.hits.push({ label: 'Batter bowl', command: { type: 'pick-batter' }, id: 226, matrix: batter.matrix });
-        if (s.pointer.mode === 'batter' && s.batterTemplate.available) {
+        if (s.pointer.mode === 'batter' && s.batterTemplate.available && !this.diagnosticBatterOverlay && !this.batterCursor.active) {
             this.assets.draw(c, 472, { ...template.matrix, tx: s.pointer.x, ty: s.pointer.y }, 1);
         }
     }
@@ -2702,7 +2880,7 @@ class Renderer {
 }
 exports.Renderer = Renderer;
 
-},{"./assets.js":"src/render/assets.js","./resources.js":"src/render/resources.js","../presentation-profile.js":"src/presentation-profile.js"}],
+},{"./assets.js":"src/render/assets.js","./vector.js":"src/render/vector.js","./resources.js":"src/render/resources.js","../presentation-profile.js":"src/presentation-profile.js","./carry-cursor.js":"src/render/carry-cursor.js"}],
 "src/presentation-profile.js":[function(module,exports,require){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -2736,6 +2914,132 @@ function savePresentationChoice(storage, choice) {
     }
     catch { /* Explicit selection still works in memory. */ }
 }
+
+},{}],
+"src/render/carry-cursor.js":[function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CarryCursor = void 0;
+exports.cursorGeometry = cursorGeometry;
+const owners = new WeakMap();
+/** Logical cursor dimensions stay independent of the cached pixel density. */
+function cursorGeometry(b, m, width, height, cssWidth, cssHeight) {
+    const corners = [[b.x, b.y], [b.x + b.width, b.y], [b.x, b.y + b.height], [b.x + b.width, b.y + b.height]];
+    const xs = corners.map(([x, y]) => m.a * x + m.c * y), ys = corners.map(([x, y]) => m.b * x + m.d * y);
+    const sx = width / 550, sy = height / 400, left = Math.floor(Math.min(...xs) * sx) - 2, top = Math.floor(Math.min(...ys) * sy) - 2;
+    const pixelsWide = Math.ceil(Math.max(...xs) * sx) - left + 2, pixelsHigh = Math.ceil(Math.max(...ys) * sy) - top + 2;
+    const naturalWidth = pixelsWide * cssWidth / width, naturalHeight = pixelsHigh * cssHeight / height;
+    // Extra uses a compact carry cursor. Large authored hand artwork exceeds the
+    // browser's native cursor limit at full-window game sizes.
+    const shrink = Math.min(1, 64 / naturalWidth, 64 / naturalHeight), cssWide = naturalWidth * shrink, cssHigh = naturalHeight * shrink;
+    return { left, top, pixelsWide, pixelsHigh, cssWide, cssHigh, sx, sy,
+        hotspotX: Math.round(-left * cssWidth / width * shrink), hotspotY: Math.round(-top * cssHeight / height * shrink), density: width / cssWidth / shrink,
+        supported: Number.isFinite(shrink) && shrink > 0 && pixelsWide * pixelsHigh * 4 <= 4 * 1024 * 1024 && left <= 0 && top <= 0 && -left < pixelsWide && -top < pixelsHigh };
+}
+/** Extra's compact carried artwork follows the native mouse cursor instead of repainting
+ * the restaurant. Touch and unsupported browsers keep Canvas drawing. */
+class CarryCursor {
+    canvas;
+    assets;
+    key = '';
+    cursor = '';
+    generation = 0;
+    pending = Promise.resolve();
+    enabled = false;
+    encodedBytes = 0;
+    blobUrl = '';
+    get active() { return this.enabled; }
+    get memoryBytes() { return this.encodedBytes; }
+    constructor(canvas, assets) {
+        this.canvas = canvas;
+        this.assets = assets;
+    }
+    reset() {
+        this.show(false);
+        if (this.blobUrl)
+            URL.revokeObjectURL(this.blobUrl);
+        this.blobUrl = '';
+        this.generation++;
+        this.key = '';
+        this.cursor = '';
+        this.encodedBytes = 0;
+    }
+    show(requested) {
+        const enabled = requested && Boolean(this.cursor);
+        if (enabled !== this.enabled) {
+            if (enabled) {
+                this.canvas.style.cursor = this.cursor;
+                owners.set(this.canvas, this);
+            }
+            else if (owners.get(this.canvas) === this) {
+                this.canvas.style.cursor = '';
+                owners.delete(this.canvas);
+            }
+            this.enabled = enabled;
+        }
+        return enabled;
+    }
+    prepare(width, height, cssWidth, cssHeight, pose = 1) {
+        const art = this.assets.vector, template = this.assets.placement('mcDosa'), bounds = art?.frameBounds(472, pose);
+        if (!art || !template || !bounds)
+            return Promise.resolve();
+        return this.prepareDrawing(width, height, cssWidth, cssHeight, String(pose), bounds, template.matrix, ctx => art.draw(ctx, 472, { ...template.matrix, tx: 0, ty: 0 }, pose));
+    }
+    prepareDrawing(width, height, cssWidth, cssHeight, contentKey, bounds, matrix, draw) {
+        const key = `${width}:${height}:${cssWidth}:${cssHeight}:${contentKey}`;
+        if (key === this.key)
+            return this.pending;
+        this.reset();
+        this.key = key;
+        const generation = this.generation;
+        this.pending = (async () => {
+            if (typeof CSS === 'undefined')
+                return;
+            const g = cursorGeometry(bounds, matrix, width, height, cssWidth, cssHeight);
+            if (!g.supported)
+                return;
+            const surface = document.createElement('canvas');
+            surface.width = g.pixelsWide;
+            surface.height = g.pixelsHigh;
+            let blob = null;
+            try {
+                const ctx = surface.getContext('2d');
+                ctx.setTransform(g.sx, 0, 0, g.sy, -g.left, -g.top);
+                draw(ctx);
+                // PNG encoding can be costly at pickup. Keep the Canvas fallback live
+                // while the browser encodes asynchronously, then decode before swapping.
+                blob = await new Promise(resolve => surface.toBlob(resolve));
+            }
+            finally {
+                surface.width = surface.height = 0;
+            }
+            if (!blob || generation !== this.generation)
+                return;
+            const url = URL.createObjectURL(blob);
+            let retained = false;
+            try {
+                const cursor = `image-set(url("${url}") ${g.density}x) ${g.hotspotX} ${g.hotspotY}, auto`;
+                if (!CSS.supports('cursor', cursor))
+                    return;
+                const image = new Image();
+                image.src = url;
+                await image.decode();
+                if (generation === this.generation) {
+                    this.cursor = cursor;
+                    this.blobUrl = url;
+                    this.encodedBytes = blob.size + cursor.length * 2;
+                    retained = true;
+                }
+            }
+            finally {
+                if (!retained)
+                    URL.revokeObjectURL(url);
+            }
+        })().catch(() => { });
+        return this.pending;
+    }
+}
+exports.CarryCursor = CarryCursor;
 
 },{}],
 "src/audio/audio.js":[function(module,exports,require){
@@ -2863,6 +3167,7 @@ exports.connectPointer = connectPointer;
 function connectPointer(renderer, dispatch, activate) {
     const canvas = renderer.canvas;
     const point = (event) => {
+        renderer.pointerType = event.pointerType || 'mouse';
         const rect = canvas.getBoundingClientRect();
         return { x: (event.clientX - rect.left) * 550 / rect.width, y: (event.clientY - rect.top) * 400 / rect.height };
     };
@@ -3061,7 +3366,7 @@ function createPerformanceHud(canvas, readMemory, readRenderer) {
             }
             try {
                 const value = readMemory();
-                write(managed, `Managed memory: tiles ${memoryText(value.tiles)} · pool ${memoryText(value.pool)} · scene ${memoryText(value.scene ?? 0)} · filter backing ${memoryText(value.filters)} · decoded audio ${memoryText(value.audio)}`);
+                write(managed, `Managed memory: tiles ${memoryText(value.tiles)} · pool ${memoryText(value.pool)} · scene ${memoryText(value.scene ?? 0)} · cursor data ${memoryText(value.cursor ?? 0)} · filter backing ${memoryText(value.filters)} · decoded audio ${memoryText(value.audio)}`);
             }
             catch {
                 write(managed, 'Managed memory: unavailable');

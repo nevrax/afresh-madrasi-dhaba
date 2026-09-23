@@ -1,0 +1,72 @@
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {mkdir,writeFile} from 'node:fs/promises';
+import path from 'node:path';
+import {chromeExecutablePath} from './browser-path.mjs';
+const root=path.resolve(import.meta.dirname,'..'),output=path.join(root,'.local-setup/logs/carry-cursor-check');await mkdir(output,{recursive:true});
+const {chromium}=createRequire(import.meta.url)(path.join(root,'.local-setup/playwright/node_modules/playwright'));
+const context=await chromium.launchPersistentContext(path.join(root,'.local-setup/playwright-batter-cursor-check'),{executablePath:chromeExecutablePath(),headless:false,chromiumSandbox:true,viewport:{width:1480,height:1000},deviceScaleFactor:2});
+try{
+  const page=context.pages()[0];await page.goto('http://127.0.0.1:5173/development/verification/render-fixture.html');
+  const result=await page.evaluate(async()=>{
+    const {Assets}=await import('/build/modules/src/render/assets.js'),{Renderer}=await import('/build/modules/src/render/renderer.js'),{createGame}=await import('/build/modules/src/core/game.js'),{cursorGeometry}=await import('/build/modules/src/render/carry-cursor.js');
+    const canvas=document.querySelector('canvas');canvas.style.width='1100px';canvas.style.height='800px';
+    const assets=new Assets();await assets.load();const renderer=new Renderer(canvas,assets);await renderer.load();renderer.setPresentation('extra');
+    await new Promise(requestAnimationFrame);await renderer.prepare();
+    const game=createGame({random:()=>0});game.dispatch({type:'start'});game.dispatch({type:'play'});game.dispatch({type:'pick-batter'});game.dispatch({type:'move-pointer',x:275,y:335});
+    renderer.draw(game.state);
+    const nativeActive=renderer.batterCursor.active,cursor=canvas.style.cursor,url=/url\("([^"]+)"\)/.exec(cursor)?.[1];if(!url)throw Error('Cursor image missing');
+    const dataUrl=async url=>new Promise(async(resolve,reject)=>{try{const blob=await(await fetch(url)).blob(),reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(blob);}catch(error){reject(error);}});
+    const batterData=await dataUrl(url);
+    const image=new Image();image.src=url;await image.decode();
+    const m=assets.placement('mcDosa').matrix,g=cursorGeometry(assets.vector.frameBounds(472),m,canvas.width,canvas.height,1100,800);
+    const original=document.createElement('canvas'),decoded=document.createElement('canvas');
+    original.width=decoded.width=g.pixelsWide;original.height=decoded.height=g.pixelsHigh;
+    const ctx=original.getContext('2d');ctx.setTransform(g.sx,0,0,g.sy,-g.left,-g.top);assets.vector.draw(ctx,472,{...m,tx:0,ty:0},1);
+    decoded.getContext('2d').drawImage(image,0,0);
+    const a=ctx.getImageData(0,0,g.pixelsWide,g.pixelsHigh).data,b=decoded.getContext('2d').getImageData(0,0,g.pixelsWide,g.pixelsHigh).data;
+    let maxPremultipliedDelta=0,opaquePixels=0;for(let i=0;i<a.length;i+=4){opaquePixels+=Number(b[i+3]>0);maxPremultipliedDelta=Math.max(maxPremultipliedDelta,Math.abs(a[i+3]-b[i+3]));for(let c=0;c<3;c++)maxPremultipliedDelta=Math.max(maxPremultipliedDelta,Math.abs(a[i+c]*a[i+3]/255-b[i+c]*b[i+3]/255));}
+    const hits=JSON.stringify(renderer.hits);renderer.pointerType='touch';renderer.draw(game.state);
+    const touchFallback=!renderer.batterCursor.active&&!canvas.style.cursor&&JSON.stringify(renderer.hits)===hits;
+    renderer.pointerType='mouse';renderer.draw(game.state);const restored=renderer.batterCursor.active;
+    renderer.setPresentation('classic');renderer.draw(game.state);const classicFallback=!renderer.batterCursor.active&&!canvas.style.cursor;
+    renderer.setPresentation('extra');const supported=CSS.supports;CSS.supports=()=>false;await renderer.prepare();renderer.draw(game.state);const unsupportedFallback=!renderer.batterCursor.active&&!canvas.style.cursor;CSS.supports=supported;
+    renderer.setPresentation('extra');await renderer.prepare();
+    game.dispatch({type:'click-slot',slot:0});game.advance(6000);game.dispatch({type:'click-slot',slot:0});game.advance(3100);game.dispatch({type:'click-slot',slot:0});
+    if(game.state.pointer.mode!=='dosa')throw Error('Food carry setup failed');
+    renderer.draw(game.state);await renderer.carriedDosaCursor.prepare(canvas.width,canvas.height,1100,800,game.state.food[0].pose);renderer.draw(game.state);
+    const dosaActive=renderer.carriedDosaCursor.active,dosaCursor=canvas.style.cursor,dosaUrl=/url\("([^"]+)"\)/.exec(dosaCursor)?.[1];if(!dosaUrl)throw Error('Dosa cursor image missing');
+    const dosaData=await dataUrl(dosaUrl),dosaImage=new Image();dosaImage.src=dosaUrl;await dosaImage.decode();
+    const heldPose=game.state.food[0].pose,foodGeometry=cursorGeometry(assets.vector.frameBounds(472,heldPose),m,canvas.width,canvas.height,1100,800);
+    original.width=decoded.width=foodGeometry.pixelsWide;original.height=decoded.height=foodGeometry.pixelsHigh;
+    ctx.setTransform(foodGeometry.sx,0,0,foodGeometry.sy,-foodGeometry.left,-foodGeometry.top);assets.vector.draw(ctx,472,{...m,tx:0,ty:0},heldPose);decoded.getContext('2d').drawImage(dosaImage,0,0);
+    const fa=ctx.getImageData(0,0,original.width,original.height).data,fb=decoded.getContext('2d').getImageData(0,0,decoded.width,decoded.height).data;
+    let foodDelta=0;for(let i=0;i<fa.length;i+=4){foodDelta=Math.max(foodDelta,Math.abs(fa[i+3]-fb[i+3]));for(let k=0;k<3;k++)foodDelta=Math.max(foodDelta,Math.abs(fa[i+k]*fa[i+3]/255-fb[i+k]*fb[i+3]/255));}
+    const coreSmoke=game.state.food[0].smokePose;game.advance(100);renderer.draw(game.state);const staticPreviewLiveClock=canvas.style.cursor===dosaCursor&&game.state.food[0].smokePose!==coreSmoke;
+    renderer.pointerType='touch';renderer.draw(game.state);const dosaTouchFallback=!renderer.carriedDosaCursor.active&&!canvas.style.cursor;
+    renderer.pointerType='mouse';renderer.draw(game.state);renderer.setPresentation('classic');renderer.draw(game.state);const dosaClassicFallback=!renderer.carriedDosaCursor.active&&!canvas.style.cursor;
+    renderer.setPresentation('extra');await renderer.prepare();renderer.draw(game.state);await renderer.carriedDosaCursor.prepare(canvas.width,canvas.height,1100,800,heldPose);renderer.draw(game.state);
+    game.dispatch({type:'click-plate'});game.dispatch({type:'click-plate'});game.dispatch({type:'move-pointer',x:290,y:280});renderer.draw(game.state);
+    for(let tries=0;tries<60&&!renderer.carriedPlateCursor.active;tries++){await new Promise(requestAnimationFrame);renderer.draw(game.state);}
+    const plateActive=renderer.carriedPlateCursor.active,plateUrl=/url\("([^"]+)"\)/.exec(canvas.style.cursor)?.[1];if(!plateUrl)throw Error('Plate cursor image missing');
+    const plateData=await dataUrl(plateUrl),plateImage=new Image();plateImage.src=plateUrl;await plateImage.decode();
+    game.dispatch({type:'move-pointer',x:305,y:281});renderer.draw(game.state);
+    const livePlateHit=renderer.hits.find(h=>h.command.type==='click-plate').matrix;
+    const retainedPlateMove=!renderer.lastDrawPainted&&livePlateHit.tx===game.state.platePosition.x&&livePlateHit.ty===game.state.platePosition.y;
+    renderer.pointerType='touch';renderer.draw(game.state);const plateTouchFallback=!renderer.carriedPlateCursor.active&&!canvas.style.cursor;
+    renderer.pointerType='mouse';renderer.draw(game.state);renderer.setPresentation('classic');renderer.draw(game.state);const plateClassicFallback=!renderer.carriedPlateCursor.active&&!canvas.style.cursor;
+    renderer.setPresentation('extra');await renderer.prepare();renderer.draw(game.state);
+    game.dispatch({type:'background'});game.dispatch({type:'pick-batter'});renderer.draw(game.state);
+    const switchedBack=renderer.batterCursor.active&&!renderer.carriedDosaCursor.active&&canvas.style.cursor.includes('image-set');
+    return {nativeActive,geometry:g,image:[image.naturalWidth,image.naturalHeight],opaquePixels,maxPremultipliedDelta,touchFallback,restored,classicFallback,unsupportedFallback,url:batterData,dosaUrl:dosaData,plateUrl:plateData,dosa:{active:dosaActive,geometry:foodGeometry,maxPremultipliedDelta:foodDelta,staticPreviewLiveClock,touchFallback:dosaTouchFallback,classicFallback:dosaClassicFallback,switchedBack},plate:{active:plateActive,image:[plateImage.naturalWidth,plateImage.naturalHeight],retainedPlateMove,touchFallback:plateTouchFallback,classicFallback:plateClassicFallback}};
+  });
+  await writeFile(path.join(output,'cursor.png'),Buffer.from(result.url.split(',')[1],'base64'));delete result.url;
+  await writeFile(path.join(output,'dosa-cursor.png'),Buffer.from(result.dosaUrl.split(',')[1],'base64'));delete result.dosaUrl;
+  await writeFile(path.join(output,'plate-cursor.png'),Buffer.from(result.plateUrl.split(',')[1],'base64'));delete result.plateUrl;
+  await writeFile(path.join(output,'results.json'),JSON.stringify(result,null,2));
+  assert(result.nativeActive&&result.restored&&result.touchFallback&&result.classicFallback&&result.unsupportedFallback);
+  assert(result.opaquePixels>0&&result.maxPremultipliedDelta<=1.01);assert(result.geometry.cssWide<=64&&result.geometry.cssHigh<=64);
+  assert(result.dosa.active&&result.dosa.staticPreviewLiveClock&&result.dosa.touchFallback&&result.dosa.classicFallback&&result.dosa.switchedBack&&result.dosa.maxPremultipliedDelta<=1.01);
+  assert(result.plate.active&&result.plate.retainedPlateMove&&result.plate.touchFallback&&result.plate.classicFallback);
+  console.log(JSON.stringify(result));
+}finally{await context.close();}

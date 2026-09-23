@@ -46,7 +46,7 @@ test('one-second window reports measured rates, p95, one-core work and separate 
   assert.match(ui.text(), /simulation 2\.00 · render 3\.00 · audio 1\.00 · snapshot 1\.00/);
   assert.match(ui.text(), /HUD self-work: 0\.490 ms \/ 49 completed samples \(0\.010 ms\/sample\)/);
   assert.match(ui.text(), /JS heap: 10\.0 MiB used \/ 20\.0 MiB allocated \(shared, approximate\)/);
-  assert.match(ui.text(), /tiles 2\.0 MiB · pool 1\.0 MiB · scene 5\.0 MiB · filter backing 3\.0 MiB · decoded audio 4\.0 MiB/);
+  assert.match(ui.text(), /tiles 2\.0 MiB · pool 1\.0 MiB · scene 5\.0 MiB · cursor data 0\.0 MiB · filter backing 3\.0 MiB · decoded audio 4\.0 MiB/);
   assert.match(ui.text(), /not total CPU/); assert.match(ui.text(), /not process RAM or VRAM/);
   const rendered = ui.counts.writes;
   for (let i = 51; i < 100; i++) ui.sample(i * 20);

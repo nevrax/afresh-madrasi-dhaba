@@ -1,5 +1,14 @@
 # Native implementation verification
 
+## Current performance release
+
+131 automated tests, 588 exact Canvas/hit comparisons and 90 independent-cache
+preparation comparisons pass. Visible Intel/NVIDIA checks cover source, site
+and direct-file standalone, including cooking, cursor fallbacks, profile swaps,
+resize, fullscreen and emulated touch. Both distributions are rebuilt. Physical
+Pi full-day and actual-loss measurements are in [performance-stalls.md](performance-stalls.md);
+that report preserves limitations and supersedes older performance checkpoints.
+
 ## Single setup and game-only distribution
 
 DIST-2/SETUP-1 replace the prior game/catalogue package described below. Only the game is distributed: site/index.html + game.js + resources.js + styles.css (7,957,002 bytes), or standalone/index.html (7,956,923 bytes). Development catalogue/verification source is outside dist, and intermediate modules live in .local-setup/build. The player pack retains exact original vectors, eight required composition timelines, symbol metadata, fonts and sounds; catalogue exports and diagnostic code are excluded.

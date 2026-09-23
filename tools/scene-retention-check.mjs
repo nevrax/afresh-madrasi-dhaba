@@ -17,6 +17,9 @@ try{
   const ctx=canvas.getContext('2d',{alpha:false,willReadFrequently:true}),ref=reference.getContext('2d',{alpha:false,willReadFrequently:true});
   const assets=new Assets();await assets.load();const renderer=new Renderer(canvas,assets),baseline=new Renderer(reference,assets);await Promise.all([renderer.load(),baseline.load()]);await document.fonts.ready;baseline.diagnosticFullSceneRedraw=true;
   renderer.diagnosticFullFrameRedraw=unchanged&&!production;
+  // Native mouse cursors are outside Canvas screenshots. Compare the complete
+  // Canvas fallback here; carry-cursor-check verifies the decoded cursor images.
+  renderer.pointerType=baseline.pointerType='touch';
   const reuse=production?renderer.frameCounts:unchanged?(await import('/development/verification/unchanged-frame-experiment.js')).unchangedFrames(renderer):null;
   if(dirty)(await import('/development/verification/dirty-scene-experiment.js')).dirtyScene(renderer);
   const layerExperiment=layers?(await import('/development/verification/scene-layers-experiment.js')).retainSceneLayers(renderer):null;
@@ -44,6 +47,28 @@ try{
    }
   }
   if(unchanged){
+    // Exercise terminal invalidation without changing the authored animation tick:
+    // score form, button hover/press and time within/between 12 Hz source frames.
+    renderer.setPresentation('extra');baseline.setPresentation('extra');
+    for(const screen of ['day-result','game-over']){
+      const state=fixture();state.screen=screen;state.tutorial.visible=false;state.timeMs=16000;
+      for(const r of [renderer,baseline])r.events([{type:'screen',screen}],state);
+      const placements=assets.scenes.find(s=>s.frame===(screen==='game-over'?6:7)).instances;
+      const buttons=placements.filter(p=>assets.symbols.get(p.symbolId)?.kind==='button');
+      const points=[{x:0,y:0},...buttons.map(p=>{const b=assets.symbols.get(p.symbolId).bounds,x=b.x+b.width/2,y=b.y+b.height/2,m=p.matrix;return{x:m.a*x+m.c*y+m.tx,y:m.b*x+m.d*y+m.ty};})];
+      for(const point of points)for(const visible of [true,false])for(const pressed of [false,true])for(const offset of [0,1,84]){
+        state.pointer={...state.pointer,...point};state.timeMs=16000+offset;
+        baseline.scoreFormVisible=renderer.scoreFormVisible=visible;
+        baseline.draw(state);
+        const command=baseline.hits.find(h=>assets.contains(h.id,h.matrix,point.x,point.y,true,4))?.command;
+        baseline.pressedCommand=renderer.pressedCommand=pressed?JSON.stringify(command):'';
+        baseline.draw(state);renderer.draw(state);renderer.draw(state);
+        const expected=ref.getImageData(0,0,reference.width,reference.height).data,actual=ctx.getImageData(0,0,canvas.width,canvas.height).data;let different=0,maxDelta=0;
+        for(let i=0;i<actual.length;i++){const d=Math.abs(actual[i]-expected[i]);if(d)different++;maxDelta=Math.max(maxDelta,d);}
+        checks.push({width:canvas.width,profile:'extra',screen,scenario:'terminal-invalidation',point,visible,pressed,offset,different,maxDelta,hitsEqual:JSON.stringify(renderer.hits)===JSON.stringify(baseline.hits),cacheBytes:renderer.sceneCacheBytes});
+      }
+    }
+    renderer.scoreFormVisible=baseline.scoreFormVisible=true;renderer.pressedCommand=baseline.pressedCommand='';
     const {createGame}=await import('/build/modules/src/core/game.js');const game=createGame({random:()=>0});
     renderer.setPresentation('extra');baseline.setPresentation('extra');
     const events=value=>{for(const r of [renderer,baseline])r.events(value,game.state);};
