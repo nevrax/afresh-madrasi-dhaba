@@ -19,12 +19,12 @@ export async function checkGameUi(context,output,url='http://127.0.0.1:5173/'){
  const point=async(x,y)=>{const b=await stage.boundingBox();return {x:b.x+x/550*b.width,y:b.y+y/400*b.height};};
  const bowl=await point(529,328);await page.mouse.move(bowl.x,bowl.y);await page.locator('#batter-cue').waitFor({state:'visible'});await page.mouse.click(bowl.x,bowl.y);
  await page.waitForFunction(()=>document.querySelector('#hint').textContent.includes('empty spot'));
- await page.waitForFunction(()=>document.querySelector('#game').style.cursor.includes('image-set'));
+ await page.locator('[data-batter-preview]').waitFor({state:'visible'});
  await page.locator('#presentation-profile').selectOption('classic');
  await page.waitForFunction(()=>document.querySelector('#game').style.cursor==='');
  await page.locator('#presentation-profile').selectOption('extra');
- await page.waitForFunction(()=>document.querySelector('#game').style.cursor.includes('image-set'));
- checks.push({name:'compact mouse cursor and live Classic fallback',passed:true});
+ await page.locator('[data-batter-preview]').waitFor({state:'visible'});
+ checks.push({name:'full-size batter preview and live Classic fallback',passed:true});
  checks.push({name:'batter click changes pointer mode',passed:true});
  checks.push({name:'audio gesture accepted',promptHidden:await page.locator('#enable-audio').isHidden()});
  for(let i=0;i<60;i++){const p=await point(15+i*8.5,320+Math.sin(i)*40);await page.mouse.move(p.x,p.y);}

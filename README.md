@@ -21,7 +21,7 @@ The whole game lives in that one file and plays offline in your browser. Nothing
 
 Click **Start**, then follow the instructions in the game. Select the batter, pour onto an empty griddle spot, flip when ready, and plate your dosas before serving the waiting customers. Keep an eye on their patience!
 
-Choose **Classic** for the original effects or **Extra** for lighter effects and helpful cooking cues. You can switch above the game without restarting your day. Extra also includes the fullscreen button. If the radio is quiet, click inside the game to enable sound.
+Choose **Classic** for the original effects or **Optimized** for lighter effects and helpful cooking cues. You can switch above the game without restarting your day. Optimized also includes the fullscreen button. If the radio is quiet, click inside the game to enable sound.
 
 <p align="center">
   <a href="docs/media/dosas-on-the-griddle.jpg"><img src="docs/media/dosas-on-the-griddle.jpg" width="360" alt="Live gameplay: three customers and four dosas at different cooking stages, with plenty of space on the griddle."></a>

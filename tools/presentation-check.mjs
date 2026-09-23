@@ -54,6 +54,7 @@ try {
       await page.evaluate(()=>{for(const key of ['madrasi-presentation','madrasi-display','madrasi-display-extra','madrasi-batter-hint-seen'])localStorage.removeItem(key);});
       await page.reload();await page.locator('#loading').waitFor({state:'hidden'});
       assert.equal(await page.locator('#presentation-profile').inputValue(),'');
+      assert.deepEqual(await page.locator('#presentation-profile option').allTextContents(),['Choose profile','Classic','Optimized']);
       assert.equal(await page.locator('html').getAttribute('data-presentation'),'current');
       await select('classic');assert(await page.locator('#app-menu').isHidden());assert(await page.locator('#fullscreen').isHidden());
       await control('Start');await control('How to play');await page.getByRole('button',{name:'Skip tutorial',exact:true}).waitFor();await control('Skip tutorial');
@@ -62,15 +63,16 @@ try {
       await select('extra');await point(529,328);await page.locator('#batter-cue').waitFor({state:'visible'});
       assert(await page.locator('#performance-hud').isHidden());
       await point(529,328,true);await page.waitForFunction(()=>document.querySelector('#hint').textContent.includes('empty spot'));
-      await page.waitForFunction(()=>document.querySelector('#game').style.cursor.includes('image-set'));
-      await select('classic');assert.equal(await page.locator('#game').evaluate(c=>c.style.cursor),'');
-      await select('extra');await page.waitForFunction(()=>document.querySelector('#game').style.cursor.includes('image-set'));
-      const initialCursor=await page.locator('#game').evaluate(c=>c.style.cursor);
+      await page.locator('[data-batter-preview]').waitFor({state:'visible'});
+      await select('classic');assert.equal(await page.locator('#game').evaluate(c=>c.style.cursor),'');assert(await page.locator('[data-batter-preview]').isHidden());
+      await select('extra');await page.locator('[data-batter-preview]').waitFor({state:'visible'});
+      const previewSize=()=>page.locator('[data-batter-preview] canvas').evaluate(c=>({width:c.width,css:c.getBoundingClientRect().width}));
+      const initialCursor=await previewSize();
       await page.setViewportSize({width:800,height:640});
-      await page.waitForFunction(old=>{const c=document.querySelector('#game');return c.style.cursor.includes('image-set')&&c.style.cursor!==old;},initialCursor);
-      const resizedCursor=await page.locator('#game').evaluate(c=>c.style.cursor);
+      await page.waitForFunction(old=>document.querySelector('[data-batter-preview] canvas').width!==old,initialCursor.width);
       await page.setViewportSize({width:1480,height:1000});
-      await page.waitForFunction(old=>{const c=document.querySelector('#game');return c.style.cursor.includes('image-set')&&c.style.cursor!==old;},resizedCursor);
+      await page.waitForFunction(old=>document.querySelector('[data-batter-preview] canvas').width===old,initialCursor.width);
+      assert(Math.abs((await previewSize()).css-initialCursor.css)<.1);
       await point(124.5,332.45,true);
       if(kind==='source')await page.waitForFunction(()=>window.__profileState.food.some(Boolean));
       else await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
@@ -106,7 +108,7 @@ try {
       await touchSession.send('Emulation.setTouchEmulationEnabled',{enabled:false});await touchSession.detach();
       await page.setViewportSize({width:1480,height:1000});
       assert(await page.locator('#resource-status').isHidden());
-      results.push({kind,status:'PASS',checks:['no implicit default','explicit profiles','tutorial and cooking','live profile swaps','native batter cursor and Classic fallback','active cursor resize and restore','flip, native carried dosa, plating and carried plate cancellation','guidance gating','dismissal preserved','display settings isolated','reload persistence','fullscreen exit after switch','responsive layout','emulated touch and Canvas fallback in both profiles'],sourceStatePreserved:!!before});
+      results.push({kind,status:'PASS',checks:['no implicit default','explicit profiles','tutorial and cooking','live profile swaps','full-size batter preview and Classic fallback','active cursor resize and restore','flip, native carried dosa, plating and carried plate cancellation','guidance gating','dismissal preserved','display settings isolated','reload persistence','fullscreen exit after switch','responsive layout','emulated touch and Canvas fallback in both profiles'],sourceStatePreserved:!!before});
       console.log(JSON.stringify(results.at(-1)));
     }
     // Browser storage can be unavailable for direct-file playback.

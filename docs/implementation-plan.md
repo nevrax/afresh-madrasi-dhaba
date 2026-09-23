@@ -2,7 +2,13 @@
 
 This is the persistent work plan. Update task checkboxes only when the stated evidence exists. Record the current task, evidence, unresolved questions and next action in [task-status.md](task-status.md) before handing work over or ending an implementation session.
 
-Current checkpoint: [performance-stalls.md](performance-stalls.md) records the
+Current checkpoint: Classic / Optimized labels and the full-size ladle are
+implemented. The original pouring scale is preserved using a separate retained
+surface. See [batter-scale.md](batter-scale.md). PERF-26 is reopened because
+continuous full-size movement costs more on Pi than the previous compact cursor.
+The earlier acceptance figures below describe the compact-cursor release.
+
+Previous checkpoint: [performance-stalls.md](performance-stalls.md) records the
 completed preparation, carried-pointer and terminal-frame work in Extra.
 Final Extra full days at 2200 × 1600 reach 59.99 / 59.99 callback/s on Pi A / B,
 with warmed CPU 32.86 / 29.55% of one core. Maximum gaps are 50.00 / 33.30 ms;

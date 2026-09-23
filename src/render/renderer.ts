@@ -4,6 +4,7 @@ import { transformedBounds, type VectorArt, type VectorPlacement } from './vecto
 import { resourceJson } from './resources.js';
 import { resolvePresentation, type PresentationChoice } from '../presentation-profile.js';
 import { CarryCursor } from './carry-cursor.js';
+import { BatterPreview } from './batter-preview.js';
 
 export type RenderGroup = 'background'|'griddle-steam'|'traffic'|'customers'|'radio'|'other'|'food'|'dosa-steam';
 export interface HitTarget { label: string; command: Command; id: number; matrix: Matrix; pixel?: boolean; frame?: number }
@@ -37,7 +38,7 @@ export class Renderer {
   }
   renderScale = 1;
   pointerType='mouse';
-  readonly batterCursor:CarryCursor;
+  readonly batterCursor:BatterPreview;
   readonly carriedDosaCursor:CarryCursor;
   readonly carriedPlateCursor:CarryCursor;
   get cursorDataBytes():number{return this.batterCursor.memoryBytes+this.carriedDosaCursor.memoryBytes+this.carriedPlateCursor.memoryBytes;}
@@ -90,7 +91,7 @@ export class Renderer {
   foodCursor:'flip'|'pickup'|''='';
   private feedback: { time: number; amount: number; table: number | null; x: number; y: number }[] = [];
   constructor(readonly canvas: HTMLCanvasElement, readonly assets: Assets) {
-    this.batterCursor=new CarryCursor(canvas,assets);
+    this.batterCursor=new BatterPreview(canvas,assets);
     this.carriedDosaCursor=new CarryCursor(canvas,assets);
     this.carriedPlateCursor=new CarryCursor(canvas,assets);
     // Every frame covers the stage opaquely, so the browser need not composite an alpha channel.
@@ -252,12 +253,11 @@ export class Renderer {
     }
   }
   draw(s: Readonly<GameState>): void {
-    const nativeBatter=this.presentation.retainScene&&this.pointerType==='mouse'&&s.screen==='playing'&&!s.tutorial.visible&&s.pointer.mode==='batter'&&s.batterTemplate.available;
-    if(nativeBatter){
+    const layeredBatter=this.presentation.retainScene&&this.pointerType==='mouse'&&s.screen==='playing'&&!s.tutorial.visible&&s.pointer.mode==='batter'&&s.batterTemplate.available;
+    if(layeredBatter){
       const ratio=Math.min(devicePixelRatio||1,3);
       void this.batterCursor.prepare(Math.max(1,Math.round(this.displayWidth*ratio*this.renderScale)),Math.max(1,Math.round(this.displayHeight*ratio*this.renderScale)),this.displayWidth,this.displayHeight);
     }
-    this.batterCursor.show(nativeBatter);
     const held=s.pointer.heldSlot===null?null:s.food[s.pointer.heldSlot];
     const nativeDosa=this.presentation.retainScene&&this.pointerType==='mouse'&&s.screen==='playing'&&!s.tutorial.visible&&s.pointer.mode==='dosa'&&!!held?.held;
     if(nativeDosa){
@@ -268,6 +268,8 @@ export class Renderer {
     const nativePlate=this.presentation.retainScene&&this.pointerType==='mouse'&&s.screen==='playing'&&!s.tutorial.visible&&s.pointer.mode==='plate';
     if(nativePlate)this.preparePlateCursor(s);
     this.carriedPlateCursor.show(nativePlate);
+    this.batterCursor.show(layeredBatter);
+    this.batterCursor.move(s.pointer.x,s.pointer.y);
     if(this.carriedPlateCursor.active){
       // The retained image is independent of the cursor position, but the source
       // plate hit target must follow its live coordinates on every callback.

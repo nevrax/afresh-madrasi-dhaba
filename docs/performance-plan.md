@@ -4,7 +4,13 @@
 
 ### Refresh and visibility calibration
 
-- [x] PERF-26 Reduce carried-pointer repainting in Extra. Compact vector-derived
+- [ ] PERF-26 Follow up full-size batter preview performance. The profile is now
+  named Optimized. Restoring the ladle's original pouring scale replaces its
+  compact native cursor with a retained surface. The moving-ladle stress now
+  reaches 52.57 / 59.92 callback/s and 59.52% / 51.65% of one core; the combined
+  target is not met. Preserve the requested scale while investigating further
+  composition cost. See [batter-scale.md](batter-scale.md).
+  Previous compact-cursor acceptance: compact vector-derived
   mouse previews cover batter, dosa and plate. Async encoding, decoded-image
   fidelity, resize/profile switches, live plate hits and Classic/touch fallbacks
   pass. Held-object cases reach nominal 60 Hz on both Pi environments; final

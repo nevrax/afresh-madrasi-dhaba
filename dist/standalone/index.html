@@ -69,7 +69,7 @@ li span { float: right; color: #eac074; }
 </head>
 <body>
   <nav id="app-tools" aria-label="Display options">
-    <select id="presentation-profile" aria-label="Presentation profile" title="Presentation profile"><option value="" disabled>Choose profile</option><option value="classic">Classic</option><option value="extra">Extra</option></select>
+    <select id="presentation-profile" aria-label="Presentation profile" title="Presentation profile"><option value="" disabled>Choose profile</option><option value="classic">Classic</option><option value="extra">Optimized</option></select>
     <button id="enable-audio" type="button" aria-label="Enable sound" title="Click to enable sound" hidden>♫</button>
     <button id="fullscreen" type="button" aria-label="Enter fullscreen" title="Enter fullscreen">⛶</button>
     <button id="expand-game" type="button" aria-label="Expand game to window" title="Expand game to window" aria-pressed="false">↗</button>
@@ -2289,6 +2289,7 @@ const vector_js_1 = require("./vector.js");
 const resources_js_1 = require("./resources.js");
 const presentation_profile_js_1 = require("../presentation-profile.js");
 const carry_cursor_js_1 = require("./carry-cursor.js");
+const batter_preview_js_1 = require("./batter-preview.js");
 const screenFrame = { menu: 3, instructions: 4, playing: 5, 'game-over': 6, 'day-result': 7 };
 const wrappers = [413, 399, 400, 371, 385];
 // Shared with packaging so required player compositions cannot be dropped.
@@ -2389,7 +2390,7 @@ class Renderer {
     constructor(canvas, assets) {
         this.canvas = canvas;
         this.assets = assets;
-        this.batterCursor = new carry_cursor_js_1.CarryCursor(canvas, assets);
+        this.batterCursor = new batter_preview_js_1.BatterPreview(canvas, assets);
         this.carriedDosaCursor = new carry_cursor_js_1.CarryCursor(canvas, assets);
         this.carriedPlateCursor = new carry_cursor_js_1.CarryCursor(canvas, assets);
         // Every frame covers the stage opaquely, so the browser need not composite an alpha channel.
@@ -2620,12 +2621,11 @@ class Renderer {
         }
     }
     draw(s) {
-        const nativeBatter = this.presentation.retainScene && this.pointerType === 'mouse' && s.screen === 'playing' && !s.tutorial.visible && s.pointer.mode === 'batter' && s.batterTemplate.available;
-        if (nativeBatter) {
+        const layeredBatter = this.presentation.retainScene && this.pointerType === 'mouse' && s.screen === 'playing' && !s.tutorial.visible && s.pointer.mode === 'batter' && s.batterTemplate.available;
+        if (layeredBatter) {
             const ratio = Math.min(devicePixelRatio || 1, 3);
             void this.batterCursor.prepare(Math.max(1, Math.round(this.displayWidth * ratio * this.renderScale)), Math.max(1, Math.round(this.displayHeight * ratio * this.renderScale)), this.displayWidth, this.displayHeight);
         }
-        this.batterCursor.show(nativeBatter);
         const held = s.pointer.heldSlot === null ? null : s.food[s.pointer.heldSlot];
         const nativeDosa = this.presentation.retainScene && this.pointerType === 'mouse' && s.screen === 'playing' && !s.tutorial.visible && s.pointer.mode === 'dosa' && !!held?.held;
         if (nativeDosa) {
@@ -2637,6 +2637,8 @@ class Renderer {
         if (nativePlate)
             this.preparePlateCursor(s);
         this.carriedPlateCursor.show(nativePlate);
+        this.batterCursor.show(layeredBatter);
+        this.batterCursor.move(s.pointer.x, s.pointer.y);
         if (this.carriedPlateCursor.active) {
             // The retained image is independent of the cursor position, but the source
             // plate hit target must follow its live coordinates on every callback.
@@ -2988,7 +2990,7 @@ class Renderer {
 }
 exports.Renderer = Renderer;
 
-},{"./assets.js":"src/render/assets.js","./vector.js":"src/render/vector.js","./resources.js":"src/render/resources.js","../presentation-profile.js":"src/presentation-profile.js","./carry-cursor.js":"src/render/carry-cursor.js"}],
+},{"./assets.js":"src/render/assets.js","./vector.js":"src/render/vector.js","./resources.js":"src/render/resources.js","../presentation-profile.js":"src/presentation-profile.js","./carry-cursor.js":"src/render/carry-cursor.js","./batter-preview.js":"src/render/batter-preview.js"}],
 "src/presentation-profile.js":[function(module,exports,require){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -3037,14 +3039,14 @@ function cursorGeometry(b, m, width, height, cssWidth, cssHeight) {
     const sx = width / 550, sy = height / 400, left = Math.floor(Math.min(...xs) * sx) - 2, top = Math.floor(Math.min(...ys) * sy) - 2;
     const pixelsWide = Math.ceil(Math.max(...xs) * sx) - left + 2, pixelsHigh = Math.ceil(Math.max(...ys) * sy) - top + 2;
     const naturalWidth = pixelsWide * cssWidth / width, naturalHeight = pixelsHigh * cssHeight / height;
-    // Extra uses a compact carry cursor. Large authored hand artwork exceeds the
+    // Optimized uses a compact carry cursor. Large authored hand artwork exceeds the
     // browser's native cursor limit at full-window game sizes.
     const shrink = Math.min(1, 64 / naturalWidth, 64 / naturalHeight), cssWide = naturalWidth * shrink, cssHigh = naturalHeight * shrink;
     return { left, top, pixelsWide, pixelsHigh, cssWide, cssHigh, sx, sy,
         hotspotX: Math.round(-left * cssWidth / width * shrink), hotspotY: Math.round(-top * cssHeight / height * shrink), density: width / cssWidth / shrink,
         supported: Number.isFinite(shrink) && shrink > 0 && pixelsWide * pixelsHigh * 4 <= 4 * 1024 * 1024 && left <= 0 && top <= 0 && -left < pixelsWide && -top < pixelsHigh };
 }
-/** Extra's compact carried artwork follows the native mouse cursor instead of repainting
+/** Optimized's compact carried artwork follows the native mouse cursor instead of repainting
  * the restaurant. Touch and unsupported browsers keep Canvas drawing. */
 class CarryCursor {
     canvas;
@@ -3150,6 +3152,107 @@ class CarryCursor {
 exports.CarryCursor = CarryCursor;
 
 },{}],
+"src/render/batter-preview.js":[function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BatterPreview = void 0;
+const carry_cursor_js_1 = require("./carry-cursor.js");
+/** Keep the ladle at its authored scale without repainting the restaurant as it moves. */
+class BatterPreview {
+    canvas;
+    assets;
+    surface = null;
+    clip = null;
+    key = '';
+    geometry = null;
+    enabled = false;
+    cssWidth = 0;
+    cssHeight = 0;
+    width = 0;
+    height = 0;
+    get active() { return this.enabled; }
+    get memoryBytes() { return this.surface ? this.surface.width * this.surface.height * 4 : 0; }
+    constructor(canvas, assets) {
+        this.canvas = canvas;
+        this.assets = assets;
+    }
+    createLayer() {
+        if (this.surface)
+            return;
+        this.surface = document.createElement('canvas');
+        this.clip = document.createElement('div');
+        this.surface.width = this.surface.height = 0;
+        this.clip.dataset.batterPreview = '';
+        this.clip.hidden = true;
+        this.clip.setAttribute('aria-hidden', 'true');
+        Object.assign(this.clip.style, { position: 'fixed', overflow: 'hidden', pointerEvents: 'none', zIndex: '2' });
+        Object.assign(this.surface.style, { position: 'absolute', left: '0', top: '0', pointerEvents: 'none', willChange: 'transform' });
+        this.clip.append(this.surface);
+        this.canvas.parentElement?.append(this.clip);
+    }
+    reset() {
+        this.show(false);
+        this.key = '';
+        this.geometry = null;
+        if (this.surface)
+            this.surface.width = this.surface.height = 0;
+    }
+    async prepare(width, height, cssWidth, cssHeight) {
+        const key = `${width}:${height}:${cssWidth}:${cssHeight}`;
+        if (this.key === key)
+            return;
+        this.reset();
+        const art = this.assets.vector, template = this.assets.placement('mcDosa'), bounds = art?.frameBounds(472, 1);
+        if (!art || !template || !bounds)
+            return;
+        const g = (0, carry_cursor_js_1.cursorGeometry)(bounds, template.matrix, width, height, cssWidth, cssHeight);
+        if (!g.supported)
+            return;
+        this.createLayer();
+        const surface = this.surface;
+        surface.width = g.pixelsWide;
+        surface.height = g.pixelsHigh;
+        const ctx = surface.getContext('2d');
+        if (!ctx)
+            return;
+        ctx.setTransform(g.sx, 0, 0, g.sy, -g.left, -g.top);
+        art.draw(ctx, 472, { ...template.matrix, tx: 0, ty: 0 }, 1);
+        surface.style.width = g.pixelsWide * cssWidth / width + 'px';
+        surface.style.height = g.pixelsHigh * cssHeight / height + 'px';
+        this.geometry = g;
+        this.key = key;
+        this.width = width;
+        this.height = height;
+        this.cssWidth = cssWidth;
+        this.cssHeight = cssHeight;
+    }
+    show(requested) {
+        const enabled = requested && !!this.geometry;
+        if (enabled !== this.enabled) {
+            if (this.clip)
+                this.clip.hidden = !enabled;
+            if (enabled)
+                this.canvas.style.cursor = 'none';
+            else if (this.canvas.style.cursor === 'none')
+                this.canvas.style.cursor = '';
+            this.enabled = enabled;
+        }
+        return enabled;
+    }
+    move(x, y) {
+        if (!this.enabled || !this.geometry || !this.clip || !this.surface)
+            return;
+        const rect = this.canvas.getBoundingClientRect(), g = this.geometry;
+        this.clip.style.left = rect.left + 'px';
+        this.clip.style.top = rect.top + 'px';
+        this.clip.style.width = rect.width + 'px';
+        this.clip.style.height = rect.height + 'px';
+        this.surface.style.transform = `translate3d(${x * this.cssWidth / 550 + g.left * this.cssWidth / this.width}px,${y * this.cssHeight / 400 + g.top * this.cssHeight / this.height}px,0)`;
+    }
+}
+exports.BatterPreview = BatterPreview;
+
+},{"./carry-cursor.js":"src/render/carry-cursor.js"}],
 "src/audio/audio.js":[function(module,exports,require){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });

@@ -1,6 +1,25 @@
 # Task status
 
-## Current checkpoint: preparation, carrying and terminal repainting
+## Current checkpoint: profile labels and full-size ladle
+
+The selector now says Classic / Optimized. Saved `extra` preferences remain
+compatible. Optimized's batter ladle is rendered in a small separate surface at
+the authored pouring scale, instead of being shrunk into a native mouse cursor.
+The surface moves without repainting unchanged restaurant frames. Dosa and plate
+keep their previous native previews; Classic/touch rendering is unchanged.
+
+The full-size image matches its source pixels and original scale. All 131 tests
+pass. Both distributions are rebuilt; Intel and NVIDIA application/package checks
+pass for source, web and direct-file standalone, including resize and carrying.
+See [batter-scale.md](batter-scale.md).
+
+PERF-26 is reopened: the full-size moving-ladle stress reaches 52.57 / 59.92
+callback/s on Pi A / B, warm CPU 59.52% / 51.65% of one core. These do not meet
+the earlier combined cadence/CPU budget. The compact-ladle figures below are
+historical and must not be applied to this new path. No automatic clarity or
+profile reduction is introduced. PROF-7 default choice is still open.
+
+## Previous checkpoint: preparation, carrying and terminal repainting
 
 Final Extra full days at 2200 × 1600 reach 59.99 / 59.99 callback/s on Pi A / B,
 with warmed CPU 32.86 / 29.55% of one core. Maximum gaps are 50.00 / 33.30 ms;

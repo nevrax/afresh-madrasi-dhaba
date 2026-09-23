@@ -8,7 +8,7 @@ export function cursorGeometry(b:Bounds,m:Matrix,width:number,height:number,cssW
   const sx=width/550,sy=height/400,left=Math.floor(Math.min(...xs)*sx)-2,top=Math.floor(Math.min(...ys)*sy)-2;
   const pixelsWide=Math.ceil(Math.max(...xs)*sx)-left+2,pixelsHigh=Math.ceil(Math.max(...ys)*sy)-top+2;
   const naturalWidth=pixelsWide*cssWidth/width,naturalHeight=pixelsHigh*cssHeight/height;
-  // Extra uses a compact carry cursor. Large authored hand artwork exceeds the
+  // Optimized uses a compact carry cursor. Large authored hand artwork exceeds the
   // browser's native cursor limit at full-window game sizes.
   const shrink=Math.min(1,64/naturalWidth,64/naturalHeight),cssWide=naturalWidth*shrink,cssHigh=naturalHeight*shrink;
   return {left,top,pixelsWide,pixelsHigh,cssWide,cssHigh,sx,sy,
@@ -16,7 +16,7 @@ export function cursorGeometry(b:Bounds,m:Matrix,width:number,height:number,cssW
     supported:Number.isFinite(shrink)&&shrink>0&&pixelsWide*pixelsHigh*4<=4*1024*1024&&left<=0&&top<=0&&-left<pixelsWide&&-top<pixelsHigh};
 }
 
-/** Extra's compact carried artwork follows the native mouse cursor instead of repainting
+/** Optimized's compact carried artwork follows the native mouse cursor instead of repainting
  * the restaurant. Touch and unsupported browsers keep Canvas drawing. */
 export class CarryCursor {
   private key='';

@@ -1,5 +1,10 @@
 # Frame pauses and pointer rendering
 
+This report describes the compact-ladle checkpoint. The profile is now named
+Optimized and the ladle has returned to its original pouring scale; see
+[the full-size follow-up](batter-scale.md) for the newer carrying measurements
+and reopened performance target. Other results below remain historical evidence.
+
 The continuing investigation separates game work from browser presentation waits.
 The source game implementation is complete; performance acceptance is tracked
 separately in [the performance plan](performance-plan.md).
