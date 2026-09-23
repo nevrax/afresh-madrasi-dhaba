@@ -477,7 +477,7 @@ export class Renderer {
     }
     for (const dosa of s.food) {
       if (!dosa) continue;
-      // Extra's compact native preview holds the picked pose, including steam.
+      // Optimized's compact native preview holds the picked pose, including steam.
       // The core's independent smoke clock continues for placement/fallback.
       if(dosa.held&&this.carriedDosaCursor.active)continue;
       const holder = this.assets.placement(`dosaHolder${dosa.slot}`); if (!holder) continue;

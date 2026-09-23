@@ -1,25 +1,30 @@
 # Frame pauses and pointer rendering
 
+> Historical study for the implementation and workload recorded below. Its
+> measurements are not current-release guarantees. Start with the
+> [current performance summary](../README.md).
+
+
 This report describes the compact-ladle checkpoint. The profile is now named
 Optimized and the ladle has returned to its original pouring scale; see
-[the full-size follow-up](batter-scale.md) for the newer carrying measurements
+[the full-size follow-up](../README.md) for the newer carrying measurements
 and reopened performance target. Other results below remain historical evidence.
 
 The continuing investigation separates game work from browser presentation waits.
 The source game implementation is complete; performance acceptance is tracked
-separately in [the performance plan](performance-plan.md).
+separately in [the performance plan](../../planning/performance-plan.md).
 
 ## Cost ranking and implementation
 
 | Priority | Measured source of work | Treatment |
 | --- | --- | --- |
-| 1 | Repainting/composing a large Canvas on every callback, including unchanged scenery and terminal screens | Extra retains scenery and complete unchanged frames, including Game over and day result; original clocks and input remain live |
-| 2 | Moving carried artwork invalidates the whole stage between authored poses | Extra uses compact native previews for batter, picked dosa and the carried plate |
+| 1 | Repainting/composing a large Canvas on every callback, including unchanged scenery and terminal screens | Optimized retains scenery and complete unchanged frames, including Game over and day result; original clocks and input remain live |
+| 2 | Moving carried artwork invalidates the whole stage between authored poses | Optimized uses compact native previews for batter, picked dosa and the carried plate |
 | 3 | First-use cooking/filter surfaces, including changing food shadows and steam | Prepare one normal cooking cycle under the existing cache limit before the cooking clock starts |
-| 4 | Large griddle blur and decorative background work | The previously measured Extra treatments remain; additional blanket animation removals are not justified |
+| 4 | Large griddle blur and decorative background work | The previously measured Optimized treatments remain; additional blanket animation removals are not justified |
 | 5 | Decoded soundtrack memory | About 86 MiB is retained for reuse; audio removal does not eliminate the cold frame pauses |
 
-The [component study](performance-components.md) and [whole-pipeline study](performance-pipeline.md)
+The [component study](components.md) and [whole-pipeline study](pipeline.md)
 also cover customers, glasses, traffic, radio, text, hit testing, snapshots,
 allocation and filter backends. Small decorative omissions do not explain the
 large gain from avoiding repeated stage composition. CPU spent in a graphics
@@ -56,7 +61,7 @@ callback/s with an 18.72 ms warm maximum; its compositor adapter was not
 independently established.
 
 Raw traces remain private. Anonymous measurements are in
-[performance-stalls.json](../tests/reference/performance-stalls.json).
+[performance-stalls.json](../../../tests/reference/performance-stalls.json).
 Windows kernel GPU/CPU recording was attempted but could not enable the required
 profiling privilege. No operating-system policy or driver was changed. The exact
 external cause of the intermittent presentation waits remains unproven.
@@ -83,7 +88,7 @@ gap. Removing actual audio output still produces a 150.1 ms gap. Preparing the
 first 48 cooking poses postpones the remaining 66.7 ms pause to a later first
 appearance. Preparing the ordinary first-side and earliest ready second-side
 poses removes that pause in the confirming window: maximum 17.4 ms and zero
-gaps above 50 ms. This bounded cycle is integrated in Extra. Burn and late-pickup
+gaps above 50 ms. This bounded cycle is integrated in Optimized. Burn and late-pickup
 poses remain lazy; the implementation does not allocate a complete animation atlas.
 
 Preparation has a visible cost: roughly 7.6–9.6 seconds on these Pi environments
@@ -103,10 +108,10 @@ reproduces approximately 44 callback/s; Pi B reaches about 59 with roughly 68%
 of one CPU core. A small moving browser overlay reduces some work but still
 misses the Pi A cadence target and is not selected for production.
 
-Extra instead uses compact native mouse cursors derived from the original
+Optimized instead uses compact native mouse cursors derived from the original
 ladle, picked dosa and plate artwork. Their maximum logical size is 64 pixels; each cached image
 is generated from vectors at the selected density. This size change is deliberate
-and belongs to Extra. Classic, touch and unsupported browsers retain the original
+and belongs to Optimized. Classic, touch and unsupported browsers retain the original
 Canvas pointer. The game still uses the same pointer coordinates and hit targets.
 The batter and picked-dosa images decode with zero differing premultiplied pixel
 values in the browser check, and touch/Classic/unsupported-image fallbacks pass.
@@ -134,7 +139,7 @@ The final batter case uses 37.28% / 33.06%, also without gaps above 50 ms.
 
 ## Release measurements
 
-Final Extra full days at 2200 × 1600 reach 59.99 / 59.99 callback/s on Pi A / B,
+Final Optimized full days at 2200 × 1600 reach 59.99 / 59.99 callback/s on Pi A / B,
 with warmed CPU 32.86 / 29.55% of one core. Maximum gaps are 50.00 / 33.30 ms;
 gaps above 50 ms number 0 / 0. Both finish at clock 720 and cash 24.
 The corrected Game over phase reaches 59.92 / 60.00 callback/s, compared with
@@ -157,7 +162,7 @@ controls and do not establish equal GPU throughput.
 
 Anonymous cold controls, carried-object cases, larger-density checks, calibrated
 desktop repeats and UI evidence are retained in
-[performance-preparation.json](../tests/reference/performance-preparation.json).
+[performance-preparation.json](../../../tests/reference/performance-preparation.json).
 The initial 90-second no-action case did not reach game over and is not accepted
 as loss-screen evidence; the longer continuation asserts the resulting screen.
 The seeded varied-customer day finishes with cash 50, no lost customers and
@@ -173,7 +178,7 @@ earlier large-density check also has isolated 66.6 / 67.4 ms cold gaps.
 The actual 180-second loss replay exposed a separate bug: whole-frame reuse
 stopped outside gameplay. Game over therefore repainted at every callback.
 Its phase ran at 37.70 / 58.69 callback/s, with maximum gaps 216.8 / 149.9 ms.
-The corrected Extra path reuses terminal frames between authored 12 Hz poses.
+The corrected Optimized path reuses terminal frames between authored 12 Hz poses.
 Button hover, pressed state, score-form visibility, audio and animation clocks
 remain in the invalidation key. Loss-scene first appearances are prepared before
 play under the same cache limits. No additional retained terminal surface is used.

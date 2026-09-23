@@ -366,7 +366,7 @@ void boot().catch(fail);
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createGame = createGame;
-/** Source-derived domain model. Timing policy and unresolved Flash details: docs/decisions.md. */
+/** Source-derived domain model. Timing policy and unresolved Flash details: docs/reference/decisions.md. */
 const scheduler_js_1 = require("./scheduler.js");
 // Integer thirds of a millisecond preserve 12 Hz animation cadence and 100 ms timers exactly.
 const CADENCE = 250;
@@ -2841,7 +2841,7 @@ class Renderer {
         for (const dosa of s.food) {
             if (!dosa)
                 continue;
-            // Extra's compact native preview holds the picked pose, including steam.
+            // Optimized's compact native preview holds the picked pose, including steam.
             // The core's independent smoke clock continues for placement/fallback.
             if (dosa.held && this.carriedDosaCursor.active)
                 continue;

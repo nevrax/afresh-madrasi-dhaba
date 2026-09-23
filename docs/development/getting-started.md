@@ -1,6 +1,6 @@
 # Setup, build and project layout
 
-Native TypeScript remake of the extended Flash edition, rendered with scalable native vectors. Implementation coverage and historical limits are documented in [verification](verification.md) and [decisions](decisions.md).
+Native TypeScript remake of the extended Flash edition, rendered with scalable native vectors. Implementation coverage and historical limits are documented in [verification](verification.md) and [decisions](../reference/decisions.md).
 
 This guide is for building, modifying or publishing the remake. To play an already prepared standalone game, open its index.html with a double click.
 
@@ -18,7 +18,7 @@ To develop or rebuild the game, double-click **scripts/10_setup.cmd**. It instal
 | **40–49 · Build** | `scripts/40_build.cmd` — regenerate both distributable game packages |
 | **50–59 · Tests** | `scripts/50_test.cmd` — build and run all automated tests |
 
-Run **10 once on a new laptop**, then **20 whenever you want to play**. The tens identify categories, not execution order. Future commands use free numbers within the same group; existing groups keep their numbers. See [the command guide](../scripts/README.md).
+Run **10 once on a new laptop**, then **20 whenever you want to play**. The tens identify categories, not execution order. Future commands use free numbers within the same group; existing groups keep their numbers. See [the command guide](../../scripts/README.md).
 
 The build/play/test launchers always use the project's local Node.js. They bootstrap it if it is missing. For unattended use, pass `-NoPause`. Re-running setup is safe and does not delete source, tools, local settings or browser profiles. Implementation helpers live under scripts/internal; there are no launchers in the repository root.
 
@@ -31,7 +31,11 @@ development/
   catalog/                   Development resource browser: HTML, TypeScript, CSS
   verification/              Scenario checks, graphics tests and performance studies
 tests/                       Automated tests and sanitized reference results
-docs/                        Architecture, plans and verification evidence
+docs/README.md               Documentation index
+  development/               Setup, architecture, resources and verification
+  reference/                 Source rules, parity decisions and cultural research
+  performance/               Current results and historical studies
+  planning/                  Current tasks and implementation records
 reference/                   Canonical SWFs, source index and decompiled ActionScript
 analysis/                    Preserved reference analysis
 scripts/                     Numbered user commands and their guide
@@ -83,8 +87,8 @@ Do not ZIP the entire working directory: local diagnostic logs and profiles may 
 
 The original rules, tutorial, vector composition, timing and eleven sounds are implemented in native TypeScript/Canvas. Source animation poses keep their authored cadence. FPS is off by default; More options provides rendering quality and optional performance information. The fullscreen icon and in-window expansion are separate controls. Browser autoplay may require the first gesture to enable sound.
 
-The original score form and request contract are implemented, but the historical online backend is not included. With no endpoint configured, the game reports that online scores are unavailable and sends nothing. Local scores are separate. See [score-service configuration](../src/services/README.md).
+The original score form and request contract are implemented, but the historical online backend is not included. With no endpoint configured, the game reports that online scores are unavailable and sends nothing. Local scores are separate. See [score-service configuration](../../src/services/README.md).
 
-The two canonical SWFs and decompiled scripts are reference material, not runtime dependencies. JPEXS, Java and optional Python/reference-emulator tooling are only needed for research or re-exporting assets; see [resource guide](resource-guide.md) and [reference validation](reference-validation.md). They are not prerequisites for building or changing the native game. The repository does not claim ownership of the original game assets.
+The two canonical SWFs and decompiled scripts are reference material, not runtime dependencies. JPEXS, Java and optional Python/reference-emulator tooling are only needed for research or re-exporting assets; see [resource guide](resource-guide.md) and [reference validation](../reference/reference-validation.md). They are not prerequisites for building or changing the native game. The repository does not claim ownership of the original game assets.
 
-For development, start with [architecture](architecture.md), [game rules](game-rules.md), [catalogue guide](catalog-guide.md), [implementation plan](implementation-plan.md) and [current task status](task-status.md). Tool installers and version manifests remain tracked in `tools/`; installations always stay in `.local-setup/`.
+For development, start with [architecture](architecture.md), [game rules](../reference/game-rules.md), [catalogue guide](catalog-guide.md), [implementation plan](../planning/implementation-plan.md) and [current task status](../planning/task-status.md). Tool installers and version manifests remain tracked in `tools/`; installations always stay in `.local-setup/`.

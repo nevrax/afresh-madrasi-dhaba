@@ -1,5 +1,10 @@
 # Full resolution rendering
 
+> Historical study for the implementation and workload recorded below. Its
+> measurements are not current-release guarantees. Start with the
+> [current performance summary](../README.md).
+
+
 The fixed 80 MiB surface cache caused severe repeated work above the earlier
 1485 × 1080 benchmark size. At 2200 × 1600 on Intel UHD, the same synthetic scene
 fell from about 118 to 5 render opportunities per second. This is separate from
@@ -74,7 +79,7 @@ builds after its short warmup, despite zero evictions. This resolution is
 are required before another change. Unbounded memory growth is not a solution.
 
 Raspberry Pi was outside this initial Intel matrix. Subsequent physical results
-are in [performance-raspberry-pi.md](performance-raspberry-pi.md); Intel results
+are in [performance-raspberry-pi.md](raspberry-pi.md); Intel results
 alone do not certify it.
 Animation callbacks do not measure physical display scanout. Original food,
 customer and steam poses still advance at their authored 12 Hz.
@@ -113,6 +118,6 @@ example `[{"width":2200,"fixedBudget":true},{"width":2200}]`. Fixed budget and
 omissions exist only in the test runner. Browsers are visible and isolated.
 Raw output remains under ignored `.local-setup/logs/`.
 
-Sanitized data: [performance-full-resolution.json](../tests/reference/performance-full-resolution.json).
-Earlier acceptance in [performance-gpu.md](performance-gpu.md) covers its
+Sanitized data: [performance-full-resolution.json](../../../tests/reference/performance-full-resolution.json).
+Earlier acceptance in [performance-gpu.md](gpu.md) covers its
 smaller resolution matrix; it does not close the remaining cases here.

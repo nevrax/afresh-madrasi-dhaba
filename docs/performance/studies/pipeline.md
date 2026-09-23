@@ -1,18 +1,23 @@
 # Complete frame cost and retained scenery
 
-Follow-up: [refresh and visibility calibration](performance-cadence.md) separates
+> Historical study for the implementation and workload recorded below. Its
+> measurements are not current-release guarantees. Start with the
+> [current performance summary](../README.md).
+
+
+Follow-up: [refresh and visibility calibration](cadence.md) separates
 normal display scheduling from slow drawing. The results below use the earlier
 emulated viewport; they do not establish native window containment. Near-60
 callback rates are not automatically failures or proof of physical scanout.
 
-**Stable 60 FPS with low CPU use is still an open target.** The new Extra
+**Stable 60 FPS with low CPU use is still an open target.** The new Optimized
 scene cache improves the controlled five-customer scene to approximately 60 FPS
 on both Pi 5 environments. A complete three-minute day still reaches only
 55.93 FPS on Pi A and 59.67 FPS on Pi B. The short fixture is not sufficient
 acceptance for the whole game.
 
-This report extends the [component ranking](performance-components.md) beyond
-individual effects. [Anonymous measurements](../tests/reference/performance-pipeline.json)
+This report extends the [component ranking](components.md) beyond
+individual effects. [Anonymous measurements](../../../tests/reference/performance-pipeline.json)
 contain 66 physical Pi cases, CPU samples, browser trace summaries and submission
 counts. Raw profiles, trace files and connection details are excluded from Git.
 
@@ -50,7 +55,7 @@ controls bracket each matrix. No thermal or undervoltage flag was observed.
 
 | Diagnostic | Pi A FPS | Pi B FPS | Interpretation |
 | --- | ---: | ---: | --- |
-| Previous Extra scene | 45.54 | 59.67 | Reference for the workload sweep |
+| Previous Optimized scene | 45.54 | 59.67 | Reference for the workload sweep |
 | Same state frozen, still redrawn | 45.62 | 59.50 | Advancing the animations is not the primary cost |
 | No bitmap paints | 60.00 | 60.00 | Removes real image work; not a playable optimization |
 | No text | 45.77 | 59.58 | Text is not the main limit |
@@ -60,7 +65,7 @@ controls bracket each matrix. No thermal or undervoltage flag was observed.
 | One ImageBitmap copy per frame | 50.86 | 60.00 | ImageBitmap is not automatically faster here |
 | Existing scene with desynchronized context | 59.09 | 60.00 | Better short-run cadence, still high CPU use |
 | Retained Canvas commands | 45.77 | 59.75 | Saves CPU work but does not remove Pi A's presentation limit |
-| Retained opaque scene, ordinary context | 59.58 | 60.00 | Selected Extra implementation candidate |
+| Retained opaque scene, ordinary context | 59.58 | 60.00 | Selected Optimized implementation candidate |
 
 Removing the seemingly redundant full-stage clear **made the scene slower**:
 37.61 / 50.01 FPS. Replacing only the background tile with an opaque copy gave
@@ -85,13 +90,13 @@ These are elapsed browser/driver host spans, including waits. They overlap other
 events and must not be added together as CPU usage or called GPU execution time.
 Trace startup itself adds a gap, so traced runs are attribution, not acceptance.
 
-## Implemented in Extra
+## Implemented in Optimized
 
-Extra retains an opaque scenery surface between changes in the authored poses,
+Optimized retains an opaque scenery surface between changes in the authored poses,
 clock, customers, orders, patience, money or mute-button state. Food, carried
 items, hover cues and cash feedback still render at each animation-frame
 opportunity. Traffic now uses its original 12 Hz poses during play; menu
-interpolation remains. This is an explicit Extra presentation treatment, not a
+interpolation remains. This is an explicit Optimized presentation treatment, not a
 claim of 60 distinct original animation poses per second.
 
 The surface is generated from vectors at the selected backing resolution and is
@@ -154,8 +159,8 @@ engineering budget. PERF-17 and PERF-22 remain open.
 
 Reproduction: `tools/pi-performance.mjs` accepts the `workload`, `transport`,
 `pipeline`, `scene`, `trace`, `layers` and `live` presets. Connection arguments stay local.
-The earlier experimental sweeps explicitly select the previous Extra behavior;
-`live` uses the production Extra renderer. Pixel checks are in
+The earlier experimental sweeps explicitly select the previous Optimized behavior;
+`live` uses the production Optimized renderer. Pixel checks are in
 `tools/scene-retention-check.mjs`; raw outputs stay under ignored `.local-setup`.
 Its optional `--layers` mode reproduces the rejected prototype and is expected
 to fail pixel acceptance; ordinary checks exercise only the shipped renderer.

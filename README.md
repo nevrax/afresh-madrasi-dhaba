@@ -53,7 +53,7 @@ This candidate from *Mangala* has a playful, affectionate mood. Its lyrics draw 
 
 One song speaks about public ideals; the other about affection and devotion. Hearing both at a roadside stall could evoke someone's favourite old records accompanying the working day. That is an interpretation, not a clue that locates the restaurant.
 
-**[Read the lyrics' meaning, imagery and credits](docs/name-and-setting.md#meaning-in-english)** right here in the repository. The explanations are in English, with sources and translation limits alongside them.
+**[Read the lyrics' meaning, imagery and credits](docs/reference/name-and-setting.md#meaning-in-english)** right here in the repository. The explanations are in English, with sources and translation limits alongside them.
 
 ## Made to play again
 
@@ -63,9 +63,9 @@ This reimplementation is part of **Afresh**, a collection of classic games reimp
 
 ## Help keep its story alive
 
-Remember playing it? Recognize a voice, a song or a place like this? Corrections, memories and cultural knowledge are welcome. Help document this beautiful food culture and find the original artists, programmers and voice performers. [Explore the story and open questions](docs/name-and-setting.md).
+Remember playing it? Recognize a voice, a song or a place like this? Corrections, memories and cultural knowledge are welcome. Help document this beautiful food culture and find the original artists, programmers and voice performers. [Explore the story and open questions](docs/reference/name-and-setting.md).
 
-For work on the remake: [developer guide](docs/getting-started.md) · [architecture](docs/architecture.md) · [performance](docs/performance-gpu.md) · [verification](docs/verification.md).
+For work on the remake: [documentation index](docs/README.md) · [developer guide](docs/development/getting-started.md) · [architecture](docs/development/architecture.md) · [performance](docs/performance/README.md) · [verification](docs/development/verification.md).
 
 <hr>
 

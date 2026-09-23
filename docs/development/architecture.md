@@ -2,24 +2,24 @@
 
 The current application runs native TypeScript compiled to browser JavaScript. Canvas 2D draws compiled vector paths, morphs and original compositions; exported image sequences remain catalogue/reference fallbacks. Fonts and Web Audio use native browser APIs. The application does not load the canonical SWF, execute ActionScript or run a Flash emulator. The isolated reference player is only a validation tool.
 
-This is a working implementation baseline with source-derived regression coverage. It is not yet a certified complete rewrite with measured parity for every original behavior. [Game rules](game-rules.md), [behavior coverage](behavior-coverage.md) and the [decision register](decisions.md) distinguish implemented rules, original-source evidence and unresolved runtime questions. The [task status](task-status.md) records the current project checkpoint.
+This is a working implementation baseline with source-derived regression coverage. It is not yet a certified complete rewrite with measured parity for every original behavior. [Game rules](../reference/game-rules.md), [behavior coverage](../reference/behavior-coverage.md) and the [decision register](../reference/decisions.md) distinguish implemented rules, original-source evidence and unresolved runtime questions. The [task status](../planning/task-status.md) records the current project checkpoint.
 
 ## Module boundaries
 
 | Module | Responsibility | Inputs and outputs |
 |---|---|---|
-| [core/game.ts](../src/core/game.ts) | Domain state, cooking, customers, timers, pointer mode, cash, days and screens | Typed commands and elapsed time in; snapshots and ordered events out |
-| [render/assets.ts](../src/render/assets.ts) | Asset index, original transforms, image/font loading and pixel hit tests | `assets/catalog.json`, scene metadata, exported media; symbol/name lookup and drawing |
-| [render/renderer.ts](../src/render/renderer.ts) | Original composition, customer/food poses, orders, clock, buttons and feedback | Read-only snapshots plus events; Canvas output and typed hit targets |
-| [render/vector.ts](../src/render/vector.ts) | Paths, nested art, morphs, masks, transforms, source filters and bounded display caches | Compiled vector pack; native Canvas drawing and hit geometry |
-| [input/pointer.ts](../src/input/pointer.ts) | Browser pointer coordinates and release handling | Pointer/keyboard events; domain commands through the coordinator |
-| [audio/audio.ts](../src/audio/audio.ts) | Web Audio activation, decoding, playback and cancellation | Domain sound events and asset lookup; no domain-state mutation |
-| [services/scores.ts](../src/services/scores.ts) | Separate local-storage scores | Local score objects; asynchronous submit/list operations |
-| [services/legacy-scores.ts](../src/services/legacy-scores.ts) | Original external/member/tournament/session request protocol | Explicit endpoint configuration; encoded requests and qualified response/error results |
-| [ui/legacy-score-form.ts](../src/ui/legacy-score-form.ts) | Original external name form and asynchronous submission state | Source default name/score; hidden, ready, unavailable, sending, received or failed phase |
-| [ui/frame-batch.ts](../src/ui/frame-batch.ts) | Input/event batching | Immediate ordered commands; one snapshot and presentation pass per animation frame |
-| [main.ts](../src/main.ts) | Bootstrap, event routing, animation loop, controls and score form | Connects adapters to one game instance |
-| [development/catalog/main.ts](../development/catalog/main.ts) | Development resource explorer | Exported catalogue/media; search, resource inspection and previews |
+| [core/game.ts](../../src/core/game.ts) | Domain state, cooking, customers, timers, pointer mode, cash, days and screens | Typed commands and elapsed time in; snapshots and ordered events out |
+| [render/assets.ts](../../src/render/assets.ts) | Asset index, original transforms, image/font loading and pixel hit tests | `assets/catalog.json`, scene metadata, exported media; symbol/name lookup and drawing |
+| [render/renderer.ts](../../src/render/renderer.ts) | Original composition, customer/food poses, orders, clock, buttons and feedback | Read-only snapshots plus events; Canvas output and typed hit targets |
+| [render/vector.ts](../../src/render/vector.ts) | Paths, nested art, morphs, masks, transforms, source filters and bounded display caches | Compiled vector pack; native Canvas drawing and hit geometry |
+| [input/pointer.ts](../../src/input/pointer.ts) | Browser pointer coordinates and release handling | Pointer/keyboard events; domain commands through the coordinator |
+| [audio/audio.ts](../../src/audio/audio.ts) | Web Audio activation, decoding, playback and cancellation | Domain sound events and asset lookup; no domain-state mutation |
+| [services/scores.ts](../../src/services/scores.ts) | Separate local-storage scores | Local score objects; asynchronous submit/list operations |
+| [services/legacy-scores.ts](../../src/services/legacy-scores.ts) | Original external/member/tournament/session request protocol | Explicit endpoint configuration; encoded requests and qualified response/error results |
+| [ui/legacy-score-form.ts](../../src/ui/legacy-score-form.ts) | Original external name form and asynchronous submission state | Source default name/score; hidden, ready, unavailable, sending, received or failed phase |
+| [ui/frame-batch.ts](../../src/ui/frame-batch.ts) | Input/event batching | Immediate ordered commands; one snapshot and presentation pass per animation frame |
+| [main.ts](../../src/main.ts) | Bootstrap, event routing, animation loop, controls and score form | Connects adapters to one game instance |
+| [development/catalog/main.ts](../../development/catalog/main.ts) | Development resource explorer | Exported catalogue/media; search, resource inspection and previews |
 
 The core contains no DOM, Canvas, network or audio calls. Renderer and adapters receive copies of state; they cannot alter the simulation by changing a snapshot. The renderer may retain presentation-only state such as transient cash feedback and the currently pressed button.
 
@@ -75,11 +75,11 @@ The initial menu track is `bgMusic2` once, derived from a root sound tag outside
 
 The original external score form is separate from local saving. It starts with `noname`, preserves the entered name without trimming or a maximum length, and hides immediately on explicit submission. `LegacyScoreClient` sends the source fields and transcribed Rijndael verification value only to deliberately configured endpoints. A valid response is reported as received, not proven accepted; missing results, HTTP/network failures and timeouts remain explicit. Failed submissions can be retried manually, never automatically. Status remains outside the hidden form.
 
-Deployment-owned JSON in `index.html` (`#score-service-config`) defaults to `{}`: no online POST endpoint is available, and the form clearly reports that nothing was sent. `score-configuration.ts` validates optional HTTP/HTTPS endpoints, navigation links, timeout, credential mode and host game ID. `main.ts` consumes core `session-refresh` events only when both a session endpoint and game ID are supplied; it does not start another timer. Original publisher/leaderboard links follow ordinary user activation. An implemented protocol does not establish a functioning historical backend. See [service protocol](../src/services/README.md) for fixtures and configuration.
+Deployment-owned JSON in `index.html` (`#score-service-config`) defaults to `{}`: no online POST endpoint is available, and the form clearly reports that nothing was sent. `score-configuration.ts` validates optional HTTP/HTTPS endpoints, navigation links, timeout, credential mode and host game ID. `main.ts` consumes core `session-refresh` events only when both a session endpoint and game ID are supplied; it does not start another timer. Original publisher/leaderboard links follow ordinary user activation. An implemented protocol does not establish a functioning historical backend. See [service protocol](../../src/services/README.md) for fixtures and configuration.
 
 ## Build, test and release
 
-The repository declares Node.js 22 or newer. TypeScript **5.9.3** is pinned with its archive URL and SHA-256 in [tools/typescript.json](../tools/typescript.json). On Windows, install it using:
+The repository declares Node.js 22 or newer. TypeScript **5.9.3** is pinned with its archive URL and SHA-256 in [tools/typescript.json](../../tools/typescript.json). On Windows, install it using:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/setup-typescript.ps1
@@ -112,4 +112,4 @@ The immutable references, all 83 indexed script exports, SWF metadata and origin
 
 Instrumented Ruffle observations confirm hidden-template removal, patience twip conversion, cross-screen orphan rebinding, independent cooked-food smoke and persistent tutorial children across its335-frame loop. These are emulator observations, not historical Adobe Flash measurements. Full-suite results and complete native browser scenarios are recorded in [verification.md](verification.md); earlier partial test counts are superseded.
 
-Evidence limits include callback ordering beyond the probes, historical device-font/audio/pixel behavior, untested browser engines and actual online service acceptance. Tutorial parent and persistent-child clocks are explicit; browser catch-up and native FIFO scheduling are documented policies. Keep those distinctions in [behavior coverage](behavior-coverage.md), [decisions](decisions.md) and the task status.
+Evidence limits include callback ordering beyond the probes, historical device-font/audio/pixel behavior, untested browser engines and actual online service acceptance. Tutorial parent and persistent-child clocks are explicit; browser catch-up and native FIFO scheduling are documented policies. Keep those distinctions in [behavior coverage](../reference/behavior-coverage.md), [decisions](../reference/decisions.md) and the task status.

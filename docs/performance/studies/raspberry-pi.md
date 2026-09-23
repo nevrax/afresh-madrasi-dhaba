@@ -1,5 +1,10 @@
 # Raspberry Pi rendering measurements
 
+> Historical study for the implementation and workload recorded below. Its
+> measurements are not current-release guarantees. Start with the
+> [current performance summary](../README.md).
+
+
 Two physical Raspberry Pi 5 boards with 8 GB RAM were tested with the game
 renderer from commit `6f033eb`. Both use hardware accelerated Broadcom V3D
 7.1.7.0 through ANGLE/OpenGL ES. Canvas, rasterization and composition are
@@ -143,4 +148,4 @@ An optional final JSON argument selects cases, for example:
 Ports 9337 and 5178 must be free on the target. Helpers, profiles and raw logs
 stay under `.local-setup`; the runner closes its browser and SSH tunnel after the
 test. Only anonymous results belong in the repository:
-[performance-raspberry-pi.json](../tests/reference/performance-raspberry-pi.json).
+[performance-raspberry-pi.json](../../../tests/reference/performance-raspberry-pi.json).

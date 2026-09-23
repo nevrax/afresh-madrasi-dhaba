@@ -1,5 +1,10 @@
 # Refresh calibration and visible-window verification
 
+> Historical study for the implementation and workload recorded below. Its
+> measurements are not current-release guarantees. Start with the
+> [current performance summary](../README.md).
+
+
 The target is stable delivery at the display/browser's measured cadence with
 low CPU, not an average numerically greater than 60. A 59.97 callback/s control
 with no missed intervals is a successful nominal 60 Hz baseline. Callback rate
@@ -129,7 +134,7 @@ pass, including sampled states from a complete deterministic cooking day.
 Callback cadence must not be presented as 60 newly drawn or unique animation
 poses when this optimization is used.
 
-### Integrated Extra result
+### Integrated Optimized result
 
 | Complete day, normal synchronization | Overall callbacks/s | Warm callbacks/s | Warm CPU, one core | Canvas paints / reused callbacks |
 | --- | ---: | ---: | ---: | ---: |
@@ -170,7 +175,7 @@ The desynchronized hint adds little after reuse: prototype warmed CPU is
 Both ready-to-play distribution packages are rebuilt with complete-frame reuse.
 
 Anonymous evidence is in
-[performance-cadence.json](../tests/reference/performance-cadence.json).
+[performance-cadence.json](../../../tests/reference/performance-cadence.json).
 Next priorities are the large Canvas update path, repeated food submissions,
 cold preparation and decoded audio memory. These are separate from refresh
 calibration. No default profile, resolution, artwork or production browser flags

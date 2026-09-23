@@ -1,19 +1,5 @@
 # Presentation profiles
 
-Current performance continuation: [preparation and carried-object results](performance-stalls.md)
-supersede the older timing table below. Optimized prepares a normal cooking cycle
-before the timer starts. The ladle now uses a separate retained surface at the
-same scale as pouring; picked dosa and plate keep compact native mouse previews.
-Touch and unsupported paths retain Canvas drawing. Earlier reports call the
-Optimized profile "Extra"; its stored ID remains `extra` to preserve preferences.
-
-Optimized retains scenery between authored poses
-and reuses the complete image when rendered state and hit targets are unchanged.
-Pointer input and game clocks remain live. The
-[native cadence report](performance-cadence.md) supersedes the timing baseline
-below for that historical checkpoint. Terminal repainting is now corrected;
-current acceptance and residual cold/density limits are in performance-stalls.md. The HUD distinguishes callback rate from actual Canvas paints.
-
 Classic and Optimized use the same game rules, assets, cooking timers, customers,
 orders and scoring. The small selector above the game changes presentation during
 play without starting a new day. An explicit selection is remembered when browser
@@ -94,73 +80,8 @@ stage and keeps it below the 32 MiB retention threshold at 2970 × 2160. Classic
 retains the established cache policy. This is an intentional visual treatment,
 not a transparent cache optimization.
 
-## Verification and measurements
+## Verification
 
-All 128 automated tests pass. Both profiles complete the production-core tutorial,
-cooking/serving/payment sequence, a full deterministic day (cash 24, clock 720),
-next-day carryover and three game-over/retry cycles. This functional replay
-advances simulation time; it is not a realtime full-day FPS measurement.
-
-| Hardware / environment | Classic controls, 2200 × 1600 FPS | Optimized, 2200 × 1600 FPS | Optimized, 2970 × 2160 FPS |
-| --- | ---: | ---: | ---: |
-| Pi A | 36.32–36.35 | 45.60 | 28.25 |
-| Pi B | 40.03–40.47 | 59.83 | 36.35 |
-| Intel UHD | 57.31–57.77 | 75.67 | 42.47 |
-| NVIDIA RTX 3070 Ti Laptop | 168.10–168.43 | 167.59 | 168.37 |
-
-At 2200 × 1600, managed graphics backing drops from about 171.2 to 91.6 MiB.
-Optimized's warm windows have no new tile allocations, filter builds, morph
-replacements or evictions. This does not mean all frame deadlines are met.
-Classic also has no warm filter builds or evictions; one Pi A control allocates
-a 23,760-byte tile and contains a 50.1 ms frame gap.
-
-In the 18-second preparation phase, the sum of full gaps above 50 ms drops from
-6.24–6.45 to 0.52 seconds on Pi A, and from 4.70–4.78 to 0.28 on Pi B. These are
-summed whole gaps, not one continuous pause or exclusive GPU time. NVIDIA's final
-Classic control prepares much faster than its starting control despite a fresh
-page and renderer, so first-pass driver/resource preparation must not be treated
-as a stable per-profile percentage. Warmed NVIDIA throughput is effectively
-unchanged at the observed cadence.
-
-The 2970 × 2160 results still miss a 60 FPS target on both Pis and Intel. No
-automatic quality reduction conceals that limitation. PERF-17 remains open;
-the profiles are implemented and comparable, not a universal performance fix.
-
-Acceptance and anonymous timings are recorded in
-[presentation-profiles.json](../tests/reference/presentation-profiles.json).
-The suite covers profile preference validation, source metadata immutability,
-independent display settings, live order count/patience and the existing game
-regressions. Visible browser checks cover the source, static site and standalone
-HTML, switching during cooking, persisted selection, blocked storage, offline
-playback, fullscreen and responsive layout. Touch checks use browser emulation;
-physical touch hardware is not certified.
-
-At authored sample times, Classic and a round trip through Optimized match the prior
-scene pixels exactly in fifteen screen/density cases (five screens at 880, 2200
-and 2970 backing widths). Hit targets and snapshots are unchanged. Additional
-interpolation is deliberately disabled in Classic, so fractional-time images
-need not match the previous interpolated presentation. These pixel checks are
-separate from timing measurements.
-
-The benchmark remains a controlled five-customer rendering scene, with 18 seconds
-of cold preparation followed by 12 measured seconds. Classic controls bracket
-Optimized at 2200 × 1600; the additional 2970 × 2160 case measures Optimized only.
-All timing canvases fit completely inside the test viewport. Hardware/backend
-identity is recorded. Frame opportunities are not physical scanout or unique
-authored poses. No universal smoothness guarantee or default selection follows
-from these measurements.
-
-Reproduce with the development server running:
-
-```text
-node tools/presentation-check.mjs check high-performance
-node tools/presentation-check.mjs check low-power
-node tools/presentation-check.mjs scenarios high-performance
-node tools/presentation-check.mjs study low-power
-node tools/presentation-check.mjs study high-performance
-node tools/pi-performance.mjs <ssh-target> <ssh-port> <unused-local-port> profile-study profiles
-```
-
-Raw captures and screenshots stay under ignored `.local-setup/logs/`. Both
-`dist/site` and `dist/standalone` contain the selector and the same profiles;
-the no-selection compatibility behavior is retained pending a default decision.
+See the [verification guide](verification.md) for current functional checks and
+[performance summary](../performance/README.md) for results and failures.
+The stored Optimized ID remains `extra` so existing preferences continue to work.

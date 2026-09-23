@@ -2,7 +2,7 @@
 
 ## Baseline and evidence
 
-The coordinator observed the preserved canonical SWF and controlled derivatives in an isolated local reference player. The machine-readable record is [observations.json](../tests/reference/observations.json). These observations supersede the earlier, unidentified KidzSearch wrapper session as the project baseline.
+The coordinator observed the preserved canonical SWF and controlled derivatives in an isolated local reference player. The machine-readable record is [observations.json](../../tests/reference/observations.json). These observations supersede the earlier, unidentified KidzSearch wrapper session as the project baseline.
 
 | Property | Recorded value |
 |---|---|
@@ -15,7 +15,7 @@ The coordinator observed the preserved canonical SWF and controlled derivatives 
 | Reference stage | 550 × 400 |
 | Evidence | Coordinator-observed browser UI and visible trace output |
 
-The loader displays the SHA-256 of the bytes it actually loads; the coordinator verified the canonical identity. Runtime installation is pinned in [tools/ruffle.json](../tools/ruffle.json), including its archive checksum. The player and downloaded tools remain under `.local-setup/` and do not enter the native application or production release.
+The loader displays the SHA-256 of the bytes it actually loads; the coordinator verified the canonical identity. Runtime installation is pinned in [tools/ruffle.json](../../tools/ruffle.json), including its archive checksum. The player and downloaded tools remain under `.local-setup/` and do not enter the native application or production release.
 
 **This is modern Ruffle evidence, not historical Adobe Flash Player equivalence.** Source inspection, emulator observations and native regression tests establish different things. Audio state and detailed foreground/background history were not recorded for every probe, so these runs do not establish audio or suspended-tab parity.
 
@@ -32,7 +32,7 @@ This establishes the observed navigation and reset values. It does not establish
 
 ## Instrumentation provenance
 
-[build-probe.py](../scripts/reference/build-probe.py), in its **default mode**, first checks the canonical checksum. It compiles [probe.as](../tests/reference/probe.as) in a temporary SWF, extracts the instrumentation action, then appends **one new DoAction tag before the canonical third ShowFrame**. Original action, resource and display-list tags are retained. The builder asserts that removing the inserted bytes recovers the entire original uncompressed body and that the canonical file remains unchanged. It writes derivative/probe-source hashes and this provenance to `.local-setup/reference/probe-manifest.json`.
+[build-probe.py](../../scripts/reference/build-probe.py), in its **default mode**, first checks the canonical checksum. It compiles [probe.as](../../tests/reference/probe.as) in a temporary SWF, extracts the instrumentation action, then appends **one new DoAction tag before the canonical third ShowFrame**. Original action, resource and display-list tags are retained. The builder asserts that removing the inserted bytes recovers the entire original uncompressed body and that the canonical file remains unchanged. It writes derivative/probe-source hashes and this provenance to `.local-setup/reference/probe-manifest.json`.
 
 The explicit `--constant-random` option is a separate controlled-fixture exception. It writes `.local-setup/reference/matched-day.swf` and its own manifest, leaving `probe.swf` and the canonical file unchanged. It changes **ten integer-bound bytes** from 2, 4 or 5 to 1 in validated ActionPush operands immediately preceding active ActionRandomNumber operations. RandomNumber(1) always yields 0. Instruction opcodes, lengths, function sizes, branch offsets and tag lengths remain unchanged. The original obfuscator carries these functional instructions inside tag253; the manifest records each script/frame/tag and uncompressed-body offset. The builder rejects an unexpected operand inventory. An unreachable obfuscator RandomNumber without a literal operand in sprite472/frame295 is left unchanged.
 
@@ -48,7 +48,7 @@ The probe invokes original handlers and inspects original object state. It also 
 | `61f2e4f9141045a207a5e365bbaa2c19e3bf8cff35856325624b6f5f452d9ee5` | Held/plated independent smoke |
 | `2b7bcafbc9cb6456b2924075942c692441acbb8d6878770bbfc4c70e947d8fe0` | Full tutorial loop, persistent children and original Skip |
 
-The [reference server](../scripts/reference/serve-reference.mjs) serves the canonical file, derivative and local player on loopback. [player.html](../tests/reference/player.html) denies game networking and URL opening; probe cases do not test remote score acceptance or sessions. Trace times below are milliseconds from the probe's own `getTimer()` origin, not elapsed time between automation calls. They are observed samples and action times, not independently measured universal scheduling deadlines.
+The [reference server](../../scripts/reference/serve-reference.mjs) serves the canonical file, derivative and local player on loopback. [player.html](../../tests/reference/player.html) denies game networking and URL opening; probe cases do not test remote score acceptance or sessions. Trace times below are milliseconds from the probe's own `getTimer()` origin, not elapsed time between automation calls. They are observed samples and action times, not independently measured universal scheduling deadlines.
 
 ## Recorded controlled traces
 
@@ -82,7 +82,7 @@ This is one complete successful day with nine serving cycles, not a run at diffi
 
 The separate controlled derivative `aab496c0cd2bfea46ab77881aef310f3903db6f7ee4fb61ac5d1b141f519fe04` (1,493,913 bytes) uses the ten byte changes described above. It retains the original day1 CustomerMaker interval of14 seconds, the original180-second day clock and all source handler bodies apart from those RNG-bound operands. It does not force Appear, edit order quantities or disable arrivals.
 
-For cycles0–11, inputs occur at `cycle * 14000` plus100 ms (bowl/slot0),6100 ms (flip),9100 ms (pickup),10100 ms (plate), and16100 ms (plate/customer0). This is60 actions, with the final serve at170100 ms. The native [public-API regression](../tests/core/matched-day.test.mjs) supplies `random: () => 0` and executes this schedule without modifying state: it passes with12 served orders, cash24, no losses, clock720 and Tomorrow retaining24 in day2.
+For cycles0–11, inputs occur at `cycle * 14000` plus100 ms (bowl/slot0),6100 ms (flip),9100 ms (pickup),10100 ms (plate), and16100 ms (plate/customer0). This is60 actions, with the final serve at170100 ms. The native [public-API regression](../../tests/core/matched-day.test.mjs) supplies `random: () => 0` and executes this schedule without modifying state: it passes with12 served orders, cash24, no losses, clock720 and Tomorrow retaining24 in day2.
 
 The reference observer executes each scheduled action on the next original EnterFrame opportunity and logs scheduled/actual times and states. It stops with a mismatch record if an action fails. The coordinator observed all60 actions and12 serves complete: at180,165 ms, the original day ended with total24 and clock720, matching the native fixture's day result.
 
@@ -132,7 +132,7 @@ The old clip-path reference therefore resolves to the newly constructed customer
 
 ## Remaining validation boundaries
 
-[scenarios.json](../tests/reference/scenarios.json) remains a broader observation checklist. Its pending entries are not passing tests; the concrete records above supply partial or focused evidence without completing every requested field.
+[scenarios.json](../../tests/reference/scenarios.json) remains a broader observation checklist. Its pending entries are not passing tests; the concrete records above supply partial or focused evidence without completing every requested field.
 
 The matched successful-day/Tomorrow fixture is now observed and passing. Source-level regression tests additionally cover cooking boundaries, all five eating periods, quantized patience, known/orphan timer lifecycles and competing native deadlines. These tests are not runtime observations of every boundary or every identity. Universal first-frame/equal-deadline equivalence and later-day Ruffle batching remain explicit policy limits in D-001/D-002; no historical Adobe Flash execution was measured.
 

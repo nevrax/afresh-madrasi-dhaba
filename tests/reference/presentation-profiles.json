@@ -42,7 +42,7 @@
     "fps": "Draw opportunities per elapsed second, not physical scanout or unique authored poses.",
     "coldLongGaps": "Sum of entire rAF gaps exceeding 50 ms, not excess over a frame deadline.",
     "memory": "Managed graphics surfaces, not physical VRAM or complete process memory.",
-    "pixelComparison": "Classic and restored Classic at authored sample times versus prior cache policy; five screens at three backing widths. Extra intentionally changes appearance. Fractional decorative interpolation is disabled in Classic.",
+    "pixelComparison": "Classic and restored Classic at authored sample times versus prior cache policy; five screens at three backing widths. Optimized intentionally changes appearance. Fractional decorative interpolation is disabled in Classic.",
     "ui": "Visible isolated browser, actual controls on source/site/standalone. Offline blocked-storage check. Emulated touch on Intel. No physical touchscreen claim.",
     "scenarios": "Production core/renderer complete tutorial, cooking, payment, full day, next day and three retry cycles, accelerated deterministic simulation; not a realtime day performance benchmark."
   },
@@ -2068,7 +2068,7 @@
     "Default profile remains undecided; absent preference preserves earlier release behavior.",
     "Full-clarity Pi and very-high-density performance remains below target in documented cases.",
     "Cold first-appearance stalls are reduced, not eliminated.",
-    "General static-group cropping changed pixels and was rejected for Classic; only Extra background uses the crop.",
+    "General static-group cropping changed pixels and was rejected for Classic; only Optimized background uses the crop.",
     "No new music, graphics driver changes or system package installations."
   ]
 }

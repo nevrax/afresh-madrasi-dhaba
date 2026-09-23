@@ -40,8 +40,8 @@ The local asset inventory contains **eleven sounds**: two music tracks, five cus
 
 | Original name | Preserved recording | Duration | Current lead |
 |---|---|---|---|
-| `bgMusic2` | [Listen to track 2](../assets/sound/162-d812a4f894dc.mp3) | 4:53.72 | Possible **Naan Anaiyittaal** from **Enga Veettu Pillai** |
-| `bgMusic1` | [Listen to track 1](../assets/sound/477-fa91518df41c.mp3) | 2:44.31 | Possible **Jhanan Jhanwa More Bichwa**, Geeta Dutt, from **Mangala** |
+| `bgMusic2` | [Listen to track 2](../../assets/sound/162-d812a4f894dc.mp3) | 4:53.72 | Possible **Naan Anaiyittaal** from **Enga Veettu Pillai** |
+| `bgMusic1` | [Listen to track 1](../../assets/sound/477-fa91518df41c.mp3) | 2:44.31 | Possible **Jhanan Jhanwa More Bichwa**, Geeta Dutt, from **Mangala** |
 
 **Why track 2 is a lead:** local automatic recognition of the 00:15 to 01:15 excerpt produced Tamil fragments resembling the opening of Naan Anaiyittaal and a later passage about deliberate wrongdoing. Saregama's published lyrics offer a plausible match. Its listing credits singer **T. M. Soundararajan**, lyricist **Vaali**, composers **Viswanathan and Ramamoorthy**, and the film **Enga Veettu Pillai**, associated with **M. G. Ramachandran**. Those are credits for the candidate song, not confirmed credits for this particular audio file or for the game. [Saregama song listing and lyrics](https://www.saregama.com/song-lyrics/naan-anaiyittaal_3752), [Saregama's official video](https://www.youtube.com/watch?v=RYBLrTQ4HgE).
 
@@ -95,13 +95,13 @@ These are the exact source names, not language labels. The clips are very short 
 
 | Source name | Recording | Duration | Tentative clue |
 |---|---|---|---|
-| `order0` | [Listen](../assets/sound/5-c5c57748055e.mp3) | 2.25 s | Recognition resembles “dosa de de,” possibly a Hindi request for dosa |
-| `order1` | [Listen](../assets/sound/4-3d9275f9e7c8.mp3) | 2.19 s | No reliable words or language identified |
-| `order2` | [Listen](../assets/sound/3-5d1a6dbe9b3f.mp3) | 2.66 s | Recognition resembles “bhai” and “dosa,” possibly addressing the seller |
-| `order3` | [Listen](../assets/sound/2-26c03ae658d2.mp3) | 1.99 s | Recognition suggests an “anna” address; a Tamil reading is possible but unverified |
-| `order4` | [Listen](../assets/sound/1-050246d5abb2.mp3) | 2.93 s | Recognition suggests a dosa request, but no reliable wording or language |
+| `order0` | [Listen](../../assets/sound/5-c5c57748055e.mp3) | 2.25 s | Recognition resembles “dosa de de,” possibly a Hindi request for dosa |
+| `order1` | [Listen](../../assets/sound/4-3d9275f9e7c8.mp3) | 2.19 s | No reliable words or language identified |
+| `order2` | [Listen](../../assets/sound/3-5d1a6dbe9b3f.mp3) | 2.66 s | Recognition resembles “bhai” and “dosa,” possibly addressing the seller |
+| `order3` | [Listen](../../assets/sound/2-26c03ae658d2.mp3) | 1.99 s | Recognition suggests an “anna” address; a Tamil reading is possible but unverified |
+| `order4` | [Listen](../../assets/sound/1-050246d5abb2.mp3) | 2.93 s | Recognition suggests a dosa request, but no reliable wording or language |
 
-These are **machine generated leads, not transcripts or confirmed translations**. A possible mixture of forms of address might fit customers calling to a busy cook; it cannot establish where the game takes place or the ethnicity of any character. The four remaining effects are [cash register](../assets/sound/430-405acff910c3.mp3), [food effect 441](../assets/sound/441-5f07923e577c.mp3), [food effect 446](../assets/sound/446-563a3b1ed73a.mp3) and [food effect 468](../assets/sound/468-098c2fbff8ff.mp3). Their use is documented in the game code; they are not additional identified songs.
+These are **machine generated leads, not transcripts or confirmed translations**. A possible mixture of forms of address might fit customers calling to a busy cook; it cannot establish where the game takes place or the ethnicity of any character. The four remaining effects are [cash register](../../assets/sound/430-405acff910c3.mp3), [food effect 441](../../assets/sound/441-5f07923e577c.mp3), [food effect 446](../../assets/sound/446-563a3b1ed73a.mp3) and [food effect 468](../../assets/sound/468-098c2fbff8ff.mp3). Their use is documented in the game code; they are not additional identified songs.
 
 ### Audio quality
 

@@ -26,7 +26,7 @@ Select an item to inspect it in the preview panel. Use **Export selection** to s
 - `reference/swf/sources.md`: readable index of mirror URLs, checksums, sizes and matching canonical files; `sources.json` contains the same index as structured data. Mirror binaries are not retained.
 - `analysis/dumps/extended.xml`: full local XML dump.
 
-Sprites, vector drawings and audio can be inspected in JPEXS. Separate exports for every visual and sound have not yet been generated.
+Sprites, vector drawings and audio can be inspected in JPEXS. Native exports are already available in `assets/`; see the [asset inventory](asset-inventory.md) and [catalogue](catalog-guide.md).
 
 ## Useful extended-edition references
 

@@ -1,4 +1,4 @@
-/** Source-derived domain model. Timing policy and unresolved Flash details: docs/decisions.md. */
+/** Source-derived domain model. Timing policy and unresolved Flash details: docs/reference/decisions.md. */
 import { DeadlineQueue } from './scheduler.js';
 export type Screen = 'menu' | 'instructions' | 'playing' | 'day-result' | 'game-over';
 export type PointerMode = 'blank' | 'batter' | 'dosa' | 'plate';

@@ -65,7 +65,7 @@ async function fixture() {
   return { renderer, assets, vector, trace, lookups, restore: () => Object.assign(globalThis, previous) };
 }
 
-test('Extra freezes only order decoration and keeps count, patience and customer hit targets live', async () => {
+test('Optimized freezes only order decoration and keeps count, patience and customer hit targets live', async () => {
   const f=await fixture();
   try {
     const game=createGame({random:()=>0});game.dispatch({type:'start'});game.dispatch({type:'play'});

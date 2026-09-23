@@ -1,11 +1,16 @@
 # What costs time in the scene
 
+> Historical study for the implementation and workload recorded below. Its
+> measurements are not current-release guarantees. Start with the
+> [current performance summary](../README.md).
+
+
 This study ranks practical changes to the presentation. It does not assume that
 every historical effect must remain identical. The measurements below used
 isolated test variants before the presentation profiles were implemented.
-Subsequent delivery is recorded in [presentation-profiles.md](presentation-profiles.md).
+Subsequent delivery is recorded in [presentation-profiles.md](../../development/presentation-profiles.md).
 
-Evidence: [56 anonymous measurement records](../tests/reference/performance-components.json).
+Evidence: [56 anonymous measurement records](../../../tests/reference/performance-components.json).
 The tested runtime is commit `6f033eb`, unchanged at repository checkpoint
 `3d179ae`. Three matrices run on each of two physical Pi environments.
 
@@ -22,7 +27,7 @@ five customers with order panels, five glasses, three cooking dosas and a carrie
 plate. It draws at 2200 × 1600 backing pixels, 100% render scale. Each case has
 18 seconds of cold preparation followed by 12 measured seconds. Three full
 baselines bracket the first matrix. The two environments are defined in
-[performance-raspberry-pi.md](performance-raspberry-pi.md).
+[performance-raspberry-pi.md](raspberry-pi.md).
 
 ## Individual omissions
 
@@ -79,7 +84,7 @@ to ship a blank scene or a guarantee that moving it to CSS will save the same ti
 
 Earlier background regrouping/layer experiments on another browser improved
 throughput only slightly and changed edge pixels. See the rejected experiments
-in [performance-plan.md](performance-plan.md). The present scope allows an
+in [performance-plan.md](../../planning/performance-plan.md). The present scope allows an
 intentional visual tradeoff, but any new approach still needs direct Pi timing
 and a visual review. A single retained background with frozen stars is tested
 separately from merely omitting the stars.
@@ -169,13 +174,13 @@ the speaker would not have been an equivalent suspension control.
 
 ## Recommended implementation order
 
-These candidates now follow the [profile separation plan](performance-plan.md#profile-separation-plan).
+These candidates follow the [profile specification](../../development/presentation-profiles.md).
 Only verified appearance-preserving cache work is shared. New non-cache
-optimizations and added presentation features belong to Extra, while Classic
+optimizations and added presentation features belong to Optimized, while Classic
 retains the reference effects. In particular, the measured fixed-star background
-belongs to Extra, not a transparent common cache change. No shipping
-default has been selected. The implemented Classic/Extra treatments and their
-separate acceptance results are in [presentation-profiles.md](presentation-profiles.md).
+belongs to Optimized, not a transparent common cache change. No shipping
+default has been selected. The implemented Classic/Optimized treatments and their
+separate acceptance results are in [presentation-profiles.md](../../development/presentation-profiles.md).
 The measurements in this document remain the earlier attribution study.
 
 1. Replace or simplify the large griddle steam blur. It has the strongest cold

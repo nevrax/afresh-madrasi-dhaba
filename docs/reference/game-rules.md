@@ -16,7 +16,7 @@ Events include screen changes, sound/stop requests, cash feedback, score request
 
 ## Screens and session
 
-Sources: [frame 3](../reference/decompiled/extended/clean/scripts/frame_3/DoAction.as), [frame 4](../reference/decompiled/extended/clean/scripts/frame_4/DoAction.as), [frame 6](../reference/decompiled/extended/clean/scripts/frame_6/DoAction.as), [frame 7](../reference/decompiled/extended/clean/scripts/frame_7/DoAction.as), [tutorial Skip](../reference/decompiled/extended/clean/scripts/DefineSprite_321/frame_1/DoAction.as).
+Sources: [frame 3](../../reference/decompiled/extended/clean/scripts/frame_3/DoAction.as), [frame 4](../../reference/decompiled/extended/clean/scripts/frame_4/DoAction.as), [frame 6](../../reference/decompiled/extended/clean/scripts/frame_6/DoAction.as), [frame 7](../../reference/decompiled/extended/clean/scripts/frame_7/DoAction.as), [tutorial Skip](../../reference/decompiled/extended/clean/scripts/DefineSprite_321/frame_1/DoAction.as).
 
 - Menu initializes day 1, total cash 0, audio-enabled true. The root StartSound tag starts sound162 (`bgMusic2`) once on frame3, outside the exported ActionScript. Start opens instructions. Play starts gameplay.
 - How to Play shows sprite 321 and starts its 335-frame animation. Skip calls the parent next frame, starting gameplay. No stop action is exported at the final tutorial frame; native display loops pending runtime verification.
@@ -34,7 +34,7 @@ Native simulation uses integer thirds of a millisecond: 250 units per animation 
 
 ## Food and pointer state
 
-Sources: [main gameplay](../reference/decompiled/extended/clean/scripts/frame_5/DoAction.as), [food first removal](../reference/decompiled/extended/clean/scripts/DefineSprite_472/frame_284/DoAction.as), [food second removal](../reference/decompiled/extended/clean/scripts/DefineSprite_472/frame_495/DoAction.as); label `flip` at frame 291 from the preserved XML/display-list data.
+Sources: [main gameplay](../../reference/decompiled/extended/clean/scripts/frame_5/DoAction.as), [food first removal](../../reference/decompiled/extended/clean/scripts/DefineSprite_472/frame_284/DoAction.as), [food second removal](../../reference/decompiled/extended/clean/scripts/DefineSprite_472/frame_495/DoAction.as); label `flip` at frame 291 from the preserved XML/display-list data.
 
 There are 18 cooking slots and four pointer modes: blank, batter, dosa and plate. Clicking batter works only with a blank pointer. With batter held, clicking an empty slot places food and releases the pointer. Clicking an occupied slot retains batter. Background release cancels batter; it returns held food to its original slot and resumes cooking; it returns the plate to its default position.
 
@@ -59,7 +59,7 @@ Original positions: plate starts at `(25,336.95)`, but the counter initially rem
 
 ## Customers, orders and cash
 
-Sources: [customer 0](../reference/decompiled/extended/clean/scripts/DefineSprite_413/frame_1/DoAction.as), [customer 1](../reference/decompiled/extended/clean/scripts/DefineSprite_399/frame_1/DoAction.as), [customer 2](../reference/decompiled/extended/clean/scripts/DefineSprite_400/frame_1/DoAction.as), [customer 3](../reference/decompiled/extended/clean/scripts/DefineSprite_371/frame_1/DoAction.as), [customer 4](../reference/decompiled/extended/clean/scripts/DefineSprite_385/frame_1/DoAction.as).
+Sources: [customer 0](../../reference/decompiled/extended/clean/scripts/DefineSprite_413/frame_1/DoAction.as), [customer 1](../../reference/decompiled/extended/clean/scripts/DefineSprite_399/frame_1/DoAction.as), [customer 2](../../reference/decompiled/extended/clean/scripts/DefineSprite_400/frame_1/DoAction.as), [customer 3](../../reference/decompiled/extended/clean/scripts/DefineSprite_371/frame_1/DoAction.as), [customer 4](../../reference/decompiled/extended/clean/scripts/DefineSprite_385/frame_1/DoAction.as).
 
 Five identities share five table slots. Arrival begins after `(16−day*2)` seconds, then repeats. Choose a random identity up to 100 times looking for an invisible character, then choose a random table up to 100 times looking for an unoccupied table. If no free identity is found, the last random identity still proceeds to table selection. If no free table is found, nothing spawns. A free slot is not selected by compacting the available list; doing so changes random consumption.
 
@@ -91,7 +91,7 @@ Food sprite timeline triggers sound 441 at frame5, sound 446 at36, sound 468 at2
 
 The original external form uses game name `madrasidhaba`, defaults the editable name to `noname`, and submits the exact text without trimming, required validation or a maximum length. Its HTML controller hides the form immediately on submission and sends original fields plus the transcribed Rijndael verification value through an explicitly configured adapter. Response receipt does not prove acceptance: the source only traces `postResult`. Native status/error feedback remains outside the form, with manual retries only.
 
-Default deployment configuration has no POST endpoint, so the visible form explains online unavailability and sends nothing. Local saving is an explicitly separate More options feature; the core `submit-score` event serves that local path. Session-refresh events use the same explicit endpoint/host-ID configuration without a duplicate timer. Branding sprite161 and the original leaderboard use user-activated links. Member/tournament request builders preserve dormant source routes without pretending the original host is available. See [protocol and fixtures](../src/services/README.md). Native HTML replaces the MX input/button infrastructure; the current Submit skin is an approximation.
+Default deployment configuration has no POST endpoint, so the visible form explains online unavailability and sends nothing. Local saving is an explicitly separate More options feature; the core `submit-score` event serves that local path. Session-refresh events use the same explicit endpoint/host-ID configuration without a duplicate timer. Branding sprite161 and the original leaderboard use user-activated links. Member/tournament request builders preserve dormant source routes without pretending the original host is available. See [protocol and fixtures](../../src/services/README.md). Native HTML replaces the MX input/button infrastructure; the current Submit skin is an approximation.
 
 ## Verification limits
 

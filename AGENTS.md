@@ -1,6 +1,6 @@
 # Repository instructions
 
-- Before implementation work, read `docs/implementation-plan.md` and `docs/task-status.md`. Keep task IDs, completion evidence, unresolved decisions and next actions current; use these files for session handoffs. Do not equate agent completion with verified feature completion.
+- Before implementation work, read `docs/planning/implementation-plan.md` and `docs/planning/task-status.md`. Keep task IDs, completion evidence, unresolved decisions and next actions current; use these files for session handoffs. Do not equate agent completion with verified feature completion.
 
 - Put temporary tool installations, downloaded tool archives and installer scratch files under the repository's `.local-setup/` directory. Keep that directory excluded from Git.
 - Keep reusable setup scripts and pinned tool metadata in `tools/`, tracked in Git. Those scripts must install into `.local-setup/`.
@@ -18,3 +18,5 @@
 - The root README welcomes players: standalone HTML playback first, screenshots, food, music and brief remake context. Keep commands, build instructions, profiling tables and implementation internals in linked developer guides. Explain song meanings locally; source links supplement the explanations.
 
 - Track both ready to play packages in dist/site and dist/standalone. Rebuild them after runtime or asset changes and commit the generated output with the corresponding source. Keep intermediate output and installed tools under ignored .local-setup.
+
+- Documentation is English-only and organized through `docs/README.md`. Use Classic / Optimized in prose; retain `extra` only as the compatibility identifier. Current metrics belong in `docs/performance/README.md`, tasks in `docs/planning/`, and historical experiments in `docs/performance/studies/`. Do not append chronological run narratives to current status or setup instructions. Run `tools/documentation-check.mjs` after documentation changes.

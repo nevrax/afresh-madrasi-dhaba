@@ -1,5 +1,10 @@
 # Verified adapter study and optimization
 
+> Historical study for the implementation and workload recorded below. Its
+> measurements are not current-release guarantees. Start with the
+> [current performance summary](../README.md).
+
+
 Later UI correction: fullscreen checks in this historical performance run confirmed DOM fullscreen only. Actual native-window fullscreen and browser chrome removal are now verified separately in verification.md under "Native fullscreen, menu edge and file launch". Adapter timings and cache results below are unchanged.
 
 This continuation implements PERF-12/14 and verifies actual Intel/NVIDIA selection for PERF-13. It supersedes broad statements that NVIDIA or browser tracing were unavailable. Earlier in-app-browser results remain historical; their throughput must not be directly divided into the standalone Chrome result and called a GPU speedup.

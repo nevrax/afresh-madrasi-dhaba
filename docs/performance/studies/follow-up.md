@@ -1,6 +1,11 @@
 # Performance follow-up
 
-Historical study checkpoint. Its follow-up implementation and actual Intel/NVIDIA/software validation are now complete; see [performance-gpu.md](performance-gpu.md) and [performance-plan.md](performance-plan.md). The original numbers below are retained for their original environment.
+> Historical study for the implementation and workload recorded below. Its
+> measurements are not current-release guarantees. Start with the
+> [current performance summary](../README.md).
+
+
+Historical study checkpoint. Its follow-up implementation and actual Intel/NVIDIA/software validation are now complete; see [performance-gpu.md](gpu.md) and [performance-plan.md](../../planning/performance-plan.md). The original numbers below are retained for their original environment.
 
 The user-reported stutter is real acceptance feedback. Original implementation work and initial optimization experiments exist; the earlier completed PERF-5 checkbox overstated validation. PERF-5 remains open. Monitoring, bowl discoverability and selectable render resolution are new requested UI features; attribution, pacing, actual-browser validation and long-session memory complete existing performance work.
 
@@ -42,7 +47,7 @@ Forcing filters onto the CPU makes food submission average **17.53 ms**, p95 dra
 
 The expanded HUD records **11.9 ms across 501 completed calls: about 0.024 ms/sample**, excluding subsequent browser paint. HUD-enabled throughput is 49.05/s versus 49.18–49.61/s disabled: a small difference near the baseline variation, not a precise causal percentage. The display uses fixed 256-element buffers and one DOM refresh per second; disabled instrumentation does not take per-frame measurement clocks. Audio actually runs two sources in its variant (49.37/s), while other variants suspend the context; muting game music alone would not be an equivalent control.
 
-The raw summary, byte counts and exploratory first sweep are retained in [performance-follow-up.json](../tests/reference/performance-follow-up.json). The clean second sweep supersedes the interrupted first sweep for attribution.
+The raw summary, byte counts and exploratory first sweep are retained in [performance-follow-up.json](../../../tests/reference/performance-follow-up.json). The clean second sweep supersedes the interrupted first sweep for attribution.
 
 A separate corrected **production-core** 30-second bot replay with three cooking slots at825x600 gives **85.25/s warm**, rAF p50/p95/p99 **12.0/18.1/18.5 ms**, maximum23.9ms, zero gaps above25ms, zero new tile bytes and zero evictions. Its cold run had a1.53-second scheduling interruption and is retained with that qualification. This is a smaller/lighter scenario than the five-character synthetic fixture; it does not reproduce all reported real-input stutter. The historical125-126/s figure is superseded for the corrected clock and current environment.
 

@@ -23,7 +23,7 @@ test('profile choice requires an explicit valid preference and tolerates unavail
   assert(Object.isFrozen(resolvePresentation('extra')));
 });
 
-test('Extra display settings do not overwrite existing presentation preferences', () => {
+test('Optimized display settings do not overwrite existing presentation preferences', () => {
   const values=new Map(),storage={getItem:key=>values.get(key)??null,setItem:(key,value)=>values.set(key,value)};
   saveRenderSettings(storage,{scale:.5,stats:true});
   assert.deepEqual(loadRenderSettings(storage,'madrasi-display-extra'),{scale:1,stats:false});
@@ -32,7 +32,7 @@ test('Extra display settings do not overwrite existing presentation preferences'
   assert.deepEqual(loadRenderSettings(storage,'madrasi-display-extra'),{scale:.75,stats:false});
 });
 
-test('Extra metadata changes only stars and griddle blur without mutating source or food steam', () => {
+test('Optimized metadata changes only stars and griddle blur without mutating source or food steam', () => {
   const source=JSON.parse(readFileSync(new URL('../../assets/vector/scene.json',import.meta.url)));
   const before=JSON.stringify(source),extra=presentationPack(source,true);
   assert.equal(JSON.stringify(source),before);
