@@ -65,7 +65,7 @@ Only send the selected game package for publishing. To continue development else
 
 ### GitHub Pages
 
-The included `.github/workflows/pages.yml` publishes the prepared `dist/site/` package. In the repository's **Settings → Pages → Build and deployment**, choose **GitHub Actions** as the source, then push the workflow to `main`. The **Publish game to GitHub Pages** workflow also has a manual **Run workflow** button in Actions. Later changes to `dist/site/` trigger publication automatically.
+The included `.github/workflows/github-page-site.yml` publishes the prepared `dist/site/` package. In the repository's **Settings → Pages → Build and deployment**, choose **GitHub Actions** as the source, then push the workflow to `main`. The **Deploy static content to Pages** workflow also has a manual **Run workflow** button in Actions. Pushes to `main` trigger publication automatically.
 
 The workflow uploads only the four site files. It does not rebuild the game or publish the resource catalogue. Rebuild and commit updated packages before publishing runtime changes. The deployment job reports the live URL once publication succeeds. See [GitHub's workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
