@@ -1,0 +1,14 @@
+{
+  "name": "madrasi-dhaba-native",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/internal/release.mjs",
+    "check": "node scripts/internal/build.mjs --check",
+    "test": "node scripts/internal/test.mjs",
+    "start": "node scripts/internal/serve.mjs",
+    "release": "node scripts/internal/release.mjs"
+  },
+  "engines": { "node": ">=24" }
+}

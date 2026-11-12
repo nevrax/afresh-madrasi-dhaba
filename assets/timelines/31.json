@@ -1,0 +1,125 @@
+{
+  "symbolId": 31,
+  "frameCount": 2,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 1,
+        "symbolId": 28,
+        "name": "tabCapture",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 0.0,
+          "ty": 0.0
+        }
+      },
+      {
+        "depth": 3,
+        "symbolId": 29,
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 0.0,
+          "ty": 0.0
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 0,
+      "type": "DoActionTag",
+      "attributes": {
+        "actionBytesLength": 2,
+        "actionBytesSha256": "0a6361b3a802f55cd5ae06101c88a1e216320fe11cc0cfe1d791eed08a1200fd"
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 1,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 28,
+      "name": "tabCapture",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 2,
+      "type": "place",
+      "move": false,
+      "depth": 3,
+      "symbolId": 29,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 2,
+      "tagIndex": 4,
+      "type": "remove",
+      "depth": 1
+    },
+    {
+      "frame": 2,
+      "tagIndex": 5,
+      "type": "remove",
+      "depth": 3
+    },
+    {
+      "frame": 2,
+      "tagIndex": 6,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 30,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 67.8,
+        "ty": 6.8
+      },
+      "ratio": 1
+    },
+    {
+      "frame": 2,
+      "tagIndex": 7,
+      "type": "place",
+      "move": false,
+      "depth": 3,
+      "symbolId": 25,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 3.85,
+        "ty": 2.85
+      },
+      "ratio": 1
+    }
+  ]
+}

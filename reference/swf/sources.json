@@ -1,0 +1,113 @@
+{
+  "note": "Checksums and sizes refer to the SWF payload. These are recorded observations, not a claim that every URL was re-fetched on index generation. Mirror binaries are not retained.",
+  "verified": [
+    {
+      "source": "gatoconbota",
+      "url": "https://www.gatoconbota.com/mm/go/swf/restaurant-madrasi-dhaba.swf",
+      "sha256": "1d054a0a4a1c235a01060ad76c2c3ead7f67a24e16c06ca37cba270e9c471a6f",
+      "bytes": 1248849,
+      "local_file": "original.swf"
+    },
+    {
+      "source": "kidzsearch",
+      "url": "https://games.kidzsearch.com/computer/flashgame_data/4/ksff_34447_40105.swf",
+      "sha256": "9bf19a5d63ef2375e2b675d9c5126e6b27d0d87f55e1fcc0d24e52b090ed2d2a",
+      "bytes": 1486192,
+      "local_file": "extended.swf"
+    },
+    {
+      "source": "gamesflow",
+      "url": "https://www.gamesflow.com/jeux/game-1253751005.swf",
+      "sha256": "1d054a0a4a1c235a01060ad76c2c3ead7f67a24e16c06ca37cba270e9c471a6f",
+      "bytes": 1248849,
+      "local_file": "original.swf"
+    },
+    {
+      "source": "flashgames_it",
+      "url": "https://www.flashgames.it/giochi/abilita/madrasi.dhaba/game.swf",
+      "sha256": "1d054a0a4a1c235a01060ad76c2c3ead7f67a24e16c06ca37cba270e9c471a6f",
+      "bytes": 1248849,
+      "local_file": "original.swf"
+    },
+    {
+      "source": "fastgames",
+      "url": "https://fastgames.com/swf/madrasidhaba.swf",
+      "sha256": "9bf19a5d63ef2375e2b675d9c5126e6b27d0d87f55e1fcc0d24e52b090ed2d2a",
+      "bytes": 1486192,
+      "local_file": "extended.swf"
+    },
+    {
+      "source": "y8",
+      "url": "https://img.y8.com/cloud/y8-flash-game/contents/item_versions/flash_games/5660/original/madrasi_dhaba.swf?1521307632",
+      "sha256": "9bf19a5d63ef2375e2b675d9c5126e6b27d0d87f55e1fcc0d24e52b090ed2d2a",
+      "bytes": 1486192,
+      "local_file": "extended.swf"
+    },
+    {
+      "source": "divertissez_vous",
+      "url": "https://www.divertissez-vous.com/hsalf/madrasi-dhaba.swf",
+      "sha256": "1d054a0a4a1c235a01060ad76c2c3ead7f67a24e16c06ca37cba270e9c471a6f",
+      "bytes": 1248849,
+      "local_file": "original.swf"
+    },
+    {
+      "source": "games68",
+      "url": "https://www.games68.com/games/game-1253751005.swf",
+      "sha256": "1d054a0a4a1c235a01060ad76c2c3ead7f67a24e16c06ca37cba270e9c471a6f",
+      "bytes": 1248849,
+      "local_file": "original.swf"
+    },
+    {
+      "source": "azeri",
+      "url": "https://oyun.azeri.net/oyunswf/7070.swf",
+      "sha256": "9bf19a5d63ef2375e2b675d9c5126e6b27d0d87f55e1fcc0d24e52b090ed2d2a",
+      "bytes": 1486192,
+      "local_file": "extended.swf"
+    },
+    {
+      "source": "oneonline_business",
+      "url": "https://oneonlinegames.com/sites/default/files/flash2/madrasi-dhaba.swf",
+      "sha256": "9bf19a5d63ef2375e2b675d9c5126e6b27d0d87f55e1fcc0d24e52b090ed2d2a",
+      "bytes": 1486192,
+      "local_file": "extended.swf"
+    },
+    {
+      "source": "oneonline_cooking",
+      "url": "https://oneonlinegames.com/sites/default/files/flash/madrasidhaba.swf",
+      "sha256": "9bf19a5d63ef2375e2b675d9c5126e6b27d0d87f55e1fcc0d24e52b090ed2d2a",
+      "bytes": 1486192,
+      "local_file": "extended.swf"
+    },
+    {
+      "source": "girlsgames123",
+      "url": "https://www.girlsgames123.com//misc-games/10227/madrasidhaba.swf",
+      "sha256": "9bf19a5d63ef2375e2b675d9c5126e6b27d0d87f55e1fcc0d24e52b090ed2d2a",
+      "bytes": 1486192,
+      "local_file": "extended.swf"
+    },
+    {
+      "source": "gamepuma",
+      "url": "https://www.gamepuma.com/games/07/madrasidhaba.swf",
+      "sha256": "9bf19a5d63ef2375e2b675d9c5126e6b27d0d87f55e1fcc0d24e52b090ed2d2a",
+      "bytes": 1486192,
+      "local_file": "extended.swf"
+    }
+  ],
+  "unverified": [
+    {
+      "source": "game_game",
+      "url": "https://cdn.game-game.com.ua/games/44690.swf",
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1082)>"
+    },
+    {
+      "source": "flashmuseum",
+      "url": "https://games.flashmuseum.net/2aa1d176-6925-4404-a87f-03bc9f3de30e.zip",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "source": "box10",
+      "url": "https://www.box10.com/games/madrasi-dhaba.swf",
+      "error": "HTTP Error 403: Forbidden"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "file": "reference/swf/extended.swf",
+    "sha256": "9bf19a5d63ef2375e2b675d9c5126e6b27d0d87f55e1fcc0d24e52b090ed2d2a"
+  },
+  "purpose": "Pending original-runtime observation checklist, not automated passing tests or equivalence evidence.",
+  "requiredObservationFields": ["runtimeName", "runtimeVersion", "browser", "viewport", "foregroundState", "audioState", "inputTrace", "clockOrVideoTimebase", "screenshots", "observations", "uncertainties"],
+  "scenarios": [
+    {
+      "id": "ref-load-menu",
+      "status": "pending",
+      "steps": ["Load canonical SWF in isolated reference player", "Capture initial loading/start screen", "Activate the start control", "Capture menu and list controls"],
+      "record": ["Load/start/menu order", "Button labels and hit regions", "Default sound and music behavior", "Any browser audio activation requirement"]
+    },
+    {
+      "id": "ref-tutorial-complete",
+      "status": "pending",
+      "steps": ["Open How to Play from a fresh menu", "Capture entry and representative instruction frames", "Allow natural completion with no input"],
+      "record": ["Duration from How to Play input to completion", "Stops, jumps and nested character motion", "Text changes and sound events", "Destination screen after completion"]
+    },
+    {
+      "id": "ref-tutorial-skip",
+      "status": "pending",
+      "steps": ["Open tutorial from a fresh menu", "Activate Skip while a demonstration is in progress"],
+      "record": ["Skip hit region", "Destination screen", "Whether tutorial audio or callbacks persist"]
+    },
+    {
+      "id": "ref-game-start",
+      "status": "pending",
+      "steps": ["Start a fresh game", "Capture initial board", "Observe first customer and first clock tick"],
+      "record": ["Day, clock, cash and lost-customer initial values", "First spawn time and identity/table choice", "First patience tick", "Clock origin relative to first spawn", "Music and order sound"]
+    },
+    {
+      "id": "ref-cooking-boundaries",
+      "status": "pending",
+      "steps": ["Pick up batter and pour one dosa", "Repeat controlled trials around flip and pickup boundaries", "Hold cooked food then cancel pickup", "Allow an unserved dosa to burn and disappear"],
+      "sourceBoundaryCandidates": {"flipFrames": [70, 71, 159, 160], "pickupFrames": [326, 327, 429, 430], "removalFrames": [284, 495]},
+      "record": ["Accepted and ignored inputs", "Real elapsed time and original frame when measurable", "Frozen held pose and resumed pose", "Removal callback and score effect", "Burn and pickup sounds"]
+    },
+    {
+      "id": "ref-serving-quantities",
+      "status": "pending",
+      "steps": ["Attempt serving before ordering", "Serve empty plate", "Serve fewer, exactly and more dosas than requested in independent trials", "Attempt serving during eating and exit"],
+      "record": ["Plate counts before/after", "Patience effect from offered count", "Required count and bill", "Input allowed in each customer state"]
+    },
+    {
+      "id": "ref-customer-lifecycle",
+      "status": "pending",
+      "steps": ["Observe an unserved customer's full patience cycle", "Complete an order for each of five customer identities"],
+      "record": ["Order delay", "Patience thresholds", "Eating start/end", "Payment time", "Exit duration", "Exact point table becomes available", "Customer and effect sounds"]
+    },
+    {
+      "id": "ref-mute-transitions",
+      "status": "pending",
+      "steps": ["Toggle mute in menu", "Enter and leave tutorial", "Start gameplay and toggle mute", "Trigger order/cooking/payment sounds", "Retry and advance a day"],
+      "record": ["State persistence", "Separate effects versus music behavior", "Overlapping/looping audio", "Any sounds not affected by mute"]
+    },
+    {
+      "id": "ref-game-over-retry",
+      "status": "pending",
+      "steps": ["Lose five customers", "Capture game-over state and score form without submitting", "Activate retry", "Repeat game over and retry"],
+      "record": ["End-condition timing", "Score snapshot and visible controls", "Cleared versus retained state", "Absence or presence of accumulated callbacks", "Do not submit any remote score"]
+    },
+    {
+      "id": "ref-day-result-next-day",
+      "status": "pending",
+      "steps": ["Survive until the day ends", "Capture result screen", "Advance to the next day"],
+      "record": ["Measured day duration", "Score/cash carryover", "Customer/food cleanup", "Next-day spawn interval", "Music transition"]
+    },
+    {
+      "id": "ref-competing-events",
+      "status": "pending",
+      "steps": ["Arrange day end near customer loss", "Arrange day end near serving/payment", "Arrange food removal near customer loss"],
+      "record": ["Trace of event ordering", "Winning end condition", "Final score and lost-customer count", "Whether any callbacks occur after screen transition"]
+    },
+    {
+      "id": "ref-late-days",
+      "status": "pending",
+      "steps": ["Reach or reproducibly configure days 7, 8 and 9 in the isolated reference runtime", "Observe occupancy and customer creation"],
+      "record": ["Whether runtime was instrumented", "Zero/negative interval behavior", "Repeated random-choice and occupancy behavior", "Any timing or difficulty cap actually observed"]
+    }
+  ]
+}

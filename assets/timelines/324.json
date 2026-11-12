@@ -1,0 +1,40 @@
+{
+  "symbolId": 324,
+  "frameCount": 1,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 1,
+        "symbolId": 59,
+        "matrix": {
+          "a": 0.11820984,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 0.0693512,
+          "tx": -0.05,
+          "ty": -0.15
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 1,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 59,
+      "matrix": {
+        "a": 0.11820984,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 0.0693512,
+        "tx": -0.05,
+        "ty": -0.15
+      }
+    }
+  ]
+}

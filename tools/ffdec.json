@@ -1,0 +1,9 @@
+{
+  "name": "JPEXS Free Flash Decompiler",
+  "version": "26.3.0",
+  "url": "https://github.com/jindrapetrik/jpexs-decompiler/releases/download/version26.3.0/ffdec_26.3.0.zip",
+  "sha256": "35f4930eb7c380afe66f2117f90b006deac0631473ad7500bb39c78f68645ecd",
+  "archive": "downloads/ffdec-26.3.0.zip",
+  "directory": "ffdec",
+  "upstream": "https://github.com/jindrapetrik/jpexs-decompiler"
+}

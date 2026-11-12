@@ -1,0 +1,516 @@
+{
+  "symbolId": 431,
+  "frameCount": 17,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 1,
+        "symbolId": 429,
+        "name": "txtBill",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -33.0,
+          "ty": -8.8
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 1,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -8.8
+      }
+    },
+    {
+      "frame": 2,
+      "tagIndex": 4,
+      "type": "DoActionTag",
+      "attributes": {
+        "actionBytesLength": 1467,
+        "actionBytesSha256": "c607c605d055fe2e14dcdcd097021935fbb24cd61235c5bbbc281b6bc7a79c88"
+      }
+    },
+    {
+      "frame": 2,
+      "tagIndex": 5,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -15.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 240,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 2,
+      "tagIndex": 6,
+      "type": "StartSoundTag",
+      "attributes": {
+        "soundId": 430
+      }
+    },
+    {
+      "frame": 3,
+      "tagIndex": 8,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -22.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 224,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 4,
+      "tagIndex": 10,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -29.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 208,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 5,
+      "tagIndex": 12,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -36.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 192,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 6,
+      "tagIndex": 14,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -43.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 176,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 7,
+      "tagIndex": 16,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -50.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 160,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 8,
+      "tagIndex": 18,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -57.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 144,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 9,
+      "tagIndex": 20,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -64.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 128,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 10,
+      "tagIndex": 22,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -71.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 112,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 11,
+      "tagIndex": 24,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -78.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 96,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 12,
+      "tagIndex": 26,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -85.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 80,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 13,
+      "tagIndex": 28,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -92.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 64,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 14,
+      "tagIndex": 30,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -99.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 48,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 15,
+      "tagIndex": 32,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -106.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 32,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 16,
+      "tagIndex": 34,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -113.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 16,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    },
+    {
+      "frame": 17,
+      "tagIndex": 37,
+      "type": "DoActionTag",
+      "attributes": {
+        "actionBytesLength": 1807,
+        "actionBytesSha256": "5dd687083554b86905206c74fe06cac63634fa64e1d283a821bde4bfd3a081ca"
+      }
+    },
+    {
+      "frame": 17,
+      "tagIndex": 38,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 429,
+      "name": "txtBill",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.0,
+        "ty": -120.8
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaMultTerm": 0,
+        "blueMultTerm": 256,
+        "greenMultTerm": 256,
+        "hasAddTerms": false,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redMultTerm": 256,
+        "children": []
+      }
+    }
+  ]
+}

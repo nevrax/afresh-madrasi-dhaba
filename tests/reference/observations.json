@@ -1,0 +1,400 @@
+{
+  "runtime": "Ruffle 0.6.0",
+  "runtimeCommit": "cac5c99ce4a17e606f4ee3090389bb878f852055",
+  "browser": "Codex in-app Chromium on Windows",
+  "viewport": [
+    1280,
+    720
+  ],
+  "referenceStage": [
+    550,
+    400
+  ],
+  "canonicalSha256": "9bf19a5d63ef2375e2b675d9c5126e6b27d0d87f55e1fcc0d24e52b090ed2d2a",
+  "evidenceKind": "Coordinator observed browser UI and visible trace output; emulator observations, not Adobe Flash Player",
+  "canonicalManual": [
+    "Verified canonical hash displayed by reference loader",
+    "Start opens instructions; How to Play opens animated tutorial",
+    "Tutorial Skip to Game starts gameplay",
+    "Unserved run reaches Game Over with original name noname and Submit form",
+    "Play Again restarts gameplay with Day1, Cash0, Lost0"
+  ],
+  "probes": [
+    {
+      "case": "cook",
+      "derivativeSha256": "62e68861de4d003087cbb547eee3054cc2adaa43ecb92fbf7520b3259fc495e9",
+      "overrides": "Disable random arrivals; invoke original customer0.Appear(table0); set original order quantity to1; use original release callbacks",
+      "traceMsFromProbeStart": {
+        "place": 169,
+        "flipPose291": 6006,
+        "pickupPose327": 9006,
+        "heldPose327": 10009,
+        "plateCount1": 10015,
+        "servePlateCount0": 10017,
+        "exitComplete": 13420
+      },
+      "observations": "Spoon and shadow references undefined at pickup and after1000ms hold. Cash2 awarded, customer exits, table becomes free.",
+      "result": "pass"
+    },
+    {
+      "case": "day",
+      "derivativeSha256": "11f0af7f2f86478281741669d7c8854bd67b10ef0802e38c31ca8af8664daf84",
+      "overrides": "Disable random arrivals; original customer0.Appear/table0 every20seconds after prior exit; order quantity1; source cooking/release callbacks; original180second clock unchanged",
+      "traceMsFromProbeStart": {
+        "dayResult": 180163,
+        "tomorrow": 181186,
+        "nextDayVerified": 181190
+      },
+      "observations": "Nine complete serving cycles; Day1 ends at clock720 with total18. Original Tomorrow enters Day2 with cumulative cash18.",
+      "result": "pass"
+    },
+    {
+      "case": "template",
+      "derivativeSha256": "62e68861de4d003087cbb547eee3054cc2adaa43ecb92fbf7520b3259fc495e9",
+      "overrides": "Disable random arrivals; set cash10; leave original hidden mcDosa running without picking batter",
+      "traceMsFromProbeStart": {
+        "gameEntry": 165,
+        "pose283": 23596,
+        "templateRemovedCash8": 23698,
+        "done": 27170
+      },
+      "observations": "mcDosa.Stop is undefined; lowercase stop is a function. Hidden template advances, applies original frame284 penalty and removes itself.",
+      "result": "confirmed source bug; implemented natively"
+    },
+    {
+      "case": "orphan-removed-first-pass",
+      "derivativeSha256": "11f0af7f2f86478281741669d7c8854bd67b10ef0802e38c31ca8af8664daf84",
+      "overrides": "Original customer0.Appear twice, creating overwritten patience handle; source StopGame then rootframe7",
+      "traceMsFromProbeStart": {
+        "beforeRemoval": 5166,
+        "stopAndResult": 5170,
+        "oldReferenceInvalid": 5195,
+        "done": 10169
+      },
+      "observations": "Old customer name,parent,patience and timer properties become undefined after removal and remain inert over next5seconds. Follow-up across new-day recreation is a separate probe.",
+      "result": "partial; superseded by next-day probe below"
+    },
+    {
+      "case": "patience",
+      "derivativeSha256": "b2626991133b21e1b67d4be3a26f9fa240e9a661298d007d944d651dd8a6c523",
+      "overrides": "Disable random arrivals; invoke original customer0.Appear/table0; stop hidden batter template with original bowl callback; leave source order/patience timers untouched",
+      "traceMsFromProbeStart": {
+        "patienceMinus30Point05Alive": 18113,
+        "patienceMinus29Point85Lost": 18199,
+        "customerGone": 18595,
+        "done": 21278
+      },
+      "observations": "Each MovieClip y assignment quantizes to twentieths of a pixel by truncating toward zero. Source160patience callbacks produce loss after16seconds, not the former unquantized native18seconds.",
+      "result": "confirmed; native per-write quantization and callback118/160 boundary tests implemented"
+    },
+    {
+      "case": "orphan-removed-next-day",
+      "derivativeSha256": "b2626991133b21e1b67d4be3a26f9fa240e9a661298d007d944d651dd8a6c523",
+      "overrides": "Repeated original Appear leaves overwritten interval; original StopGame then frame7; original Tomorrow at10seconds; disable new arrivals and stop new template",
+      "traceMsFromProbeStart": {
+        "resultScreen": 5248,
+        "tomorrow": 10211,
+        "newMeterMinus65Point7": 10345,
+        "newMeterMinus55Point85": 15106,
+        "done": 15185
+      },
+      "observations": "Old MovieClip path reference is undefined on result screen, then resolves to newly constructed customer0 on next day. Fresh authored meter starts at-65.9; subsequent readings are-65.7,-65.5,-65.3. Orphan patience interval resumes on invisible fresh customer while its stored timer properties are0. Clearing every timer at screen transition was incorrect.",
+      "result": "confirmed; native retained interval phase/path rebinding and fresh authored meter implemented with regression tests"
+    },
+    {
+      "case": "cook-smoke",
+      "probeCaseParameter": "cook",
+      "derivativeSha256": "61f2e4f9141045a207a5e365bbaa2c19e3bf8cff35856325624b6f5f452d9ee5",
+      "overrides": "Disable random arrivals; invoke original customer0.Appear(table0); set order quantity1; original cooking/release callbacks; hold1000ms and wait750ms after plating before serving to observe child playback",
+      "samples": [
+        {
+          "ms": 9000,
+          "location": "held",
+          "parentPose": 327,
+          "smokePose": 6
+        },
+        {
+          "ms": 9514,
+          "location": "held",
+          "parentPose": 327,
+          "smokePose": 12
+        },
+        {
+          "ms": 9627,
+          "location": "held",
+          "parentPose": 327,
+          "smokePose": 1
+        },
+        {
+          "ms": 10043,
+          "location": "held",
+          "parentPose": 327,
+          "smokePose": 6
+        },
+        {
+          "ms": 10055,
+          "location": "plate",
+          "parentPose": 327,
+          "smokePose": 1
+        },
+        {
+          "ms": 10512,
+          "location": "plate",
+          "parentPose": 327,
+          "smokePose": 7
+        },
+        {
+          "ms": 10586,
+          "location": "plate",
+          "parentPose": 327,
+          "smokePose": 8
+        },
+        {
+          "ms": 10791,
+          "location": "plate",
+          "parentPose": 327,
+          "smokePose": 10
+        }
+      ],
+      "sampleClock": "getTimer milliseconds from probe start; polling timestamps do not establish exact callback ties",
+      "observations": "Unnamed child223 at depth9 continues its12-frame timeline while held parent remains327. Original AddDosaToPlate duplication resets smoke to1 while preserving parent327; plated smoke then continues. Spoon/shadow references remain absent.",
+      "result": "confirmed; native independent smokePose, duplicate reset and cancellation continuity implemented with tests"
+    },
+    {
+      "case": "tutorial",
+      "derivativeSha256": "2b7bcafbc9cb6456b2924075942c692441acbb8d6878770bbfc4c70e947d8fe0",
+      "overrides": "Invoke original Start and HowToPlay callbacks; observe one complete natural tutorial loop; invoke original Skip after the replay reaches frame12. No timeline acceleration or source-function mutation.",
+      "traceMsFromProbeStart": {
+        "howToPlay": 167,
+        "loop335To1": 28078,
+        "skipToRoot5": 29001,
+        "done": 29006
+      },
+      "samples": [
+        {
+          "ms": 167,
+          "tutorialPose": 1,
+          "radioChildPose": 2
+        },
+        {
+          "ms": 27924,
+          "tutorialPose": 334,
+          "radioPose": 15,
+          "radioChildPose": 11
+        },
+        {
+          "ms": 27996,
+          "tutorialPose": 335,
+          "radioPose": 16,
+          "radioChildPose": 12
+        },
+        {
+          "ms": 28131,
+          "tutorialPose": 1,
+          "radioPose": 17,
+          "radioChildPose": 13,
+          "trafficDepth32Pose": 77,
+          "trafficDepth34Pose": 167
+        }
+      ],
+      "additionalSequentialSamples": [
+        {
+          "tutorialPose": 2,
+          "radioPose": 18,
+          "radioChildPose": 14
+        },
+        {
+          "tutorialPose": 3,
+          "radioPose": 19,
+          "radioChildPose": 15
+        }
+      ],
+      "sampleClock": "getTimer milliseconds from probe start. EnterFrame loop-event and periodic state samples are distinct observations; timestamps do not establish all callback ties.",
+      "observations": "Tutorial naturally repeats335to1 and original Skip enters rootframe5. Persistent direct/nested child timelines retain their ages across the parent loop: radio199 has20frames, nested198 has27; traffic depths32/34 have130/170frames. Hidden elapsed time before HowToPlay is retained in child playback.",
+      "sourceActionAudit": "Reachable exported actions: tutorial321 frame1 binds Skip to parent.nextFrame; branding161 frame1 binds an external link (not invoked); character320 frame20 calls parent.CheckComplete, which tutorial321 does not define. No terminal tutorial stop action exists in these exports.",
+      "result": "confirmed; separate native parent/continuous-child clocks and hidden/replay/loop/Skip regression tests implemented"
+    }
+  ],
+  "controlledFixtures": [
+    {
+      "case": "matched-day",
+      "derivativeSha256": "aab496c0cd2bfea46ab77881aef310f3903db6f7ee4fb61ac5d1b141f519fe04",
+      "bytes": 1493913,
+      "evidenceKind": "Coordinator-observed matched source/native successful-day fixture; corrected follow-up also verified initialized next-day state",
+      "originalUncompressedPayloadPreserved": false,
+      "sourceInstructionLengthsPreserved": true,
+      "changedOriginalBodyByteCount": 10,
+      "rngLiteralPatches": [
+        {
+          "spriteId": 0,
+          "frame": 3,
+          "tagCode": 253,
+          "pushOffsetInUncompressedBody": 241841,
+          "integerOffsetInUncompressedBody": 241847,
+          "originalBound": 2,
+          "replacementBound": 1
+        },
+        {
+          "spriteId": 0,
+          "frame": 5,
+          "tagCode": 253,
+          "pushOffsetInUncompressedBody": 1102297,
+          "integerOffsetInUncompressedBody": 1102301,
+          "originalBound": 5,
+          "replacementBound": 1
+        },
+        {
+          "spriteId": 0,
+          "frame": 5,
+          "tagCode": 253,
+          "pushOffsetInUncompressedBody": 1102396,
+          "integerOffsetInUncompressedBody": 1102400,
+          "originalBound": 5,
+          "replacementBound": 1
+        },
+        {
+          "spriteId": 0,
+          "frame": 5,
+          "tagCode": 253,
+          "pushOffsetInUncompressedBody": 1105485,
+          "integerOffsetInUncompressedBody": 1105489,
+          "originalBound": 2,
+          "replacementBound": 1
+        },
+        {
+          "spriteId": 0,
+          "frame": 5,
+          "tagCode": 253,
+          "pushOffsetInUncompressedBody": 1106453,
+          "integerOffsetInUncompressedBody": 1106459,
+          "originalBound": 2,
+          "replacementBound": 1
+        },
+        {
+          "spriteId": 371,
+          "frame": 1,
+          "tagCode": 253,
+          "pushOffsetInUncompressedBody": 1159709,
+          "integerOffsetInUncompressedBody": 1159715,
+          "originalBound": 4,
+          "replacementBound": 1
+        },
+        {
+          "spriteId": 385,
+          "frame": 1,
+          "tagCode": 253,
+          "pushOffsetInUncompressedBody": 1172382,
+          "integerOffsetInUncompressedBody": 1172388,
+          "originalBound": 4,
+          "replacementBound": 1
+        },
+        {
+          "spriteId": 399,
+          "frame": 1,
+          "tagCode": 253,
+          "pushOffsetInUncompressedBody": 1183998,
+          "integerOffsetInUncompressedBody": 1184004,
+          "originalBound": 4,
+          "replacementBound": 1
+        },
+        {
+          "spriteId": 400,
+          "frame": 1,
+          "tagCode": 253,
+          "pushOffsetInUncompressedBody": 1188312,
+          "integerOffsetInUncompressedBody": 1188318,
+          "originalBound": 4,
+          "replacementBound": 1
+        },
+        {
+          "spriteId": 413,
+          "frame": 1,
+          "tagCode": 253,
+          "pushOffsetInUncompressedBody": 1199369,
+          "integerOffsetInUncompressedBody": 1199375,
+          "originalBound": 4,
+          "replacementBound": 1
+        }
+      ],
+      "excludedObfuscatorCode": "Unreachable RandomNumber in sprite472 frame295 has no literal operand; retained unchanged, absent from clean executable rule export.",
+      "controls": "Ten validated ActionPush integer bounds before active ActionRandomNumber operations changed from2/4/5 to1; all return0. Source callbacks/intervals/day clock retained. Fixed public input schedule.",
+      "inputSchedule": {
+        "cycles": 12,
+        "periodMs": 14000,
+        "offsetsMs": {
+          "place": 100,
+          "flip": 6100,
+          "pickup": 9100,
+          "plate": 10100,
+          "serve": 16100
+        },
+        "origin": "native gameplay entry / reference getTimer immediately before entering original gameplay"
+      },
+      "nativeResult": {
+        "served": 12,
+        "cash": 24,
+        "lostCustomers": 0,
+        "clockMinutes": 720,
+        "nextDay": 2,
+        "nextDayCash": 24
+      },
+      "referenceResult": {
+        "dayResult": {
+          "ms": 180165,
+          "served": 12,
+          "cash": 24,
+          "clockMinutes": 720,
+          "actionsExecuted": 60,
+          "result": "pass"
+        },
+        "tomorrowInvokedMs": 181275,
+        "prematureNextDaySample": {
+          "ms": 181278,
+          "rootFrame": 5,
+          "day": 2,
+          "cash": 0,
+          "totalScore": 24,
+          "clockMinutes": 720,
+          "customersDefined": false
+        },
+        "prematureProbeMismatchMs": 181279,
+        "nextDayResult": "Premature assertion before queued frame5 initialization; superseded by the passing queuedInitializationFollowUp, not a production cash-reset defect"
+      },
+      "queuedInitializationFollowUp": {
+        "derivativeSha256": "0748fa348e82fb619831c40de323ca029dec66c1c31f0cb34b7cbe776f3a7fef",
+        "bytes": 1494037,
+        "rngPatchesUnchanged": true,
+        "checkPolicy": "Wait at least200ms after Tomorrow and require rootframe5,clock540..541 and customer0 existence before checking day/cash; timeout after5000ms",
+        "referenceResult": {
+          "dayResult": {
+            "ms": 180164,
+            "served": 12,
+            "cash": 24,
+            "clockMinutes": 720,
+            "actionsExecuted": 60,
+            "result": "pass"
+          },
+          "tomorrowInvokedMs": 181271,
+          "initializedNextDay": {
+            "ms": 181497,
+            "day": 2,
+            "cash": 24,
+            "clockMinutes": 540
+          },
+          "nextDayStateSample": {
+            "ms": 181500,
+            "rootFrame": 5,
+            "day": 2,
+            "cash": 24,
+            "totalScore": 24,
+            "clockMinutes": 540,
+            "lostCustomers": 0
+          },
+          "doneMs": 181501,
+          "result": "MATCHED_PASS"
+        }
+      },
+      "finalResult": "pass:60scheduled commands,12serves,cash24,full180second source day and initialized Tomorrowday2cash24 match native public-API fixture"
+    }
+  ]
+}

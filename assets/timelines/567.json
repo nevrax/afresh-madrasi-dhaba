@@ -1,0 +1,668 @@
+{
+  "symbolId": 567,
+  "frameCount": 1,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 1,
+        "symbolId": 543,
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 0.0,
+          "ty": 0.0
+        }
+      },
+      {
+        "depth": 2,
+        "symbolId": 545,
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 20.0,
+          "ty": -67.1
+        }
+      },
+      {
+        "depth": 3,
+        "symbolId": 547,
+        "name": "txtName1",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -44.0,
+          "ty": -34.8
+        }
+      },
+      {
+        "depth": 4,
+        "symbolId": 548,
+        "name": "txtScore1",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 84.05,
+          "ty": -34.8
+        }
+      },
+      {
+        "depth": 5,
+        "symbolId": 549,
+        "name": "txtName2",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -44.0,
+          "ty": -4.75
+        }
+      },
+      {
+        "depth": 6,
+        "symbolId": 550,
+        "name": "txtScore2",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 84.05,
+          "ty": -4.75
+        }
+      },
+      {
+        "depth": 7,
+        "symbolId": 551,
+        "name": "txtName3",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -44.0,
+          "ty": 25.0
+        }
+      },
+      {
+        "depth": 8,
+        "symbolId": 552,
+        "name": "txtScore3",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 84.05,
+          "ty": 25.0
+        }
+      },
+      {
+        "depth": 9,
+        "symbolId": 553,
+        "name": "txtName4",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -44.0,
+          "ty": 55.0
+        }
+      },
+      {
+        "depth": 10,
+        "symbolId": 554,
+        "name": "txtScore4",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 84.05,
+          "ty": 55.0
+        }
+      },
+      {
+        "depth": 11,
+        "symbolId": 555,
+        "name": "txtName5",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -44.0,
+          "ty": 85.0
+        }
+      },
+      {
+        "depth": 12,
+        "symbolId": 556,
+        "name": "txtScore5",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 84.05,
+          "ty": 85.0
+        }
+      },
+      {
+        "depth": 13,
+        "symbolId": 557,
+        "name": "txtName6",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -44.0,
+          "ty": 115.0
+        }
+      },
+      {
+        "depth": 14,
+        "symbolId": 558,
+        "name": "txtScore6",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 84.05,
+          "ty": 115.0
+        }
+      },
+      {
+        "depth": 15,
+        "symbolId": 559,
+        "name": "txtName7",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -44.0,
+          "ty": 145.0
+        }
+      },
+      {
+        "depth": 16,
+        "symbolId": 560,
+        "name": "txtScore7",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 84.05,
+          "ty": 145.0
+        }
+      },
+      {
+        "depth": 17,
+        "symbolId": 561,
+        "name": "txtName8",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -44.0,
+          "ty": 175.05
+        }
+      },
+      {
+        "depth": 18,
+        "symbolId": 562,
+        "name": "txtScore8",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 84.05,
+          "ty": 175.05
+        }
+      },
+      {
+        "depth": 19,
+        "symbolId": 563,
+        "name": "txtName9",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -44.0,
+          "ty": 205.05
+        }
+      },
+      {
+        "depth": 20,
+        "symbolId": 564,
+        "name": "txtScore9",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 84.05,
+          "ty": 205.05
+        }
+      },
+      {
+        "depth": 21,
+        "symbolId": 565,
+        "name": "txtName10",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -44.0,
+          "ty": 233.6
+        }
+      },
+      {
+        "depth": 22,
+        "symbolId": 566,
+        "name": "txtScore10",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 84.05,
+          "ty": 233.6
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 1,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 543,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 2,
+      "type": "place",
+      "move": false,
+      "depth": 2,
+      "symbolId": 545,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 20.0,
+        "ty": -67.1
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 3,
+      "type": "place",
+      "move": false,
+      "depth": 3,
+      "symbolId": 547,
+      "name": "txtName1",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -44.0,
+        "ty": -34.8
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 4,
+      "type": "place",
+      "move": false,
+      "depth": 4,
+      "symbolId": 548,
+      "name": "txtScore1",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 84.05,
+        "ty": -34.8
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 5,
+      "type": "place",
+      "move": false,
+      "depth": 5,
+      "symbolId": 549,
+      "name": "txtName2",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -44.0,
+        "ty": -4.75
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 6,
+      "type": "place",
+      "move": false,
+      "depth": 6,
+      "symbolId": 550,
+      "name": "txtScore2",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 84.05,
+        "ty": -4.75
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 7,
+      "type": "place",
+      "move": false,
+      "depth": 7,
+      "symbolId": 551,
+      "name": "txtName3",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -44.0,
+        "ty": 25.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 8,
+      "type": "place",
+      "move": false,
+      "depth": 8,
+      "symbolId": 552,
+      "name": "txtScore3",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 84.05,
+        "ty": 25.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 9,
+      "type": "place",
+      "move": false,
+      "depth": 9,
+      "symbolId": 553,
+      "name": "txtName4",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -44.0,
+        "ty": 55.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 10,
+      "type": "place",
+      "move": false,
+      "depth": 10,
+      "symbolId": 554,
+      "name": "txtScore4",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 84.05,
+        "ty": 55.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 11,
+      "type": "place",
+      "move": false,
+      "depth": 11,
+      "symbolId": 555,
+      "name": "txtName5",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -44.0,
+        "ty": 85.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 12,
+      "type": "place",
+      "move": false,
+      "depth": 12,
+      "symbolId": 556,
+      "name": "txtScore5",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 84.05,
+        "ty": 85.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 13,
+      "type": "place",
+      "move": false,
+      "depth": 13,
+      "symbolId": 557,
+      "name": "txtName6",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -44.0,
+        "ty": 115.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 14,
+      "type": "place",
+      "move": false,
+      "depth": 14,
+      "symbolId": 558,
+      "name": "txtScore6",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 84.05,
+        "ty": 115.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 15,
+      "type": "place",
+      "move": false,
+      "depth": 15,
+      "symbolId": 559,
+      "name": "txtName7",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -44.0,
+        "ty": 145.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 16,
+      "type": "place",
+      "move": false,
+      "depth": 16,
+      "symbolId": 560,
+      "name": "txtScore7",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 84.05,
+        "ty": 145.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 17,
+      "type": "place",
+      "move": false,
+      "depth": 17,
+      "symbolId": 561,
+      "name": "txtName8",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -44.0,
+        "ty": 175.05
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 18,
+      "type": "place",
+      "move": false,
+      "depth": 18,
+      "symbolId": 562,
+      "name": "txtScore8",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 84.05,
+        "ty": 175.05
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 19,
+      "type": "place",
+      "move": false,
+      "depth": 19,
+      "symbolId": 563,
+      "name": "txtName9",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -44.0,
+        "ty": 205.05
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 20,
+      "type": "place",
+      "move": false,
+      "depth": 20,
+      "symbolId": 564,
+      "name": "txtScore9",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 84.05,
+        "ty": 205.05
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 21,
+      "type": "place",
+      "move": false,
+      "depth": 21,
+      "symbolId": 565,
+      "name": "txtName10",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -44.0,
+        "ty": 233.6
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 22,
+      "type": "place",
+      "move": false,
+      "depth": 22,
+      "symbolId": 566,
+      "name": "txtScore10",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 84.05,
+        "ty": 233.6
+      }
+    }
+  ]
+}

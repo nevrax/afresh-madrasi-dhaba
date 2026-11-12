@@ -1,0 +1,84 @@
+{
+  "portableBytes": 10314820,
+  "method": "Visible isolated Playwright, actual file URLs, all HTTP(S) blocked; portable HTML copied alone. Plate count checked from rendered source counter. Firefox fullscreen assertion is DOM-only.",
+  "chrome": {
+    "status": "PASS",
+    "browser": "153.0.8010.48",
+    "checks": [
+      {
+        "kind": "source file",
+        "gameplay": "tutorial/skip/batter/pour/flip/pickup/plate",
+        "plateCount": 1,
+        "decodedSounds": 11,
+        "liveDecodedAudio": 5,
+        "fullscreen": "native window",
+        "resourceErrors": false
+      },
+      {
+        "kind": "portable HTML alone",
+        "gameplay": "tutorial/skip/batter/pour/flip/pickup/plate",
+        "plateCount": 1,
+        "decodedSounds": 11,
+        "liveDecodedAudio": 4,
+        "fullscreen": "native window",
+        "resourceErrors": false
+      },
+      {
+        "kind": "static release file",
+        "gameplay": "tutorial/skip/batter/pour/flip/pickup/plate",
+        "plateCount": 1,
+        "decodedSounds": 11,
+        "liveDecodedAudio": 4,
+        "fullscreen": "native window",
+        "resourceErrors": false
+      },
+      {
+        "kind": "file catalogue",
+        "resources": 636,
+        "vectorPreview": true
+      }
+    ],
+    "errors": [],
+    "network": []
+  },
+  "firefox": {
+    "status": "PASS",
+    "browser": "140.0.2",
+    "checks": [
+      {
+        "kind": "source file",
+        "gameplay": "tutorial/skip/batter/pour/flip/pickup/plate",
+        "plateCount": 1,
+        "decodedSounds": 11,
+        "liveDecodedAudio": 4,
+        "fullscreen": "DOM request",
+        "resourceErrors": false
+      },
+      {
+        "kind": "portable HTML alone",
+        "gameplay": "tutorial/skip/batter/pour/flip/pickup/plate",
+        "plateCount": 1,
+        "decodedSounds": 11,
+        "liveDecodedAudio": 4,
+        "fullscreen": "DOM request",
+        "resourceErrors": false
+      },
+      {
+        "kind": "static release file",
+        "gameplay": "tutorial/skip/batter/pour/flip/pickup/plate",
+        "plateCount": 1,
+        "decodedSounds": 11,
+        "liveDecodedAudio": 5,
+        "fullscreen": "DOM request",
+        "resourceErrors": false
+      },
+      {
+        "kind": "file catalogue",
+        "resources": 636,
+        "vectorPreview": true
+      }
+    ],
+    "errors": [],
+    "network": []
+  }
+}

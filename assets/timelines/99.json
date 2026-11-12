@@ -1,0 +1,72 @@
+{
+  "symbolId": 99,
+  "frameCount": 1,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 1,
+        "symbolId": 59,
+        "matrix": {
+          "a": 1.0002747,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 0.9973755,
+          "tx": -0.65,
+          "ty": -1.35
+        },
+        "clipDepth": 25
+      },
+      {
+        "depth": 2,
+        "symbolId": 98,
+        "name": "innerloader",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -10.65,
+          "ty": 18.0
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 1,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 59,
+      "matrix": {
+        "a": 1.0002747,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 0.9973755,
+        "tx": -0.65,
+        "ty": -1.35
+      },
+      "clipDepth": 25
+    },
+    {
+      "frame": 1,
+      "tagIndex": 2,
+      "type": "place",
+      "move": false,
+      "depth": 2,
+      "symbolId": 98,
+      "name": "innerloader",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -10.65,
+        "ty": 18.0
+      }
+    }
+  ]
+}

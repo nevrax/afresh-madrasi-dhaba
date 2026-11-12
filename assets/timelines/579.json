@@ -1,0 +1,225 @@
+{
+  "symbolId": 579,
+  "frameCount": 1,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 3,
+        "symbolId": 570,
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 0.0,
+          "ty": 0.0
+        }
+      },
+      {
+        "depth": 4,
+        "symbolId": 572,
+        "name": "inpPlayerName",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 28.35,
+          "ty": 49.9
+        }
+      },
+      {
+        "depth": 5,
+        "symbolId": 38,
+        "name": "btnSubmit_External",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 100.35,
+          "ty": 72.35
+        },
+        "hasClipActions": true
+      },
+      {
+        "depth": 6,
+        "symbolId": 573,
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -64.0,
+          "ty": 49.9
+        }
+      },
+      {
+        "depth": 7,
+        "symbolId": 575,
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -62.0,
+          "ty": -7.05
+        }
+      },
+      {
+        "depth": 8,
+        "symbolId": 576,
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -41.0,
+          "ty": 26.95
+        }
+      },
+      {
+        "depth": 9,
+        "symbolId": 578,
+        "name": "txtExternalScore",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 29.0,
+          "ty": 26.95
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 2,
+      "type": "DoActionTag",
+      "attributes": {
+        "actionBytesLength": 1008,
+        "actionBytesSha256": "e22ca3d7add71895ba87ac601736cce31661b3033baac3c3f771fc70e5911a07"
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 3,
+      "type": "place",
+      "move": false,
+      "depth": 3,
+      "symbolId": 570,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 4,
+      "type": "place",
+      "move": false,
+      "depth": 4,
+      "symbolId": 572,
+      "name": "inpPlayerName",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 28.35,
+        "ty": 49.9
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 6,
+      "type": "place",
+      "move": false,
+      "depth": 5,
+      "symbolId": 38,
+      "name": "btnSubmit_External",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 100.35,
+        "ty": 72.35
+      },
+      "hasClipActions": true
+    },
+    {
+      "frame": 1,
+      "tagIndex": 7,
+      "type": "place",
+      "move": false,
+      "depth": 6,
+      "symbolId": 573,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -64.0,
+        "ty": 49.9
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 8,
+      "type": "place",
+      "move": false,
+      "depth": 7,
+      "symbolId": 575,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -62.0,
+        "ty": -7.05
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 9,
+      "type": "place",
+      "move": false,
+      "depth": 8,
+      "symbolId": 576,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -41.0,
+        "ty": 26.95
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 10,
+      "type": "place",
+      "move": false,
+      "depth": 9,
+      "symbolId": 578,
+      "name": "txtExternalScore",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 29.0,
+        "ty": 26.95
+      }
+    }
+  ]
+}

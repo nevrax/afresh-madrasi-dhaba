@@ -1,0 +1,71 @@
+{
+  "symbolId": 33,
+  "frameCount": 2,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": []
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 0,
+      "type": "DoActionTag",
+      "attributes": {
+        "actionBytesLength": 2,
+        "actionBytesSha256": "0a6361b3a802f55cd5ae06101c88a1e216320fe11cc0cfe1d791eed08a1200fd"
+      }
+    },
+    {
+      "frame": 2,
+      "tagIndex": 2,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 25,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 8.85,
+        "ty": 7.85
+      },
+      "ratio": 1
+    },
+    {
+      "frame": 2,
+      "tagIndex": 3,
+      "type": "place",
+      "move": false,
+      "depth": 5,
+      "symbolId": 31,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 25.35,
+        "ty": 0.35
+      },
+      "ratio": 1
+    },
+    {
+      "frame": 2,
+      "tagIndex": 4,
+      "type": "place",
+      "move": false,
+      "depth": 9,
+      "symbolId": 32,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 9.85,
+        "ty": 27.85
+      },
+      "ratio": 1
+    }
+  ]
+}

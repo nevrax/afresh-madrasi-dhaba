@@ -1,0 +1,404 @@
+{
+  "symbolId": 199,
+  "frameCount": 20,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 2,
+        "symbolId": 196,
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -9.45,
+          "ty": 38.05
+        }
+      },
+      {
+        "depth": 3,
+        "symbolId": 198,
+        "name": "mcSound1",
+        "matrix": {
+          "a": 0.7064514,
+          "b": 0.0,
+          "c": -0.031906128,
+          "d": 0.7064514,
+          "tx": -41.4,
+          "ty": 44.45
+        }
+      },
+      {
+        "depth": 8,
+        "symbolId": 198,
+        "name": "mcSound2",
+        "matrix": {
+          "a": -0.34840393,
+          "b": 0.60346985,
+          "c": 0.48020935,
+          "d": 0.44358826,
+          "tx": -10.6,
+          "ty": 23.75
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 1,
+      "type": "place",
+      "move": false,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -9.45,
+        "ty": 38.05
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 2,
+      "type": "place",
+      "move": false,
+      "depth": 3,
+      "symbolId": 198,
+      "name": "mcSound1",
+      "matrix": {
+        "a": 0.7064514,
+        "b": 0.0,
+        "c": -0.031906128,
+        "d": 0.7064514,
+        "tx": -41.4,
+        "ty": 44.45
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 3,
+      "type": "place",
+      "move": false,
+      "depth": 8,
+      "symbolId": 198,
+      "name": "mcSound2",
+      "matrix": {
+        "a": -0.34840393,
+        "b": 0.60346985,
+        "c": 0.48020935,
+        "d": 0.44358826,
+        "tx": -10.6,
+        "ty": 23.75
+      }
+    },
+    {
+      "frame": 2,
+      "tagIndex": 5,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": -0.00091552734,
+        "d": 1.0021667,
+        "tx": -9.4,
+        "ty": 37.9
+      }
+    },
+    {
+      "frame": 3,
+      "tagIndex": 7,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": -0.005126953,
+        "d": 1.0043335,
+        "tx": -9.05,
+        "ty": 37.7
+      }
+    },
+    {
+      "frame": 4,
+      "tagIndex": 9,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": -0.0093688965,
+        "d": 1.0064697,
+        "tx": -8.7,
+        "ty": 37.55
+      }
+    },
+    {
+      "frame": 5,
+      "tagIndex": 11,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": -0.013626099,
+        "d": 1.0085907,
+        "tx": -8.35,
+        "ty": 37.4
+      }
+    },
+    {
+      "frame": 6,
+      "tagIndex": 13,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": -0.01789856,
+        "d": 1.0106812,
+        "tx": -8.05,
+        "ty": 37.25
+      }
+    },
+    {
+      "frame": 7,
+      "tagIndex": 15,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": -0.02243042,
+        "d": 1.0128174,
+        "tx": -7.7,
+        "ty": 37.05
+      }
+    },
+    {
+      "frame": 8,
+      "tagIndex": 17,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": -0.01361084,
+        "d": 1.0143433,
+        "tx": -8.4,
+        "ty": 36.9
+      }
+    },
+    {
+      "frame": 9,
+      "tagIndex": 19,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": -0.0050354004,
+        "d": 1.0158844,
+        "tx": -9.0,
+        "ty": 36.8
+      }
+    },
+    {
+      "frame": 10,
+      "tagIndex": 21,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0002746582,
+        "d": 1.0173035,
+        "tx": -9.45,
+        "ty": 36.65
+      }
+    },
+    {
+      "frame": 11,
+      "tagIndex": 23,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.008895874,
+        "d": 1.0186462,
+        "tx": -10.1,
+        "ty": 36.55
+      }
+    },
+    {
+      "frame": 12,
+      "tagIndex": 25,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.01423645,
+        "d": 1.0199738,
+        "tx": -10.55,
+        "ty": 36.45
+      }
+    },
+    {
+      "frame": 13,
+      "tagIndex": 27,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.022918701,
+        "d": 1.0212097,
+        "tx": -11.25,
+        "ty": 36.4
+      }
+    },
+    {
+      "frame": 14,
+      "tagIndex": 29,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.03276062,
+        "d": 1.0224304,
+        "tx": -12.0,
+        "ty": 36.3
+      }
+    },
+    {
+      "frame": 15,
+      "tagIndex": 31,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.026809692,
+        "d": 1.0186768,
+        "tx": -11.55,
+        "ty": 36.6
+      }
+    },
+    {
+      "frame": 16,
+      "tagIndex": 33,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.018737793,
+        "d": 1.0150604,
+        "tx": -10.95,
+        "ty": 36.9
+      }
+    },
+    {
+      "frame": 17,
+      "tagIndex": 35,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.01399231,
+        "d": 1.011322,
+        "tx": -10.55,
+        "ty": 37.15
+      }
+    },
+    {
+      "frame": 18,
+      "tagIndex": 37,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.009292603,
+        "d": 1.0075836,
+        "tx": -10.2,
+        "ty": 37.45
+      }
+    },
+    {
+      "frame": 19,
+      "tagIndex": 39,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0046539307,
+        "d": 1.0037842,
+        "tx": -9.85,
+        "ty": 37.75
+      }
+    },
+    {
+      "frame": 20,
+      "tagIndex": 41,
+      "type": "place",
+      "move": true,
+      "depth": 2,
+      "symbolId": 196,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -9.45,
+        "ty": 38.05
+      }
+    }
+  ]
+}

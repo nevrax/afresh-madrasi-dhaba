@@ -1,0 +1,309 @@
+{
+  "browser": "Windows Codex in-app Chromium",
+  "canvasPixels": [
+    1485,
+    1080
+  ],
+  "devicePixelRatio": 1.5,
+  "automatedTests": {
+    "passed": 106,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 29954.0734
+  },
+  "browserScenarios": {
+    "status": "PASS",
+    "missingAssets": [],
+    "cases": [
+      "Complete335-frame tutorial loop with persistent child clocks, then original Skip flow",
+      "Cook, flip, hold for1000ms, cancel/resume, plate, serve, payment and departure",
+      "Complete180second day with18-slot production-core bot: cash24, clock720",
+      "Next day preserves cash24 and clears food/tables",
+      "Three consecutive fifth-loss game-over/retry cycles"
+    ],
+    "limits": "Bot day has different arrival controls from the source probe's nine scripted20second arrivals/cash18; these are separate scenarios, not an identical-input score comparison."
+  },
+  "manualGameOver": [
+    "Actual native no-input game reaches original online form with name noname",
+    "Submit disabled when no endpoint configured; visible explanation says score not sent",
+    "Original publisher link and Try again available"
+  ],
+  "intermediatePerformance": [
+    {
+      "renderer": "baseline351e2d6",
+      "seconds": 30.0302,
+      "slots": 18,
+      "fps": 18.65,
+      "rafMedianMs": 47.2,
+      "rafP95Ms": 120.4,
+      "drawMedianMs": 5,
+      "drawP95Ms": 7.3,
+      "allocatedMiB": 8859.62,
+      "liveTileMiB": 95.1
+    },
+    {
+      "renderer": "retained-groups-cpu-filter",
+      "seconds": 30.0693,
+      "slots": 18,
+      "fps": 13.57,
+      "rafMedianMs": 59,
+      "rafP95Ms": 251.9,
+      "drawMedianMs": 42.5,
+      "drawP95Ms": 251.5,
+      "allocatedMiB": 151.26,
+      "liveTileMiB": 78.9
+    },
+    {
+      "renderer": "gpu-filter-before-alpha-cache-fix",
+      "seconds": 30.0223,
+      "slots": 18,
+      "fps": 27.2131,
+      "rafMedianMs": 34.6,
+      "rafP95Ms": 78.2,
+      "drawMedianMs": 5.7,
+      "drawP95Ms": 13.2,
+      "allocatedMiB": 135.8207,
+      "liveTileMiB": 79.7979,
+      "filterPasses": 764,
+      "filterFailures": 0,
+      "filterBackingBytes": 12058624
+    }
+  ],
+  "performanceAfterAlphaFactoring": [
+    {
+      "canvasPixels": [
+        1485,
+        1080
+      ],
+      "slots": 18,
+      "fps": 38.1277,
+      "rafMedianMs": 24,
+      "rafP95Ms": 51.8,
+      "rafP99Ms": 67.1,
+      "allocatedMiB": 69.0098,
+      "liveTileMiB": 68.9734,
+      "evictions": 0
+    },
+    {
+      "canvasPixels": [
+        1485,
+        1080
+      ],
+      "slots": 3,
+      "fps": 39.6766,
+      "rafMedianMs": 23.9,
+      "rafP95Ms": 48.8,
+      "rafP99Ms": 77,
+      "allocatedMiB": 69.0098,
+      "liveTileMiB": 68.9734,
+      "evictions": 0
+    },
+    {
+      "canvasPixels": [
+        825,
+        600
+      ],
+      "slots": 3,
+      "fps": 120.2172,
+      "rafMedianMs": 6.1,
+      "rafP95Ms": 12.2,
+      "rafP99Ms": 18,
+      "allocatedMiB": 23.5592,
+      "liveTileMiB": 23.545,
+      "evictions": 0
+    }
+  ],
+  "idleBrowserScheduling": {
+    "seconds": 10,
+    "fps": 167.1181,
+    "rafMedianMs": 6,
+    "rafP95Ms": 6.3,
+    "rafP99Ms": 6.7
+  },
+  "gpuFilterPixels": {
+    "passed": 7,
+    "total": 7,
+    "gpuPasses": 24,
+    "gpuFailures": 0,
+    "maxAlphaError": 2,
+    "maxPremultipliedError": 2,
+    "maxMeanPremultipliedError": 0.1278,
+    "boundsError": 0,
+    "maxCentroidPixels": 0.0564
+  },
+  "rejectedBackgroundGrouping": {
+    "enabledByDefault": false,
+    "reason": "Strict pixel comparison failed at resampled edges, for only about1fps improvement",
+    "maxChannelError1x": 125,
+    "maxChannelError2_75x": 76,
+    "removedFromProduction": true
+  },
+  "performanceLimits": "Each final window is30seconds, foreground and fully visible at0,0 in1280x720 CSS viewport,DPR1.5. Paused reference/catalogue, no other active game. rAF opportunities rather than physical display presents; instrumentation included. Cold clears retained surfaces; warm retains previous scenario cache. High-density60Hz pacing target remains unmet. No physical driver-memory trace or untested-browser claim.",
+  "matchedDay": {
+    "sourceDerivativeSha256": "0748fa348e82fb619831c40de323ca029dec66c1c31f0cb34b7cbe776f3a7fef",
+    "actions": 60,
+    "serves": 12,
+    "cash": 24,
+    "clock": 720,
+    "nextDay": {
+      "day": 2,
+      "cash": 24,
+      "clock": 540,
+      "lost": 0
+    },
+    "sourceTraceDoneMs": 181501,
+    "status": "MATCHED_PASS"
+  },
+  "rejectedSceneLayers": {
+    "removed": true,
+    "passedPixelCases": 2,
+    "totalPixelCases": 16,
+    "maxChannelError": 156,
+    "identicalHits": true,
+    "fpsWithout": 36.7817,
+    "fpsWith": 38.551
+  },
+  "rejectedStageGpu": {
+    "production": false,
+    "canvasFps": 41.14,
+    "gpuAtlasFps": 38.9,
+    "bitmapFps": 56.49,
+    "maxChannelError": 3,
+    "pixelsAboveTolerance": 1
+  },
+  "finalPerformance": [
+    {
+      "renderer": "baseline351e2d6",
+      "cache": "cold",
+      "slots": 18,
+      "canvas": [
+        1485,
+        1080
+      ],
+      "fps": 24.1623,
+      "rafMedian": 41.9,
+      "rafP95": 59.7,
+      "rafP99": 64.9,
+      "over25": 562,
+      "over50": 305,
+      "maxGap": 136.6,
+      "allocatedMiB": 9820.5507,
+      "liveTileMiB": 95.4508,
+      "evictions": 5300
+    },
+    {
+      "renderer": "optimized",
+      "cache": "cold",
+      "slots": 18,
+      "canvas": [
+        1485,
+        1080
+      ],
+      "fps": 35.5752,
+      "rafMedian": 28.7,
+      "rafP95": 54.1,
+      "rafP99": 75.9,
+      "over25": 590,
+      "over50": 93,
+      "maxGap": 135.9,
+      "allocatedMiB": 69.0098,
+      "liveTileMiB": 68.9734,
+      "evictions": 0
+    },
+    {
+      "renderer": "optimized",
+      "cache": "cold",
+      "slots": 3,
+      "canvas": [
+        1485,
+        1080
+      ],
+      "fps": 36.6891,
+      "rafMedian": 24.4,
+      "rafP95": 53.3,
+      "rafP99": 77.2,
+      "over25": 490,
+      "over50": 85,
+      "maxGap": 121.1,
+      "allocatedMiB": 69.0098,
+      "liveTileMiB": 68.9734,
+      "evictions": 0
+    },
+    {
+      "renderer": "optimized",
+      "cache": "warm",
+      "slots": 3,
+      "canvas": [
+        1485,
+        1080
+      ],
+      "fps": 37.8866,
+      "rafMedian": 24.7,
+      "rafP95": 30.7,
+      "rafP99": 31.7,
+      "over25": 536,
+      "over50": 0,
+      "maxGap": 48,
+      "allocatedMiB": 0,
+      "liveTileMiB": 68.9734,
+      "evictions": 0
+    },
+    {
+      "renderer": "optimized",
+      "cache": "cold",
+      "slots": 3,
+      "canvas": [
+        825,
+        600
+      ],
+      "fps": 125.1783,
+      "rafMedian": 6.1,
+      "rafP95": 12.2,
+      "rafP99": 17.9,
+      "over25": 11,
+      "over50": 1,
+      "maxGap": 54,
+      "allocatedMiB": 23.5592,
+      "liveTileMiB": 23.545,
+      "evictions": 0
+    },
+    {
+      "renderer": "optimized",
+      "cache": "warm",
+      "slots": 3,
+      "canvas": [
+        825,
+        600
+      ],
+      "fps": 126.5962,
+      "rafMedian": 6.1,
+      "rafP95": 12.1,
+      "rafP99": 12.4,
+      "over25": 0,
+      "over50": 0,
+      "maxGap": 24.1,
+      "allocatedMiB": 0,
+      "liveTileMiB": 23.545,
+      "evictions": 0
+    }
+  ],
+  "release": {
+    "files": 2843,
+    "bytes": 59982174,
+    "forbiddenRuntimeFiles": [],
+    "privateMarkers": [],
+    "relativeBaseBrowserCheck": "PASS",
+    "ui": [
+      "menu/instructions/tutorial/skip/gameplay",
+      "audio gesture activated",
+      "fullscreen enter/exit",
+      "390x844 narrow layout and1280x720 normal layout without document scroll"
+    ],
+    "consoleErrors": []
+  },
+  "finalAlphaComposition": {
+    "passed": 4,
+    "total": 4,
+    "maxPremultipliedError": 1
+  }
+}

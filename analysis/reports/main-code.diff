@@ -1,0 +1,215 @@
+--- original/frame_3
++++ extended/frame_3
+@@ -7,9 +7,34 @@
+ }
+ var currentLevel = 1;
+ var totalScore = 0;
++var bMusicPlaying = true;
+ stop();
++var sndBgMusic = new Sound();
++btnUnMute._visible = false;
+ btnStart.onRelease = function()
+ {
+    gotoAndStop(4);
+ };
+ refresher = setInterval(refreshSession,600000);
++btnMute.onRelease = function()
++{
++   stopAllSounds();
++   sndBgMusic.stop();
++   mcRadio.gotoAndStop(1);
++   mcRadio.mcSound1.gotoAndStop(1);
++   mcRadio.mcSound2.gotoAndStop(1);
++   bMusicPlaying = false;
++   btnMute._visible = false;
++   btnUnMute._visible = true;
++};
++btnUnMute.onRelease = function()
++{
++   sndBgMusic.attachSound("bgMusic" + String(random(2) + 1));
++   sndBgMusic.start(0,10000);
++   mcRadio.gotoAndPlay(1);
++   mcRadio.mcSound1.gotoAndPlay(1);
++   mcRadio.mcSound2.gotoAndPlay(1);
++   bMusicPlaying = true;
++   btnMute._visible = true;
++   btnUnMute._visible = false;
++};
+--- original/frame_4
++++ extended/frame_4
+@@ -1,4 +1,10 @@
++mcInstruction._visible = false;
+ btnPlay.onRelease = function()
+ {
+    gotoAndStop(5);
+ };
++btnHowToPlay.onRelease = function()
++{
++   mcInstruction._visible = true;
++   mcInstruction.gotoAndPlay(1);
++};
+--- original/frame_5
++++ extended/frame_5
+@@ -205,6 +205,29 @@
+       i++;
+    }
+ }
++function Mute()
++{
++   sndBgMusic.stop();
++   mcRadio.gotoAndStop(1);
++   mcRadio.mcSound1.gotoAndStop(1);
++   mcRadio.mcSound2.gotoAndStop(1);
++   bMusicPlaying = false;
++   btnMute._visible = false;
++   btnUnMute._visible = true;
++}
++function UnMute()
++{
++   sndBgMusic.stop();
++   var _loc1_ = random(2) + 1;
++   sndBgMusic.attachSound("bgMusic" + _loc1_);
++   sndBgMusic.start(0,10000);
++   mcRadio.gotoAndPlay(1);
++   mcRadio.mcSound1.gotoAndPlay(1);
++   mcRadio.mcSound2.gotoAndPlay(1);
++   bMusicPlaying = true;
++   btnMute._visible = true;
++   btnUnMute._visible = false;
++}
+ function TimeStep()
+ {
+    clockTime++;
+@@ -232,7 +255,6 @@
+    }
+ }
+ stop();
+-stopAllSounds();
+ var STATE_BLANK = 0;
+ var STATE_HOLDINGMAVU = 1;
+ var STATE_HOLDINGDOSA = 2;
+@@ -241,6 +263,18 @@
+ var currentDosa = 0;
+ var interval_CustomerMaker = 0;
+ var interval_TimeStep = 0;
++stopAllSounds();
++if(_root.bMusicPlaying)
++{
++   btnMute._visible = true;
++   btnUnMute._visible = false;
++}
++else
++{
++   Mute();
++   btnMute._visible = false;
++   btnUnMute._visible = true;
++}
+ mcText._visible = false;
+ mcDosa.Stop();
+ mcDosa._x = 1000;
+@@ -253,11 +287,9 @@
+ mcLost._visible = false;
+ var PLATE_DEFAULT_X = mcPlate._x;
+ var PLATE_DEFAULT_Y = mcPlate._y;
+-var bMusicPlaying = true;
+ txtDayNumber.text = currentLevel;
+ txtCashCollected.text = String(totalScore);
+-var sndBgMusic = new Sound();
+-sndBgMusic.attachSound("bgMusic" + String(random(3) + 1));
++sndBgMusic.attachSound("bgMusic" + String(random(2) + 1));
+ sndBgMusic.start(0,10000);
+ sndBgMusic.setVolume(50);
+ var sndServe = new Sound();
+@@ -376,23 +408,5 @@
+    }
+ };
+ mcPlate.onRelease = PlateClick;
+-mcRadio.onRelease = function()
+-{
+-   if(bMusicPlaying)
+-   {
+-      sndBgMusic.stop();
+-      mcRadio.gotoAndStop(1);
+-      mcRadio.mcSound1.gotoAndStop(1);
+-      mcRadio.mcSound2.gotoAndStop(1);
+-      bMusicPlaying = false;
+-   }
+-   else
+-   {
+-      sndBgMusic.attachSound("bgMusic" + String(random(3) + 1));
+-      sndBgMusic.start(0,10000);
+-      mcRadio.gotoAndPlay(1);
+-      mcRadio.mcSound1.gotoAndPlay(1);
+-      mcRadio.mcSound2.gotoAndPlay(1);
+-      bMusicPlaying = true;
+-   }
+-};
++btnMute.onRelease = Mute;
++btnUnMute.onRelease = UnMute;
+--- original/frame_6
++++ extended/frame_6
+@@ -1,6 +1,14 @@
+ function checkForm()
+ {
+-   SubmitScore(_root.gameID,_root.tourID,String(totalScore),String(totalPoints));
++   if(external)
++   {
++      mcSubmitExternal._visible = true;
++      txtHighscoreLink._visible = true;
++   }
++   else
++   {
++      SubmitScore(_root.gameID,_root.tourID,String(totalScore),String(totalPoints));
++   }
+ }
+ function SubmitScore(gid, tourid, score, points)
+ {
+@@ -26,11 +34,46 @@
+       _loc1_.sendAndLoad("/member/setscore.php",_loc2_,"POST");
+    }
+ }
++function SubmitScore_External(score, uname)
++{
++   var _loc4_ = new Rijndael(128,128);
++   var _loc6_ = "katUnzI$n0wcH@y03ot3c#N0$oluT10n$";
++   var _loc2_ = new LoadVars();
++   var _loc1_ = new LoadVars();
++   _loc1_.playerName = uname;
++   _loc1_.playerScore = score;
++   _loc1_.gameName = gameName;
++   var _loc5_ = _loc1_.playerScore + "|" + _loc1_.playerName + "|" + gameName;
++   var _loc3_ = _loc4_.encrypt(_loc5_,_loc6_);
++   _loc1_.verify = _loc3_;
++   _loc2_.onLoad = ScoresLoaded;
++   _loc1_.sendAndLoad("http://www.gamezindia.com/external/submitscore_external.php",_loc2_,"POST");
++   mcSubmitExternal._visible = false;
++}
++function OpenHighScorePage()
++{
++   getURL("http://www.gamezindia.com/external/external_highscore.php?gamename=" + gameName,"_blank");
++}
++function ScoresLoaded()
++{
++   trace(this.postResult);
++}
+ stop();
+ stopAllSounds();
+-txtNetCollection.text = String(totalScore + "/-");
++txtTotalCollection.text = String(totalScore + "/-");
++trace("Total score = " + totalScore);
+ var totalPoints = Number(currentLevel - 1);
+-getURL("javascript:callAjax(" + totalScore + "," + totalPoints + ")","");
++var external = true;
++var gameName = "madrasidhaba";
++mcSubmitExternal._visible = false;
++txtHighscoreLink._visible = false;
++txtHighscoreLink.onRelease = OpenHighScorePage;
++mcHighscorelist._visible = false;
++scoreSend = false;
++if(!external)
++{
++   getURL("javascript:callAjax(" + totalScore + "," + totalPoints + ")","");
++}
+ if(!scoreSend)
+ {
+    scoreSend = true;

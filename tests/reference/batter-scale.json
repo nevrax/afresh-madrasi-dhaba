@@ -1,0 +1,1496 @@
+{
+  "scope": "Full-size Optimized ladle. Callback cadence is not physical scanout. CPU is percent of one core. Historical compact-cursor results do not describe this path.",
+  "pi": [
+    {
+      "label": "Pi A",
+      "hardware": {
+        "browser": "138.0.7204.92",
+        "renderer": "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 24.2.8-1~bpo12+rpt3)",
+        "features": {
+          "2d_canvas": "enabled",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "enabled",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "enabled_on",
+          "rasterization": "enabled_force",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "enabled",
+          "video_encode": "disabled_software",
+          "vulkan": "disabled_off",
+          "webgl": "enabled",
+          "webgl2": "enabled",
+          "webgpu": "disabled_off",
+          "webnn": "disabled_off"
+        },
+        "devices": [
+          "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 24.2.8-1~bpo12+rpt3)"
+        ]
+      },
+      "canvas": [
+        2200,
+        1600
+      ],
+      "seconds": 60.01290000000001,
+      "fps": 52.57203034680876,
+      "raf": {
+        "p50": 16.69999999999709,
+        "p95": 33.39999999999782,
+        "p99": 34,
+        "max": 50.70000000000073,
+        "over50": 7
+      },
+      "warm": {
+        "seconds": 30.033300000000004,
+        "fps": 52.2087149930244,
+        "raf": {
+          "p50": 16.69999999999709,
+          "p95": 33.400000000001455,
+          "p99": 34,
+          "max": 50.599999999998545,
+          "over50": 4
+        },
+        "draw": {
+          "p50": 0.39999985694885254,
+          "p95": 7.299999952316284,
+          "p99": 8.800000190734863,
+          "max": 15.799999952316284,
+          "over50": 0
+        }
+      },
+      "warmCpu": {
+        "scope": "measurement only, excluding asset load and warmup; one core equals 100 percent",
+        "seconds": 30.059254099999997,
+        "singleCorePercent": 59.51578153098617,
+        "byType": [
+          {
+            "type": "browser",
+            "singleCorePercent": 0.6986201297656291
+          },
+          {
+            "type": "renderer",
+            "singleCorePercent": 32.36939934580745
+          },
+          {
+            "type": "GPU",
+            "singleCorePercent": 24.78438079406635
+          },
+          {
+            "type": "network.mojom.NetworkService",
+            "singleCorePercent": 0.033267625226934536
+          },
+          {
+            "type": "storage.mojom.StorageService",
+            "singleCorePercent": 0
+          },
+          {
+            "type": "audio.mojom.AudioService",
+            "singleCorePercent": 1.6301136361197999
+          }
+        ]
+      },
+      "memory": {
+        "peakAccountedBytes": 310194056,
+        "sceneBytes": 14080000,
+        "tileBytes": 110832736,
+        "tileCount": 512,
+        "tileBudgetBytes": 184112110,
+        "poolBytes": 5899240,
+        "poolCount": 32,
+        "poolBudgetBytes": 16777216,
+        "cpuBlurScratchBytes": 0,
+        "filterBackingBytes": 8912896,
+        "accountedBackingBytes": 125644872,
+        "pathCount": 1316,
+        "boundsCount": 2020,
+        "bySymbol": [
+          {
+            "id": 223,
+            "count": 144,
+            "bytes": 22792208
+          },
+          {
+            "id": 193,
+            "count": 1,
+            "bytes": 14217124
+          },
+          {
+            "id": 284,
+            "count": 91,
+            "bytes": 4540536
+          },
+          {
+            "id": 262,
+            "count": 72,
+            "bytes": 4110048
+          },
+          {
+            "id": 119,
+            "count": 1,
+            "bytes": 4037280
+          },
+          {
+            "id": 120,
+            "count": 1,
+            "bytes": 3510840
+          },
+          {
+            "id": 122,
+            "count": 1,
+            "bytes": 3508560
+          },
+          {
+            "id": 121,
+            "count": 1,
+            "bytes": 3496608
+          },
+          {
+            "id": 113,
+            "count": 1,
+            "bytes": 3487744
+          },
+          {
+            "id": 112,
+            "count": 1,
+            "bytes": 3485520
+          },
+          {
+            "id": 201,
+            "count": 1,
+            "bytes": 3386068
+          },
+          {
+            "id": 118,
+            "count": 1,
+            "bytes": 3316328
+          },
+          {
+            "id": 117,
+            "count": 1,
+            "bytes": 2990640
+          },
+          {
+            "id": 123,
+            "count": 1,
+            "bytes": 2942896
+          },
+          {
+            "id": 115,
+            "count": 1,
+            "bytes": 2911080
+          },
+          {
+            "id": 136,
+            "count": 19,
+            "bytes": 2766400
+          },
+          {
+            "id": 222,
+            "count": 1,
+            "bytes": 2692800
+          },
+          {
+            "id": 116,
+            "count": 1,
+            "bytes": 2624508
+          },
+          {
+            "id": 114,
+            "count": 1,
+            "bytes": 2609816
+          },
+          {
+            "id": 228,
+            "count": 6,
+            "bytes": 2065160
+          },
+          {
+            "id": 323,
+            "count": 1,
+            "bytes": 1946560
+          },
+          {
+            "id": 263,
+            "count": 4,
+            "bytes": 1688272
+          },
+          {
+            "id": 436,
+            "count": 18,
+            "bytes": 1534032
+          },
+          {
+            "id": 447,
+            "count": 27,
+            "bytes": 1254392
+          },
+          {
+            "id": 203,
+            "count": 1,
+            "bytes": 1060544
+          },
+          {
+            "id": 161,
+            "count": 1,
+            "bytes": 644032
+          },
+          {
+            "id": 404,
+            "count": 1,
+            "bytes": 542880
+          },
+          {
+            "id": 195,
+            "count": 1,
+            "bytes": 530916
+          },
+          {
+            "id": 217,
+            "count": 1,
+            "bytes": 491400
+          },
+          {
+            "id": 402,
+            "count": 1,
+            "bytes": 478152
+          },
+          {
+            "id": 205,
+            "count": 1,
+            "bytes": 388416
+          },
+          {
+            "id": 425,
+            "count": 1,
+            "bytes": 328900
+          },
+          {
+            "id": 212,
+            "count": 1,
+            "bytes": 328232
+          },
+          {
+            "id": 211,
+            "count": 1,
+            "bytes": 324544
+          },
+          {
+            "id": 213,
+            "count": 1,
+            "bytes": 324544
+          },
+          {
+            "id": 208,
+            "count": 1,
+            "bytes": 317768
+          },
+          {
+            "id": 207,
+            "count": 1,
+            "bytes": 317768
+          },
+          {
+            "id": 226,
+            "count": 1,
+            "bytes": 309672
+          },
+          {
+            "id": 473,
+            "count": 1,
+            "bytes": 280900
+          },
+          {
+            "id": 230,
+            "count": 4,
+            "bytes": 243856
+          },
+          {
+            "id": 346,
+            "count": 1,
+            "bytes": 237632
+          },
+          {
+            "id": 269,
+            "count": 1,
+            "bytes": 219240
+          },
+          {
+            "id": 233,
+            "count": 30,
+            "bytes": 207800
+          },
+          {
+            "id": 232,
+            "count": 27,
+            "bytes": 187020
+          },
+          {
+            "id": 196,
+            "count": 1,
+            "bytes": 164032
+          },
+          {
+            "id": 347,
+            "count": 1,
+            "bytes": 106784
+          },
+          {
+            "id": 370,
+            "count": 1,
+            "bytes": 102500
+          },
+          {
+            "id": 219,
+            "count": 1,
+            "bytes": 85360
+          },
+          {
+            "id": 282,
+            "count": 1,
+            "bytes": 81180
+          },
+          {
+            "id": 283,
+            "count": 1,
+            "bytes": 67240
+          },
+          {
+            "id": 260,
+            "count": 1,
+            "bytes": 62832
+          },
+          {
+            "id": 231,
+            "count": 3,
+            "bytes": 62352
+          },
+          {
+            "id": 261,
+            "count": 1,
+            "bytes": 58608
+          },
+          {
+            "id": 197,
+            "count": 10,
+            "bytes": 55552
+          },
+          {
+            "id": 155,
+            "count": 1,
+            "bytes": 55212
+          },
+          {
+            "id": 355,
+            "count": 1,
+            "bytes": 48216
+          },
+          {
+            "id": 341,
+            "count": 1,
+            "bytes": 40432
+          },
+          {
+            "id": 342,
+            "count": 1,
+            "bytes": 24924
+          },
+          {
+            "id": 220,
+            "count": 1,
+            "bytes": 24192
+          },
+          {
+            "id": 356,
+            "count": 1,
+            "bytes": 23936
+          },
+          {
+            "id": 428,
+            "count": 1,
+            "bytes": 23760
+          },
+          {
+            "id": 234,
+            "count": 3,
+            "bytes": 17400
+          },
+          {
+            "id": 340,
+            "count": 1,
+            "bytes": 16960
+          },
+          {
+            "id": 349,
+            "count": 1,
+            "bytes": 10824
+          },
+          {
+            "id": 343,
+            "count": 1,
+            "bytes": 8400
+          },
+          {
+            "id": 474,
+            "count": 1,
+            "bytes": 5220
+          },
+          {
+            "id": 339,
+            "count": 1,
+            "bytes": 4608
+          },
+          {
+            "id": 344,
+            "count": 1,
+            "bytes": 2576
+          }
+        ]
+      },
+      "unchangedFrames": {
+        "painted": 989,
+        "reused": 2168
+      },
+      "geometry": {
+        "viewport": [
+          1920,
+          945
+        ],
+        "dpr": 1,
+        "canvas": {
+          "x": 0,
+          "y": 31,
+          "width": 1100,
+          "height": 800,
+          "fullyInsideViewport": true
+        }
+      },
+      "hiddenSamples": 0,
+      "unfocusedSamples": 0
+    },
+    {
+      "label": "Pi B",
+      "hardware": {
+        "browser": "151.0.7922.173",
+        "renderer": "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 26.2.0-1~bpo13+0~rpt3)",
+        "features": {
+          "2d_canvas": "enabled",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "enabled",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "enabled_on",
+          "rasterization": "enabled_force",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "enabled",
+          "video_encode": "disabled_software",
+          "vulkan": "disabled_off",
+          "webgl": "enabled",
+          "webgpu": "disabled_off",
+          "webgpu_on_vk_via_gl_interop": "disabled_off",
+          "webnn": "disabled_off"
+        },
+        "devices": [
+          "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 26.2.0-1~bpo13+0~rpt3)"
+        ]
+      },
+      "canvas": [
+        2200,
+        1600
+      ],
+      "seconds": 60.0007,
+      "fps": 59.91596764704411,
+      "raf": {
+        "p50": 16.69999999999709,
+        "p95": 17.400000000001455,
+        "p99": 17.40000000000873,
+        "max": 34.100000000000364,
+        "over50": 0
+      },
+      "warm": {
+        "seconds": 30.016600000000007,
+        "fps": 59.866873663239666,
+        "raf": {
+          "p50": 16.69999999999709,
+          "p95": 17.400000000001455,
+          "p99": 17.40000000000873,
+          "max": 33.299999999995634,
+          "over50": 0
+        },
+        "draw": {
+          "p50": 0.30000001192092896,
+          "p95": 6,
+          "p99": 7.800000011920929,
+          "max": 10,
+          "over50": 0
+        }
+      },
+      "warmCpu": {
+        "scope": "measurement only, excluding asset load and warmup; one core equals 100 percent",
+        "seconds": 30.012383999999997,
+        "singleCorePercent": 51.64534746723221,
+        "byType": [
+          {
+            "type": "browser",
+            "singleCorePercent": 3.565194954189577
+          },
+          {
+            "type": "renderer",
+            "singleCorePercent": 27.422013526149748
+          },
+          {
+            "type": "GPU",
+            "singleCorePercent": 19.3586754054593
+          },
+          {
+            "type": "network.mojom.NetworkService",
+            "singleCorePercent": 0.06663915802223515
+          },
+          {
+            "type": "storage.mojom.StorageService",
+            "singleCorePercent": 0
+          },
+          {
+            "type": "audio.mojom.AudioService",
+            "singleCorePercent": 1.2328244234113492
+          }
+        ]
+      },
+      "memory": {
+        "peakAccountedBytes": 310194056,
+        "sceneBytes": 14080000,
+        "tileBytes": 110832736,
+        "tileCount": 512,
+        "tileBudgetBytes": 184112110,
+        "poolBytes": 5899240,
+        "poolCount": 32,
+        "poolBudgetBytes": 16777216,
+        "cpuBlurScratchBytes": 0,
+        "filterBackingBytes": 8912896,
+        "accountedBackingBytes": 125644872,
+        "pathCount": 1316,
+        "boundsCount": 2020,
+        "bySymbol": [
+          {
+            "id": 223,
+            "count": 144,
+            "bytes": 22792208
+          },
+          {
+            "id": 193,
+            "count": 1,
+            "bytes": 14217124
+          },
+          {
+            "id": 284,
+            "count": 91,
+            "bytes": 4540536
+          },
+          {
+            "id": 262,
+            "count": 72,
+            "bytes": 4110048
+          },
+          {
+            "id": 119,
+            "count": 1,
+            "bytes": 4037280
+          },
+          {
+            "id": 120,
+            "count": 1,
+            "bytes": 3510840
+          },
+          {
+            "id": 122,
+            "count": 1,
+            "bytes": 3508560
+          },
+          {
+            "id": 121,
+            "count": 1,
+            "bytes": 3496608
+          },
+          {
+            "id": 113,
+            "count": 1,
+            "bytes": 3487744
+          },
+          {
+            "id": 112,
+            "count": 1,
+            "bytes": 3485520
+          },
+          {
+            "id": 201,
+            "count": 1,
+            "bytes": 3386068
+          },
+          {
+            "id": 118,
+            "count": 1,
+            "bytes": 3316328
+          },
+          {
+            "id": 117,
+            "count": 1,
+            "bytes": 2990640
+          },
+          {
+            "id": 123,
+            "count": 1,
+            "bytes": 2942896
+          },
+          {
+            "id": 115,
+            "count": 1,
+            "bytes": 2911080
+          },
+          {
+            "id": 136,
+            "count": 19,
+            "bytes": 2766400
+          },
+          {
+            "id": 222,
+            "count": 1,
+            "bytes": 2692800
+          },
+          {
+            "id": 116,
+            "count": 1,
+            "bytes": 2624508
+          },
+          {
+            "id": 114,
+            "count": 1,
+            "bytes": 2609816
+          },
+          {
+            "id": 228,
+            "count": 6,
+            "bytes": 2065160
+          },
+          {
+            "id": 323,
+            "count": 1,
+            "bytes": 1946560
+          },
+          {
+            "id": 263,
+            "count": 4,
+            "bytes": 1688272
+          },
+          {
+            "id": 436,
+            "count": 18,
+            "bytes": 1534032
+          },
+          {
+            "id": 447,
+            "count": 27,
+            "bytes": 1254392
+          },
+          {
+            "id": 203,
+            "count": 1,
+            "bytes": 1060544
+          },
+          {
+            "id": 161,
+            "count": 1,
+            "bytes": 644032
+          },
+          {
+            "id": 404,
+            "count": 1,
+            "bytes": 542880
+          },
+          {
+            "id": 195,
+            "count": 1,
+            "bytes": 530916
+          },
+          {
+            "id": 217,
+            "count": 1,
+            "bytes": 491400
+          },
+          {
+            "id": 402,
+            "count": 1,
+            "bytes": 478152
+          },
+          {
+            "id": 205,
+            "count": 1,
+            "bytes": 388416
+          },
+          {
+            "id": 425,
+            "count": 1,
+            "bytes": 328900
+          },
+          {
+            "id": 212,
+            "count": 1,
+            "bytes": 328232
+          },
+          {
+            "id": 211,
+            "count": 1,
+            "bytes": 324544
+          },
+          {
+            "id": 213,
+            "count": 1,
+            "bytes": 324544
+          },
+          {
+            "id": 208,
+            "count": 1,
+            "bytes": 317768
+          },
+          {
+            "id": 207,
+            "count": 1,
+            "bytes": 317768
+          },
+          {
+            "id": 226,
+            "count": 1,
+            "bytes": 309672
+          },
+          {
+            "id": 473,
+            "count": 1,
+            "bytes": 280900
+          },
+          {
+            "id": 230,
+            "count": 4,
+            "bytes": 243856
+          },
+          {
+            "id": 346,
+            "count": 1,
+            "bytes": 237632
+          },
+          {
+            "id": 269,
+            "count": 1,
+            "bytes": 219240
+          },
+          {
+            "id": 233,
+            "count": 30,
+            "bytes": 207800
+          },
+          {
+            "id": 232,
+            "count": 27,
+            "bytes": 187020
+          },
+          {
+            "id": 196,
+            "count": 1,
+            "bytes": 164032
+          },
+          {
+            "id": 347,
+            "count": 1,
+            "bytes": 106784
+          },
+          {
+            "id": 370,
+            "count": 1,
+            "bytes": 102500
+          },
+          {
+            "id": 219,
+            "count": 1,
+            "bytes": 85360
+          },
+          {
+            "id": 282,
+            "count": 1,
+            "bytes": 81180
+          },
+          {
+            "id": 283,
+            "count": 1,
+            "bytes": 67240
+          },
+          {
+            "id": 260,
+            "count": 1,
+            "bytes": 62832
+          },
+          {
+            "id": 231,
+            "count": 3,
+            "bytes": 62352
+          },
+          {
+            "id": 261,
+            "count": 1,
+            "bytes": 58608
+          },
+          {
+            "id": 197,
+            "count": 10,
+            "bytes": 55552
+          },
+          {
+            "id": 155,
+            "count": 1,
+            "bytes": 55212
+          },
+          {
+            "id": 355,
+            "count": 1,
+            "bytes": 48216
+          },
+          {
+            "id": 341,
+            "count": 1,
+            "bytes": 40432
+          },
+          {
+            "id": 342,
+            "count": 1,
+            "bytes": 24924
+          },
+          {
+            "id": 220,
+            "count": 1,
+            "bytes": 24192
+          },
+          {
+            "id": 356,
+            "count": 1,
+            "bytes": 23936
+          },
+          {
+            "id": 428,
+            "count": 1,
+            "bytes": 23760
+          },
+          {
+            "id": 234,
+            "count": 3,
+            "bytes": 17400
+          },
+          {
+            "id": 340,
+            "count": 1,
+            "bytes": 16960
+          },
+          {
+            "id": 349,
+            "count": 1,
+            "bytes": 10824
+          },
+          {
+            "id": 343,
+            "count": 1,
+            "bytes": 8400
+          },
+          {
+            "id": 474,
+            "count": 1,
+            "bytes": 5220
+          },
+          {
+            "id": 339,
+            "count": 1,
+            "bytes": 4608
+          },
+          {
+            "id": 344,
+            "count": 1,
+            "bytes": 2576
+          }
+        ]
+      },
+      "unchangedFrames": {
+        "painted": 1039,
+        "reused": 2558
+      },
+      "geometry": {
+        "viewport": [
+          1920,
+          953
+        ],
+        "dpr": 1,
+        "canvas": {
+          "x": 0,
+          "y": 34,
+          "width": 1100,
+          "height": 800,
+          "fullyInsideViewport": true
+        }
+      },
+      "hiddenSamples": 0,
+      "unfocusedSamples": 0
+    }
+  ],
+  "verification": [
+    {
+      "adapter": "low-power",
+      "hardware": {
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00004688) Direct3D11 vs_5_0 ps_5_0, D3D11-30.0.101.1994)",
+        "features": {
+          "2d_canvas": "enabled",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "enabled",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "enabled_on",
+          "rasterization": "enabled",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "enabled",
+          "video_encode": "enabled",
+          "webgl": "enabled",
+          "webgpu": "enabled",
+          "webnn": "disabled_off"
+        }
+      },
+      "status": "PASS",
+      "checks": [
+        {
+          "kind": "source",
+          "status": "PASS",
+          "checks": [
+            "no implicit default",
+            "explicit profiles",
+            "tutorial and cooking",
+            "live profile swaps",
+            "full-size batter preview and Classic fallback",
+            "active cursor resize and restore",
+            "flip, native carried dosa, plating and carried plate cancellation",
+            "guidance gating",
+            "dismissal preserved",
+            "display settings isolated",
+            "reload persistence",
+            "fullscreen exit after switch",
+            "responsive layout",
+            "emulated touch and Canvas fallback in both profiles"
+          ],
+          "sourceStatePreserved": true
+        },
+        {
+          "kind": "site",
+          "status": "PASS",
+          "checks": [
+            "no implicit default",
+            "explicit profiles",
+            "tutorial and cooking",
+            "live profile swaps",
+            "full-size batter preview and Classic fallback",
+            "active cursor resize and restore",
+            "flip, native carried dosa, plating and carried plate cancellation",
+            "guidance gating",
+            "dismissal preserved",
+            "display settings isolated",
+            "reload persistence",
+            "fullscreen exit after switch",
+            "responsive layout",
+            "emulated touch and Canvas fallback in both profiles"
+          ],
+          "sourceStatePreserved": false
+        },
+        {
+          "kind": "standalone",
+          "status": "PASS",
+          "checks": [
+            "no implicit default",
+            "explicit profiles",
+            "tutorial and cooking",
+            "live profile swaps",
+            "full-size batter preview and Classic fallback",
+            "active cursor resize and restore",
+            "flip, native carried dosa, plating and carried plate cancellation",
+            "guidance gating",
+            "dismissal preserved",
+            "display settings isolated",
+            "reload persistence",
+            "fullscreen exit after switch",
+            "responsive layout",
+            "emulated touch and Canvas fallback in both profiles"
+          ],
+          "sourceStatePreserved": false
+        },
+        {
+          "kind": "offline-storage-blocked",
+          "status": "PASS"
+        },
+        {
+          "kind": "pixels-and-state",
+          "checks": [
+            {
+              "width": 880,
+              "screen": "menu",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "instructions",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "playing",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "day-result",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "game-over",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "menu",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "instructions",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "playing",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "day-result",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "game-over",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "menu",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "instructions",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "playing",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "day-result",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "game-over",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "adapter": "high-performance",
+      "hardware": {
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Ti Laptop GPU (0x000024A0) Direct3D11 vs_5_0 ps_5_0, D3D11-32.0.15.9649)",
+        "features": {
+          "2d_canvas": "enabled",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "enabled",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "enabled_on",
+          "rasterization": "enabled",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "enabled",
+          "video_encode": "enabled",
+          "webgl": "enabled",
+          "webgpu": "enabled",
+          "webnn": "disabled_off"
+        }
+      },
+      "status": "PASS",
+      "checks": [
+        {
+          "kind": "source",
+          "status": "PASS",
+          "checks": [
+            "no implicit default",
+            "explicit profiles",
+            "tutorial and cooking",
+            "live profile swaps",
+            "full-size batter preview and Classic fallback",
+            "active cursor resize and restore",
+            "flip, native carried dosa, plating and carried plate cancellation",
+            "guidance gating",
+            "dismissal preserved",
+            "display settings isolated",
+            "reload persistence",
+            "fullscreen exit after switch",
+            "responsive layout",
+            "emulated touch and Canvas fallback in both profiles"
+          ],
+          "sourceStatePreserved": true
+        },
+        {
+          "kind": "site",
+          "status": "PASS",
+          "checks": [
+            "no implicit default",
+            "explicit profiles",
+            "tutorial and cooking",
+            "live profile swaps",
+            "full-size batter preview and Classic fallback",
+            "active cursor resize and restore",
+            "flip, native carried dosa, plating and carried plate cancellation",
+            "guidance gating",
+            "dismissal preserved",
+            "display settings isolated",
+            "reload persistence",
+            "fullscreen exit after switch",
+            "responsive layout",
+            "emulated touch and Canvas fallback in both profiles"
+          ],
+          "sourceStatePreserved": false
+        },
+        {
+          "kind": "standalone",
+          "status": "PASS",
+          "checks": [
+            "no implicit default",
+            "explicit profiles",
+            "tutorial and cooking",
+            "live profile swaps",
+            "full-size batter preview and Classic fallback",
+            "active cursor resize and restore",
+            "flip, native carried dosa, plating and carried plate cancellation",
+            "guidance gating",
+            "dismissal preserved",
+            "display settings isolated",
+            "reload persistence",
+            "fullscreen exit after switch",
+            "responsive layout",
+            "emulated touch and Canvas fallback in both profiles"
+          ],
+          "sourceStatePreserved": false
+        },
+        {
+          "kind": "offline-storage-blocked",
+          "status": "PASS"
+        },
+        {
+          "kind": "pixels-and-state",
+          "checks": [
+            {
+              "width": 880,
+              "screen": "menu",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "instructions",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "playing",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "day-result",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 880,
+              "screen": "game-over",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "menu",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "instructions",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "playing",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "day-result",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2200,
+              "screen": "game-over",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "menu",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "instructions",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "playing",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": true,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "day-result",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            },
+            {
+              "width": 2970,
+              "screen": "game-over",
+              "classicMatches": true,
+              "restoredMatches": true,
+              "hitsMatch": true,
+              "stateUnchanged": true,
+              "extraDiffers": false,
+              "clearedBytes": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Full-size source image and carry transitions",
+      "previewActive": true,
+      "naturalScale": true,
+      "geometry": {
+        "left": -67,
+        "top": -244,
+        "pixelsWide": 326,
+        "pixelsHigh": 478,
+        "cssWide": 43.64853556485355,
+        "cssHigh": 63.99999999999999,
+        "sx": 4,
+        "sy": 4,
+        "hotspotX": 9,
+        "hotspotY": 33,
+        "density": 7.468750000000001,
+        "supported": true
+      },
+      "image": [
+        326,
+        478
+      ],
+      "opaquePixels": 40508,
+      "maxPremultipliedDelta": 0,
+      "touchFallback": true,
+      "restored": true,
+      "classicFallback": true,
+      "nativeCursorIndependent": true,
+      "dosa": {
+        "active": true,
+        "geometry": {
+          "left": -102,
+          "top": -178,
+          "pixelsWide": 211,
+          "pixelsHigh": 213,
+          "cssWide": 63.39906103286385,
+          "cssHigh": 64,
+          "sx": 4,
+          "sy": 4,
+          "hotspotX": 31,
+          "hotspotY": 53,
+          "density": 3.328125,
+          "supported": true
+        },
+        "maxPremultipliedDelta": 0,
+        "staticPreviewLiveClock": true,
+        "touchFallback": true,
+        "classicFallback": true,
+        "switchedBack": true
+      },
+      "plate": {
+        "active": true,
+        "image": [
+          309,
+          231
+        ],
+        "retainedPlateMove": true,
+        "touchFallback": true,
+        "classicFallback": true
+      }
+    }
+  ]
+}

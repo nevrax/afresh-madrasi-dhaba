@@ -1,0 +1,201 @@
+{
+  "symbolId": 371,
+  "frameCount": 1,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 1,
+        "symbolId": 338,
+        "name": "character",
+        "matrix": {
+          "a": 0.945343,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 0.945343,
+          "tx": -0.15,
+          "ty": -0.25
+        }
+      },
+      {
+        "depth": 7,
+        "symbolId": 345,
+        "name": "earSmokeRight",
+        "matrix": {
+          "a": 0.6584778,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 0.6584778,
+          "tx": 12.35,
+          "ty": -29.25
+        }
+      },
+      {
+        "depth": 9,
+        "symbolId": 345,
+        "name": "earSmokeLeft",
+        "matrix": {
+          "a": -0.6584778,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 0.6584778,
+          "tx": -21.2,
+          "ty": -22.15
+        }
+      },
+      {
+        "depth": 11,
+        "symbolId": 363,
+        "name": "mcOrder",
+        "matrix": {
+          "a": -1.0833282,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 5.5,
+          "ty": 10.25
+        }
+      },
+      {
+        "depth": 18,
+        "symbolId": 370,
+        "name": "mcExit",
+        "matrix": {
+          "a": -2.300354,
+          "b": 0.0,
+          "c": -0.12234497,
+          "d": 2.4714813,
+          "tx": -0.85,
+          "ty": -22.9
+        },
+        "colorTransform": {
+          "tag": "colorTransform",
+          "alphaAddTerm": 0,
+          "alphaMultTerm": 256,
+          "blueAddTerm": 255,
+          "blueMultTerm": 0,
+          "greenAddTerm": 255,
+          "greenMultTerm": 0,
+          "hasAddTerms": true,
+          "hasMultTerms": true,
+          "nbits": 10,
+          "redAddTerm": 255,
+          "redMultTerm": 0,
+          "children": []
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 2,
+      "type": "DoActionTag",
+      "attributes": {
+        "actionBytesLength": 1657,
+        "actionBytesSha256": "5c6bcf9d7a9c7907ab0c9e021dd2bc187f50c36532d21882b48d4e02e9e2e57a"
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 3,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 338,
+      "name": "character",
+      "matrix": {
+        "a": 0.945343,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 0.945343,
+        "tx": -0.15,
+        "ty": -0.25
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 4,
+      "type": "place",
+      "move": false,
+      "depth": 7,
+      "symbolId": 345,
+      "name": "earSmokeRight",
+      "matrix": {
+        "a": 0.6584778,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 0.6584778,
+        "tx": 12.35,
+        "ty": -29.25
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 5,
+      "type": "place",
+      "move": false,
+      "depth": 9,
+      "symbolId": 345,
+      "name": "earSmokeLeft",
+      "matrix": {
+        "a": -0.6584778,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 0.6584778,
+        "tx": -21.2,
+        "ty": -22.15
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 6,
+      "type": "place",
+      "move": false,
+      "depth": 11,
+      "symbolId": 363,
+      "name": "mcOrder",
+      "matrix": {
+        "a": -1.0833282,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 5.5,
+        "ty": 10.25
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 7,
+      "type": "place",
+      "move": false,
+      "depth": 18,
+      "symbolId": 370,
+      "name": "mcExit",
+      "matrix": {
+        "a": -2.300354,
+        "b": 0.0,
+        "c": -0.12234497,
+        "d": 2.4714813,
+        "tx": -0.85,
+        "ty": -22.9
+      },
+      "colorTransform": {
+        "tag": "colorTransform",
+        "alphaAddTerm": 0,
+        "alphaMultTerm": 256,
+        "blueAddTerm": 255,
+        "blueMultTerm": 0,
+        "greenAddTerm": 255,
+        "greenMultTerm": 0,
+        "hasAddTerms": true,
+        "hasMultTerms": true,
+        "nbits": 10,
+        "redAddTerm": 255,
+        "redMultTerm": 0,
+        "children": []
+      }
+    }
+  ]
+}

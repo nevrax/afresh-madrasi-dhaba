@@ -1,0 +1,109 @@
+{
+  "symbolId": 476,
+  "frameCount": 1,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 1,
+        "symbolId": 473,
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 0.0,
+          "ty": 0.0
+        }
+      },
+      {
+        "depth": 2,
+        "symbolId": 475,
+        "name": "needleMinute",
+        "matrix": {
+          "a": 0.008148193,
+          "b": -0.4828186,
+          "c": 0.4359436,
+          "d": 0.0073394775,
+          "tx": 102.65,
+          "ty": 104.15
+        }
+      },
+      {
+        "depth": 4,
+        "symbolId": 475,
+        "name": "needleHour",
+        "matrix": {
+          "a": -0.2646637,
+          "b": 0.0048065186,
+          "c": -0.0048675537,
+          "d": -0.26885986,
+          "tx": 102.65,
+          "ty": 102.45
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 2,
+      "type": "DoActionTag",
+      "attributes": {
+        "actionBytesLength": 1268,
+        "actionBytesSha256": "db3cc93f9fc831046e3e953d55aff818b798975326ecfed38c26bc2a5d882adb"
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 3,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 473,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 4,
+      "type": "place",
+      "move": false,
+      "depth": 2,
+      "symbolId": 475,
+      "name": "needleMinute",
+      "matrix": {
+        "a": 0.008148193,
+        "b": -0.4828186,
+        "c": 0.4359436,
+        "d": 0.0073394775,
+        "tx": 102.65,
+        "ty": 104.15
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 5,
+      "type": "place",
+      "move": false,
+      "depth": 4,
+      "symbolId": 475,
+      "name": "needleHour",
+      "matrix": {
+        "a": -0.2646637,
+        "b": 0.0048065186,
+        "c": -0.0048675537,
+        "d": -0.26885986,
+        "tx": 102.65,
+        "ty": 102.45
+      }
+    }
+  ]
+}

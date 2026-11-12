@@ -1,0 +1,231 @@
+{
+  "tasks": [
+    "DIST-2",
+    "SETUP-1"
+  ],
+  "tests": {
+    "passed": 123,
+    "failed": 0,
+    "skipped": 0
+  },
+  "packages": {
+    "standalone": {
+      "bytes": 7956923,
+      "files": 1,
+      "entry": "dist/standalone/index.html"
+    },
+    "site": {
+      "bytes": 7957002,
+      "files": 4,
+      "catalogue": false,
+      "entry": "dist/site/index.html"
+    }
+  },
+  "setup": {
+    "localNode": "24.14.0",
+    "reproducibleStandalone": true,
+    "cachedRepeatWithoutNetwork": true,
+    "platform": "Windows x64",
+    "freshTypeScriptPlaywrightInstall": true,
+    "unexercised": [
+      "Windows ARM64",
+      "automatic Chromium download"
+    ],
+    "nodeArchiveChecksumVerified": true,
+    "typescript": "5.9.3",
+    "browser": "existing Chrome",
+    "playwright": "1.62.1",
+    "freshCopyWithoutGlobalNodeNpm": true
+  },
+  "http": {
+    "status": "PASS",
+    "checks": [
+      {
+        "package": "standalone",
+        "isolatedHttpRoot": true,
+        "gameplay": true,
+        "catalogue": false,
+        "requests": 1,
+        "missingFiles": []
+      },
+      {
+        "package": "site",
+        "isolatedHttpRoot": true,
+        "gameplay": true,
+        "catalogue": false,
+        "requests": 4,
+        "missingFiles": []
+      }
+    ],
+    "errors": []
+  },
+  "file": {
+    "status": "PASS",
+    "browser": "153.0.8010.48",
+    "checks": [
+      {
+        "kind": "source file",
+        "gameplay": "tutorial/skip/batter/pour/flip/pickup/plate",
+        "plateCount": 1,
+        "decodedSounds": 11,
+        "liveDecodedAudio": 4,
+        "fullscreen": "native window",
+        "resourceErrors": false
+      },
+      {
+        "kind": "portable HTML alone",
+        "gameplay": "tutorial/skip/batter/pour/flip/pickup/plate",
+        "plateCount": 1,
+        "decodedSounds": 11,
+        "liveDecodedAudio": 4,
+        "fullscreen": "native window",
+        "resourceErrors": false
+      },
+      {
+        "kind": "static release file",
+        "gameplay": "tutorial/skip/batter/pour/flip/pickup/plate",
+        "plateCount": 1,
+        "decodedSounds": 11,
+        "liveDecodedAudio": 4,
+        "fullscreen": "native window",
+        "resourceErrors": false
+      },
+      {
+        "kind": "development file catalogue",
+        "resources": 636,
+        "vectorPreview": true
+      }
+    ],
+    "errors": [],
+    "network": []
+  },
+  "development": {
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "file URL starts the game without requesting an ES module",
+        "passed": true
+      },
+      {
+        "site": "source",
+        "name": "expand changes only game size",
+        "inner": [
+          824,
+          798
+        ],
+        "outer": [
+          838,
+          892
+        ],
+        "screen": [
+          1707,
+          960
+        ],
+        "canvas": [
+          824,
+          599
+        ]
+      },
+      {
+        "site": "source",
+        "name": "native fullscreen covers physical screen with browser chrome hidden",
+        "inner": [
+          1707,
+          960
+        ],
+        "outer": [
+          1707,
+          960
+        ],
+        "screen": [
+          1707,
+          960
+        ],
+        "canvas": [
+          1320,
+          960
+        ]
+      },
+      {
+        "site": "source",
+        "name": "menu right seam has no white column",
+        "mismatches": 0,
+        "white": 0,
+        "height": 1440,
+        "width": 1980
+      },
+      {
+        "site": "source",
+        "name": "fullscreen exit restores native window bounds",
+        "passed": true
+      },
+      {
+        "site": "release",
+        "name": "expand changes only game size",
+        "inner": [
+          824,
+          798
+        ],
+        "outer": [
+          838,
+          892
+        ],
+        "screen": [
+          1707,
+          960
+        ],
+        "canvas": [
+          824,
+          599
+        ]
+      },
+      {
+        "site": "release",
+        "name": "native fullscreen covers physical screen with browser chrome hidden",
+        "inner": [
+          1707,
+          960
+        ],
+        "outer": [
+          1707,
+          960
+        ],
+        "screen": [
+          1707,
+          960
+        ],
+        "canvas": [
+          1320,
+          960
+        ]
+      },
+      {
+        "site": "release",
+        "name": "menu right seam has no white column",
+        "mismatches": 0,
+        "white": 0,
+        "height": 1440,
+        "width": 1980
+      },
+      {
+        "site": "release",
+        "name": "fullscreen exit restores native window bounds",
+        "passed": true
+      },
+      {
+        "name": "development catalogue over HTTP",
+        "resources": 636,
+        "vectorPreview": true
+      },
+      {
+        "name": "development verification modules load",
+        "passed": true
+      },
+      {
+        "name": "server denies tools, logs and build-path escape",
+        "passed": true
+      }
+    ],
+    "errors": []
+  }
+}

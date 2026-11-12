@@ -1,0 +1,15 @@
+{
+  "original": {
+    "file": "original.swf",
+    "bytes": 1248849,
+    "sha256": "1d054a0a4a1c235a01060ad76c2c3ead7f67a24e16c06ca37cba270e9c471a6f",
+    "source": "https://www.gatoconbota.com/mm/go/swf/restaurant-madrasi-dhaba.swf"
+  },
+  "extended": {
+    "file": "extended.swf",
+    "bytes": 1486192,
+    "sha256": "9bf19a5d63ef2375e2b675d9c5126e6b27d0d87f55e1fcc0d24e52b090ed2d2a",
+    "source": "https://fastgames.com/swf/madrasidhaba.swf"
+  },
+  "note": "Labels identify the smaller and extended editions, not proven chronological release order."
+}

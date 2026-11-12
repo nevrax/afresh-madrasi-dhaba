@@ -1,0 +1,1639 @@
+{
+  "scope": "Same browser render opportunity measurements, not physical scanout or Raspberry Pi validation. Fixture is synthetic; gameplay uses production core and an automated command bot. Audio is outside these timing cases.",
+  "sets": [
+    {
+      "name": "intel-fixed",
+      "adapter": "Intel UHD, ANGLE D3D11",
+      "warmupMs": 6000,
+      "measurementMs": 6000,
+      "results": [
+        {
+          "config": {
+            "width": 1485
+          },
+          "canvas": [
+            1485,
+            1080
+          ],
+          "fps": 117.8252259148929,
+          "raf": {
+            "p50": 6.100000000000364,
+            "p95": 12.199999999999818,
+            "p99": 16.699999999999818,
+            "max": 18.800000000000182,
+            "over50": 0
+          },
+          "draw": {
+            "p50": 2.5,
+            "p95": 4.5,
+            "p99": 6,
+            "max": 6.5999999940395355,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 613468,
+            "evictions": 0,
+            "morphReplacements": 432,
+            "filterBuilds": 7
+          },
+          "memory": {
+            "tileBytes": 69924956,
+            "tileBudgetBytes": 83886080,
+            "poolBytes": 105260,
+            "filterBackingBytes": 12058624,
+            "accountedBackingBytes": 82088840
+          },
+          "groups": [
+            {
+              "name": "customers",
+              "msPerFrame": 0.8464689267809782
+            },
+            {
+              "name": "other",
+              "msPerFrame": 0.8292372880850808
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.25508474537545006
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.19336158108744916
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.18516949181166073
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.10508474606578633
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.057062147532479235
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.04661016944943175
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 359,
+              "builds": 84,
+              "milliseconds": 8.699999928474426,
+              "bytes": 5703040,
+              "filtered": 0
+            },
+            {
+              "id": 361,
+              "builds": 69,
+              "milliseconds": 7.9000000059604645,
+              "bytes": 4914272,
+              "filtered": 0
+            },
+            {
+              "id": 347,
+              "builds": 63,
+              "milliseconds": 6.10000017285347,
+              "bytes": 4169676,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "config": {
+            "width": 2200
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "fps": 5.3295434357790015,
+          "raf": {
+            "p50": 205.5,
+            "p95": 220.3000000000011,
+            "p99": 229.59999999999945,
+            "max": 229.59999999999945,
+            "over50": 31
+          },
+          "draw": {
+            "p50": 4.5999999940395355,
+            "p95": 10.599999994039536,
+            "p99": 12,
+            "max": 12,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 76672496,
+            "evictions": 379,
+            "morphReplacements": 114,
+            "filterBuilds": 94
+          },
+          "memory": {
+            "tileBytes": 80424008,
+            "tileBudgetBytes": 83886080,
+            "poolBytes": 11887688,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 121278608
+          },
+          "groups": [
+            {
+              "name": "customers",
+              "msPerFrame": 1.6636363638169838
+            },
+            {
+              "name": "other",
+              "msPerFrame": 1.2575757611881604
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.6727272723660325
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.518181818001198
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.4666666659441861
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.2606060595223398
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.23939393596215683
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.22424242442304437
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 223,
+              "builds": 94,
+              "milliseconds": 23.900000005960464,
+              "bytes": 179612684,
+              "filtered": 94
+            },
+            {
+              "id": 136,
+              "builds": 32,
+              "milliseconds": 7.900000035762787,
+              "bytes": 4659200,
+              "filtered": 0
+            },
+            {
+              "id": 347,
+              "builds": 27,
+              "milliseconds": 5.200000047683716,
+              "bytes": 3612672,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "config": {
+            "width": 2200,
+            "omit": "griddle-steam"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "fps": 60.65756803146195,
+          "raf": {
+            "p50": 16.799999999999272,
+            "p95": 35.5,
+            "p99": 36,
+            "max": 36.29999999999927,
+            "over50": 0
+          },
+          "draw": {
+            "p50": 2.300000011920929,
+            "p95": 5.100000023841858,
+            "p99": 6.300000011920929,
+            "max": 7.4000000059604645,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 213960,
+            "evictions": 143,
+            "morphReplacements": 432,
+            "filterBuilds": 70
+          },
+          "memory": {
+            "tileBytes": 83790328,
+            "tileBudgetBytes": 83886080,
+            "poolBytes": 2111188,
+            "filterBackingBytes": 1310720,
+            "accountedBackingBytes": 87212236
+          },
+          "groups": [
+            {
+              "name": "customers",
+              "msPerFrame": 0.7692307680845261
+            },
+            {
+              "name": "other",
+              "msPerFrame": 0.7173076926188154
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.552747252714503
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.2076923076759328
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.16703296821196
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.08928571412196526
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.044230769050645304
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.025549450664074866
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 223,
+              "builds": 70,
+              "milliseconds": 14.099999904632568,
+              "bytes": 11506060,
+              "filtered": 70
+            },
+            {
+              "id": 359,
+              "builds": 84,
+              "milliseconds": 7.099999815225601,
+              "bytes": 11482576,
+              "filtered": 0
+            },
+            {
+              "id": 361,
+              "builds": 69,
+              "milliseconds": 5.500000059604645,
+              "bytes": 9906192,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "config": {
+            "width": 2200,
+            "omit": "dosa-steam"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "fps": 5.738423527536462,
+          "raf": {
+            "p50": 179.70000000000073,
+            "p95": 209.89999999999964,
+            "p99": 215.90000000000055,
+            "max": 215.90000000000055,
+            "over50": 36
+          },
+          "draw": {
+            "p50": 4.699999988079071,
+            "p95": 10.099999994039536,
+            "p99": 11.400000005960464,
+            "max": 11.400000005960464,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 123615288,
+            "evictions": 356,
+            "morphReplacements": 132,
+            "filterBuilds": 36
+          },
+          "memory": {
+            "tileBytes": 79315328,
+            "tileBudgetBytes": 83886080,
+            "poolBytes": 13603448,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 121885688
+          },
+          "groups": [
+            {
+              "name": "customers",
+              "msPerFrame": 2.0083333311809435
+            },
+            {
+              "name": "other",
+              "msPerFrame": 1.4111111139257748
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.5861111117733849
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.46111111094554263
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.3444444454378552
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.32777777893675697
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.22499999900658926
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 223,
+              "builds": 36,
+              "milliseconds": 11.400000005960464,
+              "bytes": 196057096,
+              "filtered": 36
+            },
+            {
+              "id": 136,
+              "builds": 36,
+              "milliseconds": 8.300000041723251,
+              "bytes": 5241600,
+              "filtered": 0
+            },
+            {
+              "id": 359,
+              "builds": 42,
+              "milliseconds": 6.599999964237213,
+              "bytes": 5741288,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "config": {
+            "width": 2200,
+            "omit": "customers"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "fps": 13.081279412937704,
+          "raf": {
+            "p50": 11.800000000001091,
+            "p95": 232.69999999999982,
+            "p99": 259.5000000000009,
+            "max": 259.5000000000009,
+            "over50": 27
+          },
+          "draw": {
+            "p50": 2.9000000059604645,
+            "p95": 7.300000011920929,
+            "p99": 9.900000005960464,
+            "max": 9.900000005960464,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 111018616,
+            "evictions": 285,
+            "morphReplacements": 0,
+            "filterBuilds": 86
+          },
+          "memory": {
+            "tileBytes": 81657648,
+            "tileBudgetBytes": 83886080,
+            "poolBytes": 13143680,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 123768240
+          },
+          "groups": [
+            {
+              "name": "other",
+              "msPerFrame": 1.1975609783719225
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.4951219529640384
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.4634146352366703
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.27317073105311973
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.24146341150853692
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.15365853760300613
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.14390243916976742
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 223,
+              "builds": 86,
+              "milliseconds": 28.400000035762787,
+              "bytes": 153879848,
+              "filtered": 86
+            },
+            {
+              "id": 136,
+              "builds": 33,
+              "milliseconds": 9.400000095367432,
+              "bytes": 4804800,
+              "filtered": 0
+            },
+            {
+              "id": 233,
+              "builds": 54,
+              "milliseconds": 2.600000023841858,
+              "bytes": 374040,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "config": {
+            "width": 2200,
+            "omit": "traffic"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "fps": 4.988895683800574,
+          "raf": {
+            "p50": 208.39999999999964,
+            "p95": 218.20000000000073,
+            "p99": 221.10000000000036,
+            "max": 221.10000000000036,
+            "over50": 31
+          },
+          "draw": {
+            "p50": 9.799999982118607,
+            "p95": 13.599999994039536,
+            "p99": 13.599999994039536,
+            "max": 13.599999994039536,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 41354288,
+            "evictions": 371,
+            "morphReplacements": 102,
+            "filterBuilds": 91
+          },
+          "memory": {
+            "tileBytes": 83701512,
+            "tileBudgetBytes": 83886080,
+            "poolBytes": 8216252,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 120884676
+          },
+          "groups": [
+            {
+              "name": "customers",
+              "msPerFrame": 2.83225806393931
+            },
+            {
+              "name": "other",
+              "msPerFrame": 2.293548389788597
+            },
+            {
+              "name": "food",
+              "msPerFrame": 1.0387096722279825
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.9290322565263317
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.7612903262338331
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.4032258064516129
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.3225806441999251
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 223,
+              "builds": 91,
+              "milliseconds": 34.5,
+              "bytes": 174375852,
+              "filtered": 91
+            },
+            {
+              "id": 136,
+              "builds": 31,
+              "milliseconds": 13.800000041723251,
+              "bytes": 4513600,
+              "filtered": 0
+            },
+            {
+              "id": 361,
+              "builds": 30,
+              "milliseconds": 8.000000029802322,
+              "bytes": 4307040,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "intel-capacity-control",
+      "adapter": "Intel UHD, ANGLE D3D11",
+      "warmupMs": 6000,
+      "measurementMs": 6000,
+      "results": [
+        {
+          "config": {
+            "width": 2200,
+            "cacheBudget": 192
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "fps": 57.49513950049021,
+          "raf": {
+            "p50": 17.799999999999272,
+            "p95": 34.30000000000109,
+            "p99": 36.5,
+            "max": 37.29999999999927,
+            "over50": 0
+          },
+          "draw": {
+            "p50": 2.699999988079071,
+            "p95": 7,
+            "p99": 9.199999988079071,
+            "max": 9.599999994039536,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 3358928,
+            "evictions": 0,
+            "morphReplacements": 432,
+            "filterBuilds": 20
+          },
+          "memory": {
+            "tileBytes": 150597792,
+            "tileBudgetBytes": 201326592,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179789708
+          },
+          "groups": [
+            {
+              "name": "customers",
+              "msPerFrame": 0.9895953763427073
+            },
+            {
+              "name": "other",
+              "msPerFrame": 0.9263005753645318
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.6809248559047721
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.23179190730772956
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.18988439397660295
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.11936416136736126
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.06329479770508804
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.05433526066686377
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 223,
+              "builds": 20,
+              "milliseconds": 11.800000011920929,
+              "bytes": 3228188,
+              "filtered": 20
+            },
+            {
+              "id": 359,
+              "builds": 84,
+              "milliseconds": 10.30000028014183,
+              "bytes": 11482576,
+              "filtered": 0
+            },
+            {
+              "id": 361,
+              "builds": 69,
+              "milliseconds": 7.999999910593033,
+              "bytes": 9906192,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "config": {
+            "width": 2200,
+            "cacheBudget": 192
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "fps": 58.620747081452855,
+          "raf": {
+            "p50": 17.899999999999636,
+            "p95": 23.899999999999636,
+            "p99": 35.900000000000546,
+            "max": 36,
+            "over50": 0
+          },
+          "draw": {
+            "p50": 2.300000011920929,
+            "p95": 4.9000000059604645,
+            "p99": 6.5999999940395355,
+            "max": 7.200000017881393,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 2938392,
+            "evictions": 0,
+            "morphReplacements": 432,
+            "filterBuilds": 17
+          },
+          "memory": {
+            "tileBytes": 150597792,
+            "tileBudgetBytes": 201326592,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179789708
+          },
+          "groups": [
+            {
+              "name": "customers",
+              "msPerFrame": 0.7673295456916094
+            },
+            {
+              "name": "other",
+              "msPerFrame": 0.7213068181987513
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.5571022716096856
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.17812499903481116
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.14687499844215132
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.08380681962113488
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.05113636405969208
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.046874999746002934
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 359,
+              "builds": 84,
+              "milliseconds": 8.399999916553497,
+              "bytes": 11482576,
+              "filtered": 0
+            },
+            {
+              "id": 347,
+              "builds": 63,
+              "milliseconds": 6.399999916553497,
+              "bytes": 8429568,
+              "filtered": 0
+            },
+            {
+              "id": 223,
+              "builds": 17,
+              "milliseconds": 6.299999982118607,
+              "bytes": 2807652,
+              "filtered": 17
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "config": {
+            "width": 2200
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "fps": 5.172803983059066,
+          "raf": {
+            "p50": 208.30000000000018,
+            "p95": 219.19999999999982,
+            "p99": 221.20000000000073,
+            "max": 221.20000000000073,
+            "over50": 31
+          },
+          "draw": {
+            "p50": 4.800000011920929,
+            "p95": 7.899999976158142,
+            "p99": 8.199999988079071,
+            "max": 8.199999988079071,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 84017692,
+            "evictions": 389,
+            "morphReplacements": 108,
+            "filterBuilds": 94
+          },
+          "memory": {
+            "tileBytes": 80058260,
+            "tileBudgetBytes": 83886080,
+            "poolBytes": 12819636,
+            "filterBackingBytes": 26411008,
+            "accountedBackingBytes": 119288904
+          },
+          "groups": [
+            {
+              "name": "customers",
+              "msPerFrame": 1.4843750018626451
+            },
+            {
+              "name": "other",
+              "msPerFrame": 1.224999993108213
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.6093749990686774
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.4625000013038516
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.4500000001862645
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.25000000186264515
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.23437500465661287
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.1781249949708581
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 223,
+              "builds": 94,
+              "milliseconds": 21.100000143051147,
+              "bytes": 180448648,
+              "filtered": 94
+            },
+            {
+              "id": 136,
+              "builds": 32,
+              "milliseconds": 5.699999898672104,
+              "bytes": 4659200,
+              "filtered": 0
+            },
+            {
+              "id": 347,
+              "builds": 30,
+              "milliseconds": 3.8999999463558197,
+              "bytes": 4014080,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "intel-adaptive",
+      "adapter": "Intel UHD, ANGLE D3D11",
+      "warmupMs": 6000,
+      "measurementMs": 6000,
+      "results": [
+        {
+          "config": {
+            "width": 1485
+          },
+          "canvas": [
+            1485,
+            1080
+          ],
+          "fps": 118.20724560468832,
+          "raf": {
+            "p50": 6.100000000000364,
+            "p95": 12.199999999999818,
+            "p99": 12.800000000001091,
+            "max": 18.19999999999891,
+            "over50": 0
+          },
+          "draw": {
+            "p50": 2.2999999821186066,
+            "p95": 4.0999999940395355,
+            "p99": 5.5999999940395355,
+            "max": 7.299999982118607,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 432,
+            "filterBuilds": 0
+          },
+          "memory": {
+            "tileBytes": 69924956,
+            "tileBudgetBytes": 83886080,
+            "poolBytes": 105260,
+            "filterBackingBytes": 12058624,
+            "accountedBackingBytes": 82088840
+          },
+          "groups": [
+            {
+              "name": "customers",
+              "msPerFrame": 0.7711267603535048
+            },
+            {
+              "name": "other",
+              "msPerFrame": 0.770704225503223
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.23760563399590237
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.18422535183564037
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.1797183095989093
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.08676056358176218
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.05309859174238124
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.044507042245126104
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 359,
+              "builds": 84,
+              "milliseconds": 7.299999952316284,
+              "bytes": 5703040,
+              "filtered": 0
+            },
+            {
+              "id": 361,
+              "builds": 69,
+              "milliseconds": 6.799999952316284,
+              "bytes": 4914272,
+              "filtered": 0
+            },
+            {
+              "id": 347,
+              "builds": 63,
+              "milliseconds": 5.4000000059604645,
+              "bytes": 4169676,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "config": {
+            "width": 2200
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "fps": 58.36769988027138,
+          "raf": {
+            "p50": 17.900000000000546,
+            "p95": 29.600000000000364,
+            "p99": 36,
+            "max": 36.19999999999982,
+            "over50": 0
+          },
+          "draw": {
+            "p50": 2.300000011920929,
+            "p95": 3.600000023841858,
+            "p99": 6.4000000059604645,
+            "max": 7.799999982118607,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 3206740,
+            "evictions": 0,
+            "morphReplacements": 432,
+            "filterBuilds": 19
+          },
+          "memory": {
+            "tileBytes": 150597792,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179789708
+          },
+          "groups": [
+            {
+              "name": "customers",
+              "msPerFrame": 0.7378917381464586
+            },
+            {
+              "name": "other",
+              "msPerFrame": 0.6689458690647386
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.5290598286862387
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.16296296216483808
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.1344729346087855
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.07977207994189357
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.04700854734817461
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.041880342186006725
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 223,
+              "builds": 19,
+              "milliseconds": 7.400000035762787,
+              "bytes": 3099760,
+              "filtered": 19
+            },
+            {
+              "id": 359,
+              "builds": 84,
+              "milliseconds": 6.200000107288361,
+              "bytes": 11482576,
+              "filtered": 0
+            },
+            {
+              "id": 347,
+              "builds": 63,
+              "milliseconds": 5.500000089406967,
+              "bytes": 8429568,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "config": {
+            "width": 2200
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "fps": 57.83613096227356,
+          "raf": {
+            "p50": 17.899999999999636,
+            "p95": 29.899999999999636,
+            "p99": 36,
+            "max": 37,
+            "over50": 0
+          },
+          "draw": {
+            "p50": 2.5999999940395355,
+            "p95": 6.700000017881393,
+            "p99": 7.9000000059604645,
+            "max": 11.100000023841858,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 3206740,
+            "evictions": 0,
+            "morphReplacements": 432,
+            "filterBuilds": 19
+          },
+          "memory": {
+            "tileBytes": 150597792,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179789708
+          },
+          "groups": [
+            {
+              "name": "customers",
+              "msPerFrame": 0.9635057466468592
+            },
+            {
+              "name": "other",
+              "msPerFrame": 0.9112068955069301
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.6758620678179565
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.21494252919808202
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.17988505831052518
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.1152298856398155
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.05804597663468328
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.05545977014919807
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 223,
+              "builds": 19,
+              "milliseconds": 10.399999916553497,
+              "bytes": 3099760,
+              "filtered": 19
+            },
+            {
+              "id": 359,
+              "builds": 84,
+              "milliseconds": 10.199999988079071,
+              "bytes": 11482576,
+              "filtered": 0
+            },
+            {
+              "id": 361,
+              "builds": 69,
+              "milliseconds": 7.499999850988388,
+              "bytes": 9906192,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "config": {
+            "width": 2970
+          },
+          "canvas": [
+            2970,
+            2160
+          ],
+          "fps": 26.561699948796722,
+          "raf": {
+            "p50": 29.5,
+            "p95": 65,
+            "p99": 420.6999999999998,
+            "max": 549.6999999999998,
+            "over50": 31
+          },
+          "draw": {
+            "p50": 5.800000011920929,
+            "p95": 10,
+            "p99": 13.199999988079071,
+            "max": 14.200000017881393,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 31893872,
+            "evictions": 0,
+            "morphReplacements": 384,
+            "filterBuilds": 51
+          },
+          "memory": {
+            "tileBytes": 270709936,
+            "tileBudgetBytes": 335544320,
+            "poolBytes": 397032,
+            "filterBackingBytes": 48234496,
+            "accountedBackingBytes": 319341464
+          },
+          "groups": [
+            {
+              "name": "customers",
+              "msPerFrame": 1.8963855420609554
+            },
+            {
+              "name": "other",
+              "msPerFrame": 1.4771084329449986
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.8825301195842674
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.5018072291670075
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.3006024103925889
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.1885542183755392
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.09216867369341564
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.0825301198715187
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 223,
+              "builds": 51,
+              "milliseconds": 26.000000059604645,
+              "bytes": 22370340,
+              "filtered": 51
+            },
+            {
+              "id": 361,
+              "builds": 66,
+              "milliseconds": 14.000000149011612,
+              "bytes": 17127792,
+              "filtered": 0
+            },
+            {
+              "id": 359,
+              "builds": 81,
+              "milliseconds": 12.700000286102295,
+              "bytes": 19967472,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "nvidia-paired",
+      "adapter": "NVIDIA RTX 3070 Ti, ANGLE D3D11",
+      "warmupMs": 6000,
+      "measurementMs": 6000,
+      "results": [
+        {
+          "config": {
+            "width": 2200,
+            "fixedBudget": true,
+            "adapter": "high-performance"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "fps": 166.88874083944037,
+          "raf": {
+            "p50": 6,
+            "p95": 6.200000000000728,
+            "p99": 6.699999999998909,
+            "max": 17.799999999999272,
+            "over50": 0
+          },
+          "draw": {
+            "p50": 2.100000023841858,
+            "p95": 4.199999988079071,
+            "p99": 4.9000000059604645,
+            "max": 6.399999976158142,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 439850188,
+            "evictions": 745,
+            "morphReplacements": 354,
+            "filterBuilds": 216
+          },
+          "memory": {
+            "tileBytes": 79321372,
+            "tileBudgetBytes": 83886080,
+            "poolBytes": 15333360,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 123621644
+          },
+          "groups": [
+            {
+              "name": "other",
+              "msPerFrame": 0.704890218918433
+            },
+            {
+              "name": "customers",
+              "msPerFrame": 0.6017964073640858
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.3238522961527526
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.1743512978096922
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.15159680683931667
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.08083832290715086
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.08063872223961616
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.05798403163275081
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 223,
+              "builds": 216,
+              "milliseconds": 57.19999974966049,
+              "bytes": 417117748,
+              "filtered": 216
+            },
+            {
+              "id": 136,
+              "builds": 69,
+              "milliseconds": 13.200000017881393,
+              "bytes": 10046400,
+              "filtered": 0
+            },
+            {
+              "id": 197,
+              "builds": 53,
+              "milliseconds": 7.200000017881393,
+              "bytes": 284236,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "config": {
+            "width": 2200,
+            "adapter": "high-performance"
+          },
+          "canvas": [
+            2200,
+            1600
+          ],
+          "fps": 167.74666422348452,
+          "raf": {
+            "p50": 6,
+            "p95": 6.299999999999272,
+            "p99": 6.600000000000364,
+            "max": 12.099999999998545,
+            "over50": 0
+          },
+          "draw": {
+            "p50": 2.199999988079071,
+            "p95": 2.7000000178813934,
+            "p99": 3.100000023841858,
+            "max": 4.100000023841858,
+            "over50": 0
+          },
+          "cache": {
+            "allocations": 0,
+            "evictions": 0,
+            "morphReplacements": 432,
+            "filterBuilds": 0
+          },
+          "memory": {
+            "tileBytes": 150597792,
+            "tileBudgetBytes": 184112110,
+            "poolBytes": 225004,
+            "filterBackingBytes": 28966912,
+            "accountedBackingBytes": 179789708
+          },
+          "groups": [
+            {
+              "name": "other",
+              "msPerFrame": 0.6256206562111845
+            },
+            {
+              "name": "customers",
+              "msPerFrame": 0.5744786490098959
+            },
+            {
+              "name": "background",
+              "msPerFrame": 0.46067527282794396
+            },
+            {
+              "name": "traffic",
+              "msPerFrame": 0.15004965334450002
+            },
+            {
+              "name": "food",
+              "msPerFrame": 0.13207547110621007
+            },
+            {
+              "name": "radio",
+              "msPerFrame": 0.06871896715836587
+            },
+            {
+              "name": "griddle-steam",
+              "msPerFrame": 0.03932472681691417
+            },
+            {
+              "name": "dosa-steam",
+              "msPerFrame": 0.03723932475650678
+            }
+          ],
+          "topBuilds": [
+            {
+              "id": 359,
+              "builds": 84,
+              "milliseconds": 6.39999994635582,
+              "bytes": 11482576,
+              "filtered": 0
+            },
+            {
+              "id": 361,
+              "builds": 69,
+              "milliseconds": 5.4999998807907104,
+              "bytes": 9906192,
+              "filtered": 0
+            },
+            {
+              "id": 347,
+              "builds": 63,
+              "milliseconds": 4.800000071525574,
+              "bytes": 8429568,
+              "filtered": 0
+            }
+          ],
+          "hidden": false
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "gameplay": {
+    "adapter": "Intel UHD, ANGLE D3D11",
+    "results": [
+      {
+        "canvas": [
+          2200,
+          1600
+        ],
+        "cacheStart": "cold",
+        "elapsedMs": 30003.9,
+        "frames": 1766,
+        "fps": 58.85901499471735,
+        "raf": {
+          "median": 17.5,
+          "p95": 29.599999999998545,
+          "p99": 41.600000000000364,
+          "over25": 103,
+          "over50": 13,
+          "max": 250.60000000000036
+        },
+        "draw": {
+          "median": 2,
+          "p95": 5.4000000059604645,
+          "p99": 6.0999999940395355,
+          "over25": 1,
+          "over50": 1,
+          "max": 78.80000001192093
+        },
+        "cache": {
+          "allocatedMiB": 149.64186477661133,
+          "liveMiB": 149.42728424072266,
+          "evictions": 0
+        },
+        "state": {
+          "screen": "playing",
+          "cash": 2,
+          "plate": 7
+        },
+        "hidden": false
+      },
+      {
+        "canvas": [
+          2200,
+          1600
+        ],
+        "cacheStart": "warm",
+        "elapsedMs": 30016.3,
+        "frames": 1919,
+        "fps": 63.93193031786063,
+        "raf": {
+          "median": 17.5,
+          "p95": 18.400000000001455,
+          "p99": 19.400000000001455,
+          "over25": 3,
+          "over50": 0,
+          "max": 42.30000000000291
+        },
+        "draw": {
+          "median": 2,
+          "p95": 5.699999988079071,
+          "p99": 6.199999988079071,
+          "over25": 0,
+          "over50": 0,
+          "max": 7.4000000059604645
+        },
+        "cache": {
+          "allocatedMiB": 0,
+          "liveMiB": 149.42728424072266,
+          "evictions": 0
+        },
+        "state": {
+          "screen": "playing",
+          "cash": 2,
+          "plate": 7
+        },
+        "hidden": false
+      }
+    ],
+    "errors": []
+  },
+  "pixelCheck": {
+    "status": "PASS",
+    "checks": [
+      {
+        "canvas": [
+          1485,
+          1080
+        ],
+        "matchedScenes": 47,
+        "resizeRestored": true,
+        "pixelsAndHitsEqual": true
+      },
+      {
+        "canvas": [
+          2200,
+          1600
+        ],
+        "matchedScenes": 47,
+        "resizeRestored": true,
+        "pixelsAndHitsEqual": true
+      }
+    ],
+    "errors": []
+  },
+  "automatedTests": {
+    "pass": 124,
+    "fail": 0
+  },
+  "limits": [
+    "Cold first appearance stalls remain.",
+    "2970 x 2160 not accepted as smooth.",
+    "Raspberry Pi is unmeasured.",
+    "Surface memory accounting excludes process and browser copies."
+  ],
+  "distributions": {
+    "status": "PASS",
+    "checks": [
+      {
+        "package": "standalone",
+        "isolatedHttpRoot": true,
+        "gameplay": true,
+        "catalogue": false,
+        "requests": 1,
+        "missingFiles": []
+      },
+      {
+        "package": "site",
+        "isolatedHttpRoot": true,
+        "gameplay": true,
+        "catalogue": false,
+        "requests": 4,
+        "missingFiles": []
+      }
+    ],
+    "errors": []
+  },
+  "offline": {
+    "status": "PASS",
+    "browser": "153.0.8010.48",
+    "checks": [
+      {
+        "kind": "source file",
+        "gameplay": "tutorial/skip/batter/pour/flip/pickup/plate",
+        "plateCount": 1,
+        "decodedSounds": 11,
+        "liveDecodedAudio": 4,
+        "fullscreen": "native window",
+        "resourceErrors": false
+      },
+      {
+        "kind": "portable HTML alone",
+        "gameplay": "tutorial/skip/batter/pour/flip/pickup/plate",
+        "plateCount": 1,
+        "decodedSounds": 11,
+        "liveDecodedAudio": 5,
+        "fullscreen": "native window",
+        "resourceErrors": false
+      },
+      {
+        "kind": "static release file",
+        "gameplay": "tutorial/skip/batter/pour/flip/pickup/plate",
+        "plateCount": 1,
+        "decodedSounds": 11,
+        "liveDecodedAudio": 4,
+        "fullscreen": "native window",
+        "resourceErrors": false
+      },
+      {
+        "kind": "development file catalogue",
+        "resources": 636,
+        "vectorPreview": true
+      }
+    ],
+    "errors": [],
+    "network": []
+  }
+}

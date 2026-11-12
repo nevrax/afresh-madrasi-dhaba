@@ -1,0 +1,132 @@
+{
+  "symbolId": 21,
+  "frameCount": 1,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 1,
+        "symbolId": 18,
+        "name": "b",
+        "matrix": {
+          "a": 15.999939,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 16.0,
+          "tx": 0.0,
+          "ty": 0.0
+        }
+      },
+      {
+        "depth": 3,
+        "symbolId": 20,
+        "name": "it",
+        "matrix": {
+          "a": 15.0000305,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 15.0,
+          "tx": 1.0,
+          "ty": 1.0
+        }
+      },
+      {
+        "depth": 5,
+        "symbolId": 13,
+        "name": "g",
+        "matrix": {
+          "a": 13.999954,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 14.0,
+          "tx": 1.0,
+          "ty": 1.0
+        }
+      },
+      {
+        "depth": 7,
+        "symbolId": 15,
+        "name": "face",
+        "matrix": {
+          "a": 12.999939,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 12.999939,
+          "tx": 2.0,
+          "ty": 2.0
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 0,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 18,
+      "name": "b",
+      "matrix": {
+        "a": 15.999939,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 16.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 1,
+      "type": "place",
+      "move": false,
+      "depth": 3,
+      "symbolId": 20,
+      "name": "it",
+      "matrix": {
+        "a": 15.0000305,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 15.0,
+        "tx": 1.0,
+        "ty": 1.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 2,
+      "type": "place",
+      "move": false,
+      "depth": 5,
+      "symbolId": 13,
+      "name": "g",
+      "matrix": {
+        "a": 13.999954,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 14.0,
+        "tx": 1.0,
+        "ty": 1.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 3,
+      "type": "place",
+      "move": false,
+      "depth": 7,
+      "symbolId": 15,
+      "name": "face",
+      "matrix": {
+        "a": 12.999939,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 12.999939,
+        "tx": 2.0,
+        "ty": 2.0
+      }
+    }
+  ]
+}

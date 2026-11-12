@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <base href="../../">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <title>Madrasi Dhaba · Resource catalogue</title>
+    <link rel="stylesheet" href="development/catalog/styles.css">
+  </head>
+  <body>
+    <header class="masthead">
+      <h1>Madrasi Dhaba <span> / Resources</span></h1>
+      <a href="./index.html">Play game</a>
+    </header>
+    <div id="app"><p class="loading" role="status">Loading resource index…</p></div>
+    <noscript>This catalogue needs JavaScript.</noscript>
+    <script>
+      if(location.protocol==='file:') {
+        const load=src=>new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=src;script.onload=resolve;script.onerror=reject;document.body.append(script);});
+        load('.local-setup/build/offline/resources.js').then(()=>load('.local-setup/build/offline/catalog.js')).catch(()=>{document.querySelector('#app').textContent='Run scripts/10_setup.cmd or scripts/40_build.cmd, then open this file again.';});
+      }else import(new URL('build/modules/development/catalog/main.js',document.baseURI).href);
+    </script>
+  </body>
+</html>

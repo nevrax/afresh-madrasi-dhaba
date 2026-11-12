@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Madrasi canonical reference</title>
+<style>body{background:#182020;color:white;font:14px monospace;margin:12px}#stage{width:550px;height:400px}ruffle-player{width:100%;height:100%}pre{max-height:190px;overflow:auto;white-space:pre-wrap}button{margin:4px;padding:6px}</style>
+<h1>Canonical SWF reference · Ruffle 0.6.0</h1><p id="identity">Loading identity…</p>
+<button id="reset">Reload reference</button><button id="pause">Pause / resume</button><div id="stage"></div><pre id="trace"></pre>
+<script src="player/ruffle.js"></script><script>
+const controlledRng=new URLSearchParams(location.search).has('controlledrng');
+const probe=controlledRng||new URLSearchParams(location.search).has('probe');
+const player=RufflePlayer.newest().createPlayer();document.querySelector('#stage').append(player);
+const lines=[];const started=performance.now();const trace=document.querySelector('#trace');
+const record=message=>{lines.push({ms:Math.round(performance.now()-started),message});if(lines.length>500)lines.shift();trace.textContent=JSON.stringify(lines,null,2);};
+const api=player.ruffle();api.traceObserver=record;
+async function load(){const response=await fetch(controlledRng?'matched-day.swf':probe?'probe.swf':'canonical.swf');const data=await response.arrayBuffer();const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',data))].map(n=>n.toString(16).padStart(2,'0')).join('');document.querySelector('#identity').textContent=(controlledRng?'Controlled RNG derivative · ten integer-bound byte changes':probe?'Instrumented derivative':'Unmodified canonical')+' · SHA-256 '+hash;await api.load({data,parameters:{probeCase:new URLSearchParams(location.search).get('case')||'observe',controlledRng:String(controlledRng)},autoplay:'on',splashScreen:false,allowScriptAccess:probe,allowNetworking:'none',openUrlMode:'deny',compatibilityRules:false,letterbox:'on',logLevel:'info'});api.traceObserver=record;record('loaded '+JSON.stringify(api.metadata));}
+document.querySelector('#reset').onclick=()=>location.reload();document.querySelector('#pause').onclick=()=>{if(api.suspended)api.resume();else api.suspend();record(api.suspended?'pause':'resume');};
+player.addEventListener('pointerup',e=>{const b=player.getBoundingClientRect();record('pointer-up '+((e.clientX-b.left)*550/b.width).toFixed(1)+','+((e.clientY-b.top)*400/b.height).toFixed(1));},true);
+load().catch(e=>record(String(e)));
+</script></html>

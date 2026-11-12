@@ -1,0 +1,4721 @@
+{
+  "gameCommit": "6f033eb",
+  "method": {
+    "fixture": "Synthetic five-customer scene, 6 s warmup and 6 s measurement unless explicitly overridden.",
+    "gameplay": "Production core and renderer, 3-slot command bot, 30 seconds, cold then warm at each backing size.",
+    "viewport": "1480 x 1000 CSS pixels, DPR 2 emulation, 100% game render scale. UI check subsequently changes viewport and records observed sizes.",
+    "transport": "Assets through SSH loopback forwarding, all fixture assets loaded before measured rendering.",
+    "cpu": "Approximate matching browser-process CPU time across load, warmup and measurement; one core equals 100%. Newly created/departed processes may be omitted.",
+    "memory": "Readable browser process PSS is sampled after cases, not peak game RAM or physical GPU memory."
+  },
+  "devices": [
+    {
+      "device": "A",
+      "runs": [
+        {
+          "kind": "fixture",
+          "hardware": {
+            "browser": "138.0.7204.92",
+            "renderer": "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 24.2.8-1~bpo12+rpt3)",
+            "features": {
+              "2d_canvas": "enabled",
+              "direct_rendering_display_compositor": "disabled_off_ok",
+              "gpu_compositing": "enabled",
+              "multiple_raster_threads": "enabled_on",
+              "opengl": "enabled_on",
+              "rasterization": "enabled_force",
+              "raw_draw": "disabled_off_ok",
+              "skia_graphite": "disabled_off",
+              "trees_in_viz": "disabled_off",
+              "video_decode": "enabled",
+              "video_encode": "disabled_software",
+              "vulkan": "disabled_off",
+              "webgl": "enabled",
+              "webgl2": "enabled",
+              "webgpu": "disabled_off",
+              "webnn": "disabled_off"
+            },
+            "devices": [
+              "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 24.2.8-1~bpo12+rpt3)"
+            ]
+          },
+          "nativeDisplay": {
+            "screen": [
+              1920,
+              1080
+            ],
+            "viewport": [
+              1480,
+              913
+            ],
+            "dpr": 1
+          },
+          "idleCadence": [
+            16.69999999999999,
+            16.700000000000017,
+            16.69999999999999,
+            16.599999999999994,
+            16.700000000000017,
+            16.69999999999999,
+            16.600000000000023,
+            16.69999999999999,
+            16.69999999999999,
+            16.600000000000023,
+            16.69999999999999,
+            16.69999999999999
+          ],
+          "before": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.6.70-v8+",
+            "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+            "platform": "x11",
+            "memTotalKiB": 8143892,
+            "memAvailableKiB": 7437568,
+            "browserPssKiB": 358770,
+            "browserProcessCount": 9,
+            "temperatureMilliC": "49600",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0",
+            "load": [
+              0.078125,
+              0.09228515625,
+              0.0322265625
+            ],
+            "monitorPower": "On"
+          },
+          "after": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.6.70-v8+",
+            "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+            "platform": "x11",
+            "memTotalKiB": 8143892,
+            "memAvailableKiB": 7044760,
+            "browserPssKiB": 532935,
+            "browserProcessCount": 9,
+            "temperatureMilliC": "53450",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0",
+            "load": [
+              0.52685546875,
+              0.25634765625,
+              0.09716796875
+            ],
+            "monitorPower": "On"
+          },
+          "results": [
+            {
+              "config": {
+                "width": 880,
+                "adapter": "default"
+              },
+              "canvas": [
+                880,
+                640
+              ],
+              "fps": 59.8323361277312,
+              "raf": {
+                "p50": 16.69999999999891,
+                "p95": 16.700000000000728,
+                "p99": 16.80000000000109,
+                "max": 34.100000000000364,
+                "over50": 0
+              },
+              "draw": {
+                "p50": 5.900000095367432,
+                "p95": 8.099999904632568,
+                "p99": 10.799999952316284,
+                "max": 12.299999952316284,
+                "over50": 0
+              },
+              "cache": {
+                "allocations": 63172,
+                "evictions": 0,
+                "morphReplacements": 432,
+                "filterBuilds": 1
+              },
+              "memory": {
+                "tileBytes": 28448396,
+                "tileBudgetBytes": 83886080,
+                "poolBytes": 16972,
+                "filterBackingBytes": 5898240,
+                "accountedBackingBytes": 34363608
+              },
+              "groups": [
+                {
+                  "name": "customers",
+                  "msPerFrame": 2.066295257185827
+                },
+                {
+                  "name": "other",
+                  "msPerFrame": 1.9796657402867395
+                },
+                {
+                  "name": "background",
+                  "msPerFrame": 0.5810584995407913
+                },
+                {
+                  "name": "traffic",
+                  "msPerFrame": 0.38551531727931626
+                },
+                {
+                  "name": "food",
+                  "msPerFrame": 0.38523677597470934
+                },
+                {
+                  "name": "radio",
+                  "msPerFrame": 0.25097492943235095
+                },
+                {
+                  "name": "griddle-steam",
+                  "msPerFrame": 0.14401114285822367
+                },
+                {
+                  "name": "dosa-steam",
+                  "msPerFrame": 0.12172701166200771
+                }
+              ],
+              "builds": [
+                {
+                  "id": 359,
+                  "builds": 84,
+                  "milliseconds": 16.30000066757202,
+                  "bytes": 2113664,
+                  "filtered": 0
+                },
+                {
+                  "id": 361,
+                  "builds": 69,
+                  "milliseconds": 13.600000619888306,
+                  "bytes": 1806696,
+                  "filtered": 0
+                },
+                {
+                  "id": 347,
+                  "builds": 63,
+                  "milliseconds": 12.000000953674316,
+                  "bytes": 1542576,
+                  "filtered": 0
+                },
+                {
+                  "id": 358,
+                  "builds": 84,
+                  "milliseconds": 6.499998569488525,
+                  "bytes": 4397568,
+                  "filtered": 0
+                },
+                {
+                  "id": 360,
+                  "builds": 69,
+                  "milliseconds": 5.400000810623169,
+                  "bytes": 3531420,
+                  "filtered": 0
+                },
+                {
+                  "id": 346,
+                  "builds": 63,
+                  "milliseconds": 5.299998760223389,
+                  "bytes": 3368484,
+                  "filtered": 0
+                },
+                {
+                  "id": 223,
+                  "builds": 1,
+                  "milliseconds": 0.7000000476837158,
+                  "bytes": 31108,
+                  "filtered": 1
+                },
+                {
+                  "id": 262,
+                  "builds": 1,
+                  "milliseconds": 0.5,
+                  "bytes": 11532,
+                  "filtered": 0
+                },
+                {
+                  "id": 284,
+                  "builds": 1,
+                  "milliseconds": 0.5,
+                  "bytes": 10440,
+                  "filtered": 0
+                },
+                {
+                  "id": 447,
+                  "builds": 1,
+                  "milliseconds": 0.3000001907348633,
+                  "bytes": 10092,
+                  "filtered": 0
+                }
+              ],
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 100.52713078876482
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.6.70-v8+",
+                "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+                "platform": "x11",
+                "memTotalKiB": 8143892,
+                "memAvailableKiB": 7261676,
+                "browserPssKiB": 461432,
+                "browserProcessCount": 9,
+                "temperatureMilliC": "50700",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  0.67724609375,
+                  0.22021484375,
+                  0.0751953125
+                ],
+                "monitorPower": "On"
+              }
+            },
+            {
+              "config": {
+                "width": 1485,
+                "adapter": "default"
+              },
+              "canvas": [
+                1485,
+                1080
+              ],
+              "fps": 59.1686472651121,
+              "raf": {
+                "p50": 16.69999999999891,
+                "p95": 16.799999999999272,
+                "p99": 33.30000000000109,
+                "max": 33.399999999999636,
+                "over50": 0
+              },
+              "draw": {
+                "p50": 6.299999952316284,
+                "p95": 8.200000047683716,
+                "p99": 9.899999856948853,
+                "max": 15.5,
+                "over50": 0
+              },
+              "cache": {
+                "allocations": 780576,
+                "evictions": 0,
+                "morphReplacements": 432,
+                "filterBuilds": 10
+              },
+              "memory": {
+                "tileBytes": 69924956,
+                "tileBudgetBytes": 83886080,
+                "poolBytes": 105260,
+                "filterBackingBytes": 12058624,
+                "accountedBackingBytes": 82088840
+              },
+              "groups": [
+                {
+                  "name": "customers",
+                  "msPerFrame": 2.2567415779895996
+                },
+                {
+                  "name": "other",
+                  "msPerFrame": 2.010393264588345
+                },
+                {
+                  "name": "background",
+                  "msPerFrame": 0.5424157287297624
+                },
+                {
+                  "name": "food",
+                  "msPerFrame": 0.4308988853786769
+                },
+                {
+                  "name": "traffic",
+                  "msPerFrame": 0.3148876375026917
+                },
+                {
+                  "name": "radio",
+                  "msPerFrame": 0.21067416065194633
+                },
+                {
+                  "name": "griddle-steam",
+                  "msPerFrame": 0.13258426644828883
+                },
+                {
+                  "name": "dosa-steam",
+                  "msPerFrame": 0.12022470959116903
+                }
+              ],
+              "builds": [
+                {
+                  "id": 359,
+                  "builds": 84,
+                  "milliseconds": 17.000000476837158,
+                  "bytes": 5703040,
+                  "filtered": 0
+                },
+                {
+                  "id": 361,
+                  "builds": 69,
+                  "milliseconds": 16.5,
+                  "bytes": 4914272,
+                  "filtered": 0
+                },
+                {
+                  "id": 347,
+                  "builds": 63,
+                  "milliseconds": 13.800001382827759,
+                  "bytes": 4169676,
+                  "filtered": 0
+                },
+                {
+                  "id": 360,
+                  "builds": 69,
+                  "milliseconds": 7.1000001430511475,
+                  "bytes": 9658160,
+                  "filtered": 0
+                },
+                {
+                  "id": 223,
+                  "builds": 10,
+                  "milliseconds": 6.8999998569488525,
+                  "bytes": 768544,
+                  "filtered": 10
+                },
+                {
+                  "id": 358,
+                  "builds": 84,
+                  "milliseconds": 6.600000619888306,
+                  "bytes": 11978960,
+                  "filtered": 0
+                },
+                {
+                  "id": 346,
+                  "builds": 63,
+                  "milliseconds": 5.700001001358032,
+                  "bytes": 9174144,
+                  "filtered": 0
+                },
+                {
+                  "id": 428,
+                  "builds": 1,
+                  "milliseconds": 0.5,
+                  "bytes": 12032,
+                  "filtered": 0
+                }
+              ],
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 90.08320115891716
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.6.70-v8+",
+                "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+                "platform": "x11",
+                "memTotalKiB": 8143892,
+                "memAvailableKiB": 7133620,
+                "browserPssKiB": 503117,
+                "browserProcessCount": 9,
+                "temperatureMilliC": "51250",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  0.6748046875,
+                  0.24267578125,
+                  0.08544921875
+                ],
+                "monitorPower": "On"
+              }
+            },
+            {
+              "config": {
+                "width": 2200,
+                "fixedBudget": true,
+                "adapter": "default"
+              },
+              "canvas": [
+                2200,
+                1600
+              ],
+              "fps": 5.439651862280813,
+              "raf": {
+                "p50": 66.39999999999964,
+                "p95": 466.90000000000146,
+                "p99": 550,
+                "max": 550,
+                "over50": 17
+              },
+              "draw": {
+                "p50": 14.400000095367432,
+                "p95": 27.600000143051147,
+                "p99": 559.2999999523163,
+                "max": 559.2999999523163,
+                "over50": 1
+              },
+              "cache": {
+                "allocations": 70626180,
+                "evictions": 278,
+                "morphReplacements": 72,
+                "filterBuilds": 48
+              },
+              "memory": {
+                "tileBytes": 79857456,
+                "tileBudgetBytes": 83886080,
+                "poolBytes": 11923812,
+                "filterBackingBytes": 28966912,
+                "accountedBackingBytes": 120748180
+              },
+              "groups": [
+                {
+                  "name": "griddle-steam",
+                  "msPerFrame": 16.652941156836118
+                },
+                {
+                  "name": "customers",
+                  "msPerFrame": 4.841176481807933
+                },
+                {
+                  "name": "other",
+                  "msPerFrame": 3.5882352660684025
+                },
+                {
+                  "name": "food",
+                  "msPerFrame": 1.576470550368814
+                },
+                {
+                  "name": "background",
+                  "msPerFrame": 1.0088235209969914
+                },
+                {
+                  "name": "traffic",
+                  "msPerFrame": 0.6088235448388493
+                },
+                {
+                  "name": "radio",
+                  "msPerFrame": 0.5382353067398071
+                },
+                {
+                  "name": "dosa-steam",
+                  "msPerFrame": 0.40588237958795886
+                }
+              ],
+              "builds": [
+                {
+                  "id": 223,
+                  "builds": 48,
+                  "milliseconds": 582.0000007152557,
+                  "bytes": 70177448,
+                  "filtered": 48
+                },
+                {
+                  "id": 136,
+                  "builds": 20,
+                  "milliseconds": 13.90000033378601,
+                  "bytes": 2912000,
+                  "filtered": 0
+                },
+                {
+                  "id": 359,
+                  "builds": 24,
+                  "milliseconds": 13.5,
+                  "bytes": 3280736,
+                  "filtered": 0
+                },
+                {
+                  "id": 361,
+                  "builds": 24,
+                  "milliseconds": 9.500000238418579,
+                  "bytes": 3445632,
+                  "filtered": 0
+                },
+                {
+                  "id": 358,
+                  "builds": 24,
+                  "milliseconds": 7.899999141693115,
+                  "bytes": 6983808,
+                  "filtered": 0
+                },
+                {
+                  "id": 197,
+                  "builds": 17,
+                  "milliseconds": 7.400000333786011,
+                  "bytes": 85972,
+                  "filtered": 0
+                },
+                {
+                  "id": 233,
+                  "builds": 39,
+                  "milliseconds": 7.100000381469727,
+                  "bytes": 270140,
+                  "filtered": 0
+                },
+                {
+                  "id": 347,
+                  "builds": 18,
+                  "milliseconds": 6.800000190734863,
+                  "bytes": 2408448,
+                  "filtered": 0
+                },
+                {
+                  "id": 360,
+                  "builds": 24,
+                  "milliseconds": 5.899999618530273,
+                  "bytes": 6854976,
+                  "filtered": 0
+                },
+                {
+                  "id": 447,
+                  "builds": 15,
+                  "milliseconds": 5.100000381469727,
+                  "bytes": 693160,
+                  "filtered": 0
+                }
+              ],
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 33.67373095001068
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.6.70-v8+",
+                "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+                "platform": "x11",
+                "memTotalKiB": 8143892,
+                "memAvailableKiB": 6531452,
+                "browserPssKiB": 509163,
+                "browserProcessCount": 9,
+                "temperatureMilliC": "51250",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  0.52490234375,
+                  0.22998046875,
+                  0.083984375
+                ],
+                "monitorPower": "On"
+              }
+            },
+            {
+              "config": {
+                "width": 2200,
+                "adapter": "default"
+              },
+              "canvas": [
+                2200,
+                1600
+              ],
+              "fps": 29.44,
+              "raf": {
+                "p50": 33.29999999999927,
+                "p95": 49.5,
+                "p99": 350.1999999999989,
+                "max": 466.89999999999964,
+                "over50": 5
+              },
+              "draw": {
+                "p50": 7.900000095367432,
+                "p95": 11.299999952316284,
+                "p99": 13,
+                "max": 16.699999809265137,
+                "over50": 0
+              },
+              "cache": {
+                "allocations": 17065092,
+                "evictions": 0,
+                "morphReplacements": 384,
+                "filterBuilds": 45
+              },
+              "memory": {
+                "tileBytes": 149665584,
+                "tileBudgetBytes": 184112110,
+                "poolBytes": 225004,
+                "filterBackingBytes": 28966912,
+                "accountedBackingBytes": 178857500
+              },
+              "groups": [
+                {
+                  "name": "customers",
+                  "msPerFrame": 2.795108710942061
+                },
+                {
+                  "name": "other",
+                  "msPerFrame": 2.246195613042168
+                },
+                {
+                  "name": "background",
+                  "msPerFrame": 1.1782608667145604
+                },
+                {
+                  "name": "food",
+                  "msPerFrame": 0.6500000085519708
+                },
+                {
+                  "name": "traffic",
+                  "msPerFrame": 0.3989130504753279
+                },
+                {
+                  "name": "radio",
+                  "msPerFrame": 0.246195657097775
+                },
+                {
+                  "name": "griddle-steam",
+                  "msPerFrame": 0.15760870213093964
+                },
+                {
+                  "name": "dosa-steam",
+                  "msPerFrame": 0.12173912706582443
+                }
+              ],
+              "builds": [
+                {
+                  "id": 223,
+                  "builds": 45,
+                  "milliseconds": 27.100000858306885,
+                  "bytes": 13077364,
+                  "filtered": 45
+                },
+                {
+                  "id": 361,
+                  "builds": 66,
+                  "milliseconds": 18.400001049041748,
+                  "bytes": 9475488,
+                  "filtered": 0
+                },
+                {
+                  "id": 359,
+                  "builds": 69,
+                  "milliseconds": 17.90000057220459,
+                  "bytes": 9432116,
+                  "filtered": 0
+                },
+                {
+                  "id": 347,
+                  "builds": 57,
+                  "milliseconds": 13.90000033378601,
+                  "bytes": 7626752,
+                  "filtered": 0
+                },
+                {
+                  "id": 358,
+                  "builds": 69,
+                  "milliseconds": 8.799999475479126,
+                  "bytes": 20078448,
+                  "filtered": 0
+                },
+                {
+                  "id": 360,
+                  "builds": 66,
+                  "milliseconds": 8.599999904632568,
+                  "bytes": 18851184,
+                  "filtered": 0
+                },
+                {
+                  "id": 346,
+                  "builds": 57,
+                  "milliseconds": 7.300000190734863,
+                  "bytes": 16946936,
+                  "filtered": 0
+                },
+                {
+                  "id": 136,
+                  "builds": 5,
+                  "milliseconds": 5.499999761581421,
+                  "bytes": 728000,
+                  "filtered": 0
+                },
+                {
+                  "id": 262,
+                  "builds": 13,
+                  "milliseconds": 4.799999713897705,
+                  "bytes": 742092,
+                  "filtered": 0
+                },
+                {
+                  "id": 233,
+                  "builds": 9,
+                  "milliseconds": 3.6000001430511475,
+                  "bytes": 62340,
+                  "filtered": 0
+                }
+              ],
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 53.50323193087531
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.6.70-v8+",
+                "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+                "platform": "x11",
+                "memTotalKiB": 8143892,
+                "memAvailableKiB": 6893712,
+                "browserPssKiB": 530651,
+                "browserProcessCount": 9,
+                "temperatureMilliC": "52350",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  0.40771484375,
+                  0.21826171875,
+                  0.08251953125
+                ],
+                "monitorPower": "On"
+              }
+            },
+            {
+              "config": {
+                "width": 2200,
+                "omit": "griddle-steam",
+                "adapter": "default"
+              },
+              "canvas": [
+                2200,
+                1600
+              ],
+              "fps": 37.395914704073654,
+              "raf": {
+                "p50": 33.19999999999891,
+                "p95": 34,
+                "p99": 34.100000000000364,
+                "max": 50,
+                "over50": 0
+              },
+              "draw": {
+                "p50": 7.3999998569488525,
+                "p95": 9.400000095367432,
+                "p99": 10.600000143051147,
+                "max": 12,
+                "over50": 0
+              },
+              "cache": {
+                "allocations": 545592,
+                "evictions": 0,
+                "morphReplacements": 432,
+                "filterBuilds": 2
+              },
+              "memory": {
+                "tileBytes": 85676512,
+                "tileBudgetBytes": 184112110,
+                "poolBytes": 225004,
+                "filterBackingBytes": 1310720,
+                "accountedBackingBytes": 87212236
+              },
+              "groups": [
+                {
+                  "name": "customers",
+                  "msPerFrame": 2.6755555608537462
+                },
+                {
+                  "name": "other",
+                  "msPerFrame": 2.117777794731988
+                },
+                {
+                  "name": "background",
+                  "msPerFrame": 1.1755555460188123
+                },
+                {
+                  "name": "food",
+                  "msPerFrame": 0.43155555301242404
+                },
+                {
+                  "name": "traffic",
+                  "msPerFrame": 0.3537777794731988
+                },
+                {
+                  "name": "radio",
+                  "msPerFrame": 0.2319999927944607
+                },
+                {
+                  "name": "dosa-steam",
+                  "msPerFrame": 0.116000001695421
+                },
+                {
+                  "name": "griddle-steam",
+                  "msPerFrame": 0.08311111450195313
+                }
+              ],
+              "builds": [
+                {
+                  "id": 359,
+                  "builds": 84,
+                  "milliseconds": 19.399999856948853,
+                  "bytes": 11482576,
+                  "filtered": 0
+                },
+                {
+                  "id": 361,
+                  "builds": 69,
+                  "milliseconds": 16.5,
+                  "bytes": 9906192,
+                  "filtered": 0
+                },
+                {
+                  "id": 347,
+                  "builds": 63,
+                  "milliseconds": 13.599998712539673,
+                  "bytes": 8429568,
+                  "filtered": 0
+                },
+                {
+                  "id": 358,
+                  "builds": 84,
+                  "milliseconds": 9.6999990940094,
+                  "bytes": 24443328,
+                  "filtered": 0
+                },
+                {
+                  "id": 360,
+                  "builds": 69,
+                  "milliseconds": 8.200001955032349,
+                  "bytes": 19708056,
+                  "filtered": 0
+                },
+                {
+                  "id": 346,
+                  "builds": 63,
+                  "milliseconds": 6.200000524520874,
+                  "bytes": 18730824,
+                  "filtered": 0
+                },
+                {
+                  "id": 223,
+                  "builds": 2,
+                  "milliseconds": 1.299999713897705,
+                  "bytes": 331632,
+                  "filtered": 2
+                },
+                {
+                  "id": 262,
+                  "builds": 2,
+                  "milliseconds": 0.8999998569488525,
+                  "bytes": 114168,
+                  "filtered": 0
+                },
+                {
+                  "id": 284,
+                  "builds": 2,
+                  "milliseconds": 0.5,
+                  "bytes": 99792,
+                  "filtered": 0
+                }
+              ],
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 77.01091686883748
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.6.70-v8+",
+                "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+                "platform": "x11",
+                "memTotalKiB": 8143892,
+                "memAvailableKiB": 7050372,
+                "browserPssKiB": 532759,
+                "browserProcessCount": 9,
+                "temperatureMilliC": "52900",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  0.52685546875,
+                  0.25634765625,
+                  0.09716796875
+                ],
+                "monitorPower": "On"
+              }
+            }
+          ],
+          "errors": []
+        },
+        {
+          "kind": "extended",
+          "hardware": {
+            "browser": "138.0.7204.92",
+            "renderer": "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 24.2.8-1~bpo12+rpt3)",
+            "features": {
+              "2d_canvas": "enabled",
+              "direct_rendering_display_compositor": "disabled_off_ok",
+              "gpu_compositing": "enabled",
+              "multiple_raster_threads": "enabled_on",
+              "opengl": "enabled_on",
+              "rasterization": "enabled_force",
+              "raw_draw": "disabled_off_ok",
+              "skia_graphite": "disabled_off",
+              "trees_in_viz": "disabled_off",
+              "video_decode": "enabled",
+              "video_encode": "disabled_software",
+              "vulkan": "disabled_off",
+              "webgl": "enabled",
+              "webgl2": "enabled",
+              "webgpu": "disabled_off",
+              "webnn": "disabled_off"
+            },
+            "devices": [
+              "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 24.2.8-1~bpo12+rpt3)"
+            ]
+          },
+          "nativeDisplay": {
+            "screen": [
+              1920,
+              1080
+            ],
+            "viewport": [
+              1480,
+              913
+            ],
+            "dpr": 1
+          },
+          "idleCadence": [
+            16.69999999999999,
+            16.69999999999999,
+            16.700000000000045,
+            16.599999999999966,
+            16.69999999999999,
+            16.700000000000045,
+            16.69999999999999,
+            16.69999999999999,
+            16.600000000000023,
+            16.69999999999999,
+            16.599999999999966,
+            16.700000000000045
+          ],
+          "before": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.6.70-v8+",
+            "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+            "platform": "x11",
+            "memTotalKiB": 8143892,
+            "memAvailableKiB": 7431936,
+            "browserPssKiB": 363764,
+            "browserProcessCount": 9,
+            "temperatureMilliC": "49600",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0",
+            "load": [
+              0.056640625,
+              0.1611328125,
+              0.0810546875
+            ],
+            "monitorPower": "On"
+          },
+          "after": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.6.70-v8+",
+            "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+            "platform": "x11",
+            "memTotalKiB": 8143892,
+            "memAvailableKiB": 6955364,
+            "browserPssKiB": 545387,
+            "browserProcessCount": 9,
+            "temperatureMilliC": "54550",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0",
+            "load": [
+              0.5830078125,
+              0.44482421875,
+              0.2060546875
+            ],
+            "monitorPower": "On"
+          },
+          "results": [
+            {
+              "config": {
+                "width": 2200,
+                "warmupMs": 18000,
+                "measurementMs": 12000,
+                "adapter": "default"
+              },
+              "canvas": [
+                2200,
+                1600
+              ],
+              "fps": 36.18257261410788,
+              "raf": {
+                "p50": 33.29999999999927,
+                "p95": 33.900000000001455,
+                "p99": 34,
+                "max": 34.10000000000218,
+                "over50": 0
+              },
+              "draw": {
+                "p50": 7.799999952316284,
+                "p95": 10.5,
+                "p99": 12.299999952316284,
+                "max": 12.799999952316284,
+                "over50": 0
+              },
+              "cache": {
+                "allocations": 0,
+                "evictions": 0,
+                "morphReplacements": 858,
+                "filterBuilds": 0
+              },
+              "memory": {
+                "tileBytes": 150597792,
+                "tileBudgetBytes": 184112110,
+                "poolBytes": 225004,
+                "filterBackingBytes": 28966912,
+                "accountedBackingBytes": 179789708
+              },
+              "groups": [
+                {
+                  "name": "customers",
+                  "msPerFrame": 2.8288990827875398
+                },
+                {
+                  "name": "other",
+                  "msPerFrame": 2.1919724651432912
+                },
+                {
+                  "name": "background",
+                  "msPerFrame": 1.219724773813825
+                },
+                {
+                  "name": "food",
+                  "msPerFrame": 0.42798163639296083
+                },
+                {
+                  "name": "traffic",
+                  "msPerFrame": 0.3697247707515682
+                },
+                {
+                  "name": "radio",
+                  "msPerFrame": 0.2520642296983561
+                },
+                {
+                  "name": "griddle-steam",
+                  "msPerFrame": 0.15527522618617487
+                },
+                {
+                  "name": "dosa-steam",
+                  "msPerFrame": 0.13233945675946157
+                }
+              ],
+              "builds": [
+                {
+                  "id": 359,
+                  "builds": 168,
+                  "milliseconds": 41.69999933242798,
+                  "bytes": 22965152,
+                  "filtered": 0
+                },
+                {
+                  "id": 361,
+                  "builds": 138,
+                  "milliseconds": 32.099997758865356,
+                  "bytes": 19812384,
+                  "filtered": 0
+                },
+                {
+                  "id": 347,
+                  "builds": 123,
+                  "milliseconds": 29.499997854232788,
+                  "bytes": 16457728,
+                  "filtered": 0
+                },
+                {
+                  "id": 358,
+                  "builds": 168,
+                  "milliseconds": 20.40000081062317,
+                  "bytes": 48886656,
+                  "filtered": 0
+                },
+                {
+                  "id": 360,
+                  "builds": 138,
+                  "milliseconds": 16.299999713897705,
+                  "bytes": 39416112,
+                  "filtered": 0
+                },
+                {
+                  "id": 346,
+                  "builds": 123,
+                  "milliseconds": 14.500001430511475,
+                  "bytes": 36569704,
+                  "filtered": 0
+                }
+              ],
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 65.98307360123479
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.6.70-v8+",
+                "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+                "platform": "x11",
+                "memTotalKiB": 8143892,
+                "memAvailableKiB": 7006272,
+                "browserPssKiB": 462178,
+                "browserProcessCount": 9,
+                "temperatureMilliC": "50700",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  0.66748046875,
+                  0.28955078125,
+                  0.1259765625
+                ],
+                "monitorPower": "On"
+              }
+            },
+            {
+              "config": {
+                "width": 1485,
+                "mode": "gameplay",
+                "cacheStart": "cold"
+              },
+              "status": "BENCHMARK",
+              "canvas": [
+                1485,
+                1080
+              ],
+              "cacheStart": "cold",
+              "elapsedMs": 30016.399999999998,
+              "fps": 56.335869724550584,
+              "raf": {
+                "median": 16.69999999999891,
+                "p95": 16.799999999999272,
+                "p99": 34,
+                "over25": 23,
+                "over50": 15,
+                "max": 450.5999999999999
+              },
+              "draw": {
+                "median": 4.799999952316284,
+                "p95": 7.1000001430511475,
+                "p99": 11,
+                "over25": 4,
+                "over50": 2,
+                "max": 446.90000009536743
+              },
+              "cache": {
+                "allocatedMiB": 68.9405517578125,
+                "liveMiB": 68.9041748046875,
+                "evictions": 0
+              },
+              "memory": {
+                "peakBackingBytes": 84348032
+              },
+              "groups": [
+                {
+                  "id": 223,
+                  "builds": 111,
+                  "milliseconds": 608.199999332428,
+                  "bytes": 35445384,
+                  "filtered": 111
+                },
+                {
+                  "id": 263,
+                  "builds": 16,
+                  "milliseconds": 22.99999976158142,
+                  "bytes": 2602116,
+                  "filtered": 16
+                },
+                {
+                  "id": 284,
+                  "builds": 52,
+                  "milliseconds": 21.100000381469727,
+                  "bytes": 1224704,
+                  "filtered": 0
+                },
+                {
+                  "id": 232,
+                  "builds": 27,
+                  "milliseconds": 20.90000033378601,
+                  "bytes": 97524,
+                  "filtered": 0
+                },
+                {
+                  "id": 262,
+                  "builds": 33,
+                  "milliseconds": 18.40000009536743,
+                  "bytes": 879648,
+                  "filtered": 0
+                },
+                {
+                  "id": 136,
+                  "builds": 19,
+                  "milliseconds": 17.59999990463257,
+                  "bytes": 1275204,
+                  "filtered": 0
+                },
+                {
+                  "id": 233,
+                  "builds": 30,
+                  "milliseconds": 13.199999570846558,
+                  "bytes": 108360,
+                  "filtered": 0
+                },
+                {
+                  "id": 370,
+                  "builds": 6,
+                  "milliseconds": 9.600000143051147,
+                  "bytes": 1182692,
+                  "filtered": 6
+                },
+                {
+                  "id": 228,
+                  "builds": 6,
+                  "milliseconds": 7.800000190734863,
+                  "bytes": 1019184,
+                  "filtered": 0
+                },
+                {
+                  "id": 230,
+                  "builds": 4,
+                  "milliseconds": 4.999999761581421,
+                  "bytes": 117488,
+                  "filtered": 0
+                },
+                {
+                  "id": 473,
+                  "builds": 1,
+                  "milliseconds": 3.200000047683716,
+                  "bytes": 104976,
+                  "filtered": 0
+                },
+                {
+                  "id": 197,
+                  "builds": 7,
+                  "milliseconds": 3.0999996662139893,
+                  "bytes": 25164,
+                  "filtered": 0
+                }
+              ],
+              "topDraws": [
+                {
+                  "id": "193",
+                  "calls": 1691,
+                  "ms": 1011.900004863739,
+                  "filters": 0,
+                  "allocationsMiB": 16.807212829589844
+                },
+                {
+                  "id": "472",
+                  "calls": 4260,
+                  "ms": 806.0000009536743,
+                  "filters": 86,
+                  "allocationsMiB": 11.723041534423828
+                },
+                {
+                  "id": "235",
+                  "calls": 8455,
+                  "ms": 755.2000002861023,
+                  "filters": 0,
+                  "allocationsMiB": 0.23425674438476562
+                },
+                {
+                  "id": "224",
+                  "calls": 1691,
+                  "ms": 708.4000015258789,
+                  "filters": 12,
+                  "allocationsMiB": 28.85350799560547
+                },
+                {
+                  "id": "228",
+                  "calls": 16910,
+                  "ms": 645.5999920368195,
+                  "filters": 0,
+                  "allocationsMiB": 0.9719696044921875
+                },
+                {
+                  "id": "199",
+                  "calls": 1691,
+                  "ms": 416.3000063896179,
+                  "filters": 0,
+                  "allocationsMiB": 0.113800048828125
+                },
+                {
+                  "id": "230",
+                  "calls": 10146,
+                  "ms": 382.59999775886536,
+                  "filters": 0,
+                  "allocationsMiB": 0.1120452880859375
+                },
+                {
+                  "id": "221",
+                  "calls": 1691,
+                  "ms": 272.09999537467957,
+                  "filters": 0,
+                  "allocationsMiB": 1.3405303955078125
+                },
+                {
+                  "id": "223",
+                  "calls": 6550,
+                  "ms": 251.39999890327454,
+                  "filters": 29,
+                  "allocationsMiB": 1.6604843139648438
+                },
+                {
+                  "id": "262",
+                  "calls": 6598,
+                  "ms": 240.5999948978424,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                }
+              ],
+              "state": {
+                "screen": "playing",
+                "cash": 2,
+                "plate": 7
+              },
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 84.99826554756132
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.6.70-v8+",
+                "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+                "platform": "x11",
+                "memTotalKiB": 8143892,
+                "memAvailableKiB": 7143304,
+                "browserPssKiB": 512012,
+                "browserProcessCount": 9,
+                "temperatureMilliC": "52900",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  1.11376953125,
+                  0.4375,
+                  0.18115234375
+                ],
+                "monitorPower": "On"
+              }
+            },
+            {
+              "config": {
+                "width": 1485,
+                "mode": "gameplay",
+                "cacheStart": "warm"
+              },
+              "status": "BENCHMARK",
+              "canvas": [
+                1485,
+                1080
+              ],
+              "cacheStart": "warm",
+              "elapsedMs": 30015.899999999994,
+              "fps": 60.00153252109716,
+              "raf": {
+                "median": 16.69999999999709,
+                "p95": 16.700000000004366,
+                "p99": 16.80000000000291,
+                "over25": 0,
+                "over50": 0,
+                "max": 17.400000000001455
+              },
+              "draw": {
+                "median": 4.700000047683716,
+                "p95": 5.799999952316284,
+                "p99": 6.700000047683716,
+                "over25": 0,
+                "over50": 0,
+                "max": 10.900000095367432
+              },
+              "cache": {
+                "allocatedMiB": 0,
+                "liveMiB": 68.9041748046875,
+                "evictions": 0
+              },
+              "memory": {
+                "peakBackingBytes": 84348032
+              },
+              "groups": [],
+              "topDraws": [
+                {
+                  "id": "193",
+                  "calls": 1801,
+                  "ms": 1076.800000667572,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "235",
+                  "calls": 9005,
+                  "ms": 728.4000022411346,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "228",
+                  "calls": 18010,
+                  "ms": 644.8999993801117,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "472",
+                  "calls": 4593,
+                  "ms": 612.9000022411346,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "199",
+                  "calls": 1801,
+                  "ms": 430.9000039100647,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "230",
+                  "calls": 10806,
+                  "ms": 393.6999945640564,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "221",
+                  "calls": 1801,
+                  "ms": 289.1000008583069,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "210",
+                  "calls": 3602,
+                  "ms": 258.7999975681305,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "158",
+                  "calls": 3602,
+                  "ms": 243.30000019073486,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "262",
+                  "calls": 6592,
+                  "ms": 231.100004196167,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                }
+              ],
+              "state": {
+                "screen": "playing",
+                "cash": 2,
+                "plate": 7
+              },
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 75.7678354338402
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.6.70-v8+",
+                "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+                "platform": "x11",
+                "memTotalKiB": 8143892,
+                "memAvailableKiB": 7114180,
+                "browserPssKiB": 540553,
+                "browserProcessCount": 9,
+                "temperatureMilliC": "54000",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  0.80810546875,
+                  0.43603515625,
+                  0.18994140625
+                ],
+                "monitorPower": "On"
+              }
+            },
+            {
+              "config": {
+                "width": 2200,
+                "mode": "gameplay",
+                "cacheStart": "cold"
+              },
+              "status": "BENCHMARK",
+              "canvas": [
+                2200,
+                1600
+              ],
+              "cacheStart": "cold",
+              "elapsedMs": 30015.699999999997,
+              "fps": 31.550155418664236,
+              "raf": {
+                "median": 33.19999999999709,
+                "p95": 34,
+                "p99": 416.6000000000058,
+                "over25": 528,
+                "over50": 20,
+                "max": 500.1999999999971
+              },
+              "draw": {
+                "median": 5.8999998569488525,
+                "p95": 8.400000095367432,
+                "p99": 15.100000143051147,
+                "over25": 5,
+                "over50": 2,
+                "max": 471.80000019073486
+              },
+              "cache": {
+                "allocatedMiB": 149.64186477661133,
+                "liveMiB": 149.42728424072266,
+                "evictions": 0
+              },
+              "memory": {
+                "peakBackingBytes": 185877780
+              },
+              "groups": [
+                {
+                  "id": 223,
+                  "builds": 111,
+                  "milliseconds": 693.1000003814697,
+                  "bytes": 79168180,
+                  "filtered": 111
+                },
+                {
+                  "id": 263,
+                  "builds": 16,
+                  "milliseconds": 24.09999990463257,
+                  "bytes": 5782272,
+                  "filtered": 16
+                },
+                {
+                  "id": 136,
+                  "builds": 19,
+                  "milliseconds": 22.999999523162842,
+                  "bytes": 2766400,
+                  "filtered": 0
+                },
+                {
+                  "id": 284,
+                  "builds": 52,
+                  "milliseconds": 22.900001049041748,
+                  "bytes": 2594592,
+                  "filtered": 0
+                },
+                {
+                  "id": 232,
+                  "builds": 27,
+                  "milliseconds": 17.40000009536743,
+                  "bytes": 187020,
+                  "filtered": 0
+                },
+                {
+                  "id": 262,
+                  "builds": 33,
+                  "milliseconds": 15.999998807907104,
+                  "bytes": 1883772,
+                  "filtered": 0
+                },
+                {
+                  "id": 233,
+                  "builds": 30,
+                  "milliseconds": 13.000000476837158,
+                  "bytes": 207800,
+                  "filtered": 0
+                },
+                {
+                  "id": 370,
+                  "builds": 6,
+                  "milliseconds": 9.300000190734863,
+                  "bytes": 2489448,
+                  "filtered": 6
+                },
+                {
+                  "id": 197,
+                  "builds": 10,
+                  "milliseconds": 7.000000715255737,
+                  "bytes": 55552,
+                  "filtered": 0
+                },
+                {
+                  "id": 192,
+                  "builds": 1,
+                  "milliseconds": 5.599999904632568,
+                  "bytes": 1396088,
+                  "filtered": 0
+                },
+                {
+                  "id": 191,
+                  "builds": 1,
+                  "milliseconds": 5.5,
+                  "bytes": 772284,
+                  "filtered": 0
+                },
+                {
+                  "id": 473,
+                  "builds": 1,
+                  "milliseconds": 4.8999998569488525,
+                  "bytes": 280900,
+                  "filtered": 0
+                }
+              ],
+              "topDraws": [
+                {
+                  "id": "193",
+                  "calls": 947,
+                  "ms": 1164.2000014781952,
+                  "filters": 0,
+                  "allocationsMiB": 35.34846496582031
+                },
+                {
+                  "id": "224",
+                  "calls": 947,
+                  "ms": 698.8999991416931,
+                  "filters": 12,
+                  "allocationsMiB": 64.4818115234375
+                },
+                {
+                  "id": "472",
+                  "calls": 2322,
+                  "ms": 562.5000011920929,
+                  "filters": 86,
+                  "allocationsMiB": 25.64739990234375
+                },
+                {
+                  "id": "235",
+                  "calls": 4735,
+                  "ms": 483.50000262260437,
+                  "filters": 0,
+                  "allocationsMiB": 0.4525871276855469
+                },
+                {
+                  "id": "228",
+                  "calls": 9470,
+                  "ms": 400.30000042915344,
+                  "filters": 0,
+                  "allocationsMiB": 1.9694900512695312
+                },
+                {
+                  "id": "199",
+                  "calls": 947,
+                  "ms": 249.4000005722046,
+                  "filters": 0,
+                  "allocationsMiB": 0.20941162109375
+                },
+                {
+                  "id": "230",
+                  "calls": 5682,
+                  "ms": 237.69999599456787,
+                  "filters": 0,
+                  "allocationsMiB": 0.2325592041015625
+                },
+                {
+                  "id": "223",
+                  "calls": 4235,
+                  "ms": 195.10000205039978,
+                  "filters": 29,
+                  "allocationsMiB": 3.823596954345703
+                },
+                {
+                  "id": "221",
+                  "calls": 947,
+                  "ms": 182.2000026702881,
+                  "filters": 0,
+                  "allocationsMiB": 2.9046478271484375
+                },
+                {
+                  "id": "262",
+                  "calls": 4265,
+                  "ms": 171.0000035762787,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                }
+              ],
+              "state": {
+                "screen": "playing",
+                "cash": 2,
+                "plate": 7
+              },
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 57.77440374130003
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.6.70-v8+",
+                "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+                "platform": "x11",
+                "memTotalKiB": 8143892,
+                "memAvailableKiB": 6966396,
+                "browserPssKiB": 539435,
+                "browserProcessCount": 9,
+                "temperatureMilliC": "54000",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  0.6611328125,
+                  0.43994140625,
+                  0.19775390625
+                ],
+                "monitorPower": "On"
+              }
+            },
+            {
+              "config": {
+                "width": 2200,
+                "mode": "gameplay",
+                "cacheStart": "warm"
+              },
+              "status": "BENCHMARK",
+              "canvas": [
+                2200,
+                1600
+              ],
+              "cacheStart": "warm",
+              "elapsedMs": 30032.70000000001,
+              "fps": 39.6234770766531,
+              "raf": {
+                "median": 32.69999999999709,
+                "p95": 33.89999999999418,
+                "p99": 34,
+                "over25": 612,
+                "over50": 0,
+                "max": 34.10000000000582
+              },
+              "draw": {
+                "median": 5.6000001430511475,
+                "p95": 7.299999952316284,
+                "p99": 8.399999856948853,
+                "over25": 0,
+                "over50": 0,
+                "max": 11.800000190734863
+              },
+              "cache": {
+                "allocatedMiB": 0,
+                "liveMiB": 149.42728424072266,
+                "evictions": 0
+              },
+              "memory": {
+                "peakBackingBytes": 185877780
+              },
+              "groups": [],
+              "topDraws": [
+                {
+                  "id": "193",
+                  "calls": 1190,
+                  "ms": 1502.6000008583069,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "235",
+                  "calls": 5950,
+                  "ms": 540.1999859809875,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "228",
+                  "calls": 11900,
+                  "ms": 484.1000099182129,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "472",
+                  "calls": 3036,
+                  "ms": 442.5000009536743,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "199",
+                  "calls": 1190,
+                  "ms": 296.800009727478,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "230",
+                  "calls": 7140,
+                  "ms": 288.49999618530273,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "221",
+                  "calls": 1190,
+                  "ms": 187.20000743865967,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "158",
+                  "calls": 2380,
+                  "ms": 170.5999927520752,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "224",
+                  "calls": 1190,
+                  "ms": 165.99999809265137,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "210",
+                  "calls": 2380,
+                  "ms": 163.29999327659607,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                }
+              ],
+              "state": {
+                "screen": "playing",
+                "cash": 2,
+                "plate": 7
+              },
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 58.04999930947804
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.6.70-v8+",
+                "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+                "platform": "x11",
+                "memTotalKiB": 8143892,
+                "memAvailableKiB": 6952792,
+                "browserPssKiB": 548475,
+                "browserProcessCount": 9,
+                "temperatureMilliC": "54550",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  0.5830078125,
+                  0.44482421875,
+                  0.2060546875
+                ],
+                "monitorPower": "On"
+              }
+            }
+          ],
+          "errors": []
+        },
+        {
+          "kind": "validation",
+          "hardware": {
+            "browser": "138.0.7204.92",
+            "renderer": "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 24.2.8-1~bpo12+rpt3)",
+            "features": {
+              "2d_canvas": "enabled",
+              "direct_rendering_display_compositor": "disabled_off_ok",
+              "gpu_compositing": "enabled",
+              "multiple_raster_threads": "enabled_on",
+              "opengl": "enabled_on",
+              "rasterization": "enabled_force",
+              "raw_draw": "disabled_off_ok",
+              "skia_graphite": "disabled_off",
+              "trees_in_viz": "disabled_off",
+              "video_decode": "enabled",
+              "video_encode": "disabled_software",
+              "vulkan": "disabled_off",
+              "webgl": "enabled",
+              "webgl2": "enabled",
+              "webgpu": "disabled_off",
+              "webnn": "disabled_off"
+            },
+            "devices": [
+              "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 24.2.8-1~bpo12+rpt3)"
+            ]
+          },
+          "nativeDisplay": {
+            "screen": [
+              1920,
+              1080
+            ],
+            "viewport": [
+              1480,
+              913
+            ],
+            "dpr": 1
+          },
+          "idleCadence": [
+            16.600000000000023,
+            16.599999999999994,
+            16.69999999999999,
+            16.700000000000017,
+            16.69999999999999,
+            16.69999999999999,
+            16.69999999999999,
+            16.700000000000045,
+            16.599999999999966,
+            16.69999999999999,
+            16.600000000000023,
+            16.80000000000001
+          ],
+          "before": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.6.70-v8+",
+            "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+            "platform": "x11",
+            "memTotalKiB": 8143892,
+            "memAvailableKiB": 7431160,
+            "browserPssKiB": 368004,
+            "browserProcessCount": 9,
+            "temperatureMilliC": "52350",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0",
+            "load": [
+              0.22412109375,
+              0.369140625,
+              0.19287109375
+            ],
+            "monitorPower": "On"
+          },
+          "after": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.6.70-v8+",
+            "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+            "platform": "x11",
+            "memTotalKiB": 8143892,
+            "memAvailableKiB": 6876276,
+            "browserPssKiB": 720786,
+            "browserProcessCount": 10,
+            "temperatureMilliC": "56750",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0",
+            "load": [
+              1.48291015625,
+              0.69921875,
+              0.3173828125
+            ],
+            "monitorPower": "On"
+          },
+          "results": [
+            {
+              "config": {
+                "width": 1485,
+                "mode": "checks"
+              },
+              "status": "PASS",
+              "cache": {},
+              "memory": {},
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 83.59097963308702
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.6.70-v8+",
+                "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+                "platform": "x11",
+                "memTotalKiB": 8143892,
+                "memAvailableKiB": 6800868,
+                "browserPssKiB": 478485,
+                "browserProcessCount": 9,
+                "temperatureMilliC": "51250",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  0.22412109375,
+                  0.369140625,
+                  0.19287109375
+                ],
+                "monitorPower": "On"
+              },
+              "checks": [
+                {
+                  "name": "Check GPU filter pixels",
+                  "status": "PASS",
+                  "passed": 7,
+                  "total": 7,
+                  "gpuPasses": 24,
+                  "gpuFailures": 0,
+                  "tolerances": {
+                    "alpha": 2,
+                    "premultipliedMaximum": 2,
+                    "premultipliedMean": 0.25,
+                    "centroidPixels": 0.35,
+                    "boundsPixels": 2
+                  },
+                  "cases": [
+                    {
+                      "name": "opaque off-center",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 2,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 0,
+                      "premultipliedMeanError": 0,
+                      "readbackMaximumError": 0.3333333333333428,
+                      "centroidDistance": 0,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        8,
+                        5,
+                        61,
+                        63
+                      ],
+                      "gpuBounds": [
+                        8,
+                        5,
+                        61,
+                        63
+                      ]
+                    },
+                    {
+                      "name": "translucent overlap",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 2,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.13380252188848393,
+                      "readbackMaximumError": 1.3333333333333357,
+                      "centroidDistance": 0,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        9,
+                        5,
+                        75,
+                        59
+                      ],
+                      "gpuBounds": [
+                        9,
+                        5,
+                        75,
+                        59
+                      ]
+                    },
+                    {
+                      "name": "fractional three-pass",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 6,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.10693069306930693,
+                      "readbackMaximumError": 1.3411764705882376,
+                      "centroidDistance": 0,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        6,
+                        6,
+                        76,
+                        58
+                      ],
+                      "gpuBounds": [
+                        6,
+                        6,
+                        76,
+                        58
+                      ]
+                    },
+                    {
+                      "name": "vertical only",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 2,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 0,
+                      "premultipliedMeanError": 0,
+                      "readbackMaximumError": 0.4117647058823479,
+                      "centroidDistance": 0,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        9,
+                        0,
+                        60,
+                        72
+                      ],
+                      "gpuBounds": [
+                        9,
+                        0,
+                        60,
+                        72
+                      ]
+                    },
+                    {
+                      "name": "transparent outside active bounds",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 4,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.014386579603970908,
+                      "readbackMaximumError": 1.117647058823529,
+                      "centroidDistance": 0,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        0,
+                        0,
+                        90,
+                        68
+                      ],
+                      "gpuBounds": [
+                        0,
+                        0,
+                        90,
+                        68
+                      ]
+                    },
+                    {
+                      "name": "wide source smoke kernel",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 2,
+                      "alphaMaximumError": 1,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.0007310693030853409,
+                      "readbackMaximumError": 1.0196078431372548,
+                      "centroidDistance": 0.001876052121483057,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        17,
+                        0,
+                        199,
+                        136
+                      ],
+                      "gpuBounds": [
+                        17,
+                        0,
+                        199,
+                        136
+                      ]
+                    },
+                    {
+                      "name": "near-identity opaque",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 6,
+                      "alphaMaximumError": 1,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.00442990526817965,
+                      "readbackMaximumError": 1.1999999999999886,
+                      "centroidDistance": 0.0020145695931175294,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        0,
+                        0,
+                        66,
+                        72
+                      ],
+                      "gpuBounds": [
+                        0,
+                        0,
+                        66,
+                        72
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Check retained composition pixels",
+                  "status": "PASS",
+                  "passed": 4,
+                  "total": 4,
+                  "tolerances": {
+                    "alpha": 2,
+                    "premultipliedMaximum": 2,
+                    "premultipliedMean": 0.15
+                  },
+                  "cases": [
+                    {
+                      "name": "single-alpha, 1x, transparent",
+                      "passed": true,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 0,
+                      "premultipliedMeanError": 0,
+                      "pixelsOverTwo": 0
+                    },
+                    {
+                      "name": "single-alpha, 1x, opaque",
+                      "passed": true,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 0,
+                      "premultipliedMeanError": 0,
+                      "pixelsOverTwo": 0
+                    },
+                    {
+                      "name": "single-alpha, 2.75x, transparent",
+                      "passed": true,
+                      "alphaMaximumError": 1,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.00001562218350057081,
+                      "pixelsOverTwo": 0
+                    },
+                    {
+                      "name": "single-alpha, 2.75x, opaque",
+                      "passed": true,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.000014019908269743036,
+                      "pixelsOverTwo": 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "config": {
+                "width": 1485,
+                "mode": "ui"
+              },
+              "status": "PASS",
+              "cache": {},
+              "memory": {},
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 89.17837133055983
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.6.70-v8+",
+                "browser": "Chromium 138.0.7204.92 built on Debian GNU/Linux 12 (bookworm)",
+                "platform": "x11",
+                "memTotalKiB": 8143892,
+                "memAvailableKiB": 7058688,
+                "browserPssKiB": 636251,
+                "browserProcessCount": 10,
+                "temperatureMilliC": "56200",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  1.00244140625,
+                  0.5927734375,
+                  0.28125
+                ],
+                "monitorPower": "On"
+              },
+              "checks": [
+                {
+                  "name": "tutorial remains in stage",
+                  "scrollHeight": 1000,
+                  "height": 1000
+                },
+                {
+                  "name": "batter click changes pointer mode",
+                  "passed": true
+                },
+                {
+                  "name": "audio gesture accepted",
+                  "promptHidden": true
+                },
+                {
+                  "name": "half-resolution saved across reload",
+                  "value": "0.5",
+                  "backing": [
+                    880,
+                    640
+                  ],
+                  "css": [
+                    880,
+                    640
+                  ]
+                },
+                {
+                  "name": "HUD disabled",
+                  "hidden": true
+                },
+                {
+                  "name": "fullscreen",
+                  "passed": true
+                },
+                {
+                  "name": "narrow viewport",
+                  "width": 390,
+                  "scrollWidth": 390,
+                  "bowlVisible": true
+                },
+                {
+                  "name": "live game after tab return, 30 seconds",
+                  "frames": {
+                    "seconds": 30.000000000000004,
+                    "frames": 1792,
+                    "fps": 59.73333333333333,
+                    "p95": 16.700000000004366,
+                    "p99": 16.80000000000291,
+                    "max": 33.899999999999636,
+                    "hidden": false
+                  },
+                  "gameFramesBefore": 96,
+                  "gameFramesAfter": 1870,
+                  "gameFrameDelta": 1774,
+                  "hud": "60.0 FPS · 1870 measured frames",
+                  "canvas": {
+                    "backing": [
+                      880,
+                      640
+                    ],
+                    "css": [
+                      880,
+                      640
+                    ]
+                  }
+                }
+              ],
+              "errors": [],
+              "limit": "Playwright-generated mouse input; no physical touchscreen claim. Callback pacing is not display-scanout measurement. Event Timing records only browser-reported entries at/above16ms, not all input latency."
+            }
+          ],
+          "errors": []
+        }
+      ]
+    },
+    {
+      "device": "B",
+      "runs": [
+        {
+          "kind": "fixture",
+          "hardware": {
+            "browser": "151.0.7922.173",
+            "renderer": "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 26.2.0-1~bpo13+0~rpt3)",
+            "features": {
+              "2d_canvas": "enabled",
+              "direct_rendering_display_compositor": "disabled_off_ok",
+              "gpu_compositing": "enabled",
+              "multiple_raster_threads": "enabled_on",
+              "opengl": "enabled_on",
+              "rasterization": "enabled_force",
+              "raw_draw": "disabled_off_ok",
+              "skia_graphite": "disabled_off",
+              "trees_in_viz": "disabled_off",
+              "video_decode": "enabled",
+              "video_encode": "disabled_software",
+              "vulkan": "disabled_off",
+              "webgl": "enabled",
+              "webgpu": "disabled_off",
+              "webgpu_on_vk_via_gl_interop": "disabled_off",
+              "webnn": "disabled_off"
+            },
+            "devices": [
+              "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 26.2.0-1~bpo13+0~rpt3)"
+            ]
+          },
+          "nativeDisplay": {
+            "screen": [
+              1920,
+              1080
+            ],
+            "viewport": [
+              1448,
+              867
+            ],
+            "dpr": 1
+          },
+          "idleCadence": [
+            16,
+            16.700000000000003,
+            16.69999999999999,
+            16.599999999999994,
+            16.700000000000017,
+            16.69999999999999,
+            16.700000000000017,
+            16.599999999999994,
+            17.400000000000006,
+            16.599999999999994,
+            16.599999999999994,
+            16.69999999999999
+          ],
+          "before": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.18.39+rpt-rpi-2712",
+            "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+            "platform": "wayland",
+            "memTotalKiB": 8251776,
+            "memAvailableKiB": 6084288,
+            "browserPssKiB": 477504,
+            "browserProcessCount": 10,
+            "temperatureMilliC": "50700",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0",
+            "load": [
+              1.30419921875,
+              1.169921875,
+              1.06396484375
+            ],
+            "monitorPower": "unavailable"
+          },
+          "after": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.18.39+rpt-rpi-2712",
+            "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+            "platform": "wayland",
+            "memTotalKiB": 8251776,
+            "memAvailableKiB": 5714816,
+            "browserPssKiB": 629155,
+            "browserProcessCount": 10,
+            "temperatureMilliC": "54000",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0",
+            "load": [
+              2.046875,
+              1.47265625,
+              1.1826171875
+            ],
+            "monitorPower": "unavailable"
+          },
+          "results": [
+            {
+              "config": {
+                "width": 880,
+                "adapter": "default"
+              },
+              "canvas": [
+                880,
+                640
+              ],
+              "fps": 60.000664827311105,
+              "raf": {
+                "p50": 16.69999999999891,
+                "p95": 17.399999999999636,
+                "p99": 17.400000000001455,
+                "max": 17.400000000001455,
+                "over50": 0
+              },
+              "draw": {
+                "p50": 5.199999988079071,
+                "p95": 7.199999988079071,
+                "p99": 8.699999988079071,
+                "max": 10.299999982118607,
+                "over50": 0
+              },
+              "cache": {
+                "allocations": 300896,
+                "evictions": 0,
+                "morphReplacements": 432,
+                "filterBuilds": 8
+              },
+              "memory": {
+                "tileBytes": 28448396,
+                "tileBudgetBytes": 83886080,
+                "poolBytes": 16972,
+                "filterBackingBytes": 5898240,
+                "accountedBackingBytes": 34363608
+              },
+              "groups": [
+                {
+                  "name": "other",
+                  "msPerFrame": 1.7326869813524124
+                },
+                {
+                  "name": "customers",
+                  "msPerFrame": 1.6781163426977777
+                },
+                {
+                  "name": "background",
+                  "msPerFrame": 0.529085872823842
+                },
+                {
+                  "name": "traffic",
+                  "msPerFrame": 0.3797783935003994
+                },
+                {
+                  "name": "food",
+                  "msPerFrame": 0.3747922440479997
+                },
+                {
+                  "name": "radio",
+                  "msPerFrame": 0.21135733893703557
+                },
+                {
+                  "name": "griddle-steam",
+                  "msPerFrame": 0.12326869797838692
+                },
+                {
+                  "name": "dosa-steam",
+                  "msPerFrame": 0.11301938987174523
+                }
+              ],
+              "builds": [
+                {
+                  "id": 359,
+                  "builds": 84,
+                  "milliseconds": 13.999999821186066,
+                  "bytes": 2113664,
+                  "filtered": 0
+                },
+                {
+                  "id": 361,
+                  "builds": 69,
+                  "milliseconds": 12.499999970197678,
+                  "bytes": 1806696,
+                  "filtered": 0
+                },
+                {
+                  "id": 347,
+                  "builds": 63,
+                  "milliseconds": 11.399999976158142,
+                  "bytes": 1542576,
+                  "filtered": 0
+                },
+                {
+                  "id": 358,
+                  "builds": 84,
+                  "milliseconds": 6.800000041723251,
+                  "bytes": 4397568,
+                  "filtered": 0
+                },
+                {
+                  "id": 360,
+                  "builds": 69,
+                  "milliseconds": 6.000000029802322,
+                  "bytes": 3531420,
+                  "filtered": 0
+                },
+                {
+                  "id": 346,
+                  "builds": 63,
+                  "milliseconds": 5.60000017285347,
+                  "bytes": 3368484,
+                  "filtered": 0
+                },
+                {
+                  "id": 223,
+                  "builds": 8,
+                  "milliseconds": 5.000000059604645,
+                  "bytes": 237928,
+                  "filtered": 8
+                },
+                {
+                  "id": 262,
+                  "builds": 2,
+                  "milliseconds": 0.9000000059604645,
+                  "bytes": 23064,
+                  "filtered": 0
+                },
+                {
+                  "id": 284,
+                  "builds": 2,
+                  "milliseconds": 0.800000011920929,
+                  "bytes": 20880,
+                  "filtered": 0
+                },
+                {
+                  "id": 447,
+                  "builds": 2,
+                  "milliseconds": 0.4999999701976776,
+                  "bytes": 19024,
+                  "filtered": 0
+                }
+              ],
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 79.80337492574603
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.18.39+rpt-rpi-2712",
+                "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+                "platform": "wayland",
+                "memTotalKiB": 8251776,
+                "memAvailableKiB": 5872688,
+                "browserPssKiB": 597809,
+                "browserProcessCount": 10,
+                "temperatureMilliC": "51250",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  1.55126953125,
+                  1.22802734375,
+                  1.0849609375
+                ],
+                "monitorPower": "unavailable"
+              }
+            },
+            {
+              "config": {
+                "width": 1485,
+                "adapter": "default"
+              },
+              "canvas": [
+                1485,
+                1080
+              ],
+              "fps": 60.000664827311105,
+              "raf": {
+                "p50": 16.69999999999891,
+                "p95": 17.299999999999272,
+                "p99": 17.399999999999636,
+                "max": 17.399999999999636,
+                "over50": 0
+              },
+              "draw": {
+                "p50": 4.9000000059604645,
+                "p95": 6.699999988079071,
+                "p99": 9.199999988079071,
+                "max": 13.099999994039536,
+                "over50": 0
+              },
+              "cache": {
+                "allocations": 296604,
+                "evictions": 0,
+                "morphReplacements": 432,
+                "filterBuilds": 4
+              },
+              "memory": {
+                "tileBytes": 69924956,
+                "tileBudgetBytes": 83886080,
+                "poolBytes": 105260,
+                "filterBackingBytes": 12058624,
+                "accountedBackingBytes": 82088840
+              },
+              "groups": [
+                {
+                  "name": "other",
+                  "msPerFrame": 1.6828254842692134
+                },
+                {
+                  "name": "customers",
+                  "msPerFrame": 1.637673129995774
+                },
+                {
+                  "name": "background",
+                  "msPerFrame": 0.518559556423462
+                },
+                {
+                  "name": "traffic",
+                  "msPerFrame": 0.3562326875419828
+                },
+                {
+                  "name": "food",
+                  "msPerFrame": 0.32880886481079036
+                },
+                {
+                  "name": "radio",
+                  "msPerFrame": 0.20498614867638354
+                },
+                {
+                  "name": "griddle-steam",
+                  "msPerFrame": 0.12382271596929703
+                },
+                {
+                  "name": "dosa-steam",
+                  "msPerFrame": 0.09944598339601236
+                }
+              ],
+              "builds": [
+                {
+                  "id": 359,
+                  "builds": 84,
+                  "milliseconds": 13.899999767541885,
+                  "bytes": 5703040,
+                  "filtered": 0
+                },
+                {
+                  "id": 361,
+                  "builds": 69,
+                  "milliseconds": 12.100000023841858,
+                  "bytes": 4914272,
+                  "filtered": 0
+                },
+                {
+                  "id": 347,
+                  "builds": 63,
+                  "milliseconds": 11.100000023841858,
+                  "bytes": 4169676,
+                  "filtered": 0
+                },
+                {
+                  "id": 358,
+                  "builds": 84,
+                  "milliseconds": 6.300000041723251,
+                  "bytes": 11978960,
+                  "filtered": 0
+                },
+                {
+                  "id": 360,
+                  "builds": 69,
+                  "milliseconds": 5.699999928474426,
+                  "bytes": 9658160,
+                  "filtered": 0
+                },
+                {
+                  "id": 346,
+                  "builds": 63,
+                  "milliseconds": 4.599999934434891,
+                  "bytes": 9174144,
+                  "filtered": 0
+                },
+                {
+                  "id": 223,
+                  "builds": 4,
+                  "milliseconds": 2.600000023841858,
+                  "bytes": 296604,
+                  "filtered": 4
+                }
+              ],
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 73.74117625889316
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.18.39+rpt-rpi-2712",
+                "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+                "platform": "wayland",
+                "memTotalKiB": 8251776,
+                "memAvailableKiB": 5732144,
+                "browserPssKiB": 633796,
+                "browserProcessCount": 10,
+                "temperatureMilliC": "51800",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  2.03564453125,
+                  1.35986328125,
+                  1.1318359375
+                ],
+                "monitorPower": "unavailable"
+              }
+            },
+            {
+              "config": {
+                "width": 2200,
+                "fixedBudget": true,
+                "adapter": "default"
+              },
+              "canvas": [
+                2200,
+                1600
+              ],
+              "fps": 4.744992594935798,
+              "raf": {
+                "p50": 116.60000000000036,
+                "p95": 682.2000000000007,
+                "p99": 719.7000000000007,
+                "max": 719.7000000000007,
+                "over50": 18
+              },
+              "draw": {
+                "p50": 12,
+                "p95": 30,
+                "p99": 30.400000005960464,
+                "max": 30.400000005960464,
+                "over50": 0
+              },
+              "cache": {
+                "allocations": 108799588,
+                "evictions": 291,
+                "morphReplacements": 62,
+                "filterBuilds": 59
+              },
+              "memory": {
+                "tileBytes": 82133896,
+                "tileBudgetBytes": 83886080,
+                "poolBytes": 11501232,
+                "filterBackingBytes": 28966912,
+                "accountedBackingBytes": 122602040
+              },
+              "groups": [
+                {
+                  "name": "customers",
+                  "msPerFrame": 4.548484847401127
+                },
+                {
+                  "name": "other",
+                  "msPerFrame": 3.5333333268310083
+                },
+                {
+                  "name": "food",
+                  "msPerFrame": 1.5878787862532067
+                },
+                {
+                  "name": "background",
+                  "msPerFrame": 0.8696969693357294
+                },
+                {
+                  "name": "griddle-steam",
+                  "msPerFrame": 0.8000000019868215
+                },
+                {
+                  "name": "traffic",
+                  "msPerFrame": 0.648484853180972
+                },
+                {
+                  "name": "dosa-steam",
+                  "msPerFrame": 0.5454545490669481
+                },
+                {
+                  "name": "radio",
+                  "msPerFrame": 0.4333333327914729
+                }
+              ],
+              "builds": [
+                {
+                  "id": 223,
+                  "builds": 59,
+                  "milliseconds": 40.50000023841858,
+                  "bytes": 102958404,
+                  "filtered": 59
+                },
+                {
+                  "id": 136,
+                  "builds": 22,
+                  "milliseconds": 12.100000113248825,
+                  "bytes": 3203200,
+                  "filtered": 0
+                },
+                {
+                  "id": 347,
+                  "builds": 27,
+                  "milliseconds": 10.700000047683716,
+                  "bytes": 3612672,
+                  "filtered": 0
+                },
+                {
+                  "id": 359,
+                  "builds": 24,
+                  "milliseconds": 10.200000017881393,
+                  "bytes": 3280736,
+                  "filtered": 0
+                },
+                {
+                  "id": 361,
+                  "builds": 15,
+                  "milliseconds": 7.299999982118607,
+                  "bytes": 2153520,
+                  "filtered": 0
+                },
+                {
+                  "id": 232,
+                  "builds": 30,
+                  "milliseconds": 6.900000035762787,
+                  "bytes": 207800,
+                  "filtered": 0
+                },
+                {
+                  "id": 358,
+                  "builds": 24,
+                  "milliseconds": 5.699999898672104,
+                  "bytes": 6983808,
+                  "filtered": 0
+                },
+                {
+                  "id": 197,
+                  "builds": 16,
+                  "milliseconds": 5.199999988079071,
+                  "bytes": 95528,
+                  "filtered": 0
+                },
+                {
+                  "id": 362,
+                  "builds": 3,
+                  "milliseconds": 4.700000017881393,
+                  "bytes": 847264,
+                  "filtered": 0
+                },
+                {
+                  "id": 360,
+                  "builds": 15,
+                  "milliseconds": 4.500000059604645,
+                  "bytes": 4284360,
+                  "filtered": 0
+                }
+              ],
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 24.54839697557266
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.18.39+rpt-rpi-2712",
+                "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+                "platform": "wayland",
+                "memTotalKiB": 8251776,
+                "memAvailableKiB": 5142560,
+                "browserPssKiB": 590420,
+                "browserProcessCount": 10,
+                "temperatureMilliC": "52350",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  2.0341796875,
+                  1.3916015625,
+                  1.14599609375
+                ],
+                "monitorPower": "unavailable"
+              }
+            },
+            {
+              "config": {
+                "width": 2200,
+                "adapter": "default"
+              },
+              "canvas": [
+                2200,
+                1600
+              ],
+              "fps": 56.23424471592013,
+              "raf": {
+                "p50": 16.69999999999891,
+                "p95": 18.69999999999891,
+                "p99": 25,
+                "max": 333.2999999999993,
+                "over50": 2
+              },
+              "draw": {
+                "p50": 5.700000017881393,
+                "p95": 8.5,
+                "p99": 10.699999988079071,
+                "max": 21.5,
+                "over50": 0
+              },
+              "cache": {
+                "allocations": 7262120,
+                "evictions": 0,
+                "morphReplacements": 420,
+                "filterBuilds": 37
+              },
+              "memory": {
+                "tileBytes": 150597792,
+                "tileBudgetBytes": 184112110,
+                "poolBytes": 225004,
+                "filterBackingBytes": 28966912,
+                "accountedBackingBytes": 179789708
+              },
+              "groups": [
+                {
+                  "name": "customers",
+                  "msPerFrame": 1.7856321840108127
+                },
+                {
+                  "name": "other",
+                  "msPerFrame": 1.7399425279648824
+                },
+                {
+                  "name": "background",
+                  "msPerFrame": 1.0339080462681836
+                },
+                {
+                  "name": "food",
+                  "msPerFrame": 0.47528735633896685
+                },
+                {
+                  "name": "traffic",
+                  "msPerFrame": 0.33821839051342556
+                },
+                {
+                  "name": "radio",
+                  "msPerFrame": 0.21063218265771866
+                },
+                {
+                  "name": "dosa-steam",
+                  "msPerFrame": 0.12126436752491984
+                },
+                {
+                  "name": "griddle-steam",
+                  "msPerFrame": 0.10775862068965517
+                }
+              ],
+              "builds": [
+                {
+                  "id": 223,
+                  "builds": 37,
+                  "milliseconds": 24.299999982118607,
+                  "bytes": 5945836,
+                  "filtered": 37
+                },
+                {
+                  "id": 359,
+                  "builds": 84,
+                  "milliseconds": 15.700000047683716,
+                  "bytes": 11482576,
+                  "filtered": 0
+                },
+                {
+                  "id": 361,
+                  "builds": 66,
+                  "milliseconds": 14.699999988079071,
+                  "bytes": 9475488,
+                  "filtered": 0
+                },
+                {
+                  "id": 347,
+                  "builds": 60,
+                  "milliseconds": 11.699999898672104,
+                  "bytes": 8028160,
+                  "filtered": 0
+                },
+                {
+                  "id": 360,
+                  "builds": 66,
+                  "milliseconds": 7.600000023841858,
+                  "bytes": 18851184,
+                  "filtered": 0
+                },
+                {
+                  "id": 358,
+                  "builds": 84,
+                  "milliseconds": 6.700000166893005,
+                  "bytes": 24443328,
+                  "filtered": 0
+                },
+                {
+                  "id": 346,
+                  "builds": 60,
+                  "milliseconds": 5.300000101327896,
+                  "bytes": 17838880,
+                  "filtered": 0
+                },
+                {
+                  "id": 232,
+                  "builds": 3,
+                  "milliseconds": 3.2000000178813934,
+                  "bytes": 20780,
+                  "filtered": 0
+                },
+                {
+                  "id": 262,
+                  "builds": 7,
+                  "milliseconds": 2.899999976158142,
+                  "bytes": 399588,
+                  "filtered": 0
+                },
+                {
+                  "id": 284,
+                  "builds": 7,
+                  "milliseconds": 2.0999999940395355,
+                  "bytes": 349272,
+                  "filtered": 0
+                }
+              ],
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 70.11576617336695
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.18.39+rpt-rpi-2712",
+                "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+                "platform": "wayland",
+                "memTotalKiB": 8251776,
+                "memAvailableKiB": 5483728,
+                "browserPssKiB": 612611,
+                "browserProcessCount": 10,
+                "temperatureMilliC": "54000",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  2.1708984375,
+                  1.46337890625,
+                  1.17529296875
+                ],
+                "monitorPower": "unavailable"
+              }
+            },
+            {
+              "config": {
+                "width": 2200,
+                "omit": "griddle-steam",
+                "adapter": "default"
+              },
+              "canvas": [
+                2200,
+                1600
+              ],
+              "fps": 49.38598962562768,
+              "raf": {
+                "p50": 16.69999999999891,
+                "p95": 34,
+                "p99": 34.100000000000364,
+                "max": 34.100000000000364,
+                "over50": 0
+              },
+              "draw": {
+                "p50": 5.700000017881393,
+                "p95": 7.300000011920929,
+                "p99": 9,
+                "max": 9.300000011920929,
+                "over50": 0
+              },
+              "cache": {
+                "allocations": 273924,
+                "evictions": 0,
+                "morphReplacements": 432,
+                "filterBuilds": 1
+              },
+              "memory": {
+                "tileBytes": 85676512,
+                "tileBudgetBytes": 184112110,
+                "poolBytes": 225004,
+                "filterBackingBytes": 1310720,
+                "accountedBackingBytes": 87212236
+              },
+              "groups": [
+                {
+                  "name": "customers",
+                  "msPerFrame": 1.7238255034157093
+                },
+                {
+                  "name": "other",
+                  "msPerFrame": 1.6516778510088888
+                },
+                {
+                  "name": "background",
+                  "msPerFrame": 1.1651006709009208
+                },
+                {
+                  "name": "food",
+                  "msPerFrame": 0.3416107388950834
+                },
+                {
+                  "name": "traffic",
+                  "msPerFrame": 0.3093959746144762
+                },
+                {
+                  "name": "radio",
+                  "msPerFrame": 0.20302013372814895
+                },
+                {
+                  "name": "dosa-steam",
+                  "msPerFrame": 0.10872483123468872
+                },
+                {
+                  "name": "griddle-steam",
+                  "msPerFrame": 0.062080537112767266
+                }
+              ],
+              "builds": [
+                {
+                  "id": 359,
+                  "builds": 84,
+                  "milliseconds": 14.10000005364418,
+                  "bytes": 11482576,
+                  "filtered": 0
+                },
+                {
+                  "id": 361,
+                  "builds": 69,
+                  "milliseconds": 11.699999928474426,
+                  "bytes": 9906192,
+                  "filtered": 0
+                },
+                {
+                  "id": 347,
+                  "builds": 63,
+                  "milliseconds": 11.599999904632568,
+                  "bytes": 8429568,
+                  "filtered": 0
+                },
+                {
+                  "id": 358,
+                  "builds": 84,
+                  "milliseconds": 5.700000017881393,
+                  "bytes": 24443328,
+                  "filtered": 0
+                },
+                {
+                  "id": 346,
+                  "builds": 63,
+                  "milliseconds": 5.6999998688697815,
+                  "bytes": 18730824,
+                  "filtered": 0
+                },
+                {
+                  "id": 360,
+                  "builds": 69,
+                  "milliseconds": 4.800000011920929,
+                  "bytes": 19708056,
+                  "filtered": 0
+                },
+                {
+                  "id": 262,
+                  "builds": 1,
+                  "milliseconds": 0.3999999761581421,
+                  "bytes": 57084,
+                  "filtered": 0
+                },
+                {
+                  "id": 223,
+                  "builds": 1,
+                  "milliseconds": 0.30000001192092896,
+                  "bytes": 166944,
+                  "filtered": 1
+                },
+                {
+                  "id": 284,
+                  "builds": 1,
+                  "milliseconds": 0.20000001788139343,
+                  "bytes": 49896,
+                  "filtered": 0
+                }
+              ],
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 69.64009622338496
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.18.39+rpt-rpi-2712",
+                "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+                "platform": "wayland",
+                "memTotalKiB": 8251776,
+                "memAvailableKiB": 5711696,
+                "browserPssKiB": 628595,
+                "browserProcessCount": 10,
+                "temperatureMilliC": "53450",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  2.046875,
+                  1.47265625,
+                  1.1826171875
+                ],
+                "monitorPower": "unavailable"
+              }
+            }
+          ],
+          "errors": []
+        },
+        {
+          "kind": "extended",
+          "hardware": {
+            "browser": "151.0.7922.173",
+            "renderer": "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 26.2.0-1~bpo13+0~rpt3)",
+            "features": {
+              "2d_canvas": "enabled",
+              "direct_rendering_display_compositor": "disabled_off_ok",
+              "gpu_compositing": "enabled",
+              "multiple_raster_threads": "enabled_on",
+              "opengl": "enabled_on",
+              "rasterization": "enabled_force",
+              "raw_draw": "disabled_off_ok",
+              "skia_graphite": "disabled_off",
+              "trees_in_viz": "disabled_off",
+              "video_decode": "enabled",
+              "video_encode": "disabled_software",
+              "vulkan": "disabled_off",
+              "webgl": "enabled",
+              "webgpu": "disabled_off",
+              "webgpu_on_vk_via_gl_interop": "disabled_off",
+              "webnn": "disabled_off"
+            },
+            "devices": [
+              "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 26.2.0-1~bpo13+0~rpt3)"
+            ]
+          },
+          "nativeDisplay": {
+            "screen": [
+              1920,
+              1080
+            ],
+            "viewport": [
+              1448,
+              867
+            ],
+            "dpr": 1
+          },
+          "idleCadence": [
+            16.700000000000003,
+            16.69999999999999,
+            16.60000000000001,
+            16.700000000000003,
+            16.69999999999999,
+            16.599999999999994,
+            16.700000000000017,
+            16.599999999999994,
+            16.69999999999999,
+            16.600000000000023,
+            16.80000000000001,
+            16.599999999999966
+          ],
+          "before": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.18.39+rpt-rpi-2712",
+            "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+            "platform": "wayland",
+            "memTotalKiB": 8251776,
+            "memAvailableKiB": 6091504,
+            "browserPssKiB": 477444,
+            "browserProcessCount": 10,
+            "temperatureMilliC": "49600",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0",
+            "load": [
+              1.4169921875,
+              1.39111328125,
+              1.17138671875
+            ],
+            "monitorPower": "unavailable"
+          },
+          "after": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.18.39+rpt-rpi-2712",
+            "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+            "platform": "wayland",
+            "memTotalKiB": 8251776,
+            "memAvailableKiB": 5768640,
+            "browserPssKiB": 720581,
+            "browserProcessCount": 10,
+            "temperatureMilliC": "54550",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0",
+            "load": [
+              1.75,
+              1.54931640625,
+              1.271484375
+            ],
+            "monitorPower": "unavailable"
+          },
+          "results": [
+            {
+              "config": {
+                "width": 2200,
+                "warmupMs": 18000,
+                "measurementMs": 12000,
+                "adapter": "default"
+              },
+              "canvas": [
+                2200,
+                1600
+              ],
+              "fps": 54.67209226851735,
+              "raf": {
+                "p50": 16.700000000000728,
+                "p95": 33.400000000001455,
+                "p99": 34,
+                "max": 35.20000000000073,
+                "over50": 0
+              },
+              "draw": {
+                "p50": 5.200000017881393,
+                "p95": 6.800000011920929,
+                "p99": 8,
+                "max": 13.099999994039536,
+                "over50": 0
+              },
+              "cache": {
+                "allocations": 0,
+                "evictions": 0,
+                "morphReplacements": 858,
+                "filterBuilds": 0
+              },
+              "memory": {
+                "tileBytes": 150597792,
+                "tileBudgetBytes": 184112110,
+                "poolBytes": 225004,
+                "filterBackingBytes": 28966912,
+                "accountedBackingBytes": 179789708
+              },
+              "groups": [
+                {
+                  "name": "customers",
+                  "msPerFrame": 1.5757990872297476
+                },
+                {
+                  "name": "other",
+                  "msPerFrame": 1.5663622531081625
+                },
+                {
+                  "name": "background",
+                  "msPerFrame": 0.9968036529317476
+                },
+                {
+                  "name": "traffic",
+                  "msPerFrame": 0.33805174987247183
+                },
+                {
+                  "name": "food",
+                  "msPerFrame": 0.32861491702100093
+                },
+                {
+                  "name": "radio",
+                  "msPerFrame": 0.19056316547923619
+                },
+                {
+                  "name": "dosa-steam",
+                  "msPerFrame": 0.10136986314071005
+                },
+                {
+                  "name": "griddle-steam",
+                  "msPerFrame": 0.09695586022358144
+                }
+              ],
+              "builds": [
+                {
+                  "id": 359,
+                  "builds": 168,
+                  "milliseconds": 27.700000017881393,
+                  "bytes": 22965152,
+                  "filtered": 0
+                },
+                {
+                  "id": 361,
+                  "builds": 138,
+                  "milliseconds": 22.400000154972076,
+                  "bytes": 19812384,
+                  "filtered": 0
+                },
+                {
+                  "id": 347,
+                  "builds": 123,
+                  "milliseconds": 19.099999845027924,
+                  "bytes": 16457728,
+                  "filtered": 0
+                },
+                {
+                  "id": 358,
+                  "builds": 168,
+                  "milliseconds": 11.09999993443489,
+                  "bytes": 48886656,
+                  "filtered": 0
+                },
+                {
+                  "id": 360,
+                  "builds": 138,
+                  "milliseconds": 9.299999982118607,
+                  "bytes": 39416112,
+                  "filtered": 0
+                },
+                {
+                  "id": 346,
+                  "builds": 123,
+                  "milliseconds": 7.800000160932541,
+                  "bytes": 36569704,
+                  "filtered": 0
+                }
+              ],
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 69.57192270211381
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.18.39+rpt-rpi-2712",
+                "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+                "platform": "wayland",
+                "memTotalKiB": 8251776,
+                "memAvailableKiB": 5693728,
+                "browserPssKiB": 592633,
+                "browserProcessCount": 10,
+                "temperatureMilliC": "53450",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  1.5654296875,
+                  1.42822265625,
+                  1.19287109375
+                ],
+                "monitorPower": "unavailable"
+              }
+            },
+            {
+              "config": {
+                "width": 1485,
+                "mode": "gameplay",
+                "cacheStart": "cold"
+              },
+              "status": "BENCHMARK",
+              "canvas": [
+                1485,
+                1080
+              ],
+              "cacheStart": "cold",
+              "elapsedMs": 30000.5,
+              "fps": 57.49904168263862,
+              "raf": {
+                "median": 16.69999999999891,
+                "p95": 17.300000000000182,
+                "p99": 33.30000000000018,
+                "over25": 22,
+                "over50": 11,
+                "max": 166.59999999999945
+              },
+              "draw": {
+                "median": 4,
+                "p95": 5.5999999940395355,
+                "p99": 8.400000005960464,
+                "over25": 2,
+                "over50": 2,
+                "max": 161.40000000596046
+              },
+              "cache": {
+                "allocatedMiB": 68.9405517578125,
+                "liveMiB": 68.9041748046875,
+                "evictions": 0
+              },
+              "memory": {
+                "peakBackingBytes": 84348032
+              },
+              "groups": [
+                {
+                  "id": 223,
+                  "builds": 111,
+                  "milliseconds": 249.50000002980232,
+                  "bytes": 35445384,
+                  "filtered": 111
+                },
+                {
+                  "id": 284,
+                  "builds": 52,
+                  "milliseconds": 18.899999856948853,
+                  "bytes": 1224704,
+                  "filtered": 0
+                },
+                {
+                  "id": 233,
+                  "builds": 30,
+                  "milliseconds": 16.200000017881393,
+                  "bytes": 108360,
+                  "filtered": 0
+                },
+                {
+                  "id": 232,
+                  "builds": 27,
+                  "milliseconds": 15.700000047683716,
+                  "bytes": 97524,
+                  "filtered": 0
+                },
+                {
+                  "id": 136,
+                  "builds": 19,
+                  "milliseconds": 14.400000005960464,
+                  "bytes": 1275204,
+                  "filtered": 0
+                },
+                {
+                  "id": 263,
+                  "builds": 16,
+                  "milliseconds": 13.699999928474426,
+                  "bytes": 2602116,
+                  "filtered": 16
+                },
+                {
+                  "id": 262,
+                  "builds": 33,
+                  "milliseconds": 13.29999989271164,
+                  "bytes": 879648,
+                  "filtered": 0
+                },
+                {
+                  "id": 370,
+                  "builds": 6,
+                  "milliseconds": 5.300000011920929,
+                  "bytes": 1182692,
+                  "filtered": 6
+                },
+                {
+                  "id": 228,
+                  "builds": 6,
+                  "milliseconds": 5.200000017881393,
+                  "bytes": 1019184,
+                  "filtered": 0
+                },
+                {
+                  "id": 197,
+                  "builds": 7,
+                  "milliseconds": 2.800000011920929,
+                  "bytes": 25164,
+                  "filtered": 0
+                },
+                {
+                  "id": 473,
+                  "builds": 1,
+                  "milliseconds": 2.5,
+                  "bytes": 104976,
+                  "filtered": 0
+                },
+                {
+                  "id": 266,
+                  "builds": 1,
+                  "milliseconds": 2.5,
+                  "bytes": 112200,
+                  "filtered": 0
+                }
+              ],
+              "topDraws": [
+                {
+                  "id": "193",
+                  "calls": 1725,
+                  "ms": 876.3999986052513,
+                  "filters": 0,
+                  "allocationsMiB": 16.807212829589844
+                },
+                {
+                  "id": "235",
+                  "calls": 8625,
+                  "ms": 641.7000000476837,
+                  "filters": 0,
+                  "allocationsMiB": 0.23425674438476562
+                },
+                {
+                  "id": "472",
+                  "calls": 4362,
+                  "ms": 639.8999996781349,
+                  "filters": 86,
+                  "allocationsMiB": 11.723041534423828
+                },
+                {
+                  "id": "228",
+                  "calls": 17250,
+                  "ms": 538.7000015377998,
+                  "filters": 0,
+                  "allocationsMiB": 0.9719696044921875
+                },
+                {
+                  "id": "224",
+                  "calls": 1725,
+                  "ms": 386.7999997437,
+                  "filters": 12,
+                  "allocationsMiB": 28.85350799560547
+                },
+                {
+                  "id": "199",
+                  "calls": 1725,
+                  "ms": 375.5999993085861,
+                  "filters": 0,
+                  "allocationsMiB": 0.113800048828125
+                },
+                {
+                  "id": "230",
+                  "calls": 10350,
+                  "ms": 327.699999243021,
+                  "filters": 0,
+                  "allocationsMiB": 0.1120452880859375
+                },
+                {
+                  "id": "221",
+                  "calls": 1725,
+                  "ms": 242.40000015497208,
+                  "filters": 0,
+                  "allocationsMiB": 1.3405303955078125
+                },
+                {
+                  "id": "210",
+                  "calls": 3450,
+                  "ms": 224.90000048279762,
+                  "filters": 0,
+                  "allocationsMiB": 0.29541015625
+                },
+                {
+                  "id": "158",
+                  "calls": 3450,
+                  "ms": 211.50000044703484,
+                  "filters": 0,
+                  "allocationsMiB": 0.050628662109375
+                }
+              ],
+              "state": {
+                "screen": "playing",
+                "cash": 2,
+                "plate": 7
+              },
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 72.43366215817487
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.18.39+rpt-rpi-2712",
+                "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+                "platform": "wayland",
+                "memTotalKiB": 8251776,
+                "memAvailableKiB": 5784720,
+                "browserPssKiB": 642630,
+                "browserProcessCount": 10,
+                "temperatureMilliC": "52350",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  1.70263671875,
+                  1.4833984375,
+                  1.22119140625
+                ],
+                "monitorPower": "unavailable"
+              }
+            },
+            {
+              "config": {
+                "width": 1485,
+                "mode": "gameplay",
+                "cacheStart": "warm"
+              },
+              "status": "BENCHMARK",
+              "canvas": [
+                1485,
+                1080
+              ],
+              "cacheStart": "warm",
+              "elapsedMs": 30000,
+              "fps": 60,
+              "raf": {
+                "median": 16.69999999999709,
+                "p95": 17.30000000000291,
+                "p99": 17.400000000001455,
+                "over25": 0,
+                "over50": 0,
+                "max": 17.5
+              },
+              "draw": {
+                "median": 3.800000011920929,
+                "p95": 5.0999999940395355,
+                "p99": 5.699999988079071,
+                "over25": 0,
+                "over50": 0,
+                "max": 9.799999982118607
+              },
+              "cache": {
+                "allocatedMiB": 0,
+                "liveMiB": 68.9041748046875,
+                "evictions": 0
+              },
+              "memory": {
+                "peakBackingBytes": 84348032
+              },
+              "groups": [],
+              "topDraws": [
+                {
+                  "id": "193",
+                  "calls": 1800,
+                  "ms": 867.2000002264977,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "235",
+                  "calls": 9000,
+                  "ms": 623.0999997258186,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "228",
+                  "calls": 18000,
+                  "ms": 564.7000011503696,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "472",
+                  "calls": 4593,
+                  "ms": 541.4000000655651,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "199",
+                  "calls": 1800,
+                  "ms": 347.50000017881393,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "230",
+                  "calls": 10800,
+                  "ms": 339.7000000476837,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "221",
+                  "calls": 1800,
+                  "ms": 236.00000017881393,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "262",
+                  "calls": 6586,
+                  "ms": 216.4999989271164,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "210",
+                  "calls": 3600,
+                  "ms": 205.50000002980232,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "158",
+                  "calls": 3600,
+                  "ms": 202.30000007152557,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                }
+              ],
+              "state": {
+                "screen": "playing",
+                "cash": 2,
+                "plate": 7
+              },
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 68.1398071627657
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.18.39+rpt-rpi-2712",
+                "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+                "platform": "wayland",
+                "memTotalKiB": 8251776,
+                "memAvailableKiB": 5812912,
+                "browserPssKiB": 643623,
+                "browserProcessCount": 10,
+                "temperatureMilliC": "54550",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  1.6201171875,
+                  1.48486328125,
+                  1.22998046875
+                ],
+                "monitorPower": "unavailable"
+              }
+            },
+            {
+              "config": {
+                "width": 2200,
+                "mode": "gameplay",
+                "cacheStart": "cold"
+              },
+              "status": "BENCHMARK",
+              "canvas": [
+                2200,
+                1600
+              ],
+              "cacheStart": "cold",
+              "elapsedMs": 30015.899999999994,
+              "fps": 45.142741013929296,
+              "raf": {
+                "median": 16.69999999999709,
+                "p95": 34,
+                "p99": 83.40000000000873,
+                "over25": 228,
+                "over50": 16,
+                "max": 788.8000000000029
+              },
+              "draw": {
+                "median": 4.699999988079071,
+                "p95": 6,
+                "p99": 8.400000005960464,
+                "over25": 2,
+                "over50": 2,
+                "max": 357.59999999403954
+              },
+              "cache": {
+                "allocatedMiB": 149.64186477661133,
+                "liveMiB": 149.42728424072266,
+                "evictions": 0
+              },
+              "memory": {
+                "peakBackingBytes": 185877780
+              },
+              "groups": [
+                {
+                  "id": 223,
+                  "builds": 111,
+                  "milliseconds": 487.8999997675419,
+                  "bytes": 79168180,
+                  "filtered": 111
+                },
+                {
+                  "id": 136,
+                  "builds": 19,
+                  "milliseconds": 20.39999994635582,
+                  "bytes": 2766400,
+                  "filtered": 0
+                },
+                {
+                  "id": 284,
+                  "builds": 52,
+                  "milliseconds": 16.000000089406967,
+                  "bytes": 2594592,
+                  "filtered": 0
+                },
+                {
+                  "id": 232,
+                  "builds": 27,
+                  "milliseconds": 12.799999833106995,
+                  "bytes": 187020,
+                  "filtered": 0
+                },
+                {
+                  "id": 263,
+                  "builds": 16,
+                  "milliseconds": 10.39999994635582,
+                  "bytes": 5782272,
+                  "filtered": 16
+                },
+                {
+                  "id": 262,
+                  "builds": 33,
+                  "milliseconds": 10.20000010728836,
+                  "bytes": 1883772,
+                  "filtered": 0
+                },
+                {
+                  "id": 233,
+                  "builds": 30,
+                  "milliseconds": 9.100000113248825,
+                  "bytes": 207800,
+                  "filtered": 0
+                },
+                {
+                  "id": 197,
+                  "builds": 10,
+                  "milliseconds": 3.900000035762787,
+                  "bytes": 55552,
+                  "filtered": 0
+                },
+                {
+                  "id": 370,
+                  "builds": 6,
+                  "milliseconds": 3.5,
+                  "bytes": 2489448,
+                  "filtered": 6
+                },
+                {
+                  "id": 228,
+                  "builds": 6,
+                  "milliseconds": 3.4000000059604645,
+                  "bytes": 2065160,
+                  "filtered": 0
+                },
+                {
+                  "id": 213,
+                  "builds": 1,
+                  "milliseconds": 2.9000000059604645,
+                  "bytes": 324544,
+                  "filtered": 0
+                },
+                {
+                  "id": 473,
+                  "builds": 1,
+                  "milliseconds": 2.300000011920929,
+                  "bytes": 280900,
+                  "filtered": 0
+                }
+              ],
+              "topDraws": [
+                {
+                  "id": "193",
+                  "calls": 1355,
+                  "ms": 1534.1000002622604,
+                  "filters": 0,
+                  "allocationsMiB": 35.34846496582031
+                },
+                {
+                  "id": "224",
+                  "calls": 1355,
+                  "ms": 587.3999996781349,
+                  "filters": 12,
+                  "allocationsMiB": 64.4818115234375
+                },
+                {
+                  "id": "472",
+                  "calls": 3390,
+                  "ms": 500.9000002145767,
+                  "filters": 86,
+                  "allocationsMiB": 25.64739990234375
+                },
+                {
+                  "id": "235",
+                  "calls": 6775,
+                  "ms": 497.8999996185303,
+                  "filters": 0,
+                  "allocationsMiB": 0.4525871276855469
+                },
+                {
+                  "id": "228",
+                  "calls": 13550,
+                  "ms": 433.6000006198883,
+                  "filters": 0,
+                  "allocationsMiB": 1.9694900512695312
+                },
+                {
+                  "id": "199",
+                  "calls": 1355,
+                  "ms": 269.800000667572,
+                  "filters": 0,
+                  "allocationsMiB": 0.20941162109375
+                },
+                {
+                  "id": "230",
+                  "calls": 8130,
+                  "ms": 259.20000010728836,
+                  "filters": 0,
+                  "allocationsMiB": 0.2325592041015625
+                },
+                {
+                  "id": "221",
+                  "calls": 1355,
+                  "ms": 190.3999995291233,
+                  "filters": 0,
+                  "allocationsMiB": 2.9046478271484375
+                },
+                {
+                  "id": "262",
+                  "calls": 5626,
+                  "ms": 175.2000002861023,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "223",
+                  "calls": 5590,
+                  "ms": 169.90000012516975,
+                  "filters": 29,
+                  "allocationsMiB": 3.823596954345703
+                }
+              ],
+              "state": {
+                "screen": "playing",
+                "cash": 2,
+                "plate": 7
+              },
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 60.2594217595161
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.18.39+rpt-rpi-2712",
+                "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+                "platform": "wayland",
+                "memTotalKiB": 8251776,
+                "memAvailableKiB": 5613312,
+                "browserPssKiB": 671174,
+                "browserProcessCount": 10,
+                "temperatureMilliC": "55100",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  1.5927734375,
+                  1.48681640625,
+                  1.23828125
+                ],
+                "monitorPower": "unavailable"
+              }
+            },
+            {
+              "config": {
+                "width": 2200,
+                "mode": "gameplay",
+                "cacheStart": "warm"
+              },
+              "status": "BENCHMARK",
+              "canvas": [
+                2200,
+                1600
+              ],
+              "cacheStart": "warm",
+              "elapsedMs": 30016,
+              "fps": 52.205490405117274,
+              "raf": {
+                "median": 16.69999999999709,
+                "p95": 34,
+                "p99": 34,
+                "over25": 234,
+                "over50": 0,
+                "max": 34.10000000000582
+              },
+              "draw": {
+                "median": 4.699999988079071,
+                "p95": 5.5999999940395355,
+                "p99": 6.100000023841858,
+                "over25": 0,
+                "over50": 0,
+                "max": 9.199999988079071
+              },
+              "cache": {
+                "allocatedMiB": 0,
+                "liveMiB": 149.42728424072266,
+                "evictions": 0
+              },
+              "memory": {
+                "peakBackingBytes": 185877780
+              },
+              "groups": [],
+              "topDraws": [
+                {
+                  "id": "193",
+                  "calls": 1567,
+                  "ms": 1913.7000001966953,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "235",
+                  "calls": 7835,
+                  "ms": 563.1999996602535,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "228",
+                  "calls": 15670,
+                  "ms": 504.5000002980232,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "472",
+                  "calls": 3978,
+                  "ms": 469.6999993622303,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "199",
+                  "calls": 1567,
+                  "ms": 305.3999998867512,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "230",
+                  "calls": 9402,
+                  "ms": 296.4999998807907,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "221",
+                  "calls": 1567,
+                  "ms": 192.50000035762787,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "262",
+                  "calls": 5690,
+                  "ms": 187.5999994277954,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "158",
+                  "calls": 3134,
+                  "ms": 174.19999998807907,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                },
+                {
+                  "id": "224",
+                  "calls": 1567,
+                  "ms": 172.29999980330467,
+                  "filters": 0,
+                  "allocationsMiB": 0
+                }
+              ],
+              "state": {
+                "screen": "playing",
+                "cash": 2,
+                "plate": 7
+              },
+              "hidden": false,
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 64.74732550627904
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.18.39+rpt-rpi-2712",
+                "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+                "platform": "wayland",
+                "memTotalKiB": 8251776,
+                "memAvailableKiB": 5616656,
+                "browserPssKiB": 675797,
+                "browserProcessCount": 10,
+                "temperatureMilliC": "55650",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  1.79931640625,
+                  1.55126953125,
+                  1.26904296875
+                ],
+                "monitorPower": "unavailable"
+              }
+            },
+            {
+              "config": {
+                "width": 1485,
+                "mode": "checks"
+              },
+              "status": "PASS",
+              "cache": {},
+              "memory": {},
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 37.19145712229899
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.18.39+rpt-rpi-2712",
+                "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+                "platform": "wayland",
+                "memTotalKiB": 8251776,
+                "memAvailableKiB": 5499552,
+                "browserPssKiB": 709077,
+                "browserProcessCount": 10,
+                "temperatureMilliC": "55650",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  1.8154296875,
+                  1.55908203125,
+                  1.2734375
+                ],
+                "monitorPower": "unavailable"
+              },
+              "checks": [
+                {
+                  "name": "Check GPU filter pixels",
+                  "status": "PASS",
+                  "passed": 7,
+                  "total": 7,
+                  "gpuPasses": 24,
+                  "gpuFailures": 0,
+                  "tolerances": {
+                    "alpha": 2,
+                    "premultipliedMaximum": 2,
+                    "premultipliedMean": 0.25,
+                    "centroidPixels": 0.35,
+                    "boundsPixels": 2
+                  },
+                  "cases": [
+                    {
+                      "name": "opaque off-center",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 2,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 0,
+                      "premultipliedMeanError": 0,
+                      "readbackMaximumError": 0.3333333333333428,
+                      "centroidDistance": 0,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        8,
+                        5,
+                        61,
+                        63
+                      ],
+                      "gpuBounds": [
+                        8,
+                        5,
+                        61,
+                        63
+                      ]
+                    },
+                    {
+                      "name": "translucent overlap",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 2,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.13380252188848393,
+                      "readbackMaximumError": 1.3333333333333357,
+                      "centroidDistance": 0,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        9,
+                        5,
+                        75,
+                        59
+                      ],
+                      "gpuBounds": [
+                        9,
+                        5,
+                        75,
+                        59
+                      ]
+                    },
+                    {
+                      "name": "fractional three-pass",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 6,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.10693069306930693,
+                      "readbackMaximumError": 1.3411764705882376,
+                      "centroidDistance": 0,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        6,
+                        6,
+                        76,
+                        58
+                      ],
+                      "gpuBounds": [
+                        6,
+                        6,
+                        76,
+                        58
+                      ]
+                    },
+                    {
+                      "name": "vertical only",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 2,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 0,
+                      "premultipliedMeanError": 0,
+                      "readbackMaximumError": 0.4117647058823479,
+                      "centroidDistance": 0,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        9,
+                        0,
+                        60,
+                        72
+                      ],
+                      "gpuBounds": [
+                        9,
+                        0,
+                        60,
+                        72
+                      ]
+                    },
+                    {
+                      "name": "transparent outside active bounds",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 4,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.014386579603970908,
+                      "readbackMaximumError": 1.117647058823529,
+                      "centroidDistance": 0,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        0,
+                        0,
+                        90,
+                        68
+                      ],
+                      "gpuBounds": [
+                        0,
+                        0,
+                        90,
+                        68
+                      ]
+                    },
+                    {
+                      "name": "wide source smoke kernel",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 2,
+                      "alphaMaximumError": 1,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.0007310693030853409,
+                      "readbackMaximumError": 1.0196078431372548,
+                      "centroidDistance": 0.001876052121483057,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        17,
+                        0,
+                        199,
+                        136
+                      ],
+                      "gpuBounds": [
+                        17,
+                        0,
+                        199,
+                        136
+                      ]
+                    },
+                    {
+                      "name": "near-identity opaque",
+                      "passed": true,
+                      "gpuUsed": true,
+                      "gpuPasses": 6,
+                      "alphaMaximumError": 1,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.00442990526817965,
+                      "readbackMaximumError": 1.1999999999999886,
+                      "centroidDistance": 0.0020145695931175294,
+                      "boundsMaximumError": 0,
+                      "cpuBounds": [
+                        0,
+                        0,
+                        66,
+                        72
+                      ],
+                      "gpuBounds": [
+                        0,
+                        0,
+                        66,
+                        72
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Check retained composition pixels",
+                  "status": "PASS",
+                  "passed": 4,
+                  "total": 4,
+                  "tolerances": {
+                    "alpha": 2,
+                    "premultipliedMaximum": 2,
+                    "premultipliedMean": 0.15
+                  },
+                  "cases": [
+                    {
+                      "name": "single-alpha, 1x, transparent",
+                      "passed": true,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 0,
+                      "premultipliedMeanError": 0,
+                      "pixelsOverTwo": 0
+                    },
+                    {
+                      "name": "single-alpha, 1x, opaque",
+                      "passed": true,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 0,
+                      "premultipliedMeanError": 0,
+                      "pixelsOverTwo": 0
+                    },
+                    {
+                      "name": "single-alpha, 2.75x, transparent",
+                      "passed": true,
+                      "alphaMaximumError": 1,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.00001562218350057081,
+                      "pixelsOverTwo": 0
+                    },
+                    {
+                      "name": "single-alpha, 2.75x, opaque",
+                      "passed": true,
+                      "alphaMaximumError": 0,
+                      "premultipliedMaximumError": 1,
+                      "premultipliedMeanError": 0.000014019908269743036,
+                      "pixelsOverTwo": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "errors": []
+        },
+        {
+          "kind": "validation",
+          "hardware": {
+            "browser": "151.0.7922.173",
+            "renderer": "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 26.2.0-1~bpo13+0~rpt3)",
+            "features": {
+              "2d_canvas": "enabled",
+              "direct_rendering_display_compositor": "disabled_off_ok",
+              "gpu_compositing": "enabled",
+              "multiple_raster_threads": "enabled_on",
+              "opengl": "enabled_on",
+              "rasterization": "enabled_force",
+              "raw_draw": "disabled_off_ok",
+              "skia_graphite": "disabled_off",
+              "trees_in_viz": "disabled_off",
+              "video_decode": "enabled",
+              "video_encode": "disabled_software",
+              "vulkan": "disabled_off",
+              "webgl": "enabled",
+              "webgpu": "disabled_off",
+              "webgpu_on_vk_via_gl_interop": "disabled_off",
+              "webnn": "disabled_off"
+            },
+            "devices": [
+              "ANGLE (Broadcom, V3D 7.1.7.0, OpenGL ES 3.1 Mesa 26.2.0-1~bpo13+0~rpt3)"
+            ]
+          },
+          "nativeDisplay": {
+            "screen": [
+              1920,
+              1080
+            ],
+            "viewport": [
+              1448,
+              867
+            ],
+            "dpr": 1
+          },
+          "idleCadence": [
+            16.600000000000023,
+            17.399999999999977,
+            16.600000000000023,
+            16.69999999999999,
+            16.599999999999994,
+            16.700000000000017,
+            16.69999999999999,
+            16.69999999999999,
+            16.600000000000023,
+            16.69999999999999,
+            16.600000000000023,
+            16.69999999999999
+          ],
+          "before": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.18.39+rpt-rpi-2712",
+            "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+            "platform": "wayland",
+            "memTotalKiB": 8251776,
+            "memAvailableKiB": 6094064,
+            "browserPssKiB": 481318,
+            "browserProcessCount": 10,
+            "temperatureMilliC": "54000",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0",
+            "load": [
+              1.8544921875,
+              1.57861328125,
+              1.2900390625
+            ],
+            "monitorPower": "unavailable"
+          },
+          "after": {
+            "model": "Raspberry Pi 5 Model B Rev 1.0",
+            "kernel": "6.18.39+rpt-rpi-2712",
+            "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+            "platform": "wayland",
+            "memTotalKiB": 8251776,
+            "memAvailableKiB": 5216752,
+            "browserPssKiB": 834116,
+            "browserProcessCount": 11,
+            "temperatureMilliC": "57300",
+            "frequencyKHz": "2400000",
+            "throttled": "throttled=0x0",
+            "load": [
+              2.37939453125,
+              1.79052734375,
+              1.38330078125
+            ],
+            "monitorPower": "unavailable"
+          },
+          "results": [
+            {
+              "config": {
+                "width": 1485,
+                "mode": "ui"
+              },
+              "status": "PASS",
+              "cache": {},
+              "memory": {},
+              "processCpu": {
+                "scope": "browser processes across asset load, warmup and measurement; one core equals 100 percent",
+                "singleCorePercent": 80.48390118069204
+              },
+              "system": {
+                "model": "Raspberry Pi 5 Model B Rev 1.0",
+                "kernel": "6.18.39+rpt-rpi-2712",
+                "browser": "Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)",
+                "platform": "wayland",
+                "memTotalKiB": 8251776,
+                "memAvailableKiB": 5725840,
+                "browserPssKiB": 775267,
+                "browserProcessCount": 11,
+                "temperatureMilliC": "55650",
+                "frequencyKHz": "2400000",
+                "throttled": "throttled=0x0",
+                "load": [
+                  2.41259765625,
+                  1.78662109375,
+                  1.3798828125
+                ],
+                "monitorPower": "unavailable"
+              },
+              "checks": [
+                {
+                  "name": "tutorial remains in stage",
+                  "scrollHeight": 1000,
+                  "height": 1000
+                },
+                {
+                  "name": "batter click changes pointer mode",
+                  "passed": true
+                },
+                {
+                  "name": "audio gesture accepted",
+                  "promptHidden": true
+                },
+                {
+                  "name": "half-resolution saved across reload",
+                  "value": "0.5",
+                  "backing": [
+                    880,
+                    640
+                  ],
+                  "css": [
+                    880,
+                    640
+                  ]
+                },
+                {
+                  "name": "HUD disabled",
+                  "hidden": true
+                },
+                {
+                  "name": "fullscreen",
+                  "passed": true
+                },
+                {
+                  "name": "narrow viewport",
+                  "width": 390,
+                  "scrollWidth": 390,
+                  "bowlVisible": true
+                },
+                {
+                  "name": "live game after tab return, 30 seconds",
+                  "frames": {
+                    "seconds": 30.0114,
+                    "frames": 1793,
+                    "fps": 59.74396396036173,
+                    "p95": 17.399999999997817,
+                    "p99": 17.400000000001455,
+                    "max": 34,
+                    "hidden": false
+                  },
+                  "gameFramesBefore": 71,
+                  "gameFramesAfter": 1811,
+                  "gameFrameDelta": 1740,
+                  "hud": "59.0 FPS · 1871 measured frames",
+                  "canvas": {
+                    "backing": [
+                      880,
+                      640
+                    ],
+                    "css": [
+                      880,
+                      640
+                    ]
+                  }
+                }
+              ],
+              "errors": [],
+              "limit": "Playwright-generated mouse input; no physical touchscreen claim. Callback pacing is not display-scanout measurement. Event Timing records only browser-reported entries at/above16ms, not all input latency."
+            }
+          ],
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "exclusions": [
+    "Initial display-idled near-1-Hz run excluded.",
+    "Navigation setup failures excluded."
+  ],
+  "cleanup": {
+    "isolatedBrowserProcessCount": [
+      0,
+      0
+    ],
+    "temporaryDisplayWakeRestored": true
+  },
+  "limits": [
+    "Cold first appearance stalls remain.",
+    "Large density rendering misses 60 Hz deadlines.",
+    "Two different software stacks do not isolate a single causal component.",
+    "No physical scanout, touch or audible listening certification."
+  ]
+}

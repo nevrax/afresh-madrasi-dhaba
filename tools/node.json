@@ -1,0 +1,8 @@
+{
+  "version": "24.14.0",
+  "baseUrl": "https://nodejs.org/dist/v24.14.0/",
+  "sha256": {
+    "x64": "313fa40c0d7b18575821de8cb17483031fe07d95de5994f6f435f3b345f85c66",
+    "arm64": "88d36e8109736a2fa9bdc596f2cf507a3c52c69cdf96e54f8acd473ec14be853"
+  }
+}

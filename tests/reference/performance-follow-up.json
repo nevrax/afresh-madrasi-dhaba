@@ -1,0 +1,526 @@
+{
+  "environment": {
+    "browser": "Windows in-app Chromium",
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1.5,
+    "filterRenderer": "ANGLE Intel UHD Graphics D3D11",
+    "canvas": [
+      1485,
+      1080
+    ],
+    "halfScaleCanvas": [
+      743,
+      540
+    ]
+  },
+  "firstSweep": {
+    "warmupMs": 2000,
+    "windowMs": 6000,
+    "status": "Exploratory; baseline drift and large scheduling interruptions; not a causal speedup estimate",
+    "columns": [
+      "variant",
+      "fps",
+      "rafP50Ms",
+      "rafP95Ms",
+      "rafP99Ms",
+      "rafMaxMs",
+      "drawP50Ms",
+      "drawP95Ms",
+      "newTileBytes",
+      "evictions"
+    ],
+    "rows": [
+      [
+        "continuous baseline A",
+        42.117,
+        16.7,
+        50,
+        50.2,
+        58.3,
+        2.9,
+        7.9,
+        28452648,
+        301
+      ],
+      [
+        "quantized12Hz control",
+        42.284,
+        16.7,
+        50,
+        50.3,
+        50.3,
+        4,
+        8.8,
+        28269196,
+        299
+      ],
+      [
+        "without griddle steam",
+        42.923,
+        16.8,
+        49.8,
+        50.1,
+        50.3,
+        3.5,
+        8.9,
+        22498648,
+        203
+      ],
+      [
+        "without dosa steam",
+        29.067,
+        24.9,
+        25.2,
+        25.4,
+        2703.7,
+        4.6,
+        7.3,
+        17722984,
+        211
+      ],
+      [
+        "without traffic",
+        40.427,
+        18,
+        41.7,
+        42.4,
+        980.8,
+        6,
+        14.8,
+        12913496,
+        61
+      ],
+      [
+        "without customers",
+        52.398,
+        17.9,
+        36.6,
+        41.8,
+        42.7,
+        8,
+        13.1,
+        5718104,
+        0
+      ],
+      [
+        "without radio",
+        49.451,
+        17.9,
+        41.9,
+        42.3,
+        42.7,
+        3.9,
+        14.9,
+        27877484,
+        287
+      ],
+      [
+        "without background",
+        56.729,
+        17.8,
+        35.8,
+        36.6,
+        94.8,
+        7,
+        15,
+        23231140,
+        197
+      ],
+      [
+        "without hit tests",
+        48.526,
+        18,
+        41.4,
+        42.3,
+        42.9,
+        7.3,
+        16.5,
+        27105128,
+        281
+      ],
+      [
+        "audio running",
+        49.857,
+        17.2,
+        41.2,
+        45.7,
+        49.3,
+        4,
+        8.7,
+        29091408,
+        278
+      ],
+      [
+        "HUD enabled collapsed",
+        49.85,
+        17.4,
+        41.7,
+        43.1,
+        134,
+        4.5,
+        9.3,
+        27091732,
+        289
+      ],
+      [
+        "50% render scale",
+        69.6,
+        12,
+        30,
+        30.7,
+        35.4,
+        3.1,
+        6.1,
+        6081576,
+        249
+      ],
+      [
+        "CPU filters",
+        35.872,
+        11.4,
+        90.6,
+        201.8,
+        249.5,
+        3.5,
+        89.5,
+        33999692,
+        157
+      ],
+      [
+        "continuous baseline B",
+        49.658,
+        17.4,
+        42,
+        43.2,
+        46.5,
+        4.5,
+        9.7,
+        28417576,
+        291
+      ],
+      [
+        "idle scheduling no drawing",
+        168.689,
+        6,
+        6.2,
+        6.7,
+        7,
+        0,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "confirmationSweep": {
+    "warmupMs": 6000,
+    "windowMs": 6000,
+    "allWindowsVisible": true,
+    "rounding": "FPS to 3 decimals; timing distributions to 0.1 ms",
+    "columns": [
+      "variant",
+      "fps",
+      "rafP50Ms",
+      "rafP95Ms",
+      "rafP99Ms",
+      "rafMaxMs",
+      "drawP50Ms",
+      "drawP95Ms",
+      "newTileBytes",
+      "evictions"
+    ],
+    "rows": [
+      [
+        "continuous baseline A",
+        49.606,
+        17.5,
+        42.1,
+        42.7,
+        46.4,
+        4.1,
+        10.4,
+        24212676,
+        421
+      ],
+      [
+        "quantized12Hz control",
+        50.47,
+        17.6,
+        41.7,
+        42.2,
+        47.8,
+        3,
+        6.8,
+        23796556,
+        419
+      ],
+      [
+        "without griddle steam",
+        50.4,
+        17.4,
+        42,
+        42.7,
+        47.2,
+        4.5,
+        8.6,
+        11974900,
+        365
+      ],
+      [
+        "without dosa steam",
+        50.175,
+        18.2,
+        24.2,
+        24.6,
+        29,
+        5.3,
+        8.6,
+        8135084,
+        349
+      ],
+      [
+        "without traffic",
+        49.94,
+        17.4,
+        41.8,
+        45.2,
+        46.8,
+        4.3,
+        9.1,
+        20396688,
+        418
+      ],
+      [
+        "without customers",
+        53.246,
+        18,
+        23.9,
+        24.4,
+        42.1,
+        4.6,
+        7.3,
+        191308,
+        0
+      ],
+      [
+        "without radio",
+        49.493,
+        17.3,
+        41.9,
+        43.2,
+        48.3,
+        4.6,
+        9.2,
+        24019356,
+        421
+      ],
+      [
+        "without background",
+        58.447,
+        17,
+        36,
+        36.5,
+        40.2,
+        4.1,
+        8,
+        12980276,
+        392
+      ],
+      [
+        "without hit tests",
+        49.452,
+        17.6,
+        42,
+        45.5,
+        52.8,
+        3.3,
+        9.2,
+        24177604,
+        420
+      ],
+      [
+        "audio running",
+        49.365,
+        17.1,
+        41.6,
+        46.2,
+        46.6,
+        4.5,
+        9.3,
+        24212676,
+        421
+      ],
+      [
+        "HUD enabled expanded",
+        49.049,
+        17.6,
+        42,
+        45.9,
+        47.9,
+        3.4,
+        10.6,
+        24212676,
+        421
+      ],
+      [
+        "50% render scale",
+        69.54,
+        12,
+        29.9,
+        30.4,
+        36.8,
+        3.8,
+        6.9,
+        3562052,
+        403
+      ],
+      [
+        "CPU filters",
+        38.95,
+        11.5,
+        92.3,
+        96,
+        98.7,
+        3.3,
+        91.3,
+        24029224,
+        420
+      ],
+      [
+        "continuous baseline B",
+        49.18,
+        17.6,
+        42,
+        42.9,
+        48.2,
+        5.1,
+        10.2,
+        24212676,
+        421
+      ],
+      [
+        "idle scheduling no drawing",
+        167.538,
+        6,
+        6.3,
+        6.7,
+        7.3,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "baselineGroupsMsPerFrame": {
+      "customers": [
+        1.592,
+        1.734
+      ],
+      "other": [
+        1.401,
+        1.521
+      ],
+      "foodIncludingFirstSideSteam": [
+        0.503,
+        0.526
+      ],
+      "background": [
+        0.421,
+        0.486
+      ],
+      "traffic": [
+        0.327,
+        0.36
+      ],
+      "radio": [
+        0.167,
+        0.207
+      ],
+      "griddleIncludingBlackBase": [
+        0.094,
+        0.104
+      ],
+      "secondSideSteam": [
+        0.08,
+        0.088
+      ]
+    },
+    "baselineMemoryBytes": {
+      "tiles": 83809964,
+      "pool": 3199772,
+      "filterBacking": 12058624,
+      "steamTiles": 32327812,
+      "decodedAudio": 31798328
+    },
+    "halfScaleMemoryBytes": {
+      "tiles": 26372880,
+      "pool": 903104,
+      "filterBacking": 4259840,
+      "tileCount": 512
+    },
+    "hud": {
+      "completedSamples": 501,
+      "synchronousSelfMs": 11.9,
+      "meanSelfMsPerSample": 0.024,
+      "excludes": "Browser paint and GPU work"
+    },
+    "audio": {
+      "state": "running",
+      "activeSources": 2,
+      "bytes": 31798328
+    },
+    "cpuFilters": {
+      "backend": "cpu",
+      "gapsOver50ms": 43,
+      "foodGroupMsPerFrame": 17.531
+    },
+    "gpuFilters": {
+      "backend": "gpu",
+      "requiredCpuFallbacks": 0
+    }
+  },
+  "continuousGameplay": {
+    "durationSeconds": 30,
+    "slots": 3,
+    "canvas": [
+      825,
+      600
+    ],
+    "fixture": "production core, constant RNG, automated commands on source ticks, continuous rendered time",
+    "cold": {
+      "fps": 79.609,
+      "rafP50Ms": 11.9,
+      "rafP95Ms": 18.5,
+      "rafP99Ms": 30.9,
+      "rafMaxMs": 1530.9,
+      "gapsOver50ms": 5,
+      "newTileMiB": 23.552734375,
+      "evictions": 0,
+      "note": "Large scheduling interruption; not used for stable pacing acceptance"
+    },
+    "warm": {
+      "fps": 85.25,
+      "rafP50Ms": 12,
+      "rafP95Ms": 18.1,
+      "rafP99Ms": 18.5,
+      "rafMaxMs": 23.9,
+      "gapsOver25ms": 0,
+      "gapsOver50ms": 0,
+      "drawP50Ms": 2.7,
+      "drawP95Ms": 5.3,
+      "drawP99Ms": 7.2,
+      "newTileMiB": 0,
+      "liveTileMiB": 23.538604736328125,
+      "evictions": 0,
+      "hidden": false,
+      "endState": {
+        "screen": "playing",
+        "cash": 2,
+        "plate": 7
+      }
+    }
+  }
+}

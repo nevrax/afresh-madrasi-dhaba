@@ -1,0 +1,49 @@
+{
+  "symbolId": 20,
+  "frameCount": 1,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 1,
+        "symbolId": 19,
+        "matrix": {
+          "a": 0.009994507,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 0.009994507,
+          "tx": 0.0,
+          "ty": 0.0
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 1,
+      "type": "DoActionTag",
+      "attributes": {
+        "actionBytesLength": 1476,
+        "actionBytesSha256": "6279f04181f2b66070ae9d162ee3419e1af490d75e7490f672fc4a5d71046bb3"
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 2,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 19,
+      "matrix": {
+        "a": 0.009994507,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 0.009994507,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "version": "0.6.0",
+  "url": "https://registry.npmjs.org/@ruffle-rs/ruffle/-/ruffle-0.6.0.tgz",
+  "sha256": "f434cc95704c2cd594c8e0f06ae2dffa808b434da6723632c46b0e6a905c2a40",
+  "installDirectory": ".local-setup/ruffle"
+}

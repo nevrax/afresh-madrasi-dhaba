@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Madrasi Dhaba</title><link rel="stylesheet" href="styles.css">
+  <meta name="description" content="An Afresh reimplementation of Madrasi Dhaba, the original GamezIndia game, rebuilt in TypeScript for modern browsers.">
+</head>
+<body>
+  <nav id="app-tools" aria-label="Display options">
+    <select id="presentation-profile" aria-label="Presentation profile" title="Presentation profile"><option value="" disabled>Choose profile</option><option value="classic">Classic</option><option value="extra">Optimized</option></select>
+    <button id="enable-audio" type="button" aria-label="Enable sound" title="Click to enable sound" hidden>♫</button>
+    <button id="fullscreen" type="button" aria-label="Enter fullscreen" title="Enter fullscreen">⛶</button>
+    <button id="expand-game" type="button" aria-label="Expand game to window" title="Expand game to window" aria-pressed="false">↗</button>
+    <details id="app-menu"><summary aria-label="More options" title="More options">⋯</summary><div class="menu-items"><a id="online-scores-link" target="_blank" rel="noopener noreferrer">Original high scores</a><label class="display-setting">Render resolution <select id="render-scale"><option value="1">100% · sharpest</option><option value="0.75">75%</option><option value="0.5">50% · faster</option><option value="0.25">25%</option></select></label><label class="display-setting"><input type="checkbox" id="show-stats"> FPS and memory</label><button id="scores-link" type="button">Local scores</button><button id="save-score-link" type="button" hidden>Save score</button></div></details>
+  </nav>
+  <main>
+    <div id="stage-wrap">
+      <canvas id="game" width="550" height="400" aria-label="Madrasi Dhaba game" tabindex="0"></canvas>
+      <div id="batter-cue" hidden aria-hidden="true"><svg viewBox="0 0 550 400"><g transform="translate(535.55 335) scale(.6735382)"><!-- Bowl silhouette follows original shape 225; stage clipping matches the source. --><path d="M-68.9-15.65 Q-68.9-22.2-53.3-27.15 L-48.85-28.45 Q-29.5-33.7-2.4-34.15 L-.35-34.15 Q21.9-34.4 39.1-31.3 L48.1-29.4 Q68.15-24.35 68.2-16.95 68.15-10.45 52.8-5.45 L52.8-4.05 Q52.35 23.1 17.2 27.95 L10.95 28.65 .9 29-.1 29-18.1 28.1 Q-54.55 24.15-54.7-1.35 L-54.55-4.8 Q-68.9-9.35-68.9-15.65Z"/></g></svg><span hidden>Tap or click for batter</span></div>
+      <div id="controls" aria-label="Game controls"></div>
+      <a id="publisher-link" class="source-link" target="_blank" rel="noopener noreferrer" aria-label="Visit GamezIndia, the original publisher" hidden></a>
+      <span id="remake-credit" aria-label="Afresh" hidden>afresh</span>
+      <div id="legacy-score-layer" hidden>
+        <a id="legacy-leaderboard" class="source-link" target="_blank" rel="noopener noreferrer" aria-label="View original online high scores" hidden></a>
+        <form id="legacy-score-form" aria-label="Submit your score online" hidden>
+          <input id="legacy-player-name" name="playerName" aria-label="Enter your name" value="noname" autocomplete="off" spellcheck="false">
+          <button id="legacy-submit" type="submit">Submit</button>
+        </form>
+        <p id="legacy-score-status" role="status"></p>
+      </div>
+      <p id="loading" role="status">Opening the restaurant…</p>
+    </div>
+    <p id="hint" class="sr-only">Make dosas, keep your customers happy, and run the dhaba.</p>
+  </main>
+  <dialog id="save-score-dialog" aria-labelledby="save-score-title">
+    <div class="dialog-heading"><h2 id="save-score-title">Save score</h2><button id="close-save-score" type="button">Close</button></div>
+    <form id="score-form" hidden>
+      <label>Your name <input id="player-name" name="name" maxlength="50" required autocomplete="off"></label>
+      <button type="submit">Save score locally</button><p id="score-status" role="status"></p>
+    </form>
+  </dialog>
+  <p id="display-status" class="display-status" role="status" hidden></p>
+  <p id="resource-status" role="status" hidden></p>
+  <dialog id="scores-dialog"><div class="dialog-heading"><h2>Local scores</h2><button id="close-scores" type="button">Close</button></div><p>Scores saved in this browser.</p><ol id="score-list"></ol></dialog>
+  <script id="score-service-config" type="application/json">{}</script>
+  <script src="resources.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

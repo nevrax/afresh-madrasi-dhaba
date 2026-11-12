@@ -1,0 +1,72 @@
+{
+  "symbolId": 16,
+  "frameCount": 1,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 1,
+        "symbolId": 13,
+        "name": "b",
+        "matrix": {
+          "a": 16.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 16.0,
+          "tx": 0.0,
+          "ty": 0.0
+        }
+      },
+      {
+        "depth": 3,
+        "symbolId": 15,
+        "name": "face",
+        "matrix": {
+          "a": 14.000061,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 14.000061,
+          "tx": 1.0,
+          "ty": 1.0
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 0,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 13,
+      "name": "b",
+      "matrix": {
+        "a": 16.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 16.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 1,
+      "type": "place",
+      "move": false,
+      "depth": 3,
+      "symbolId": 15,
+      "name": "face",
+      "matrix": {
+        "a": 14.000061,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 14.000061,
+        "tx": 1.0,
+        "ty": 1.0
+      }
+    }
+  ]
+}

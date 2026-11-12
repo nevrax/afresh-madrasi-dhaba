@@ -1,0 +1,1256 @@
+{
+  "baselineSha256": "9bf19a5d63ef2375e2b675d9c5126e6b27d0d87f55e1fcc0d24e52b090ed2d2a",
+  "count": 83,
+  "evidence": "All clean script exports. Raw counterparts retained. Definitions and display-list metadata require companion resource inventory.",
+  "scripts": [
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/controls/Button.as",
+      "sha256": "79aec26d674ba0dd9ff380d2793bc277ce3060e8e9a24d2b6d46cd2626cf02ea",
+      "bytes": 9082,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "Button",
+        "init",
+        "draw",
+        "onRelease",
+        "createChildren",
+        "setSkin",
+        "viewSkin",
+        "invalidateStyle",
+        "setColor",
+        "setEnabled",
+        "calcSize",
+        "size",
+        "getLabelPlacement",
+        "setLabelPlacement",
+        "getBtnOffset",
+        "setView",
+        "setLabel",
+        "getLabel",
+        "_getIcon",
+        "_setIcon",
+        "setHitArea"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/controls/SimpleButton.as",
+      "sha256": "4c19ee7a8b1b235f30171e58efb9fe38069dffc7c41fc3ea1f10e8a4dc1aab3a",
+      "bytes": 14955,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "SimpleButton",
+        "init",
+        "createChildren",
+        "setIcon",
+        "changeIcon",
+        "changeSkin",
+        "viewIcon",
+        "removeIcons",
+        "setSkin",
+        "calcSize",
+        "viewSkin",
+        "showEmphasized",
+        "refresh",
+        "setView",
+        "setStateVar",
+        "setState",
+        "size",
+        "draw",
+        "getState",
+        "setToggle",
+        "getToggle",
+        "setSelected",
+        "getSelected",
+        "setEnabled",
+        "onPress",
+        "onPressDelay",
+        "onPressRepeat",
+        "onRelease",
+        "onDragOut",
+        "onDragOver",
+        "onReleaseOutside",
+        "onRollOver",
+        "onRollOut",
+        "getLabel",
+        "setLabel",
+        "keyDown",
+        "keyUp",
+        "onKillFocus"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/core/ext/UIComponentExtensions.as",
+      "sha256": "7374a7adbc47aa410f66455f34822c0b4c04034c58d744128d68cd6670c1e02e",
+      "bytes": 1573,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "UIComponentExtensions",
+        "Extensions"
+      ],
+      "eventEntrypoints": [
+        "onSetFocus",
+        "onKillFocus"
+      ],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/core/ext/UIObjectExtensions.as",
+      "sha256": "7646c745e255d30f58431819379dd3657bc726a1f4d1fb7321a00d43863775df",
+      "bytes": 7334,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "UIObjectExtensions",
+        "addGeometry",
+        "Extensions"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/core/UIComponent.as",
+      "sha256": "4e24c04bfdbca6b2f4a7c6f94bf046ee5ed2392ce6529f010b7187058b58ba60",
+      "bytes": 4212,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "UIComponent",
+        "setVisible",
+        "enabledChanged",
+        "setEnabled",
+        "getFocus",
+        "setFocus",
+        "getFocusManager",
+        "onKillFocus",
+        "onSetFocus",
+        "findFocusInChildren",
+        "findFocusFromObject",
+        "pressFocus",
+        "releaseFocus",
+        "isParent",
+        "size",
+        "init",
+        "dispatchValueChangedEvent"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/core/UIObject.as",
+      "sha256": "2d6f9cdd551011b806ed9e794ee8e39e55cc4daf2858c1bbc64dbb3f3af3e518",
+      "bytes": 16091,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "UIObject",
+        "getMinHeight",
+        "setMinHeight",
+        "getMinWidth",
+        "setMinWidth",
+        "setVisible",
+        "doLater",
+        "doLaterDispatcher",
+        "cancelAllDoLaters",
+        "invalidate",
+        "invalidateStyle",
+        "redraw",
+        "draw",
+        "move",
+        "setSize",
+        "size",
+        "drawRect",
+        "createLabel",
+        "createObject",
+        "createClassObject",
+        "createEmptyObject",
+        "destroyObject",
+        "getSkinIDName",
+        "setSkin",
+        "createSkin",
+        "createChildren",
+        "_createChildren",
+        "constructObject",
+        "initFromClipParameters",
+        "init",
+        "getClassStyleDeclaration",
+        "setColor",
+        "__getTextFormat",
+        "_getTextFormat",
+        "getStyleName",
+        "getStyle",
+        "mergeClipParameters"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/events/EventDispatcher.as",
+      "sha256": "904c7c3b7aadf8dba62c27e2db37a84943671fe41f458bcd4cdf255cddc4c14e",
+      "bytes": 3028,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "EventDispatcher",
+        "_removeEventListener",
+        "initialize",
+        "dispatchQueue",
+        "dispatchEvent",
+        "addEventListener",
+        "removeEventListener"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/events/UIEventDispatcher.as",
+      "sha256": "a34a5d292c9b138d0725af6c58ca6d1d72dcbe93701a56d3772793a407996f2a",
+      "bytes": 4158,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "UIEventDispatcher",
+        "addKeyEvents",
+        "removeKeyEvents",
+        "addLoadEvents",
+        "removeLoadEvents",
+        "initialize",
+        "dispatchEvent",
+        "onKeyDown",
+        "onKeyUp",
+        "onLoad",
+        "onUnload",
+        "__addEventListener",
+        "removeEventListener"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/managers/DepthManager.as",
+      "sha256": "e21c87b88b47ff9096ca189d907ebac0fe230451c08aa844e7b1af2f8aa42afb",
+      "bytes": 14665,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "DepthManager",
+        "sortFunction",
+        "test",
+        "createClassObjectAtDepth",
+        "createObjectAtDepth",
+        "createClassChildAtDepth",
+        "createChildAtDepth",
+        "setDepthTo",
+        "setDepthAbove",
+        "setDepthBelow",
+        "findNextAvailableDepth",
+        "shuffleDepths",
+        "getDepthByFlag",
+        "buildDepthTable"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/managers/FocusManager.as",
+      "sha256": "c5f2639f618bde7de56cc84a96886454826f80787e666b3d459cad7cbf1efa59",
+      "bytes": 22866,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "FocusManager",
+        "getMaxTabIndex",
+        "getNextTabIndex",
+        "relocate",
+        "init",
+        "enabledChanged",
+        "activate",
+        "deactivate",
+        "isOurFocus",
+        "onSetFocus",
+        "restoreFocus",
+        "onUnload",
+        "setFocus",
+        "getActualFocus",
+        "getSelectionFocus",
+        "getFocus",
+        "walkTree",
+        "getTabCandidate",
+        "getTabCandidateFromChildren",
+        "getFocusManagerFromObject",
+        "tabHandler",
+        "onKeyDown",
+        "sendDefaultPushButtonEvent",
+        "getMousedComponentFromChildren",
+        "mouseActivate",
+        "_onMouseDown",
+        "onMouseUp",
+        "handleEvent",
+        "enableFocusManagement"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/managers/OverlappedWindows.as",
+      "sha256": "bc8179444a07d4a447d6c0faba032c6eedc99b480cfa28aff781571c09f01e62",
+      "bytes": 6693,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "OverlappedWindows",
+        "checkIdle",
+        "__addEventListener",
+        "__removeEventListener",
+        "onMouseDown",
+        "onMouseMove",
+        "onMouseUp",
+        "activate",
+        "deactivate",
+        "addFocusManager",
+        "removeFocusManager",
+        "enableOverlappedWindows"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/managers/SystemManager.as",
+      "sha256": "cc70d1c358d2204909147bcd0a6d747f3f430a63b7dd6a494cd9ad390662c205",
+      "bytes": 3545,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "SystemManager",
+        "init",
+        "addFocusManager",
+        "removeFocusManager",
+        "onMouseDown",
+        "onResize"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/skins/Border.as",
+      "sha256": "aacad17d89d7b9aa15e70ea9e4b98e1aa5716e127292afa7858418b5afbe4bbf",
+      "bytes": 340,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "Border",
+        "init"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/skins/ColoredSkinElement.as",
+      "sha256": "34cea09fbd63c0b92645e92b2235979fd59f26e9a7651011878270f70eeb35b3",
+      "bytes": 964,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "ColoredSkinElement",
+        "setColor",
+        "draw",
+        "invalidateStyle",
+        "setColorStyle"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/skins/halo/ButtonSkin.as",
+      "sha256": "7081f8af2aa1fdaea9c0e2c1180527b810d571959c03c2723c426c8a252bcf7b",
+      "bytes": 6054,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "ButtonSkin",
+        "init",
+        "size",
+        "drawHaloRect",
+        "classConstruct"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/skins/halo/Defaults.as",
+      "sha256": "69c3dde8de1714ccf5a557fbe9bc32c2d5d37cb82b8b07d39734a0f782d056a9",
+      "bytes": 8367,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "Defaults",
+        "setThemeDefaults",
+        "drawRoundRect",
+        "classConstruct"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/skins/halo/FocusRect.as",
+      "sha256": "6fd74f919cac25365a044273c001b0ee6e868146599a1851a60fe058650afb4a",
+      "bytes": 4632,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "FocusRect",
+        "draw",
+        "setSize",
+        "handleEvent",
+        "classConstruct"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/skins/halo/RectBorder.as",
+      "sha256": "50da85b92a00907d376c4f12cd4b8f14c1473679df551d0b8124883dc6f44c91",
+      "bytes": 7042,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "RectBorder",
+        "init",
+        "getBorderMetrics",
+        "drawBorder",
+        "draw3dBorder",
+        "classConstruct"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/skins/RectBorder.as",
+      "sha256": "c3f87011e55890a941826370d17624187e1ae5104e92b7a2037ad305a8b5f3a0",
+      "bytes": 1592,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "RectBorder",
+        "init",
+        "draw",
+        "getBorderMetrics",
+        "drawBorder",
+        "size",
+        "setColor"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/skins/SkinElement.as",
+      "sha256": "edc70b3cd31c0a67c98b6e721a0daa9d84dca41cb1879b813ba152a0e437ef83",
+      "bytes": 552,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "SkinElement",
+        "registerElement",
+        "__set__visible",
+        "move",
+        "setSize"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/styles/CSSSetStyle.as",
+      "sha256": "7a1b9e36a74c8caa637523fc1e9512169b7d98f17e913e58efc4f67170f5f4e1",
+      "bytes": 10611,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "CSSSetStyle",
+        "_setStyle",
+        "changeTextStyleInChildren",
+        "changeColorStyleInChildren",
+        "notifyStyleChangeInChildren",
+        "setStyle",
+        "enableRunTimeCSS",
+        "classConstruct"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/styles/CSSStyleDeclaration.as",
+      "sha256": "46d8a37cc0c27d538beba7cc00014231a75b23e71faf94a76dfd16e40ccb4d0b",
+      "bytes": 1413,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "CSSStyleDeclaration",
+        "__getTextFormat",
+        "getStyle",
+        "classConstruct"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/styles/CSSTextStyles.as",
+      "sha256": "2a1059bea8095a60261abac284ddd9454db38010948a6ed166116d276675e998",
+      "bytes": 3530,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "CSSTextStyles",
+        "addTextStyles"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/mx/styles/StyleManager.as",
+      "sha256": "d9c143a07a66f9a8e25f0832b8b9c1b09b70b5ab37fbff2d43168e4a5a8de67f",
+      "bytes": 2242,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [
+        "StyleManager",
+        "registerInheritingStyle",
+        "isInheritingStyle",
+        "registerColorStyle",
+        "isColorStyle",
+        "registerColorName",
+        "isColorName",
+        "getColorName"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/__Packages/Rijndael.as",
+      "sha256": "6f74844f6b6fb6f02b1c1d3a077a8b398c4353c4ac287e6f2ecf35551ec19eff",
+      "bytes": 13127,
+      "category": "legacy-score-crypto",
+      "target": "score adapter decision D-006",
+      "functions": [
+        "Rijndael",
+        "encrypt",
+        "decrypt",
+        "cyclicShiftLeft",
+        "xtime",
+        "mult_GF256",
+        "byteSub",
+        "shiftRow",
+        "mixColumn",
+        "addRoundKey",
+        "keyExpansion",
+        "Round",
+        "InverseRound",
+        "FinalRound",
+        "InverseFinalRound",
+        "encryption",
+        "decryption",
+        "packBytes",
+        "unpackBytes",
+        "formatPlaintext",
+        "getRandomBytes",
+        "hexToChars",
+        "charsToHex",
+        "charsToStr",
+        "strToChars"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/Border.as",
+      "sha256": "79ab80ff4a723cc88502d92b926c8d39488227b1e0969931598358949aa74ef2",
+      "bytes": 57,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/Button.as",
+      "sha256": "da4d20556bb48863953133011d7ec5aed2cc544940c04113a0ea637e3d6e4243",
+      "bytes": 60,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/ButtonSkin.as",
+      "sha256": "4e711961b22005f243fc7244ca03e2247a8bf514f6ea9d972cc5bc3cc11fbf09",
+      "bytes": 70,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/Defaults.as",
+      "sha256": "c8512064814044698783da389fe9913e1f9b2128c015dee4f26157ce26e80388",
+      "bytes": 66,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineButton2_28/BUTTONCONDACTION on(keyPress Tab).as",
+      "sha256": "4fdbe627718d60f99344e0ba100061116d1689e9128fab3113e429392114702f",
+      "bytes": 49,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_13_BrdrShdw/frame_1/DoAction.as",
+      "sha256": "c7ee093bc4ca32603ddcf67be86cdfb7df7a556b6b6741c95b4e20673fb5dc55",
+      "bytes": 64,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_15_BrdrFace/frame_1/DoAction.as",
+      "sha256": "19005a5dc78bf4c08d2b3aa4fef992a542e9ee6fa5a66c4e86becc3eff6787d7",
+      "bytes": 64,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_161/frame_1/DoAction.as",
+      "sha256": "88111434f3648453b1fc9a12850e51e4efed2b1e9272ea7e81784e75d1d14bd5",
+      "bytes": 115,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [
+        "onRelease"
+      ],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_18_BrdrBlk/frame_1/DoAction.as",
+      "sha256": "e3aead787ca9583efc060c063a1237902f4a8cc5d37e2a43b19a21610c718926",
+      "bytes": 64,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_20_BrdrHilght/frame_1/DoAction.as",
+      "sha256": "2fc012c4f7daf54bc02479535e27549fe9fa87a69e277fcd7c1156a751831bde",
+      "bytes": 67,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_25_UIObject/frame_1/DoAction.as",
+      "sha256": "3271a793e3f9600314c6b0facc05023c4f3ed09c116d452966200a5d04735655",
+      "bytes": 9,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_29/frame_1/DoAction.as",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_31_FocusManager/frame_1/DoAction.as",
+      "sha256": "3271a793e3f9600314c6b0facc05023c4f3ed09c116d452966200a5d04735655",
+      "bytes": 9,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_320/frame_20/DoAction.as",
+      "sha256": "da6d9c4be933b538b3a415dfef969ddafde163f49525a82b75a409063d346645",
+      "bytes": 26,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_321/frame_1/DoAction.as",
+      "sha256": "d76bb6aea51e9384086fa45627658b779115f860dd6947929ad9797afe53bc41",
+      "bytes": 64,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [
+        "onRelease"
+      ],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_33_UIComponent/frame_1/DoAction.as",
+      "sha256": "3271a793e3f9600314c6b0facc05023c4f3ed09c116d452966200a5d04735655",
+      "bytes": 9,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_338/frame_9/DoAction.as",
+      "sha256": "da6d9c4be933b538b3a415dfef969ddafde163f49525a82b75a409063d346645",
+      "bytes": 26,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_34_SimpleButton/frame_1/DoAction.as",
+      "sha256": "3271a793e3f9600314c6b0facc05023c4f3ed09c116d452966200a5d04735655",
+      "bytes": 9,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_35_Border/frame_1/DoAction.as",
+      "sha256": "3271a793e3f9600314c6b0facc05023c4f3ed09c116d452966200a5d04735655",
+      "bytes": 9,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_36_RectBorder/frame_1/DoAction.as",
+      "sha256": "3271a793e3f9600314c6b0facc05023c4f3ed09c116d452966200a5d04735655",
+      "bytes": 9,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_370/frame_7/DoAction.as",
+      "sha256": "875ba22e7209f1fa673d8f488d9abf2cd4c4ad9d5903d1bac0b7bfd4c5da89d7",
+      "bytes": 55,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_371/frame_1/DoAction.as",
+      "sha256": "591f48cdb38360a57f89c293ded9c65f90a3c5e64527e5739989164f95d71711",
+      "bytes": 3835,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [
+        "Initialize",
+        "CheckComplete",
+        "OrderDosa",
+        "ManageTemper",
+        "OutOfPatience",
+        "GoHappy",
+        "Disappear",
+        "ServeDosa",
+        "StartOrderTimer",
+        "Appear"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_38_Button/frame_1/DoAction.as",
+      "sha256": "3271a793e3f9600314c6b0facc05023c4f3ed09c116d452966200a5d04735655",
+      "bytes": 9,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_38_Button/frame_2/PlaceObject2_34_SimpleButton_1/CLIPACTIONRECORD on(initialize).as",
+      "sha256": "c5118454faaa25f7fae0da8538ac345f73a0576cd21ebd345d07a300a9d7260f",
+      "bytes": 139,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_384/frame_20/DoAction.as",
+      "sha256": "da6d9c4be933b538b3a415dfef969ddafde163f49525a82b75a409063d346645",
+      "bytes": 26,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_385/frame_1/DoAction.as",
+      "sha256": "591f48cdb38360a57f89c293ded9c65f90a3c5e64527e5739989164f95d71711",
+      "bytes": 3835,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [
+        "Initialize",
+        "CheckComplete",
+        "OrderDosa",
+        "ManageTemper",
+        "OutOfPatience",
+        "GoHappy",
+        "Disappear",
+        "ServeDosa",
+        "StartOrderTimer",
+        "Appear"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_398/frame_10/DoAction.as",
+      "sha256": "da6d9c4be933b538b3a415dfef969ddafde163f49525a82b75a409063d346645",
+      "bytes": 26,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_399/frame_1/DoAction.as",
+      "sha256": "591f48cdb38360a57f89c293ded9c65f90a3c5e64527e5739989164f95d71711",
+      "bytes": 3835,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [
+        "Initialize",
+        "CheckComplete",
+        "OrderDosa",
+        "ManageTemper",
+        "OutOfPatience",
+        "GoHappy",
+        "Disappear",
+        "ServeDosa",
+        "StartOrderTimer",
+        "Appear"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_400/frame_1/DoAction.as",
+      "sha256": "591f48cdb38360a57f89c293ded9c65f90a3c5e64527e5739989164f95d71711",
+      "bytes": 3835,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [
+        "Initialize",
+        "CheckComplete",
+        "OrderDosa",
+        "ManageTemper",
+        "OutOfPatience",
+        "GoHappy",
+        "Disappear",
+        "ServeDosa",
+        "StartOrderTimer",
+        "Appear"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_412/frame_12/DoAction.as",
+      "sha256": "da6d9c4be933b538b3a415dfef969ddafde163f49525a82b75a409063d346645",
+      "bytes": 26,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_413/frame_1/DoAction.as",
+      "sha256": "591f48cdb38360a57f89c293ded9c65f90a3c5e64527e5739989164f95d71711",
+      "bytes": 3835,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [
+        "Initialize",
+        "CheckComplete",
+        "OrderDosa",
+        "ManageTemper",
+        "OutOfPatience",
+        "GoHappy",
+        "Disappear",
+        "ServeDosa",
+        "StartOrderTimer",
+        "Appear"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_431/frame_17/DoAction.as",
+      "sha256": "c74687eb7a93386c097993d55a7a8fb1c0894eb5d806027004c463c730e9b64e",
+      "bytes": 33,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_431/frame_2/DoAction.as",
+      "sha256": "ab3832a4434f872165cffd3f30cab2f67a8ae9b6965b088aa46a841cd85d96f3",
+      "bytes": 53,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_437/frame_30/DoAction.as",
+      "sha256": "c74687eb7a93386c097993d55a7a8fb1c0894eb5d806027004c463c730e9b64e",
+      "bytes": 33,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_472/frame_284/DoAction.as",
+      "sha256": "11ddb2cd66099de59b3a8c8ff0e45af0a311c1b61fc9809358cc6319de6457f9",
+      "bytes": 33,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_472/frame_295/DoAction.as",
+      "sha256": "ab3832a4434f872165cffd3f30cab2f67a8ae9b6965b088aa46a841cd85d96f3",
+      "bytes": 53,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_472/frame_303/DoAction.as",
+      "sha256": "ab3832a4434f872165cffd3f30cab2f67a8ae9b6965b088aa46a841cd85d96f3",
+      "bytes": 53,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_472/frame_36/DoAction.as",
+      "sha256": "ab3832a4434f872165cffd3f30cab2f67a8ae9b6965b088aa46a841cd85d96f3",
+      "bytes": 53,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_472/frame_495/DoAction.as",
+      "sha256": "11ddb2cd66099de59b3a8c8ff0e45af0a311c1b61fc9809358cc6319de6457f9",
+      "bytes": 33,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_472/frame_5/DoAction.as",
+      "sha256": "ab3832a4434f872165cffd3f30cab2f67a8ae9b6965b088aa46a841cd85d96f3",
+      "bytes": 53,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_476/frame_1/DoAction.as",
+      "sha256": "980fa067fc8d19289ac6c58cef9f13cd74c7adff7a17db2c417bdd1d065e9692",
+      "bytes": 198,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [
+        "SetTime"
+      ],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_579/frame_1/DoAction.as",
+      "sha256": "d43996c022a332283bff5be0d07b61b7711989926a383e3979ee889a323d4d1d",
+      "bytes": 169,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [
+        "onRelease"
+      ],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DefineSprite_579/frame_1/PlaceObject2_38_Button_5/CLIPACTIONRECORD on(construct).as",
+      "sha256": "ddc4301d8ccba26bba78a3da6be0c928c3be56918682b6e92ee27991aeaab006",
+      "bytes": 205,
+      "category": "game-sprite",
+      "target": "src/core/game.ts and presentation",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/DoInitAction.as",
+      "sha256": "8b8e76ad20f8b257143ce6ae8a8825dbad0cc9c9ac693f91ab66be4850b4567c",
+      "bytes": 217,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/FocusManager.as",
+      "sha256": "bfe206371a96a42b14b09ba9acb3fa9693ea25154488898a16aca218182e3c6e",
+      "bytes": 72,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/FocusRect.as",
+      "sha256": "78a9fd533bc4922b24e3752410889a044ae132d095031742af0938636a47ef33",
+      "bytes": 68,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/frame_2/DoAction.as",
+      "sha256": "a5c0804dde751d4dceb16aa0d417bb9d7a90f6576e896b18a436538aafb2adbf",
+      "bytes": 676,
+      "category": "main-timeline",
+      "target": "src/core/game.ts and browser screens",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/frame_3/DoAction.as",
+      "sha256": "8bb4902dd94da8ef8e136eb487138df644bca5291d68c235b5bd31ece9b51430",
+      "bytes": 1045,
+      "category": "main-timeline",
+      "target": "src/core/game.ts and browser screens",
+      "functions": [
+        "refreshSession"
+      ],
+      "eventEntrypoints": [
+        "onRelease",
+        "onRelease",
+        "onRelease"
+      ],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/frame_4/DoAction.as",
+      "sha256": "2de698b0cbcbdf82d79a3448277e12cc87112a778d40b63d2fd3a0bb45554f94",
+      "bytes": 205,
+      "category": "main-timeline",
+      "target": "src/core/game.ts and browser screens",
+      "functions": [],
+      "eventEntrypoints": [
+        "onRelease",
+        "onRelease"
+      ],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/frame_5/DoAction.as",
+      "sha256": "07a6876d0b93f6e45dc5d170ee34490bb0f8b8c84d2608140a7576e545b8fb13",
+      "bytes": 10338,
+      "category": "main-timeline",
+      "target": "src/core/game.ts and browser screens",
+      "functions": [
+        "CustomerMaker",
+        "CustomerClick",
+        "RemoveDosaFromPlate",
+        "DosaMouseMove",
+        "DosaMouseOut",
+        "RemoveDosa",
+        "GetDosa",
+        "DosaExists",
+        "DosaClick",
+        "PlateClick",
+        "AddDosaToPlate",
+        "AddScore",
+        "LostCustomer",
+        "StopGame",
+        "Mute",
+        "UnMute",
+        "TimeStep"
+      ],
+      "eventEntrypoints": [
+        "onMouseMove",
+        "onRelease",
+        "onRelease"
+      ],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/frame_6/DoAction.as",
+      "sha256": "6d65acb2dcefd05ef1dc2e6cce49608eddf9a892e70875d22209096e50b78c79",
+      "bytes": 2508,
+      "category": "main-timeline",
+      "target": "src/core/game.ts and browser screens",
+      "functions": [
+        "checkForm",
+        "SubmitScore",
+        "SubmitScore_External",
+        "OpenHighScorePage",
+        "ScoresLoaded"
+      ],
+      "eventEntrypoints": [
+        "onRelease"
+      ],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/frame_7/DoAction.as",
+      "sha256": "009e0462a78ba463374dd70d5ceea9b549dfa4e1dc9024c1ca075116fa33ab07",
+      "bytes": 374,
+      "category": "main-timeline",
+      "target": "src/core/game.ts and browser screens",
+      "functions": [
+        "refreshSession"
+      ],
+      "eventEntrypoints": [
+        "onRelease"
+      ],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/RectBorder.as",
+      "sha256": "4e32f13302af43486dc62a0ef762a1e8ef5aec84ace848ff67524832ad53f06e",
+      "bytes": 169,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/SimpleButton.as",
+      "sha256": "2f7210b1fcee807855a10bd3c3cb693029a0cd7f6b0d0170600a47a664ededc9",
+      "bytes": 72,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/UIComponent.as",
+      "sha256": "223624ac045d45cca0bca5a9a3d24843f24cba2ae37e75eaac05a3b2662d191f",
+      "bytes": 66,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/UIComponentExtensions.as",
+      "sha256": "b08eab905dfca5e107ab0eaa3714a817227644e3a58081a12a8a4186cb083c13",
+      "bytes": 90,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/UIObject.as",
+      "sha256": "504803da8e67f5f8b1598d36312498156108b952db88020391861a0aaccf0ff0",
+      "bytes": 60,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    },
+    {
+      "path": "reference/decompiled/extended/clean/scripts/UIObjectExtensions.as",
+      "sha256": "8d167bbbdbcde4f769aa2df0a747fde6c3f9862167b14e55b1c204a9db506db3",
+      "bytes": 84,
+      "category": "flash-ui-library",
+      "target": "native browser controls",
+      "functions": [],
+      "eventEntrypoints": [],
+      "status": "source-inventoried; runtime parity pending"
+    }
+  ]
+}

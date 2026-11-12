@@ -1,0 +1,6 @@
+{
+  "name": "Playwright",
+  "version": "1.62.1",
+  "installDirectory": ".local-setup/playwright",
+  "browser": "Uses an existing Google Chrome installation. No personal browser profile is opened."
+}

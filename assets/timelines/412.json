@@ -1,0 +1,341 @@
+{
+  "symbolId": 412,
+  "frameCount": 12,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 1,
+        "symbolId": 402,
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -23.35,
+          "ty": -55.05
+        }
+      },
+      {
+        "depth": 3,
+        "symbolId": 404,
+        "name": "character",
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": -31.05,
+          "ty": -55.05
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 1,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 402,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -23.35,
+        "ty": -55.05
+      }
+    },
+    {
+      "frame": 1,
+      "tagIndex": 2,
+      "type": "place",
+      "move": false,
+      "depth": 3,
+      "symbolId": 404,
+      "name": "character",
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -31.05,
+        "ty": -55.05
+      }
+    },
+    {
+      "frame": 2,
+      "tagIndex": 4,
+      "type": "remove",
+      "depth": 3
+    },
+    {
+      "frame": 2,
+      "tagIndex": 5,
+      "type": "place",
+      "move": false,
+      "depth": 3,
+      "symbolId": 405,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 2.85,
+        "ty": -34.3
+      }
+    },
+    {
+      "frame": 2,
+      "tagIndex": 6,
+      "type": "place",
+      "move": false,
+      "depth": 4,
+      "symbolId": 406,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 3,
+      "tagIndex": 8,
+      "type": "place",
+      "move": true,
+      "depth": 3,
+      "symbolId": 405,
+      "matrix": {
+        "a": 1.050003,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0321045,
+        "tx": 2.85,
+        "ty": -34.3
+      }
+    },
+    {
+      "frame": 3,
+      "tagIndex": 9,
+      "type": "place",
+      "move": true,
+      "depth": 4,
+      "symbolId": 407,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 4,
+      "tagIndex": 11,
+      "type": "place",
+      "move": true,
+      "depth": 3,
+      "symbolId": 405,
+      "matrix": {
+        "a": 1.1000061,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.064209,
+        "tx": 2.85,
+        "ty": -34.3
+      }
+    },
+    {
+      "frame": 4,
+      "tagIndex": 12,
+      "type": "place",
+      "move": true,
+      "depth": 4,
+      "symbolId": 408,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 5,
+      "tagIndex": 14,
+      "type": "place",
+      "move": true,
+      "depth": 3,
+      "symbolId": 405,
+      "matrix": {
+        "a": 1.0666656,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0428009,
+        "tx": 2.85,
+        "ty": -34.25
+      }
+    },
+    {
+      "frame": 5,
+      "tagIndex": 15,
+      "type": "place",
+      "move": true,
+      "depth": 4,
+      "symbolId": 409,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 6,
+      "tagIndex": 17,
+      "type": "place",
+      "move": true,
+      "depth": 3,
+      "symbolId": 405,
+      "matrix": {
+        "a": 1.0333405,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0214081,
+        "tx": 2.85,
+        "ty": -34.25
+      }
+    },
+    {
+      "frame": 6,
+      "tagIndex": 18,
+      "type": "place",
+      "move": true,
+      "depth": 4,
+      "symbolId": 410,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 7,
+      "tagIndex": 20,
+      "type": "place",
+      "move": true,
+      "depth": 3,
+      "symbolId": 405,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 2.85,
+        "ty": -34.3
+      }
+    },
+    {
+      "frame": 7,
+      "tagIndex": 21,
+      "type": "place",
+      "move": true,
+      "depth": 4,
+      "symbolId": 411,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 8,
+      "tagIndex": 23,
+      "type": "place",
+      "move": true,
+      "depth": 3,
+      "symbolId": 405,
+      "matrix": {
+        "a": 1.050003,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0321045,
+        "tx": 2.85,
+        "ty": -34.3
+      }
+    },
+    {
+      "frame": 9,
+      "tagIndex": 25,
+      "type": "place",
+      "move": true,
+      "depth": 3,
+      "symbolId": 405,
+      "matrix": {
+        "a": 1.1000061,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.064209,
+        "tx": 2.85,
+        "ty": -34.3
+      }
+    },
+    {
+      "frame": 10,
+      "tagIndex": 27,
+      "type": "place",
+      "move": true,
+      "depth": 3,
+      "symbolId": 405,
+      "matrix": {
+        "a": 1.050003,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0321045,
+        "tx": 2.8,
+        "ty": -34.25
+      }
+    },
+    {
+      "frame": 11,
+      "tagIndex": 29,
+      "type": "place",
+      "move": true,
+      "depth": 3,
+      "symbolId": 405,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 2.85,
+        "ty": -34.3
+      }
+    },
+    {
+      "frame": 12,
+      "tagIndex": 32,
+      "type": "DoActionTag",
+      "attributes": {
+        "actionBytesLength": 1476,
+        "actionBytesSha256": "380ecd41d3e7c3fefbea32fd93b8372749ac2f41b9ee7135dea3dd825204262b"
+      }
+    }
+  ]
+}

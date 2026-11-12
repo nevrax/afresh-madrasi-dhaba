@@ -1,0 +1,2744 @@
+{
+  "symbolId": 206,
+  "frameCount": 170,
+  "labels": [],
+  "firstFrame": {
+    "frame": 1,
+    "instances": [
+      {
+        "depth": 1,
+        "symbolId": 205,
+        "matrix": {
+          "a": 1.0,
+          "b": 0.0,
+          "c": 0.0,
+          "d": 1.0,
+          "tx": 0.0,
+          "ty": 0.0
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "frame": 1,
+      "tagIndex": 1,
+      "type": "place",
+      "move": false,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.0
+      }
+    },
+    {
+      "frame": 2,
+      "tagIndex": 3,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.25
+      }
+    },
+    {
+      "frame": 3,
+      "tagIndex": 5,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.5
+      }
+    },
+    {
+      "frame": 4,
+      "tagIndex": 7,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.7
+      }
+    },
+    {
+      "frame": 5,
+      "tagIndex": 9,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 0.95
+      }
+    },
+    {
+      "frame": 6,
+      "tagIndex": 11,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 1.2
+      }
+    },
+    {
+      "frame": 7,
+      "tagIndex": 13,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 1.45
+      }
+    },
+    {
+      "frame": 8,
+      "tagIndex": 15,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 1.65
+      }
+    },
+    {
+      "frame": 9,
+      "tagIndex": 17,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 1.9
+      }
+    },
+    {
+      "frame": 10,
+      "tagIndex": 19,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 2.15
+      }
+    },
+    {
+      "frame": 11,
+      "tagIndex": 21,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 2.4
+      }
+    },
+    {
+      "frame": 12,
+      "tagIndex": 23,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 2.6
+      }
+    },
+    {
+      "frame": 13,
+      "tagIndex": 25,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 2.85
+      }
+    },
+    {
+      "frame": 14,
+      "tagIndex": 27,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 3.1
+      }
+    },
+    {
+      "frame": 15,
+      "tagIndex": 29,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 3.35
+      }
+    },
+    {
+      "frame": 16,
+      "tagIndex": 31,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 3.55
+      }
+    },
+    {
+      "frame": 17,
+      "tagIndex": 33,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 3.8
+      }
+    },
+    {
+      "frame": 18,
+      "tagIndex": 35,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 4.05
+      }
+    },
+    {
+      "frame": 19,
+      "tagIndex": 37,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 4.3
+      }
+    },
+    {
+      "frame": 20,
+      "tagIndex": 39,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 4.5
+      }
+    },
+    {
+      "frame": 21,
+      "tagIndex": 41,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 4.75
+      }
+    },
+    {
+      "frame": 22,
+      "tagIndex": 43,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 5.0
+      }
+    },
+    {
+      "frame": 23,
+      "tagIndex": 45,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 5.25
+      }
+    },
+    {
+      "frame": 24,
+      "tagIndex": 47,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 5.5
+      }
+    },
+    {
+      "frame": 25,
+      "tagIndex": 49,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 5.7
+      }
+    },
+    {
+      "frame": 26,
+      "tagIndex": 51,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 5.95
+      }
+    },
+    {
+      "frame": 27,
+      "tagIndex": 53,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 6.2
+      }
+    },
+    {
+      "frame": 28,
+      "tagIndex": 55,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 6.45
+      }
+    },
+    {
+      "frame": 29,
+      "tagIndex": 57,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 6.65
+      }
+    },
+    {
+      "frame": 30,
+      "tagIndex": 59,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 6.9
+      }
+    },
+    {
+      "frame": 31,
+      "tagIndex": 61,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 7.15
+      }
+    },
+    {
+      "frame": 32,
+      "tagIndex": 63,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 7.4
+      }
+    },
+    {
+      "frame": 33,
+      "tagIndex": 65,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 7.6
+      }
+    },
+    {
+      "frame": 34,
+      "tagIndex": 67,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 7.85
+      }
+    },
+    {
+      "frame": 35,
+      "tagIndex": 69,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 8.1
+      }
+    },
+    {
+      "frame": 36,
+      "tagIndex": 71,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 8.35
+      }
+    },
+    {
+      "frame": 37,
+      "tagIndex": 73,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 8.55
+      }
+    },
+    {
+      "frame": 38,
+      "tagIndex": 75,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 8.8
+      }
+    },
+    {
+      "frame": 39,
+      "tagIndex": 77,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 9.05
+      }
+    },
+    {
+      "frame": 40,
+      "tagIndex": 79,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 9.3
+      }
+    },
+    {
+      "frame": 41,
+      "tagIndex": 81,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 9.5
+      }
+    },
+    {
+      "frame": 42,
+      "tagIndex": 83,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 9.75
+      }
+    },
+    {
+      "frame": 43,
+      "tagIndex": 85,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": 0.0,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 44,
+      "tagIndex": 87,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -6.65,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 45,
+      "tagIndex": 89,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -13.3,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 46,
+      "tagIndex": 91,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -19.95,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 47,
+      "tagIndex": 93,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -26.6,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 48,
+      "tagIndex": 95,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -33.25,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 49,
+      "tagIndex": 97,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -39.85,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 50,
+      "tagIndex": 99,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -46.5,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 51,
+      "tagIndex": 101,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -53.15,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 52,
+      "tagIndex": 103,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -59.8,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 53,
+      "tagIndex": 105,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -66.45,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 54,
+      "tagIndex": 107,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -73.1,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 55,
+      "tagIndex": 109,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -79.75,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 56,
+      "tagIndex": 111,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -86.4,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 57,
+      "tagIndex": 113,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -93.05,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 58,
+      "tagIndex": 115,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -99.7,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 59,
+      "tagIndex": 117,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -106.35,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 60,
+      "tagIndex": 119,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -113.0,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 61,
+      "tagIndex": 121,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -119.6,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 62,
+      "tagIndex": 123,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -126.3,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 63,
+      "tagIndex": 125,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -132.9,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 64,
+      "tagIndex": 127,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -139.55,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 65,
+      "tagIndex": 129,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -146.2,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 66,
+      "tagIndex": 131,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -152.85,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 67,
+      "tagIndex": 133,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -159.5,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 68,
+      "tagIndex": 135,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -166.15,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 69,
+      "tagIndex": 137,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -172.8,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 70,
+      "tagIndex": 139,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -179.45,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 71,
+      "tagIndex": 141,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -186.1,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 72,
+      "tagIndex": 143,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -192.7,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 73,
+      "tagIndex": 145,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -199.35,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 74,
+      "tagIndex": 147,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -206.0,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 75,
+      "tagIndex": 149,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -212.65,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 76,
+      "tagIndex": 151,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -219.3,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 77,
+      "tagIndex": 153,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -225.95,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 78,
+      "tagIndex": 155,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -232.6,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 79,
+      "tagIndex": 157,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -239.25,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 80,
+      "tagIndex": 159,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -245.9,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 81,
+      "tagIndex": 161,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -252.55,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 82,
+      "tagIndex": 163,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -259.2,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 83,
+      "tagIndex": 165,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -265.8,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 84,
+      "tagIndex": 167,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -272.45,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 85,
+      "tagIndex": 169,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -279.1,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 86,
+      "tagIndex": 171,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -285.75,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 87,
+      "tagIndex": 173,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -292.4,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 88,
+      "tagIndex": 175,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -299.05,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 89,
+      "tagIndex": 177,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -305.7,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 90,
+      "tagIndex": 179,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -312.35,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 91,
+      "tagIndex": 181,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -319.0,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 92,
+      "tagIndex": 183,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -325.65,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 93,
+      "tagIndex": 185,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -332.3,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 94,
+      "tagIndex": 187,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -338.95,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 95,
+      "tagIndex": 189,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -345.6,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 96,
+      "tagIndex": 191,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -352.25,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 97,
+      "tagIndex": 193,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -358.85,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 98,
+      "tagIndex": 195,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -365.5,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 99,
+      "tagIndex": 197,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -372.15,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 100,
+      "tagIndex": 199,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -378.8,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 101,
+      "tagIndex": 201,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -385.45,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 102,
+      "tagIndex": 203,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -392.1,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 103,
+      "tagIndex": 205,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -398.75,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 104,
+      "tagIndex": 207,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -405.4,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 105,
+      "tagIndex": 209,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -412.05,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 106,
+      "tagIndex": 211,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -418.7,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 107,
+      "tagIndex": 213,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -425.3,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 108,
+      "tagIndex": 215,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -431.95,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 109,
+      "tagIndex": 217,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -438.6,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 110,
+      "tagIndex": 219,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -445.25,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 111,
+      "tagIndex": 221,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -451.9,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 112,
+      "tagIndex": 223,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -458.55,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 113,
+      "tagIndex": 225,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -465.2,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 114,
+      "tagIndex": 227,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -471.85,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 115,
+      "tagIndex": 229,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -478.5,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 116,
+      "tagIndex": 231,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -485.15,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 117,
+      "tagIndex": 233,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -491.75,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 118,
+      "tagIndex": 235,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -498.4,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 119,
+      "tagIndex": 237,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -505.05,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 120,
+      "tagIndex": 239,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -511.7,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 121,
+      "tagIndex": 241,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -518.35,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 122,
+      "tagIndex": 243,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -525.0,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 123,
+      "tagIndex": 245,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -531.65,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 124,
+      "tagIndex": 247,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -538.3,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 125,
+      "tagIndex": 249,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -544.95,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 126,
+      "tagIndex": 251,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -551.6,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 127,
+      "tagIndex": 253,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -558.25,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 128,
+      "tagIndex": 255,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -564.9,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 129,
+      "tagIndex": 257,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -571.55,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 130,
+      "tagIndex": 259,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -578.2,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 131,
+      "tagIndex": 261,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -584.8,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 132,
+      "tagIndex": 263,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -591.45,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 133,
+      "tagIndex": 265,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -598.1,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 134,
+      "tagIndex": 267,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -604.75,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 135,
+      "tagIndex": 269,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -611.4,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 136,
+      "tagIndex": 271,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -618.05,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 137,
+      "tagIndex": 273,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -624.7,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 138,
+      "tagIndex": 275,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -631.35,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 139,
+      "tagIndex": 277,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -638.0,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 140,
+      "tagIndex": 279,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -644.65,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 141,
+      "tagIndex": 281,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -651.25,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 142,
+      "tagIndex": 283,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -657.9,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 143,
+      "tagIndex": 285,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -664.55,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 144,
+      "tagIndex": 287,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -671.2,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 145,
+      "tagIndex": 289,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -677.85,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 146,
+      "tagIndex": 291,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -684.5,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 147,
+      "tagIndex": 293,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -691.15,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 148,
+      "tagIndex": 295,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -697.8,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 149,
+      "tagIndex": 297,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -704.45,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 150,
+      "tagIndex": 299,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -711.1,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 151,
+      "tagIndex": 301,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -717.75,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 152,
+      "tagIndex": 303,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -724.35,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 153,
+      "tagIndex": 305,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -731.0,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 154,
+      "tagIndex": 307,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -737.65,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 155,
+      "tagIndex": 309,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -744.3,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 156,
+      "tagIndex": 311,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -750.95,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 157,
+      "tagIndex": 313,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -757.6,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 158,
+      "tagIndex": 315,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -764.25,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 159,
+      "tagIndex": 317,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -770.9,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 160,
+      "tagIndex": 319,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -777.55,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 161,
+      "tagIndex": 321,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -784.2,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 162,
+      "tagIndex": 323,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -790.85,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 163,
+      "tagIndex": 325,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -797.5,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 164,
+      "tagIndex": 327,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -804.15,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 165,
+      "tagIndex": 329,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -810.75,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 166,
+      "tagIndex": 331,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -817.4,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 167,
+      "tagIndex": 333,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -824.05,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 168,
+      "tagIndex": 335,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -830.7,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 169,
+      "tagIndex": 337,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -837.35,
+        "ty": 10.0
+      }
+    },
+    {
+      "frame": 170,
+      "tagIndex": 339,
+      "type": "place",
+      "move": true,
+      "depth": 1,
+      "symbolId": 205,
+      "matrix": {
+        "a": 1.0,
+        "b": 0.0,
+        "c": 0.0,
+        "d": 1.0,
+        "tx": -844.0,
+        "ty": 10.0
+      }
+    }
+  ]
+}
