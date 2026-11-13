@@ -35,8 +35,9 @@ function Protect-PrivatePath([string]$Path, [bool]$Directory = $false) {
     }
 }
 try {
-    $envPath = Join-Path $PSScriptRoot '.env'
-    $outputDirectory = Join-Path $PSScriptRoot 'config'
+    $projectRoot = Split-Path $PSScriptRoot -Parent
+    $envPath = Join-Path $projectRoot '.env'
+    $outputDirectory = Join-Path $projectRoot 'config'
     $outputPath = Join-Path $outputDirectory 'external-proxy.generated.yaml'
     # Reject reparse points before applying permissions or writing through paths.
     foreach ($path in @($envPath, $outputDirectory, $outputPath)) {

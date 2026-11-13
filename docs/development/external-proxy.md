@@ -70,7 +70,7 @@ not converted into a permanent service.
 
 ## Generate
 
-Run `generate-external-proxy-config.cmd` from any working directory. Its quoted
+Run `tools/generate-external-proxy-config.cmd` from any working directory using its full path. Its quoted
 PowerShell path supports spaces and its exit code is propagated. The script writes
 only `config/external-proxy.generated.yaml`; no application, browser or network
 inspection is performed. The public origin is validated but is deliberately not

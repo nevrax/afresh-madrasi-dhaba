@@ -20,7 +20,7 @@ To develop or rebuild the game, double-click **scripts/10_setup.cmd**. It instal
 
 Before HTTP development, copy `.env.example` to `.env` and configure it as described in [external proxy deployment](external-proxy.md). Run **10 once on a new laptop**, then **20 whenever you want to play**. The tens identify categories, not execution order. Future commands use free numbers within the same group; existing groups keep their numbers. See [the command guide](../../scripts/README.md).
 
-The build/play/test launchers always use the project's local Node.js. They bootstrap it if it is missing. For unattended use, pass `-NoPause`. Re-running setup is safe and does not delete source, tools, local settings or browser profiles. Implementation helpers live under scripts/internal. The two root external-proxy generator scripts are the documented launcher-location exception.
+The build/play/test launchers always use the project's local Node.js. They bootstrap it if it is missing. For unattended use, pass `-NoPause`. Re-running setup is safe and does not delete source, tools, local settings or browser profiles. Implementation helpers live under scripts/internal. The external-proxy generator scripts live in tools/.
 
 ## Directory structure
 

@@ -12,7 +12,7 @@ Active optimization is in [the performance plan](performance-plan.md).
 ## External proxy integration
 
 - [x] PROXY-1 Add file-based ENV settings and route both existing HTTP backends under complete project paths; update URL consumers without adding listeners or authentication.
-- [x] PROXY-2 Provide root CMD/PowerShell text generation with disjoint routers, private filesystem permissions and atomic output replacement.
+- [x] PROXY-2 Provide CMD/PowerShell text generation in `tools/` with disjoint routers, private filesystem permissions and atomic output replacement.
 - [ ] PROXY-3 Validate runtime routes and central external protection only when separately authorized. This task permits generator/text inspection only; no runtime validation is claimed.
 
 Configuration, endpoints and verification limits are in [external proxy deployment](../development/external-proxy.md).

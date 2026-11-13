@@ -1,7 +1,7 @@
 # Repository instructions
 
 - Work only in this application project. Never access or modify the central SSL/proxy project; report required central integration changes to the user.
-- The root `generate-external-proxy-config.cmd` and `.ps1` are explicit launcher-location exceptions. They generate only `config/external-proxy.generated.yaml` from the application `.env`, without importing application entry points, probing runtime state or making network calls. Preserve private file ACLs and the previous output on failure. Never commit private ENV or generated proxy output.
+- Keep `generate-external-proxy-config.cmd` and `.ps1` in `tools/`, an explicit exception to the numbered launcher convention. They generate only `config/external-proxy.generated.yaml` from the application `.env`, without importing application entry points, probing runtime state or making network calls. Preserve private file ACLs and the previous output on failure. Never commit private ENV or generated proxy output.
 - For proxy configuration work, verification is limited to executing the text generator and inspecting its output unless the user explicitly authorizes more. Do not start services or run application tests, build scripts or management commands as part of that verification.
 
 - Before implementation work, read `docs/planning/implementation-plan.md` and `docs/planning/task-status.md`. Keep task IDs, completion evidence, unresolved decisions and next actions current; use these files for session handoffs. Do not equate agent completion with verified feature completion.

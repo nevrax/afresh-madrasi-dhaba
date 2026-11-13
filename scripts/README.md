@@ -3,7 +3,7 @@
 On a new laptop, run **10_setup.cmd** once. Then use **20_play.cmd** whenever you want to play.
 
 Before using the HTTP launchers, copy `.env.example` to `.env` and configure the
-assigned ports and complete paths. The root `generate-external-proxy-config.cmd`
+assigned ports and complete paths. `tools/generate-external-proxy-config.cmd`
 is a separate text-only deployment tool; it starts nothing. See
 [external proxy configuration](../docs/development/external-proxy.md).
 
